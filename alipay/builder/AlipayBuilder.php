@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\alipay;
+namespace asbamboo\openpay\alipay\builder;
 
 use asbamboo\openpay\BuilderInterface;
 use asbamboo\http\ClientInterface;

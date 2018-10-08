@@ -1,5 +1,22 @@
 {
+    "name": "asbamboo/api",
+    "description": "一个可以自动生成api文档的api模块",
+    "type": "library",
     "require": {
-        "asbamboo/http": "^1.0"
-    }
+        "asbamboo/autoload": "^1.0",
+        "asbamboo/http": "^1.0",
+        "asbamboo/event": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3@dev"
+    },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "李春寅",
+            "email": "licy2013@aliyun.com"
+        }
+    ],
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
