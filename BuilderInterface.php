@@ -1,32 +1,45 @@
 <?php
 namespace asbamboo\openpay;
 
-use asbamboo\http\ClientInterface;
 use asbamboo\http\RequestInterface;
+use asbamboo\http\UriInterface;
 
 /**
- * 接口访问构件器
- *  - 通过builder格式化接口请求的参数、请求地址、响应值等。
+ * 接口请求对象[asbamboo\http\RequestInterface]实例创建器
  *
  * @author 李春寅 <licy2013@aliyun.com>
- * @since 2018年10月8日
+ * @since 2018年10月9日
  */
-Interface BuilderInterface
+interface BuilderInterface
 {
     /**
-     * 创建的client用于发起request请求
+     * 设置请求网关
      *
-     * @return ClientInterface
+     * @param string $uri
+     * @return BuilderInterface
      */
-    public function createClient() : ClientInterface;
+    public function setGateway(string $uri) : BuilderInterface;
 
     /**
-     * 创建的request 通过client请求
-     * 通过请求的参数创建与参数响应的 Request 实例
+     * 返回请求网关
      *
-     * @param array $request_name request 名称
-     * @param string $request_env request 环境 应该不同的env对应有不同的request uri，也有可能不同的env有不同的参数。
+     * @return string|NULL
+     */
+    public function getGateway() : ?UriInterface;
+
+    /**
+     * 指定请求数据
+     *  - 在这个方法中处理映射关系，不同的支付方式$assign_data中的key映射为不同支付方式请求的参数
+     *
+     * @param AssignDataInterface $AssignData
+     * @return BuilderInterface
+     */
+    public function assignData(AssignDataInterface $AssignData) : BuilderInterface;
+
+    /**
+     * 创建请求对象
+     *
      * @return RequestInterface
      */
-    public function createRequest(array $request_name, string $request_env = null) : RequestInterface;
+    public function create() : RequestInterface;
 }
