@@ -1,15 +1,15 @@
 <?php
-namespace asbamboo\openpay\wechat\request;
+namespace asbamboo\openpay\wxpay\request;
 
 use asbamboo\http\Request;
 use asbamboo\http\StreamInterface;
 use asbamboo\http\RequestInterface;
 use asbamboo\http\Constant;
-use asbamboo\openpay\wechat\traits\GatewayUriTrait;
+use asbamboo\openpay\wxpay\traits\GatewayUriTrait;
 use asbamboo\openpay\BuilderInterface;
 use asbamboo\http\UriInterface;
 use asbamboo\openpay\AssignDataInterface;
-use asbamboo\openpay\payment\wechat\requestParams\unit\TradeCreateParams;
+use asbamboo\openpay\payment\wxpay\requestParams\unit\TradeCreateParams;
 use asbamboo\openpay\common\traits\MakeRequstBodyTrait;
 
 class TradeCreate implements BuilderInterface

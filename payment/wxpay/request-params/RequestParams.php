@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\payment\wechat\requestParams;
+namespace asbamboo\openpay\payment\wxpay\requestParams;
 
 use asbamboo\openpay\common\traits\MappingDataTrait;
 
@@ -15,9 +15,12 @@ abstract class RequestParams implements RequestParamsInterface
 
     public $appid;
     public $mch_id;
-    public $nonce_str;
+    public $sub_appid;
+    public $sub_mch_id;
+    public $device_info;
+    public $nonce_str = uniqid();
     public $sign;
-    public $sign_type;
+    public $sign_type = 'MD5';
 
 
     /**
@@ -29,8 +32,11 @@ abstract class RequestParams implements RequestParamsInterface
     protected function mappingConfig() : array
     {
         return [
-            'appid'     => 'app_id',
-            'mch_id'    => 'seller_id',
+            'appid'         => 'app_id',
+            'mch_id'        => 'seller_id',
+            'sub_appid'     => 'sub_appid',
+            'sub_mch_id'    => 'sub_mch_id',
+            'device_info'   => 'device_info',
         ];
     }
 
@@ -38,7 +44,7 @@ abstract class RequestParams implements RequestParamsInterface
     /**
      *
      * {@inheritDoc}
-     * @see \asbamboo\openpay\payment\wechat\requestParams\RequestParamsInterface::makeSign()
+     * @see \asbamboo\openpay\payment\wxpay\requestParams\RequestParamsInterface::makeSign()
      */
     public function makeSign() : string
     {

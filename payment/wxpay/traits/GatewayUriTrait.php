@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\wechat\traits;
+namespace asbamboo\openpay\wxpay\traits;
 use asbamboo\http\Uri;
 use asbamboo\http\UriInterface;
 use asbamboo\openpay\BuilderInterface;

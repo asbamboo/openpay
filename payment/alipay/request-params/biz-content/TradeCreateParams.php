@@ -49,6 +49,15 @@ class TradeCreateParams implements BizContentInterface
             'subject'               => 'title',
             'body'                  => 'desc',
             'buyer_id'              => 'buyer_id',
+            'goods_detail'          => 'goods_detail',
+            'operator_id'           => 'operator_id',
+            'store_id'              => 'store_id',
+            'terminal_id'           => 'terminal_id',
+            'timeout_express'       => 'timeout_express',
+            'settle_info'           => 'settle_info',
+            'business_params'       => 'business_params',
+            'receiver_address_info' => 'receiver_address_info',
+            'logistics_detail'      => 'logistics_detail',
         ];
     }
 }

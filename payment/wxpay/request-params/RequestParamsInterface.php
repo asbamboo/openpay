@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\payment\wechat\requestParams;
+namespace asbamboo\openpay\payment\wxpay\requestParams;
 
 use asbamboo\openpay\AssignDataInterface;
 
