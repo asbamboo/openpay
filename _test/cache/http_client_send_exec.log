@@ -1,0 +1,114 @@
+=======================================
+2018-10-10 09:14:55
+---------------------------------------
+'app_id=2016090900468991&
+method=alipay.trade.create&
+format=JSON&charset=utf-8&
+sign_type=RSA2&sign=&timestamp=2018-10-10+09%3A14%3A55&version=1.0&biz_content%5Bout_trade_no%5D=201810100914552987&biz_content%5Btotal_amount%5D=791505&biz_content%5Bdiscountable_amount%5D=0&biz_content%5Bsubject%5D=test-main5bbdc30f35db3'
+
+'{"alipay_trade_create_response":{"code":"40001","msg":"Missing Required Arguments","sub_code":"isv.missing-signature","sub_msg":"缺锟斤拷签锟斤拷锟斤拷锟斤拷"},"sign":"po73F6ZixS7jYALjUQggKaQOGIyN18fnAuGbLRKulPnZJORFCoVeK7HG/WRaugvZn+H+Nai9+lN9wOQxT/RcX0IRooTTVTCDgdFsAk379lbavtOexfcUHZCBwLpWH1yPbXej+6DaAKGgc7jEb8vO0MJXsVdfpwQyA9SsAnhePdLNtac8qn/PlFqIQXKVC07HZr+ZB0ik5hYOu1noHN25Pg88bC3fgz+KDg36CEVoWI6Jk7o56BngG2yldHqtyts80kDVXtX88BDd0K8MjRZUnwDYyG0K+Q8zpfQ1+CpZD2x5yRv8jmbj/SPUPODzSW8dCRC2URP7cYgQnsqjbInCqA=="}'
+array (
+  'url' => 'https://openapi.alipaydev.com/gateway.do',
+  'content_type' => 'text/html;charset=GBK',
+  'http_code' => 200,
+  'header_size' => 254,
+  'request_size' => 457,
+  'filetime' => -1,
+  'ssl_verify_result' => 0,
+  'redirect_count' => 0,
+  'total_time' => 0.296935,
+  'namelookup_time' => 0.01232,
+  'connect_time' => 0.027356,
+  'pretransfer_time' => 0.097697,
+  'size_upload' => 316.0,
+  'size_download' => 498.0,
+  'speed_download' => 1682.0,
+  'speed_upload' => 1067.0,
+  'download_content_length' => 498.0,
+  'upload_content_length' => 316.0,
+  'starttransfer_time' => 0.296838,
+  'redirect_time' => 0.0,
+  'redirect_url' => '',
+  'primary_ip' => '115.124.16.119',
+  'certinfo' => 
+  array (
+  ),
+  'primary_port' => 443,
+  'local_ip' => '10.111.10.34',
+  'local_port' => 49488,
+)
+=======================================
+=======================================
+2018-10-10 09:15:33
+---------------------------------------
+'app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=utf-8&sign_type=RSA2&sign=d41d8cd98f00b204e9800998ecf8427e&timestamp=2018-10-10+09%3A15%3A33&version=1.0&biz_content%5Bout_trade_no%5D=201810100915331618&biz_content%5Btotal_amount%5D=968405&biz_content%5Bdiscountable_amount%5D=0&biz_content%5Bsubject%5D=test-main5bbdc335edd47'
+
+'{"alipay_trade_create_response":{"code":"40002","msg":"Invalid Arguments","sub_code":"isv.invalid-signature","sub_msg":"验签出错，请确认charset参数放在了URL查询字符串中且各参数值使用charset参数指示的字符集编码"},"sign":"GQq3ARHuM0H1pgwbKh8OiH71o4lv5FllKD84iZWgki4Yv83lNK6EP1ct0nMx7K3A40j0X90cv7p1B4ef84uBA3aZXkgHTzaBhWRMxN+DkNw4Nk++G/jbbsDoPxUdGkTkugrzF72R4ebNQbhnrosI6WJwnKekjRLJp/dpyjR4k6iQlBdEADXtqsUml+AFzXiIS0RF1wAse5nL4RFFEm+CTSWmd2onh4aKMoFruNZB0PPllaF6sdZ9G6fwQQgKZRPDtJBMZJ3BIDO20Up90i9EGcArApT4IpKOAxJVQTzZpRrDtn2PQMlf2MobJu7VA8SFSbFytk4lpWaVfe1Qj+xeLQ=="}'
+array (
+  'url' => 'https://openapi.alipaydev.com/gateway.do',
+  'content_type' => 'text/html;charset=GBK',
+  'http_code' => 200,
+  'header_size' => 254,
+  'request_size' => 489,
+  'filetime' => -1,
+  'ssl_verify_result' => 0,
+  'redirect_count' => 0,
+  'total_time' => 0.163759,
+  'namelookup_time' => 0.012268,
+  'connect_time' => 0.0246,
+  'pretransfer_time' => 0.092304,
+  'size_upload' => 348.0,
+  'size_download' => 566.0,
+  'speed_download' => 3472.0,
+  'speed_upload' => 2134.0,
+  'download_content_length' => 566.0,
+  'upload_content_length' => 348.0,
+  'starttransfer_time' => 0.163678,
+  'redirect_time' => 0.0,
+  'redirect_url' => '',
+  'primary_ip' => '115.124.16.119',
+  'certinfo' => 
+  array (
+  ),
+  'primary_port' => 443,
+  'local_ip' => '10.111.10.34',
+  'local_port' => 49494,
+)
+=======================================
+=======================================
+2018-10-10 09:15:48
+---------------------------------------
+'app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=utf-8&sign_type=RSA2&sign=&timestamp=2018-10-10+09%3A15%3A48&version=1.0&biz_content%5Bout_trade_no%5D=201810100915481617&biz_content%5Btotal_amount%5D=116704&biz_content%5Bdiscountable_amount%5D=0&biz_content%5Bsubject%5D=test-main5bbdc34443755'
+
+'{"alipay_trade_create_response":{"code":"40001","msg":"Missing Required Arguments","sub_code":"isv.missing-signature","sub_msg":"缺少签名参数"},"sign":"po73F6ZixS7jYALjUQggKaQOGIyN18fnAuGbLRKulPnZJORFCoVeK7HG/WRaugvZn+H+Nai9+lN9wOQxT/RcX0IRooTTVTCDgdFsAk379lbavtOexfcUHZCBwLpWH1yPbXej+6DaAKGgc7jEb8vO0MJXsVdfpwQyA9SsAnhePdLNtac8qn/PlFqIQXKVC07HZr+ZB0ik5hYOu1noHN25Pg88bC3fgz+KDg36CEVoWI6Jk7o56BngG2yldHqtyts80kDVXtX88BDd0K8MjRZUnwDYyG0K+Q8zpfQ1+CpZD2x5yRv8jmbj/SPUPODzSW8dCRC2URP7cYgQnsqjbInCqA=="}'
+array (
+  'url' => 'https://openapi.alipaydev.com/gateway.do',
+  'content_type' => 'text/html;charset=GBK',
+  'http_code' => 200,
+  'header_size' => 254,
+  'request_size' => 457,
+  'filetime' => -1,
+  'ssl_verify_result' => 0,
+  'redirect_count' => 0,
+  'total_time' => 0.126872,
+  'namelookup_time' => 0.004169,
+  'connect_time' => 0.019372,
+  'pretransfer_time' => 0.087889,
+  'size_upload' => 316.0,
+  'size_download' => 498.0,
+  'speed_download' => 3952.0,
+  'speed_upload' => 2507.0,
+  'download_content_length' => 498.0,
+  'upload_content_length' => 316.0,
+  'starttransfer_time' => 0.126792,
+  'redirect_time' => 0.0,
+  'redirect_url' => '',
+  'primary_ip' => '115.124.16.119',
+  'certinfo' => 
+  array (
+  ),
+  'primary_port' => 443,
+  'local_ip' => '10.111.10.34',
+  'local_port' => 49498,
+)
+=======================================

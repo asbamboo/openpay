@@ -4,10 +4,10 @@
     "type": "library",
     "require": {
         "asbamboo/autoload": "^1.0",
-        "asbamboo/http": "^1.0",
-        "asbamboo/event": "^1.0"
+        "asbamboo/http": "^1.0"
     },
     "require-dev": {
+        "asbamboo/event": "^1.0",
         "phpunit/phpunit": "^7.3@dev"
     },
     "license": "BSD-3-Clause",

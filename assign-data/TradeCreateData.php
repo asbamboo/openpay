@@ -1,5 +1,7 @@
 <?php
-namespace asbamboo\openpay;
+namespace asbamboo\openpay\assignData;
+
+use asbamboo\openpay\AssignDataInterface;
 
 /**
  * 创建交易
@@ -66,6 +68,14 @@ class TradeCreateData implements AssignDataInterface
      * @var string
      */
     public $out_trade_no;
+
+    /**
+     * 订单总金额（必须）
+     * - 此处参数值单位是分，在各平台的接口处理中，需要转换单位
+     *
+     * @var string
+     */
+    public $total_amount;
 
     /**
      * 订单标题(必填)

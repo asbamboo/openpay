@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\wxpay\request;
+namespace asbamboo\openpay\payment\wxpay\builder;
 
 use asbamboo\http\Request;
 use asbamboo\http\StreamInterface;

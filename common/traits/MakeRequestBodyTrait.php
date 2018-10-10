@@ -1,6 +1,5 @@
 <?php
 namespace asbamboo\openpay\common\traits;
-
 use asbamboo\http\StreamInterface;
 use asbamboo\http\Stream;
 
@@ -10,7 +9,7 @@ use asbamboo\http\Stream;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年10月9日
  */
-trait MakeRequstBodyTrait
+trait MakeRequestBodyTrait
 {
     /**
      * 传入一个数组生成stream body

@@ -21,13 +21,12 @@ trait MappingDataTrait
      * {@inheritDoc}
      * @see \asbamboo\openpay\payment\alipay\requestParams\CommonParamsInterface::mappingData()
      */
-    public function mappingData(AssignDataInterface $AssignData) : CommonParamsInterface
+    public function mappingData(AssignDataInterface $AssignData) : void
     {
         foreach($this->mappingConfig() AS $this_key => $assign_data_key){
-            if(property_exists($AssignData, $assign_data_key)){
-                $this->{$this_key}  = $assign_data_key;
+            if(property_exists($this, $this_key) && property_exists($AssignData, $assign_data_key)){
+                $this->{$this_key}  = $AssignData->{$assign_data_key};
             }
         }
-        return $this;
     }
 }

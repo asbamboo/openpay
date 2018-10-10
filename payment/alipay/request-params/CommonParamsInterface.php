@@ -17,7 +17,7 @@ interface CommonParamsInterface
      * @param AssignDataInterface $AssignData
      * @return CommonParamsInterface
      */
-    public function mappingData(AssignDataInterface $AssignData) : CommonParamsInterface;
+    public function mappingData(AssignDataInterface $AssignData) : void;
 
     /**
      * 设置$biz_content字段

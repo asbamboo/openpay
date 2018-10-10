@@ -15,16 +15,27 @@ class CommonParams implements CommonParamsInterface
 
     public $app_id;
     public $method; // 这个参数每个接口有固定值
-    public $format = 'JSON';
-    public $charset = 'utf-8';
-    public $sign_type = 'RSA2';
+    public $format;
+    public $charset;
+    public $sign_type;
     public $sign;
-    public $timestamp = date('Y-m-d H:i:s');
-    public $version = '1.0';
+    public $timestamp;
+    public $version;
     public $notify_url;
     public $app_auth_token;
     public $biz_content;
 
+    /**
+     * - 初始化一些接口固定值的参数
+     */
+    public function __construct()
+    {
+        $this->format       = 'JSON';
+        $this->charset      = 'utf-8';
+        $this->sign_type    = 'RSA2';
+        $this->timestamp    = date('Y-m-d H:i:s');
+        $this->version      = '1.0';
+    }
 
     /**
      * 数据映射配置
@@ -59,7 +70,7 @@ class CommonParams implements CommonParamsInterface
      */
     public function makeSign() : string
     {
-
+        return '';
     }
 
 }
