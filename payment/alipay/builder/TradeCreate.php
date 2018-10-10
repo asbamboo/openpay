@@ -38,6 +38,13 @@ class TradeCreate implements BuilderInterface
      */
     private $assign_data;
 
+    public function uri()
+    {
+        $query_data   = $this->assign_data;
+        unset($query_data['biz_content']);
+        return $this->getGateway()->withQuery(http_build_query($query_data));
+    }
+
     /**
      * 接口请求Request对象的body
      *
@@ -45,7 +52,7 @@ class TradeCreate implements BuilderInterface
      */
     public function body() : StreamInterface
     {
-        return $this->makeStream($this->assign_data);
+        return $this->makeStream(['biz_content' => $this->assign_data['biz_content']]);
     }
 
     /**
@@ -59,8 +66,10 @@ class TradeCreate implements BuilderInterface
         $BizContent                 = new TradeCreateParams();
         $BizContent->mappingData($AssignData);
 
-        $BizContent->total_amount           = bcdiv($BizContent->total_amount, 100);    // 原始金额单位是，分支付宝的单位是元
-        $BizContent->discountable_amount    = bcdiv($BizContent->discountable_amount, 100);    // 原始金额单位是，分支付宝的单位是元
+        $BizContent->total_amount           = (string) bcdiv($BizContent->total_amount, 100, 2);    // 原始金额单位是，分支付宝的单位是元
+        if($BizContent->discountable_amount > 0){
+            $BizContent->discountable_amount    = (string) bcdiv($BizContent->discountable_amount, 100, 2);    // 原始金额单位是，分支付宝的单位是元
+        }
 
         $CommonParams           = new CommonParams();
         $CommonParams->mappingData($AssignData);
@@ -68,7 +77,6 @@ class TradeCreate implements BuilderInterface
         $CommonParams           = $CommonParams->setBizContent($BizContent);
         $CommonParams->method   = self::METHOD;
         $CommonParams->sign     = $CommonParams->makeSign();
-
 
         $this->assign_data      = get_object_vars($CommonParams);
 
@@ -84,9 +92,10 @@ class TradeCreate implements BuilderInterface
     public function create() : RequestInterface
     {
         return new Request(
-            $this->getGateway(),
+            $this->uri(),
             $this->body(),
-            Constant::METHOD_POST
+            Constant::METHOD_POST,
+            ['content-type' => ['application/x-www-form-urlencoded;charset=UTF-8']]
         );
     }
 }

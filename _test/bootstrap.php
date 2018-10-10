@@ -5,6 +5,8 @@ use asbamboo\http\Event;
 use asbamboo\http\ClientInterface;
 use asbamboo\http\RequestInterface;
 use asbamboo\http\ResponseInterface;
+use asbamboo\helper\env\Env AS EnvHelper;
+use asbamboo\openpay\Env;
 
 /**
  * @var \asbamboo\autoload\Autoload $autoload
@@ -12,6 +14,8 @@ use asbamboo\http\ResponseInterface;
 $autoload   = include dirname(__DIR__) . '/vendor/asbamboo/autoload/bootstrap.php';
 $autoload->addMappingDir('asbamboo\\openpay\\', dirname(__DIR__));
 
+EnvHelper::set(Env::ALIPAY_RSA_PRIVATE_KEY, __DIR__ . '/fixtures/alipay-rsa/app_private_key.pem');
+EnvHelper::set(Env::ALIPAY_RSA_PUBLIC_KEY, __DIR__ . '/fixtures/alipay-rsa/app_public_key.pem');
 
 EventScheduler::instance()->bind(Event::HTTP_CLIENT_SEND_PRE_EXEC, function(
     ClientInterface $Client,

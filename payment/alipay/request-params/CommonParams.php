@@ -2,6 +2,8 @@
 namespace asbamboo\openpay\payment\alipay\requestParams;
 
 use asbamboo\openpay\common\traits\MappingDataTrait;
+use asbamboo\helper\env\Env AS EnvHelper;
+use asbamboo\openpay\env;
 
 /**
  * 公共请求参数
@@ -21,8 +23,8 @@ class CommonParams implements CommonParamsInterface
     public $sign;
     public $timestamp;
     public $version;
-    public $notify_url;
-    public $app_auth_token;
+//     public $notify_url;
+//     public $app_auth_token;
     public $biz_content;
 
     /**
@@ -31,8 +33,8 @@ class CommonParams implements CommonParamsInterface
     public function __construct()
     {
         $this->format       = 'JSON';
-        $this->charset      = 'utf-8';
-        $this->sign_type    = 'RSA2';
+        $this->charset      = 'UTF-8';
+        $this->sign_type    = 'RSA2'; // sign_type不允许改变，如果改变会导致签名错误
         $this->timestamp    = date('Y-m-d H:i:s');
         $this->version      = '1.0';
     }
@@ -59,7 +61,13 @@ class CommonParams implements CommonParamsInterface
      */
     public function setBizContent(BizContentInterface $BizContent) : CommonParamsInterface
     {
-        $this->biz_content  = get_object_vars($BizContent);
+        $biz_content        = get_object_vars($BizContent);
+        foreach($biz_content AS $key => $value){
+            if($this->checkIsEmpty($value)){
+                unset($biz_content[$key]);
+            }
+        }
+        $this->biz_content  = json_encode($biz_content, JSON_UNESCAPED_UNICODE);
         return $this;
     }
 
@@ -70,7 +78,79 @@ class CommonParams implements CommonParamsInterface
      */
     public function makeSign() : string
     {
-        return '';
+        $sign           = '';
+        $sign_str       = $this->getSignString();
+        $private_pem    = EnvHelper::get(env::ALIPAY_RSA_PRIVATE_KEY);
+        if(is_file($private_pem)){
+            $private_pem    = 'file://' . $private_pem;
+        }
+        $parse_key      = openssl_get_privatekey($private_pem);
+        openssl_sign($sign_str, $sign, $parse_key, OPENSSL_ALGO_SHA256);
+        openssl_free_key($parse_key);
+        return base64_encode($sign);
     }
 
+    /**
+     * 返回签名使用的字符串
+     *
+     * @return string
+     */
+    private function getSignString() : string
+    {
+        $sign_data  = [];
+        $data       = get_object_vars($this);
+        ksort($data);
+        foreach($data AS $key => $value){
+            if($this->checkIsSignKey($key)){
+                $sign_data[]    = "{$key}={$value}";
+            }
+        }
+        return implode('&', $sign_data);
+    }
+
+    /**
+     * 判断一个本实例的一个属性，是不是应该当做签名字符串的一部分。
+     *
+     *  - sign字段不是签名字符串
+     *  - self::checkIsEmpty 不是签名字符串
+     *  - 上传文件字段 不是签名字符串
+     *
+     * @param string $key 本实例的键名
+     * @return bool
+     */
+    private function checkIsSignKey($key) : bool
+    {
+        if($key != 'sign' && $this->checkIsEmpty($this->{$key}) == false && "@" != substr($this->{$key}, 0, 1)){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 判断一个参数的值是否是空
+     *
+     * 下列情况返回true
+     *  - 空字符串|trim($value) === ''
+     *  - null值|$value === null
+     *  - 未定义|!isset($value)
+     *
+     * @param mixed $value
+     * @return bool
+     */
+    private function checkIsEmpty($value) : bool
+    {
+        if(!isset($value)){
+            return true;
+        }
+
+        if($value === null){
+            return true;
+        }
+
+        if(trim($value) === ""){
+            return true;
+        }
+
+        return false;
+    }
 }

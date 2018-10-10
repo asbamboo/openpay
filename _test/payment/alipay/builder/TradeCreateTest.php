@@ -15,12 +15,14 @@ class TradeCreateTest extends TestCase
     {
         $Client             = new Client($_ENV['ALIPAY_GATEWAY_URI']);
         $Response           = $Client->request('alipay:TradeCreate', [
-            'app_id'        => $_ENV['ALIPAY_APP_ID'],
-            'out_trade_no'  => date('YmdHis') . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT),
-            'total_amount'  => rand(0, 99999999),
-            'title'         => 'test-main' . uniqid(),
+            'app_id'        => (string) $_ENV['ALIPAY_APP_ID'],
+            'out_trade_no'  => (string) date('YmdHis') . str_pad(rand(0, 999), 3, '0', STR_PAD_LEFT),
+            'total_amount'  => (string) rand(0, 9999),
+            'title'         => 'testmain',
         ]);
-        var_dump((string)$Response->getBody());
+        $b = (string)$Response->getBody();
+        var_dump($b);
+        var_dump(json_decode($Response->getBody()->getContents(), true));
 //         exit;
     }
 }

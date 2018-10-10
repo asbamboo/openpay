@@ -28,6 +28,7 @@ interface CommonParamsInterface
 
     /**
      * 生成签名
+     * 在其他参数值确定后调用这个方法生成sign
      *
      * @return string
      */

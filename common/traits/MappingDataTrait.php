@@ -2,7 +2,6 @@
 namespace asbamboo\openpay\common\traits;
 
 use asbamboo\openpay\AssignDataInterface;
-use asbamboo\openpay\payment\alipay\requestParams\CommonParamsInterface;
 
 /**
  * 用于接口参数映射关系处理
@@ -18,8 +17,7 @@ trait MappingDataTrait
 {
     /**
      *
-     * {@inheritDoc}
-     * @see \asbamboo\openpay\payment\alipay\requestParams\CommonParamsInterface::mappingData()
+     * @param AssignDataInterface $AssignData
      */
     public function mappingData(AssignDataInterface $AssignData) : void
     {
