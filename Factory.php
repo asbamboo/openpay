@@ -24,25 +24,9 @@ class Factory implements FactoryInterface
     static public function createBuilder(string $builder_name) : BuilderInterface
     {
         @list($type, $name) = explode(':', $builder_name);
-        $class_name         = __NAMESPACE__ . "\\payment\\{$type}\\builder\\{$name}";
+        $class_name         = __NAMESPACE__ . "\\payMethod\\{$type}\\builder\\{$name}";
         if(!class_exists($class_name)){
             throw new NotFoundBuilderException(sprintf('不支持的支付渠道接口：%s', $builder_name));
-        }
-        return new $class_name;
-    }
-
-    /**
-     * 创建数据指定器实例
-     *
-     * @param string $name
-     * @throws NotFoundAssignDataClassException
-     * @return AssignDataInterface
-     */
-    static public function createAssignData(string $name) : AssignDataInterface
-    {
-        $class_name = __NAMESPACE__ . "\\assignData\\{$name}Data";
-        if(!class_exists($class_name)){
-            throw new NotFoundAssignDataClassException(sprintf('没有找到相关的AssignDataInterface类：%s', $name));
         }
         return new $class_name;
     }

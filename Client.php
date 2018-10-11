@@ -34,13 +34,6 @@ class Client implements ClientInterface
      */
     public function request(string $builder_name, array $assign_data = []) : ResponseInterface
     {
-        $AssignDataObject   = $this->findAssignDataObject($builder_name);
-        foreach($assign_data AS $key => $value){
-            if(property_exists($AssignDataObject, $key)){
-                $AssignDataObject->{$key}   = $value;
-            }
-        }
-
         $Builder            = $this->findBuilder($builder_name);
         $Builder            = $Builder->assignData($AssignDataObject);
         if($this->gateway_uri){
@@ -61,17 +54,5 @@ class Client implements ClientInterface
     private function findBuilder(string $builder_name) : BuilderInterface
     {
         return Factory::createBuilder($builder_name);
-    }
-
-    /**
-     * 查找并创建builder_name对应的接口请求数据集实例
-     *
-     * @param string $builder_name
-     * @return AssignDataInterface
-     */
-    private function findAssignDataObject(string $builder_name) : AssignDataInterface
-    {
-        @list($type, $name) = explode(':', $builder_name);
-        return Factory::createAssignData($name);
     }
 }

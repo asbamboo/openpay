@@ -23,14 +23,6 @@ interface FactoryInterface
     static public function createBuilder(string $builder_name) : BuilderInterface;
 
     /**
-     * 创建数据指定器实例
-     *
-     * @param string $name
-     * @return AssignDataInterface
-     */
-    static public function createAssignData(string $name) : AssignDataInterface;
-
-    /**
      * 发送请求并且得到响应的响应值
      *
      * @param RequestInterface $Request

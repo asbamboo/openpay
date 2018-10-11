@@ -19,11 +19,7 @@ trait MakeRequestBodyTrait
     public function makeStream(array $assign_data = []) : StreamInterface
     {
         $Stream = new Stream('php://temp', 'w+b');
-        $stream_data    = [];
-        foreach($assign_data AS $key => $value){
-            $stream_data[]  = $key . '=' . urlencode($value);
-        }
-        $Stream->write(implode('&', $stream_data));
+        $Stream->write(http_build_query($assign_data));
         return $Stream;
     }
 }

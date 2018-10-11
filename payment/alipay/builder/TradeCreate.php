@@ -29,7 +29,7 @@ class TradeCreate implements BuilderInterface
      *
      * @var string
      */
-    const METHOD    = 'alipay.trade.create';
+    const METHOD    = 'alipay.trade.precreate';
 
     /**
      * 指派参数数据集

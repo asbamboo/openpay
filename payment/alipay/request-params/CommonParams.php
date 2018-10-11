@@ -23,8 +23,8 @@ class CommonParams implements CommonParamsInterface
     public $sign;
     public $timestamp;
     public $version;
-//     public $notify_url;
-//     public $app_auth_token;
+    public $notify_url;
+    public $app_auth_token;
     public $biz_content;
 
     /**
@@ -62,11 +62,6 @@ class CommonParams implements CommonParamsInterface
     public function setBizContent(BizContentInterface $BizContent) : CommonParamsInterface
     {
         $biz_content        = get_object_vars($BizContent);
-        foreach($biz_content AS $key => $value){
-            if($this->checkIsEmpty($value)){
-                unset($biz_content[$key]);
-            }
-        }
         $this->biz_content  = json_encode($biz_content, JSON_UNESCAPED_UNICODE);
         return $this;
     }

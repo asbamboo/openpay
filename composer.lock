@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "bbc951e07fec23658fe008a78235a0b9",
@@ -42,7 +42,7 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/asbamboo/autoload/tree/1.0.0",
+                "source": "https://github.com/asbamboo/autoload/tree/v1.0.0",
                 "issues": "https://github.com/asbamboo/autoload/issues"
             },
             "time": "2018-09-11T10:02:19+00:00"
@@ -80,7 +80,7 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/asbamboo/event/tree/1.0.0",
+                "source": "https://github.com/asbamboo/event/tree/v1.0.0",
                 "issues": "https://github.com/asbamboo/event/issues"
             },
             "time": "2018-09-10T06:50:39+00:00"
@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/http.git",
-                "reference": "6e517e73498aa4c9e6f51cf192d208b65f88eb9d"
+                "reference": "69b2e59e0ddfe3e1f1b8f2244712cbdde7fd32ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/http/zipball/6e517e73498aa4c9e6f51cf192d208b65f88eb9d",
-                "reference": "6e517e73498aa4c9e6f51cf192d208b65f88eb9d",
+                "url": "https://api.github.com/repos/asbamboo/http/zipball/69b2e59e0ddfe3e1f1b8f2244712cbdde7fd32ad",
+                "reference": "69b2e59e0ddfe3e1f1b8f2244712cbdde7fd32ad",
                 "shasum": ""
             },
             "require": {
@@ -159,7 +159,7 @@
                 "source": "https://github.com/asbamboo/http/tree/1.1.0",
                 "issues": "https://github.com/asbamboo/http/issues"
             },
-            "time": "2018-10-10T08:45:08+00:00"
+            "time": "2018-10-10T14:03:45+00:00"
         },
         {
             "name": "psr/http-message",
