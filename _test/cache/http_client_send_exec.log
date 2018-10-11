@@ -1,608 +1,260 @@
 =======================================
-2018-10-11 01:31:10
+2018-10-11 13:12:58
 ---------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011013109619%22%2C%22total_amount%22%3A%2290.86%22%2C%22subject%22%3A%22testmain%22%7D'
+'biz_content=%7B%22out_trade_no%22%3A%2220181011131258947%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%222122%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3Anull%2C%22goods_detail%22%3Anull%2C%22body%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22disable_pay_channels%22%3Anull%2C%22enable_pay_channels%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22qr_code_timeout_express%22%3Anull%7D'
 
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
+'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Ö§¸¶±¦ - ÍøÉÏÖ§¸¶ °²È«¿ìËÙ£¡</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<meta name="description" content="ÖĞ¹ú×î´óµÄµÚÈı·½µç×ÓÖ§¸¶·şÎñÌá¹©ÉÌ" />
+<meta name="keywords" content="ÍøÉÏ¹ºÎï/ÍøÉÏÖ§¸¶/°²È«Ö§¸¶/°²È«¹ºÎï/¹ºÎï£¬°²È«/Ö§¸¶/Ö§¸¶±¦,ÔÚÏß/¸¶¿î,ÊÕ¿î/ÍøÉÏ,Ã³Ò×/ÍøÉÏÃ³Ò×" />
+
+
+<link rel="icon" href="https://img.alipay.net:443/img/icon/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="https://img.alipay.net:443/img/icon/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="https://img.alipay.net:443/assets/c/global/global_v1.css?t=20081119.css" />
+<link rel="stylesheet" type="text/css" href="https://img.alipay.net:443/assets/c/sys/sys.tabs.css?t=20080709.css" />
+<link rel="stylesheet" type="text/css" href="https://img.alipay.net:443/assets/c/typography/ot.old.css?t=20080709.css" />
+<link rel="stylesheet" type="text/css" href="https://img.alipay.net:443/assets/c/typography/as.kt.css?t=20080709.css" />
+
+
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--[if gte IE 6]>
+<script type=\'text/javascript\' src=\'https://img.alipay.net:443/js/sys/sys.object.js?t=20080122.js\' defer=\'defer\'></script>
+<![endif]-->
+
+<style type="text/css">
+.topsearch{font-size:12px;position:relative;}
+.topsearch form{margin:-2px 0 0 0;padding:0}
+.topsearch form input{width:94px;height:13px;line-height:13px;border:1px solid #d7d7d7;padding:2px 2px 0 2px;font-size:12px}
+.topsearch form button{width:40px;height:18px;margin:0 0 0 4px;border:1px solid #d7d7d7;background:#f3f3f3;padding:0}
+.topsearch .xnews{border:0;position:absolute;top:0;right:-15px}
+#Header #QuickLinks .QuickLinksMore{position:relative;}
+#Header #QuickLinks .QuickLinksMore ol{display:none;position:absolute;top:18px;left:5px;float:none;width:65px;text-align:left;z-index:9999;text-align:left;border:1px solid #ccc;background:#fff;margin:0;padding:5px 0}
+#Header #QuickLinks .QuickLinksMore ol li{display:block;float:none;background:none;margin:0;padding:2px 3px;text-align:center}
+#Header #QuickLinks .QuickLinksMore ol li a{text-decoration:none;color:#666;margin:0;padding:0}
+#Header #QuickLinks .QuickLinksMore ol li a:hover{color:#f60}
+}
+</style>
+<!-- Header start-->
+<div id="Header" class="clearfix">
+  <!-- HeadTop start-->
+  <div id="HeadTop">
+                    <div id="Logo">
+		<a href="https://www.alipay.com" class="logo"></a>
+	</div>
+            
+       	 <div id="QuickLinks" style="padding-top:8px">
+      	<ul>
+			<li class="topsearch" style="background:none"><form id="topsearch" name="topsearch" action="https://help.alipay.com/support/search_new_result.htm" method="get" onsubmit="return checkTopSearch()">
+							<input type="hidden" name="_form_token" value="7d8c3f49018017b57cfefd065245e0c39c00b35265904a8cb99cd733939ccc0aGZ00"/>
+			<input id="word" name="word" type="text"/><button type="submit">ËÑË÷</button></form></li>
+						
+									<li><a href="https://help.alipay.com/support/index.htm" target="_blank">°ïÖúÖĞĞÄ</a></li>
+			<li><a href="https://jifen.alipay.com/index.htm?src=yy_jifen_sy01" target="_blank">¿ìÀÖ»ı·Ö</a></li>
+			<li id="QuickLinksMore1" class="QuickLinksMore">
+				<a href="https://wow.alipay.com?src=wow_home">ÍÛ£¡Ö§¸¶±¦</a>
+				<ol>
+					<li><a href="https://wow.alipay.com/shop.htm?src=shop_home">´Ù&nbsp;Ïú&nbsp;½Ö</a></li>
+					<li><a href="https://wow.alipay.com/overseas.htm?src=overseas_home">º£Íâ¹ºÎï</a></li>
+					<li><a href="https://market.alipay.com/alipay/customer_index.htm?src=customer_home">ºÏ×÷ÉÌ¼Ò</a></li>
+					<li><a href="https://wow.alipay.com/services.htm?src=services_home">»áÔ±·şÎñ</a></li>
+				</ol>
+			</li>
+			</ul>
+<script type="text/javascript">
+var searchInfo=document.getElementById("word");
+function searchclearInfoJs(){
+	if(searchInfo.value=="ÊäÈëÄúµÄÎÊÌâ")
+	{
+		searchInfo.style.color="#000";
+		searchInfo.value="";
+	}
+}
+
+function searchinputInfoJs(){
+	if(searchInfo.value==""){
+		searchInfo.style.color="#999";
+		searchInfo.value="ÊäÈëÄúµÄÎÊÌâ";
+	}
+}
+if(searchInfo!=undefined){
+	if(searchInfo.value==""||searchInfo.value=="ÊäÈëÄúµÄÎÊÌâ")
+	{
+		searchInfo.style.color="#999";
+		searchInfo.value="ÊäÈëÄúµÄÎÊÌâ";
+		searchInfo.onfocus=function(){
+		searchclearInfoJs();
+		}
+		searchInfo.onblur=function(){
+		searchinputInfoJs();
+		}
+	}
+}
+function showMore(obj){
+var oMore=document.getElementById(obj);
+var oMoreUl=oMore.getElementsByTagName("ol")[0];
+if(document.all){//ie
+	oMore.setAttribute("onmouseover",eval(function(){oMoreUl.style.display="block";}));
+	oMore.setAttribute("onmouseout",eval(function(){oMoreUl.style.display="none";}));
+	oMoreUl.setAttribute("onmouseover",eval(function(){oMoreUl.style.display="block";}));
+	oMoreUl.setAttribute("onmouseout",eval(function(){oMoreUl.style.display="none";}));
+}else{//ff
+	oMore.addEventListener("mouseover", function(){oMoreUl.style.display="block";}, false);
+	oMore.addEventListener("mouseout", function(){oMoreUl.style.display="none";}, false);
+	oMoreUl.addEventListener("mouseover", function(){oMoreUl.style.display="block";}, false);
+	oMoreUl.addEventListener("mouseout", function(){oMoreUl.style.display="none";}, false);
+}
+}
+showMore("QuickLinksMore1");
+function checkTopSearch(){
+if(searchInfo.value==""||searchInfo.value=="ÊäÈëÄúµÄÎÊÌâ"){
+	alert("ÇëÊäÈëÄúµÄÎÊÌâ Èç£ºÍü¼ÇÃÜÂë");
+	return false;
+}
+return true;
+}
+</script>
+	<ul style="clear:both">
+		<li class="Inpour" style="background:none"><a href="https://www.alipay.com/user/inpour_request.htm?src=yy_content_czbutton"><img style="position:absolute;top:-15px;margin-left:70px;"src="https://img.alipay.net:443/assets/i/base/icon/sjf.gif"  width="43" height="22" border="0" alt="³äÖµËÍ»ı·Ö"/></a></li>
+								<li><a href="https://trust.alipay.com" target="_blank">ĞÅÈÎ¼Æ»®</a></li>
+																												<li>ÄúºÃ£¬Çë <a href="https://www.alipay.com/user/reg_select.htm" >×¢²á</a> »ò <a href="https://www.alipay.com/user/login.htm">µÇÂ¼</a></li>
+							
+		</ul>
+	  </div>
+	   </div>
+  <!-- HeadTop ending-->
+    </div>
+<!-- Header ending-->
+
+
+
+<div id="Info">
+	<div class="ExclaimedInfo">
+	<strong>µ÷ÊÔ´íÎó£¬Çë»Øµ½ÇëÇóÀ´Ô´µØ£¬ÖØĞÂ·¢ÆğÇëÇó¡£</strong>
+    <div class="Todo">´íÎó´úÂë ILLEGAL_EXTERFACE </div>
+        <ul>
+      <li>ËµÃ÷:Èç¹ûÄú²»ÊÇÒòÎª±¾½Ó¿Ú¼¯³Éµ÷ÊÔ¶ø¿´¼û¸Ã´íÎóÌáĞÑ£¬ÇëÁªÏµ±¾´ÎÇëÇóÀ´Ô´ÍøÕ¾£¬±¾´íÎóÊôÓÚÍøÕ¾¼¯³É½Ó¿ÚµÄ´íÎó¡£</li>
+    </ul>
+	<ul><div class="HelpSubmit">
+					<b>ÎÊÌâÃ»½â¾ö£¿<input type="button" value="ËÑË÷ÕÒ´ğ°¸" onclick="window.open(\'https://open.alipay.com/search/searchDetail.htm?tabType=support&keyword=ILLEGAL_EXTERFACE\',\'_self\')">£¬»òÕß<a href="https://openclub.alipay.com/index.php?m=bbs&c=forumlist">ÏòÍøÓÑÌáÎÊ</a>¡£
+					</b></div></ul>
+	</div>
+</div>
+
+
+<!--footer start-->
+<div id="Foot">
+  <div class="Shell clearfix">
+    <ul>
+      <li><a href="https://www.alipay.com/static/aboutalipay/about.htm" target="_blank">¹ØÓÚÖ§¸¶±¦</a></li>
+      <li><a href="https://ue.alipay.com" target="_blank">ÌåÑé¼Æ»®</a></li>
+      <li><a href="https://blog.alipay.com" target="_blank">¹Ù·½²©¿Í</a></li>
+      <li><a href="https://job.alipay.com" target="_blank">³ÏÕ÷Ó¢²Å</a></li>
+      <li><a href="https://www.alipay.com/static/aboutalipay/contact.htm" target="_blank">ÁªÏµÎÒÃÇ</a></li>
+            <li><a href="https://market.alipay.com/ospay/index.htm" target="_blank">International Business</a></li>
+      <li><a href="https://www.alipay.com/static/aboutalipay/englishabout.htm" target="_blank">About Alipay</a></li>
+    </ul>
+  </div>
+  
+  <ul class="CopyRight clearfix">
+  <li><a href="https://www.alipay.com/static/phone/alipay_phone.htm?src=yy_sy_sjzf" target="_blank">µç»°Ö§¸¶±¦</a>£º400-66-13800 | ÊÖ»úÖ§¸¶±¦£ºwap.alipay.com</li>
+  <li>Ö§¸¶±¦°æÈ¨ËùÓĞ 2004-2018 ALIPAY.COM</li>
+  </ul>
+  <div id="ServerNum">mapi-2-1-2.daily.alipay.net</div>
+</div>
+<!--footer ending-->
+'
 array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=A4zQY1wLf4ACThWsfPhawcwjpdlwxOz6OmY7iVEldIt%2BtWiycXdJdd3ZQUr8epfEzpXV5ZniWNNxcmnnqqNlq4iKfJZVs3e1F8uVXB3zr8n%2FCISLkPVzJahNmhDGN%2B03CsVf82lET4arbJJo2CFincocI0wyFOAVbCHIsc0%2Fi90hl%2FSeLva2rvdj1BVh8eJdSeq6pWQbWry42mhVNiuSOv%2BJaG9BGFDyVszRVc2hLb3NtlrIiFDbB87%2BjekDA7dM9aTW1qHWXEcmzXzhdS47SX2B3SiZ7kKW7Cl2labQQmVX0t%2Flbh27fd%2B117%2B3VmE7cDjLPMvKrJ8OgtG6fzh2SQ%3D%3D&timestamp=2018-10-11+01%3A31%3A09&version=1.0',
+  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&format=JSON&charset=UTF-8&sign_type=RSA2&sign=ZXAl9JgYtXpAMMUaON%2F0oUnRqubdoOyYwuY2eTXP9LrIHOk9jJHXoKJWLpniyn9vT8ruezF3aFbzhyXlUm2euU672T1dxVEnebAFeep6Zsv5VhG9%2BrJua3PZ15Mcl%2BHXYTNkwBZxkGhDYwqdl1BeomcT5RfDjZCsk8Qa9Tfp83ZD6dPG7DoQSWZNQlrlmrDKuPx2OL2D9iIjo22cCw%2BvC7SkEClHbE9BfoDhmsJrQDM6dHrBPyTBDeXYMU0mcQKng7gQWtNQ%2B8Y8K9sBAGOXgfSW2KiGwg81%2BMHkxd%2BK83peylYiePgbw2nBJ%2FDH2oJ9f0uhjcIXpFPredDrbPdgtw%3D%3D&timestamp=2018-10-11+13%3A12%3A58&version=1.0',
+  'content_type' => 'text/html;charset=GBK',
+  'http_code' => 200,
+  'header_size' => 521,
+  'request_size' => 1187,
+  'filetime' => -1,
+  'ssl_verify_result' => 0,
+  'redirect_count' => 0,
+  'total_time' => 0.134963,
+  'namelookup_time' => 0.004173,
+  'connect_time' => 0.013956,
+  'pretransfer_time' => 0.075424,
+  'size_upload' => 551.0,
+  'size_download' => 8157.0,
+  'speed_download' => 60873.0,
+  'speed_upload' => 4111.0,
+  'download_content_length' => 8157.0,
+  'upload_content_length' => 551.0,
+  'starttransfer_time' => 0.111849,
+  'redirect_time' => 0.0,
+  'redirect_url' => '',
+  'primary_ip' => '115.124.16.119',
+  'certinfo' => 
+  array (
+  ),
+  'primary_port' => 443,
+  'local_ip' => '192.168.0.102',
+  'local_port' => 58606,
+)
+=======================================
+=======================================
+2018-10-11 13:25:54
+---------------------------------------
+'biz_content=%7B%22out_trade_no%22%3A%2220181011132554290%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%223262%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain5bbf4f620854a%22%2C%22goods_detail%22%3Anull%2C%22body%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22disable_pay_channels%22%3Anull%2C%22enable_pay_channels%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22qr_code_timeout_express%22%3Anull%7D'
+
+'{"alipay_trade_precreate_response":{"code":"10000","msg":"Success","out_trade_no":"20181011132554290","qr_code":"https:\\/\\/qr.alipay.com\\/bax00833dnpce2llq2jc00ea"},"sign":"Ko/zn66RKLFTpivMOVi1ey9MVxbEVULuC4xrNAW8WOXJCpU/kK+pq/Rb29d9SnLGgJwkG80+svo6spgJpPTAMx7HV1eAwy3cGq+8GuJBJ2L64FcksjrBFCqFdOdEggySqZIf6VZ/rhaUDvv1SyseOGBfNjcIvZuf2Lo/nkokesP+nXQNncEtNp0XiWXXhdncKFzgQbZJrcqmWt/6klKI8GGpbbsmTsYdrvZqN37EI0xGZWams8fKksAxwdoXpgpUyu8T+dYiTrvUZnVuKGyXpcaqkAIo+TpnzEEezNGe7XJcde7vPzJHV9vVpyoHhFP0vuziDTQzfs/vAqJD28qIWQ=="}'
+array (
+  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.precreate&format=JSON&charset=UTF-8&sign_type=RSA2&sign=OFXm9aNb8Uft3Tw%2FO3wZm0R6WXXgDH2ijirhgzqPMCDRk0%2B7UKupExUUuB%2FV5FbWRR%2BhmSESy2rsqK%2FZttGrfdryvtA5yG9eeJuftRz6P9zkYiAwgXByMI9HSjJ2drggJq5NxK8uNKvP22E04K0jvrW5hKHFNSd4yBiGvR2rJrjTzOUdcbxyDXWgoEymCju2WkVIAmmB%2F76c72tBwjxPdrFZMSfRfDR%2FTSWRv1EH1RTNpCd6xfzlNAOsCujj7D2k31TJ9yUWX%2B5t3VMhFWtKmqkH4aWCRyBqChFUhrrV48rr1zDloIfSMnIu2BKF6JT6W3Pv6%2Ft96ZJ2HG9I1eaKqg%3D%3D&timestamp=2018-10-11+13%3A25%3A54&version=1.0',
   'content_type' => 'text/html;charset=UTF-8',
   'http_code' => 200,
   'header_size' => 256,
-  'request_size' => 797,
+  'request_size' => 1224,
   'filetime' => -1,
   'ssl_verify_result' => 0,
   'redirect_count' => 0,
-  'total_time' => 0.205187,
-  'namelookup_time' => 0.028487,
-  'connect_time' => 0.041531,
-  'pretransfer_time' => 0.104506,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 2375.0,
-  'speed_upload' => 634.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.205109,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53290,
-)
-=======================================
-=======================================
-2018-10-11 02:02:08
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020208448%22%2C%22total_amount%22%3A%225.88%22%2C%22subject%22%3A%22testmain%22%7D'
-=======================================
-2018-10-11 02:03:50
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020350490%22%2C%22total_amount%22%3A%2215.91%22%2C%22subject%22%3A%22testmain%22%7D'
-=======================================
-2018-10-11 02:04:23
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020423803%22%2C%22total_amount%22%3A%220.87%22%2C%22subject%22%3A%22testmain%22%7D'
-=======================================
-2018-10-11 02:05:33
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020533893%22%2C%22total_amount%22%3A%2283.32%22%2C%22subject%22%3A%22testmain%22%7D'
-=======================================
-2018-10-11 02:05:57
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020557242%22%2C%22total_amount%22%3A%2289.41%22%2C%22subject%22%3A%22testmain%22%7D'
-=======================================
-2018-10-11 02:06:16
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020616776%22%2C%22total_amount%22%3A%2254.48%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=Qq8ETyoNPk8KryZhgsvM3AcMRNbTDp%2Fgr0jMMFWFmuW1zyugeRSUVm8YiiUKl7IGmHfQxyMnauCkgC7Gdml1CLDgAC0f8eFurldcS7Qc%2FOVX%2BzEa5fHfehrBiKsreUEEQgCZxYsQh23nNhOZ2%2FxEVO9mcUrmRNaNn8u3cari%2Ft%2FYGgWqfHIX18%2FEZXlPKwjNHI0gmQ7YFcmh1cs0khyLXGD9M1HGBBvpBXVz%2BodA5%2FNKs5hkUFEAufH4lAoh%2BXbLQZutCGoGICiKqq1nbtHnEJJU4gb312gE50q55Ewp5oy9CwXMvubok7xCRTgWXlcKgl3X3K7LlgFOd6xk%2FvMzGg%3D%3D&timestamp=2018-10-11+02%3A06%3A16&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 799,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.363132,
-  'namelookup_time' => 0.00421,
-  'connect_time' => 0.016099,
-  'pretransfer_time' => 0.082101,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 1341.0,
-  'speed_upload' => 358.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.363068,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53696,
-)
-=======================================
-=======================================
-2018-10-11 02:06:30
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020630984%22%2C%22total_amount%22%3A%2231.55%22%2C%22subject%22%3A%22testmain%22%7D'
-=======================================
-2018-10-11 02:07:55
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020755402%22%2C%22total_amount%22%3A%2242.02%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=TrgISWpsXSsHUWdnKO9ihfO7bmGLw1aOLKn5RiEgj%2BgNI5JXMvOh4RQHwhGfbxsON70IQdKvCbBcvGtQajb%2B69v%2Bd%2F%2BMpIWIoPbcaOceLlxe%2B2CV6dsd2txjqk5H4m2AvDjcuk6eNsaeBVJBwtSx9OwjrwQv45pSkbyvsWjUXYPXYIvb9ZH1u8MgAKgZQ3ml7DuiJwQt%2FsZ9Ll5So5Py5GWM8afjjLNebSyo1ftMICXzQMLQzUY5czcV3mh9uPziaLMHTB9%2BLxUOV7ii3LcE8cmom9%2BdGL2%2FqFVqgjRdhL%2FdFtn7%2FFlsGp9nfQpVUW%2FDNeVs2vQ3zJpt8OADzQ3YgA%3D%3D&timestamp=2018-10-11+02%3A07%3A55&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 803,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.142244,
-  'namelookup_time' => 0.012295,
-  'connect_time' => 0.024118,
-  'pretransfer_time' => 0.089857,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3429.0,
-  'speed_upload' => 915.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.142112,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53710,
-)
-=======================================
-=======================================
-2018-10-11 02:07:57
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020757775%22%2C%22total_amount%22%3A%2270.30%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=aOZ36Dept4IGLChIB5QRoOEizm7LLBwTEd9Jod0buSh1tRFkzKq7Rbm5frBJL%2BaAM0kivoChj0n0HK4xyrT3GGQO5B0xccXOM0e%2F1f%2FdDprwmvVrtkataHy%2BQtE3rSoGbqpOqdhTKIn%2BX4shRMKhJjclh5YOhTklGLoGHZ0ijuwvybxovEwJOsQBMgcXgC5X79dadnX2J6jtibFcoUL57Y01C15He5oKWmB516z3dgxQq0v935nOv50S%2Fp4r5pFilSzTxKcbtn7mWXNjBNlzwoRSrGE0JTW4xVYXMxNyace9EVxIL8Gy%2BcBPHtF%2BTCFJeHSGCmYo6hlAZ9vU1kuIXw%3D%3D&timestamp=2018-10-11+02%3A07%3A57&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 793,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.148498,
-  'namelookup_time' => 0.004168,
-  'connect_time' => 0.018665,
-  'pretransfer_time' => 0.08688,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3290.0,
-  'speed_upload' => 878.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.148391,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53712,
-)
-=======================================
-=======================================
-2018-10-11 02:08:02
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020802283%22%2C%22total_amount%22%3A%2250.58%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=mPGKuU75lPk3sOTOrQ%2FWMXdlZL8FnNCFew9ZugHxFSfvlrZNhP5JTof3bHoMtMmZxJa7vw6Czp5PIHlcDeO8wS69Rz1se5Xv1df%2FsiDq3OvBTktVy9Kzlbor7FerrdTyQARN%2B9o2RI1edGq11dZLE%2F9wnoq0LjTNjNIrJ28FrG6S6dbZ8fJ%2Bm2wD4I9coFelzaWj1Qio4pVz8KT2RIGGUMlhl1rn6MeogXjYYRDRkTB1MUTnGJaai9mqsjHBtyfzKY3mxoLavDB7ed%2FhxV9GxXMilrYOd6X7razZ6R6mDcyqcaREQ%2BLL1C74C6vKP4my0T02irv1414gC7t7BXvKLQ%3D%3D&timestamp=2018-10-11+02%3A08%3A02&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 791,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.152903,
-  'namelookup_time' => 0.004181,
-  'connect_time' => 0.016266,
-  'pretransfer_time' => 0.080322,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3203.0,
-  'speed_upload' => 855.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.152804,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53714,
-)
-=======================================
-=======================================
-2018-10-11 02:08:05
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020805829%22%2C%22total_amount%22%3A%228.17%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=DvESOobhgGyU3Xs8vYuZ9uY2MF%2Fg8Rox9u6H0JYC6jRZxv%2BUbLJSuyPjGD8fIa8YF7TqjJZRrtBzRKmG9Z0b7NN3qeD7Ahzea4Jp29PzR8lnffX5s%2F%2B1A2sVClch1fOufHeHx2lIb4jyh3F7suOJplSiO1rOHI1Ykv0RZ5e6rr7ncKLCKotyof9jTIS%2BxnigIHsOacm1EBs9lmEzdkCm9LfH1JWmMzIbIfN2TEq%2BKaqCIHrfUs2isOAr84LmKfU%2FgHgnaOkiUdE6mBs7nC4RGRe7lzH8In5p6XFnGp1%2B5Cf7R9ic%2FOyBRc51V02IS6FIhc%2FEK661juMuvl948uakLQ%3D%3D&timestamp=2018-10-11+02%3A08%3A05&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 796,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.210804,
-  'namelookup_time' => 0.00414,
-  'connect_time' => 0.033355,
-  'pretransfer_time' => 0.135397,
-  'size_upload' => 129.0,
-  'size_download' => 487.0,
-  'speed_download' => 2319.0,
-  'speed_upload' => 614.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 129.0,
-  'starttransfer_time' => 0.210714,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53716,
-)
-=======================================
-=======================================
-2018-10-11 02:08:55
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020855174%22%2C%22total_amount%22%3A%2215.14%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=GyDD49gw%2FMR84emcUQjCIwg5u0gvDT788uVwJ4HW5uV%2B6eLJgz2EpWQvbyPcC3CJ%2F4hAaBaeVL0l4X1yJ1LySXPrEQ6MXg0wHIzyJqvlJuTARRTCpvBJ%2FxlXQu4ztATRAD2FOhAD6d8loV4ZMAtiZ%2BzCEk0kKI1Kxz96llnE1RS0GQs2CfxwQuKLMNTE7mizomPzuh7txvqNSssmNkpSxG0po15i1AWzx9hq20B96JeETYspojN0dC6lsbseJKgTjb2VXthPZrupVJCu%2B5OfvnDrdwvVWXnLzUqMBjfBvJIl6FefYoVyrwnFNklWNRv%2BrZbpJ8KI%2FeW7BuINLSwUiA%3D%3D&timestamp=2018-10-11+02%3A08%3A55&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 793,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.145855,
-  'namelookup_time' => 0.012314,
-  'connect_time' => 0.026118,
-  'pretransfer_time' => 0.089419,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3358.0,
-  'speed_upload' => 896.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.145737,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53732,
-)
-=======================================
-=======================================
-2018-10-11 02:08:56
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020856587%22%2C%22total_amount%22%3A%2274.65%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=ZIMPyY0WivESYDMeZwNK8dVFBJ0COEaF1MVWJBJA198lZA5LRZGrkeGmOTsn3xQhTX3OrqFl7mmsPRCIkIz%2B6sCUFy0s9C2SXrPnYm9cE0kLA%2B2VnIROGQDqPwgaToMjqp3hq8UhedOvVNKZfRXYxpscGfYUJxRaDLhnqvWwbTxohic4AE1YZPsyLnBfG3XIyI5EHa3nx6CHQjKJIlYcLjxJ5pFH%2BhkvKz8qvs1Y9gW7Pj1Qc5h0gclpE5xZMeWUYemOIxsC9%2BJtbPzPHyExJY3tufJqDCVj4Ff4ptmBg8zKFUG%2F3xeLi%2FH2dsb9V65qI6MIUDbLpmrH0i4Z49IJyw%3D%3D&timestamp=2018-10-11+02%3A08%3A56&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 789,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.166502,
-  'namelookup_time' => 0.004151,
-  'connect_time' => 0.035022,
-  'pretransfer_time' => 0.10205,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 2933.0,
-  'speed_upload' => 783.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.166378,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53734,
-)
-=======================================
-=======================================
-2018-10-11 02:09:06
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020906302%22%2C%22total_amount%22%3A%2245.90%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=dDVH%2BdiIjBUPDvYttXyGuCV7UF6fRlNRXRN%2BL%2BTyLWVe%2FEJT6gJvXJIq7MDJS2svxzSSEWJaRoZ86qHP10SvuFZnVUrOSAcarvmbPjrWV%2BeB14GtC0VyHWNQ9blgXtFtj0%2F45FGSLxq4X6kOx1aM%2B2bcSUjfrwj2yVL%2FMGiVvoKs5NQ2ejZJf8dbo7rUx6kTd6oTm%2F0Tsnit1%2FixMy3pGtp7CIQcn4x%2FipbiUFEOE6JxHu7VYIIuIDWfdA3mDRdOl1qd5wHfbwj%2BDW9lIU7oOXiiOSjIFmYe2EWB14mOqo1kp7Y2%2FPYsZO3V81Jmiszp4NtnsXrOvyImBWGeF3QZmg%3D%3D&timestamp=2018-10-11+02%3A09%3A06&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 803,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.136697,
-  'namelookup_time' => 0.004179,
-  'connect_time' => 0.016355,
-  'pretransfer_time' => 0.079922,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3580.0,
-  'speed_upload' => 955.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.136581,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53738,
-)
-=======================================
-=======================================
-2018-10-11 02:09:30
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020930482%22%2C%22total_amount%22%3A%2213.57%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=cPDTDOdNE3sddgJN4Ii81uSHtUj118dlWuK6C9Y4rSmXzUHoD9YGLO2uFXMBN19zwKsAqdO7rIQ%2FVcSyja0jrsf6a%2F0i%2B9vhkRNka1h%2FB%2F1NrsHqgMXjTqFBWC3c4Uqy6JTleVyi93irwcriOIhsileLl7vw0WAfedrsnRaTasRcCYUFSUSvBRfJ%2BCFH5%2BNIm9b9HhcqvUbDNnoC5EvMSa0MSOe%2FMan8XDNK%2F87DIUyEUXfJEdDaFeVBai7P71d6sFMWA4RECYWf6pcWRlqOZ648O9DGOafzzhhk4GcwpfSVN8lJc6y2rGJtedt8lskfHIaqAk0qGbDCQP2VBVrvRQ%3D%3D&timestamp=2018-10-11+02%3A09%3A30&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 246,
-  'request_size' => 795,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.140261,
-  'namelookup_time' => 0.012248,
-  'connect_time' => 0.024203,
-  'pretransfer_time' => 0.089377,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3478.0,
-  'speed_upload' => 928.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.140165,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53744,
-)
-=======================================
-=======================================
-2018-10-11 02:09:31
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020931062%22%2C%22total_amount%22%3A%220.02%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=C98vFmB8Wl8y01%2B5OlSELxsWTea2OmxIlc9FP%2By90uD0eDBbJUU3YA013%2F%2Fbfi6yGyS9X37uqRDNNNk%2FG0RaWoeU%2BURnDMtto62lj9fbr1ZVnKeRWObLvi0IOmG6yrC23PSLYE7cCuaw2uJnlEGJ%2FRtNDyM019pn8%2BOXeCKfz3Bi9HmIqK4QkAmkFPz0d5k3Qa1GHwZJpa45CBof2MHdJUtAdSAiiCeZc%2By3JTTDTjnp9dAZEIPA4Jq6utPwp5O2siOVUSSsfoMC1RWWfRxS9E78IA0mJxliuvNR82zPHjTcCIjX5tuQT9652RD1YpEvndFnr03r9xeB%2B1YOa3hKuA%3D%3D&timestamp=2018-10-11+02%3A09%3A31&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 246,
-  'request_size' => 796,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.141094,
-  'namelookup_time' => 0.004182,
-  'connect_time' => 0.019204,
-  'pretransfer_time' => 0.084818,
-  'size_upload' => 129.0,
-  'size_download' => 487.0,
-  'speed_download' => 3453.0,
-  'speed_upload' => 914.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 129.0,
-  'starttransfer_time' => 0.141027,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53746,
-)
-=======================================
-=======================================
-2018-10-11 02:09:39
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020939161%22%2C%22total_amount%22%3A%228.25%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=AR5jvfWcNALJXBBd4GUt9s%2BzepWx0KvdsvhrY35gDOAKsNTTZtQEfQNo7Mjp7fL7X742IsBB5IHu5stsEJxtSJ2CzVyJNsr4%2FK2g5oNtC14xc0IAuU2T4zCH6gPLHqdHJH3pztzSicxOJQHM94zw4OmfbAIiojumEQfDQ24YY0hWBAHZUN%2Fh63n1Ke8CiORmUAFjcPXY52N6Y9Jw8nZlW%2BL415TPvwm96cdgrSWJA0MXPfgxD9ACR%2FDTNTPjB2zRpZ%2F8wrTT3befl1pZazyiiyEjAVVeBg7bVEkv%2FF4BJRkQGyR211vdUr1ZtqbjkZqRr8okS5dwXEr9xb0bheZJDA%3D%3D&timestamp=2018-10-11+02%3A09%3A39&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 790,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.167545,
-  'namelookup_time' => 0.004184,
-  'connect_time' => 0.030581,
-  'pretransfer_time' => 0.108114,
-  'size_upload' => 129.0,
-  'size_download' => 487.0,
-  'speed_download' => 2916.0,
-  'speed_upload' => 772.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 129.0,
-  'starttransfer_time' => 0.167475,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53748,
-)
-=======================================
-=======================================
-2018-10-11 02:09:44
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020944084%22%2C%22total_amount%22%3A%223.86%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=OLRTnwANDQPU9e0Op9tAB0dP8vK3JmDap3l%2FcfYHWfCm72%2BJ6vIKq3vSanxRGli2Vu8WHhM6Snfmv%2BFjVfyQC3pzBjNIrgEBnsCwweZDRXQS0B8J68v7yX2oLkMf6ye4udZKtBqlU6x1gEr62bkdSWCA8t9t5mEc3ok9PhF53pJmVw5KVNBJt5PungNgdXG06FBN1EJPnEuNWl0%2Fzsx9vUoHbKdyb3cfXiQgiA29MoJ6N6RB%2FU0WTSWfomTlzC58Omy67vRRjN9hSwemK3mtVUf6cvmEgn8gV%2BqJ0MUlbGoXS6dfzvJEZC7aYdb8qNw2JdwpOPuXTtWStTE7lCnwDw%3D%3D&timestamp=2018-10-11+02%3A09%3A44&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 788,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.141312,
-  'namelookup_time' => 0.004164,
-  'connect_time' => 0.017878,
-  'pretransfer_time' => 0.086353,
-  'size_upload' => 129.0,
-  'size_download' => 487.0,
-  'speed_download' => 3453.0,
-  'speed_upload' => 914.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 129.0,
-  'starttransfer_time' => 0.141191,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53750,
-)
-=======================================
-=======================================
-2018-10-11 02:09:45
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020945451%22%2C%22total_amount%22%3A%2214.83%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=ET3NqcjhG%2FrOHyD2AnCUO6SlUNBL%2FDxdxwx1lHXqYVbjYuD2Uji3NJBCZpmspJHWLqmPyT3Dd8ztJMF9IZiwIuk%2B1qVz0ohwALNleHe21d2eGMRS19rPgKw2lAnb2zEPSIGYS0mJTvsfOWZUguL78XKXBmlggNbAWHUv5Bw2cpzqlcTtma2cM7VFIIJBuUa86F1U%2F5M6ERJUf6v0%2BvYlk30B7EpgWdFaY%2Blh8oTyUWfUYjYdFae2fOUjWIEByYqqwGN02QYfoaVFcwzvUhH0jzDA%2F%2BxHaqrbyzAq2UZweot%2FLYTOkk4qcUQoQEh4UOD0OfAyDGGCN1jqnw2XGTpwNA%3D%3D&timestamp=2018-10-11+02%3A09%3A45&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 795,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.14166,
-  'namelookup_time' => 0.00418,
-  'connect_time' => 0.017656,
-  'pretransfer_time' => 0.087352,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3453.0,
-  'speed_upload' => 921.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.141571,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53752,
-)
-=======================================
-=======================================
-2018-10-11 02:09:52
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011020952081%22%2C%22total_amount%22%3A%2240.92%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=D568fp31n0%2BAQuSubYcMxy31MkgfPWKASdZcLE5rlZJ6IMWiwx%2Bpv6jlce2iyVr2rmX2z7%2FYv1ziSQK7cM1yxDsd5wskHfeewUr0iB1IePTvj7MHGAsONCRpzwDaeImNdEjZt1feNcNDZOtXaZ05%2B2mm3uDw5FwKosw%2BNKeNlCh%2BuQNvaqtLlZLA6cQ3%2FPgs0%2F6MqXbRdkHrwTOYiPxLlx%2FyA3kXOwiTpmuFZVutPSbXkaKkL%2FjEouuLiDjlrvp5wgiUyoOeCkD9p%2B7tQ5ig%2Fw%2F%2F3IauorVLYRL5Txx4qJD8pcHsOUIwdTINwBGqVA9m%2FUsHmP1S166eDY4HBqTf0Q%3D%3D&timestamp=2018-10-11+02%3A09%3A52&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 807,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.129729,
-  'namelookup_time' => 0.004187,
-  'connect_time' => 0.01658,
-  'pretransfer_time' => 0.078673,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3775.0,
-  'speed_upload' => 1007.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.129644,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 53754,
-)
-=======================================
-=======================================
-2018-10-11 02:33:20
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011023320579%22%2C%22total_amount%22%3A%2211.13%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_precreate_response":{"code":"10000","msg":"Success","out_trade_no":"20181011023320579","qr_code":"https:\\/\\/qr.alipay.com\\/bax08706jcpdrzexzrab00cd"},"sign":"kAmtqSZTbwCHYzWu0w5yCPYWy09BhpDZA+V8P56Vr5F3VYeENp9abdLwYsil+Db1RFJrVBiRoqvHw0FtymlP/tCPrknbN62KGtYbdkDcZynNRvJPM5SJvavRrR+tDuczGaByGTO1kBOdZ71GFyQmDqECWUGfkCIaoal6SS5yNrJQgF95Tuho4Ltv9orciQdkNjKE2+JjYUvs7WlcDIzw9KzHev1B3ee22d3OdEgQ3MGAu9pirT8VlGBN8q1ZHVVxSrrLgGYynt9xMpMQtaXzIUXYfhgXUFuM0XNC2CYg5jihCGqBT7MClfUsq9IbpMTkbh4xAcmG4ieoPqnQ00SXKg=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.precreate&format=JSON&charset=UTF-8&sign_type=RSA2&sign=KkRPedtuhWIc87OdvAk7%2BBDT060YBbCrYrhYFAqYuIoXeuhS8ZGa%2BBBjnAPY8mZ%2BdpBYyu1I9a85iqpZ08NGwdTCblfd%2FXYWymrf%2BimhDc5w5tWhDsrEUz8bBFChKnw%2BaYx5AFOkZRHMnvSYfQrqXrWjKSmPaO1HH3hBw1DjbC5J3Hs4%2Bkz8FN7U2afcKtvJBqs9sa1Ej%2BG%2FvztA5hMlarT0FNaDfAK5ySTeHE4nW0VU%2FfKAgap50MapoasyKJyMU1d6v5fqbgVZNUkqo%2B2ZzRUugI05SAKqfM0Io2kqqJtU3fv369Rq5yva1N%2BmJV1PwLBjO%2Bpg48GJks1pWcTt3g%3D%3D&timestamp=2018-10-11+02%3A33%3A20&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 806,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.221294,
-  'namelookup_time' => 0.012232,
-  'connect_time' => 0.031435,
-  'pretransfer_time' => 0.123801,
-  'size_upload' => 130.0,
+  'total_time' => 0.189689,
+  'namelookup_time' => 0.004158,
+  'connect_time' => 0.014737,
+  'pretransfer_time' => 0.075405,
+  'size_upload' => 556.0,
   'size_download' => 519.0,
-  'speed_download' => 2348.0,
-  'speed_upload' => 588.0,
+  'speed_download' => 2746.0,
+  'speed_upload' => 2941.0,
   'download_content_length' => 519.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.221172,
+  'upload_content_length' => 556.0,
+  'starttransfer_time' => 0.189561,
   'redirect_time' => 0.0,
   'redirect_url' => '',
   'primary_ip' => '115.124.16.119',
@@ -610,895 +262,7 @@ array (
   array (
   ),
   'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 33996,
-)
-=======================================
-=======================================
-2018-10-11 02:34:07
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011023407382%22%2C%22total_amount%22%3A%2297.38%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=nAekgHSI%2FojAi20x8ot5Qg9FU3X5KWdjBSO973FbtgyrWvTHxQpavs3zbyMAwzLoiNx4LkaNK1w4WpmkuMQOIzo9mgeFbnX%2B3fIA7TsyVqno%2Bqed8fGzOq1qtqIp%2Bhf4wahx6%2BoU0tNuz5xERK%2FqoOZhzrlmmZQgXRIsTJolNMaaEjXeQQm1hOJvxALtPn2WO%2FsePt3rr2Fbz19rFuSo6zHx1TYrnyW7FCZJsizvZuxPi125WFjs9Wl9LiVI9cRel5ZGZzrXQtAUngaeG%2FDzpU2sdfAefpHSXPj9DuurwwlGXmm2fAyVGTPyp3p1mjVdMpBl%2Fkt93NUcRjS33tscKQ%3D%3D&timestamp=2018-10-11+02%3A34%3A07&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 795,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.155193,
-  'namelookup_time' => 0.012252,
-  'connect_time' => 0.027353,
-  'pretransfer_time' => 0.091937,
-  'size_upload' => 130.0,
-  'size_download' => 487.0,
-  'speed_download' => 3141.0,
-  'speed_upload' => 838.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.155085,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 34384,
-)
-=======================================
-=======================================
-2018-10-11 02:34:58
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011023458090%22%2C%22total_amount%22%3A%2214.56%22%2C%22subject%22%3A%22testmain%22%7D'
-
-'{"alipay_trade_precreate_response":{"code":"10000","msg":"Success","out_trade_no":"20181011023458090","qr_code":"https:\\/\\/qr.alipay.com\\/bax006825jtsqqinne1h002f"},"sign":"DwWOa1noTVNA+/5UBNTLI39z90TvQl9bhIffwB/rP28XgieXkW7beybH4T0PL+ViVb63IXuIjJpa6gpM2dLdlD5hMudVXCJGZvIUveNLC6lfzZKbBErDYYltBX2iACYG43gsNgCURiDwatqYie0oS4k08Vv6p3ABZwyicS9Os2UxRPpbL5mCdgXnFpbUukTFyF9KRRbIAFQvMk2myln4kYXXEOANj1aicv2vJfZdQ3jBG+UYBvxo+WO5ffJTCcY3vGmZaV1859GzAYowKNWT3tnoHo+phy33S2xkprkc2Q7u67gy6MeXGKScfndcDsVA0+Q1IBhb5IPpJji67mlzMA=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.precreate&format=JSON&charset=UTF-8&sign_type=RSA2&sign=IrhjOAE86yWyWpjx9Ch%2BX0oTNx8KaKx17IthICz9pFOpwea2ieN%2FImbmOKLFVfwDRASg3lOxZ6BPAqsxDNKTSytUdcm3Zzj5FSqpQvOQZpZ%2FsMChO6EomKZHjTjhSYYS%2FCMYOEBT675NP2I2SSoeldaazr8vIG3lUgheWVl5gXtAdsFHYVppjLScVpxaxxys%2Bgqdg3ggbpNm7it0x%2FjfAKMvDX%2B7w8UfH%2B%2FWoMiR%2BKMKaftwSoDQdQIRUiBqVS3RK7AoZi%2BHnym24NIpaRhBHmTq004HHmylLiAVFQ9KfrfeZo4bYmYw6E0uFDnFS7SWYa5vR%2Bf0wmCPjqMVtzBlXw%3D%3D&timestamp=2018-10-11+02%3A34%3A58&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 804,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.17914,
-  'namelookup_time' => 0.012313,
-  'connect_time' => 0.026499,
-  'pretransfer_time' => 0.094234,
-  'size_upload' => 130.0,
-  'size_download' => 519.0,
-  'speed_download' => 2899.0,
-  'speed_upload' => 726.0,
-  'download_content_length' => 519.0,
-  'upload_content_length' => 130.0,
-  'starttransfer_time' => 0.179013,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 34794,
-)
-=======================================
-=======================================
-2018-10-11 02:36:19
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011023619840%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%227.33%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_precreate_response":{"code":"10000","msg":"Success","out_trade_no":"20181011023619840","qr_code":"https:\\/\\/qr.alipay.com\\/bax04233av01ie1s3u130097"},"sign":"vw3EARM3fw+4u3xQ0GDEj0P8WVOmKLaOER8jh0/EqfINw8008RrwSmzIMI2pJg5HS8CWedvjGOxUWDWRdtfwB/wTANJGGoBzYwag6ZyJKv2ExOnFa4nuvOtTssn3Oc2uTA+UasFJ99LbpYQhdEBoqez+UwW0TeqkE2zJIKtBdf++5eb5M4NQJQyrRVnaEdOUY9XWRvAECH7Pk0/PsRuTgk1k0WiuatsHcqY3Zi3+r6JCpRK5Uv7350PxOD15xxGY8qJJIY8nreFZTpeHjKSq9MK91HAEm5hU4jo8iyAbAcR53f03BCDCwMjumQTMebgN7PI0YCVhlkXICw87Pwtl3Q=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.precreate&format=JSON&charset=UTF-8&sign_type=RSA2&sign=p2UA%2Bn%2BH1Qc06pc5hS%2BPCYFUQJkAINIxJYTKKI7q59kOopg0cgNOUNI%2FSJg9%2FUI46R7IYhEV4wo7gxglShOWwTY2rYeSXHkWYRGAuS4BNS3a9VThli6fEUCr5x72CSH6vo5cblyBXiNZgkKNoqufEgpM9k4Y2JzNowOIdRvR%2FVc6v9v4LOpRDJz51yKjEjXW%2Bv12g39nyjE69xvNy3KmA8tBSBzFu2Guj1BPEH%2BFwqTWVqMMdZR2BJR3jKkvPlpWUhbgDQ4yP92yhwwjssYNCy%2B9aaJdyaaa%2FCutzykz%2BEWvefRqeK1KBane6h79PITxxI6LaNc5d9z38noXmoWQZw%3D%3D&timestamp=2018-10-11+02%3A36%3A19&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1198,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.196415,
-  'namelookup_time' => 0.012218,
-  'connect_time' => 0.027077,
-  'pretransfer_time' => 0.095895,
-  'size_upload' => 526.0,
-  'size_download' => 519.0,
-  'speed_download' => 2647.0,
-  'speed_upload' => 2683.0,
-  'download_content_length' => 519.0,
-  'upload_content_length' => 526.0,
-  'starttransfer_time' => 0.196324,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 35486,
-)
-=======================================
-=======================================
-2018-10-11 02:36:29
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011023629358%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2287.20%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_precreate_response":{"code":"10000","msg":"Success","out_trade_no":"20181011023629358","qr_code":"https:\\/\\/qr.alipay.com\\/bax01749fb89nzzetp2m00fc"},"sign":"yK9xCAe+h/iJ8O1SEt55YhHWqmTjdFHBFszrp13jcplgriaV8rSkfegnHmkxYdiAil7H6jVnGG3Qb2TW6TIKOySsbEMBa1DfO8blqljVrZfw2AhbV5ZNP5RhF0dtY575rPUpOJL1D4S9ngx10Ry1ACFGW99RCKHNaNbCcRcDuBjgWP9JQW4CMyW/PnbhtTL//VUwAsbdfNDzsJC3HT2Mpf+9wvhDvcxvk5+WxTu2ajD+ASJx77y14jJaV2QE5sYoLjrSubdSrvdhbPXhEodoZCnj3yEyG2Y9aE1BsbB+M7ty7mfqLK5silmhGxYEmINsHaYvHBOcWFUROYv47RiZWg=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.precreate&format=JSON&charset=UTF-8&sign_type=RSA2&sign=bd%2FUPjzyAO8jClde%2B9nKZoAjB%2Bt18xeYMLSfnadUjMQ%2B43rfcefFJRd%2FaSHO%2BbZf%2BRuOXR1IjGR5MQ6qJoUFjdzWhqWFsM5RdLESnFU9twGzkoL1g%2FZC8V%2FRkO3WYbdWxATXLNrEjAtG6%2FYJTATSyVl2w5PhIRHnqVEIin4AJWZJ%2BhOQayWsBFtWyXalpsPAxlvo04dVRyMO0jTVrntdy1Ez%2B2Ne%2Fzd9oRMIeq4lRd%2Bu8PAzup4Wzj9S11Q2d44TpF%2BiCknLvXaQP4IDdgoGb9Ejx6LXeteQtBi6sBkNNQXh4U%2BEGrnugW7rt2dWS%2F0Gxl%2BKNW3lq%2FCHFATwa%2F%2BF0A%3D%3D&timestamp=2018-10-11+02%3A36%3A29&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1219,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.183428,
-  'namelookup_time' => 0.004137,
-  'connect_time' => 0.018651,
-  'pretransfer_time' => 0.08442,
-  'size_upload' => 527.0,
-  'size_download' => 519.0,
-  'speed_download' => 2836.0,
-  'speed_upload' => 2879.0,
-  'download_content_length' => 519.0,
-  'upload_content_length' => 527.0,
-  'starttransfer_time' => 0.18335,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 35560,
-)
-=======================================
-=======================================
-2018-10-11 02:36:44
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011023644390%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2294.48%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_precreate_response":{"code":"10000","msg":"Success","out_trade_no":"20181011023644390","qr_code":"https:\\/\\/qr.alipay.com\\/bax08182tu1ypu7n6kw90091"},"sign":"PMPFuycRMGzwuYh74jRgU8DGN7bSrtRpkTUXqV5LPBoejiUnC7HZngBz1YWf6/S1EZO0fN90k4SaNRVxMI1BsR6RBHQFkn+YaxEg/M0Uy73mK9dVKTETu6hw714AKcbMSC1mgCE2TBQxiY4jBJXOS64xWESuptNkr1ebnL/3hDYOH2idErudZOJK2pvgwjsykOM9SyjTA0TRP4O3NIiRbxeg1nDkyt6cWL+H+BODl3rL8xN82ASODBjSZ3pe6VIYMQGXTYVoZWhjPeJFMeAmzWz875TEuM981y/ete2bM1FUqOP317di1TdDSlgd9j5ZoWMABcUuM/xGtRW4K7rLlQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.precreate&format=JSON&charset=UTF-8&sign_type=RSA2&sign=qAgbyzaMoAP7%2FakvPe31sPXkAH2VYVFqnAZTCOeDmO0JMDDLUnV0O%2FvRX8%2FwTgU2gw%2BaEPbNhACdZkrQbdc2F%2Bx2nnqiGZ%2FqG%2FO2aq9uINStWmcPg5nZ1IFzpAs0f%2FFA6R6HKoc2jfHBTSWQ1v1KSgVzu2NisQLClsyAZyj%2B4ZCawFmD0d7pbs1ONlJORkCC2pWWQILDVEvNhZWrnmaIGW2KHM2XWNTBr6zFA6b%2BxvJlcVxvmriKRNC9fYldBIhPIG6shXmVeUVKJz%2FS31UPDHY4DlQXsRMrX4a9oUZrkz4nlFfWFyNtPmMoKGdyqQwnU3o9pCLJTPVMmHSBT9GBbQ%3D%3D&timestamp=2018-10-11+02%3A36%3A44&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1199,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.21892,
-  'namelookup_time' => 0.004194,
-  'connect_time' => 0.055342,
-  'pretransfer_time' => 0.125245,
-  'size_upload' => 527.0,
-  'size_download' => 519.0,
-  'speed_download' => 2380.0,
-  'speed_upload' => 2417.0,
-  'download_content_length' => 519.0,
-  'upload_content_length' => 527.0,
-  'starttransfer_time' => 0.218805,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 35694,
-)
-=======================================
-=======================================
-2018-10-11 02:37:06
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011023706662%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2286.65%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_precreate_response":{"code":"10000","msg":"Success","out_trade_no":"20181011023706662","qr_code":"https:\\/\\/qr.alipay.com\\/bax03751tdrnw3l2oay500af"},"sign":"vVv/jfSnJWTFDMl9WczPHoVdefXxcigSXgWMOhNiDZBpHgAsU4Z+ljVaLvGjzgILQSrd4GVVtFN+K+Pe+HbdnE4snihZxDjJ0/lJ6SyoIi6oGygzFDq2wqkQp0P6pVZjsd6j1FI1zawfv5mOr9XaLqkUAPnqWDwFmQrykkdvrqdiL/EQQ6T1GLu5/l9+KWprNek/SybExuDr7Hnd32Mv2X8ilK2MbN/XNNAaF4wCbosoZRqCLmGr8ua2915cA+aErsL7uRLfzBwvCnks4OqPLiJhtxrLZrDeQcK9f3KlELJu+Bv/qo2oGYuxOeFpXoOknHLpblPtp7VQXgBLvZUJ7A=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.precreate&format=JSON&charset=UTF-8&sign_type=RSA2&sign=P1Cnq2HzHLdAbrOtFhGn4Ts5t6XFq1Ukv7TL9%2FJqzEEp%2Bl52Ar4qxoud%2Bkx5IyRnSIO4JBcFK13f7gGXngGOxyGRddJxA3WQmys%2B6AOobKyqaAwZTvRHjWwASkEOXKvqFio8SdHToAl5Qa40o2vp4R6dfS0oj7kJ%2BggHxxW1hXlifmwBPWEz8lxp4I7wk%2F9pHggU87pJB%2BV%2FOXiHs%2BCQLQZAvqXOgrUvkWRobVwYQm657lmD7tfMqCzBB6yGR089BZbGNSrK%2F%2FlbfufhTcgY76SF2QutcPR49jioFJ8sB15bpO5be2YMec7J3GtNipsicoOSavUSwA6m6Q%2BfogYh1Q%3D%3D&timestamp=2018-10-11+02%3A37%3A06&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1201,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.181758,
-  'namelookup_time' => 0.012234,
-  'connect_time' => 0.024887,
-  'pretransfer_time' => 0.0902,
-  'size_upload' => 527.0,
-  'size_download' => 519.0,
-  'speed_download' => 2867.0,
-  'speed_upload' => 2911.0,
-  'download_content_length' => 519.0,
-  'upload_content_length' => 527.0,
-  'starttransfer_time' => 0.181653,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 35876,
-)
-=======================================
-=======================================
-2018-10-11 02:38:01
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011023801830%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2282.83%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=GFAtUMBoIyJw1paXQ46km16Wbw6gZo%2BbeWZIqjcxf0Yj4n2SfcrcVZVzKqdKDiJyPC17LkvZZw3n880gRtbbrBd2w4ahenggLMuXJHu1U%2FfygQsqb8m%2FnoazDN5oeWsj63aE7gSdoWibQk91VU%2BtQqLtujMLbKd8hxvCn0Maxqja2xp43yByMocNWOPp0vMs7ckbiRg8OjSkBd1RJrxMfQQywAEC4Ucu4uWPAUbxCSNkA41VJFiuSjJVgewKHFfqvDhBw8ZzwFfwcMgT%2F1SxukwUNIH430R3PEWzcEBaYMPGIcDAdPwmNDWaQ%2FHbhfjI1c6wzgQPitmR5OwAuQ0LyA%3D%3D&timestamp=2018-10-11+02%3A38%3A01&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1186,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.208277,
-  'namelookup_time' => 0.012251,
-  'connect_time' => 0.033706,
-  'pretransfer_time' => 0.12419,
-  'size_upload' => 527.0,
-  'size_download' => 487.0,
-  'speed_download' => 2341.0,
-  'speed_upload' => 2533.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 527.0,
-  'starttransfer_time' => 0.208125,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 36318,
-)
-=======================================
-=======================================
-2018-10-11 02:50:26
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025026639%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%226.44%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=BA6t7AUJkW5P25J1dnIoA2e9gtF%2Bmjfs8UlWWau%2Fy0E%2Fx73NVOm6wlHYSLTad8ufW2Fu2VfdgnuLSKCxYGaQPKr5V7g9pWEYcvX7JAiRJ%2Byr%2BJ4SsrrYmAfPhCfopDQBZKaDqxoObmvvdnGPVVYO0Y%2BytxtMhfQzrBSXojUzqlAh1hDCIoW1mE1TAbSxbQB1OAxBAm0a0NR1aZguBStdrDOp3xDzL2UFfTeOmYvlpjToxO7ZhtpMIQtypshARu09xpsma%2F%2FxWQsp4fnL0HxqIUX4pLhFhgBaIjvSq2zLzMnMFO8bGuD8WoY6ITaGAggGzDt%2Fv%2F803LvupZ62PSRbqQ%3D%3D&timestamp=2018-10-11+02%3A50%3A26&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1211,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.182236,
-  'namelookup_time' => 0.01225,
-  'connect_time' => 0.033662,
-  'pretransfer_time' => 0.103224,
-  'size_upload' => 544.0,
-  'size_download' => 487.0,
-  'speed_download' => 2675.0,
-  'speed_upload' => 2989.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 544.0,
-  'starttransfer_time' => 0.182154,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37034,
-)
-=======================================
-=======================================
-2018-10-11 02:50:34
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025034199%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2235.73%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=Y%2Fpqw5XDek8QPMGsu4Q4IChS4n%2BvIv5RGncrDIshMFjQoGSZofypUGH3jUOHdwN6duetVgdQVQ52klKsHhpPCrSJgVSZ0TccPdrg0O1d%2BGAzhTsgz4PBqevFKf8FPwqUjZT4zWhKrucg5k05TpjYh40rjQ3Zb8yvTDc3%2FBYMFt59pvoJpGZWhfZeo1QlTbLFF2wL7FMmi8s%2Fh%2FgPliLF2SxOTaFC1Xlid1OrS5U0RuAD7bAU467GPKu00%2FjuZjspok6CuMMrN8J8aRNJ5KS958uC%2FYJe97XH%2FNSuur0z0pFgvP2jvFQ631CJcRI8YkeqKbMBylEJT8TetnDjN5s2QA%3D%3D&timestamp=2018-10-11+02%3A50%3A34&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1210,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.155935,
-  'namelookup_time' => 0.004182,
-  'connect_time' => 0.02166,
-  'pretransfer_time' => 0.086061,
-  'size_upload' => 545.0,
-  'size_download' => 487.0,
-  'speed_download' => 3141.0,
-  'speed_upload' => 3516.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 545.0,
-  'starttransfer_time' => 0.155836,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37038,
-)
-=======================================
-=======================================
-2018-10-11 02:52:38
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025238568%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2293.93%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%22buyer_id%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=GjbKrQld9NQ4WlTgUypvWnPWoMn2jANJe4jOE2XaqYPJc8DCdtg1kWnzfc2O2QdfHIpd%2BE2W3gT%2B%2FQCRGM722jemb3PxhH74IglPzANgog6aamzbiciJAQjO51hV3Hvz5mEx6Iuj4Bnw9nF2EUy9xgHz17wRwHYeCrRXrUEe7xClYfKQgCkmLVzziVX%2B7REri%2FzfwwGbClLMNP1hrnAaRfu84IdNHy6cSBJasBp4ntGfDtrKVAOshqQ56bavHZ9QuYerpw6nj%2FE67swCaC3u3qkDyAGDoz5IhjN4hnimEy6m6G82eFQHAKjtQo77c42%2BcThIHEfe3Uj9GDNB83zxtA%3D%3D&timestamp=2018-10-11+02%3A52%3A38&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1216,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.179205,
-  'namelookup_time' => 0.012227,
-  'connect_time' => 0.026774,
-  'pretransfer_time' => 0.094675,
-  'size_upload' => 555.0,
-  'size_download' => 488.0,
-  'speed_download' => 2726.0,
-  'speed_upload' => 3100.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 555.0,
-  'starttransfer_time' => 0.179128,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37116,
-)
-=======================================
-=======================================
-2018-10-11 02:52:47
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025247935%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2298.21%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%22buyer_id%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=Hbre9aldS7XiYdAkSCUWoAV0rJEqQQnjigllsBfiudA3PlWUMImu5vwq1rq0l1p4gyDWuJp8JCtcRs4q19%2BIGuhn6zimK2cgqjGzBAjF7nZC2m751t1FBZOZuEP8XuTcsyFnSMJJf6%2BUgqVcLXxnMofpwKfgQiPwjAQoWlJ8YD6uV2howiAU22iqqpGGDZ1gvhEWXD7LCytZ7PiCoEJ8sfPL5A8H12K8s3N7EtunJjz1vUTfkmnl3yzL%2FmlbX4GuF%2BDnYYdvJzzQK6tlQKFO9rOOhsZaBpbR7fwwqqSszUdH2XV5EpvDSjU3PaNBDrthTK4Ya%2Fb1lWLvSHTrgZLtXA%3D%3D&timestamp=2018-10-11+02%3A52%3A47&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1212,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.164111,
-  'namelookup_time' => 0.004134,
-  'connect_time' => 0.019138,
-  'pretransfer_time' => 0.084663,
-  'size_upload' => 555.0,
-  'size_download' => 488.0,
-  'speed_download' => 2975.0,
-  'speed_upload' => 3384.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 555.0,
-  'starttransfer_time' => 0.164022,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37120,
-)
-=======================================
-=======================================
-2018-10-11 02:53:07
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025307879%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2255.62%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%222088102146225135%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=FJnGLylNBmnwhHE%2B6A%2FpdcH2oomTxoT%2Fue%2BMyg%2FflihxVFXj7miGYD8i18G%2FF6VUz9XBQZvRP9sKniGlW10PsFLnSR23AZCZqwuMskTvgeDQcoTx7TEOfBSdstNnMR5%2B8PqYMXmCPMXTCnWT90uqoDDSZajKluxfHuOz3g8MD8Lqh1CdvdcA1WavDYtdW5XwfS2qIwoadqxcrB34%2BiFeOhH%2FMjQ6KWMKv5ZcumzFX1rH6mhOJv1jFfRIjoFz0SmcGk3W%2FS1q%2FZHwbz7S8NbBjY6r%2FKunLzCiWWCqR7mftgdxKZGTzEbbayhwbJ0U1Arvr0e1EOfVDNv%2FF3HwVFvcxw%3D%3D&timestamp=2018-10-11+02%3A53%3A07&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1236,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.16378,
-  'namelookup_time' => 0.004167,
-  'connect_time' => 0.019728,
-  'pretransfer_time' => 0.090161,
-  'size_upload' => 563.0,
-  'size_download' => 488.0,
-  'speed_download' => 2993.0,
-  'speed_upload' => 3453.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 563.0,
-  'starttransfer_time' => 0.1637,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37122,
-)
-=======================================
-=======================================
-2018-10-11 02:53:13
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025313343%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2243.05%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%222088102146225135%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=i3mXBOIGIWoNEZGACjG0QMiSoBsFt39ojmJI0Oo1dpT4KQ2dUz7eSFWLbXlsmh0girZSrMiBUlh1idB2HzFpNSB4NaELs4I46vzyTfYjY2Z5%2BZ5rxebOX4%2Bp%2FvdKWlt8ETjzKBzcn9t%2Fp4dLwrb%2Bn65UuEFlymNnPdF%2FG6AZmLNGtRgdi61eE3IuOjrSfP%2Fyc%2FuSBKh0gZ1FJyqrTXYmQVmgJgoHjOtQK0Z9PJ0XOxgTSGt%2F%2FAXyIkTgo56%2B4SP4t0vkCkgwtHGQ9YV8awhd8cNSCcjQmUxO14CwPcFQ%2FzzCul%2FJQbc8ytV33j06Zw0Gq4Kce9JR%2B9ZPWyCPv%2FknwQ%3D%3D&timestamp=2018-10-11+02%3A53%3A13&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1240,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.173402,
-  'namelookup_time' => 0.012231,
-  'connect_time' => 0.025542,
-  'pretransfer_time' => 0.092161,
-  'size_upload' => 563.0,
-  'size_download' => 488.0,
-  'speed_download' => 2820.0,
-  'speed_upload' => 3254.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 563.0,
-  'starttransfer_time' => 0.173313,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37126,
-)
-=======================================
-=======================================
-2018-10-11 02:53:20
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025320033%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2210.87%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%222088102146225135%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=JU8u8hrDnuj1C70TQhRpAc9OM0K7iX%2BkkjhL3W%2FHK14Hc9lnM%2FQUCzi4nhL0nSUydMzLVBU%2Bz1JAKlMxCdKHgXNQNuwgTZcMf1j2bxqfJEL7RQyiEnSAIrwXzSXyiXncZt9RuKE4QSDQsMtMiWIGjcwhS0o5ElriZ3vQlRjLe9DK1dKlWLNCZ3exDpyVbfAk8t%2Bk4ERb0ds%2FrkEquLWgTd5M6lvloWKXiGRrUJq8eNjQBwpxLJ95CQ8yCw2RMJbhPE0NzMi8OudNB%2B3p818n3%2BEqDxaF6f%2BmMD7eFVDUEZ17GyLRrixX3%2B332EqfdBKdVZOjfMG9%2BDYkdt7Msf5jiQ%3D%3D&timestamp=2018-10-11+02%3A53%3A20&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1214,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.152004,
-  'namelookup_time' => 0.004167,
-  'connect_time' => 0.017362,
-  'pretransfer_time' => 0.079166,
-  'size_upload' => 545.0,
-  'size_download' => 488.0,
-  'speed_download' => 3210.0,
-  'speed_upload' => 3585.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 545.0,
-  'starttransfer_time' => 0.151892,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37128,
-)
-=======================================
-=======================================
-2018-10-11 02:53:22
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025322776%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2299.17%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%222088102146225135%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=rFsStNAdspz7YI0Vrb0oS2QY2XqtlrqNoeAy4eJ%2BT40GdIRGV60N5BXxSvJYkf7ql7h5RtjQv05dvSasbFOoGywsfncmnNj4utNgmjyMGxuV8weZjv2JAxSPRReWR8yV2RSynk5W8shtweWkC%2FOpdfKT%2FLA%2FeNQNEQhhAlF8Sjd1W1BC0rLrX%2BnRHxfWa7JQ6YNW8ro1OFMmUWzM9j5pRLOsLrmOTL%2B6ypEh%2FUw8p911lEzytDC%2FOuDAcTG0PjZ%2FY2bNMwwDcgTpdEDs%2FQhrBEcy6YnTPUf3q4vAR3DXKxf%2BWbPHxqDb81y0Ra92t7ePTIuCV9Wl3deXUbarWmcEhA%3D%3D&timestamp=2018-10-11+02%3A53%3A22&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1214,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.154515,
-  'namelookup_time' => 0.00417,
-  'connect_time' => 0.017381,
-  'pretransfer_time' => 0.083432,
-  'size_upload' => 545.0,
-  'size_download' => 488.0,
-  'speed_download' => 3168.0,
-  'speed_upload' => 3538.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 545.0,
-  'starttransfer_time' => 0.154427,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37130,
-)
-=======================================
-=======================================
-2018-10-11 02:53:28
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025328564%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2280.23%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=i%2F3xVUt%2FQYLZ0LQqqXhKmxdpSO4Xl9Rbx2hVq4UqdhczIwHqanOI0a%2BsJeAd8n1jXIF%2B2Kb4%2FAuw56Oavo73Tk8U1KG8dzEfk4vdjkTlOwVNoY27UXTlLYiaqsB3YLYjOP%2Buhd2pHzY2SBkgLRKXf0PL%2FcKfyeH%2BP3vz9KnAKjlumPU4H3BRKwPmm3M3M%2B1yU6kqZ7lW1pCQVGsb8NF%2B2QGkrx4svp82ndE1JfHsnR9gXOwiWxX7x191UmCJIt6aK6x3KbZe9K%2FGH7fwR41J8XM5IqlNEBOf9zHK5%2Bk5ojeOTO5mNYcrCOzPNw1rhQWgSMK3bKV2rfCqO9o%2BDkVHcw%3D%3D&timestamp=2018-10-11+02%3A53%3A28&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1200,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.132917,
-  'namelookup_time' => 0.004143,
-  'connect_time' => 0.016946,
-  'pretransfer_time' => 0.079964,
-  'size_upload' => 527.0,
-  'size_download' => 487.0,
-  'speed_download' => 3689.0,
-  'speed_upload' => 3992.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 527.0,
-  'starttransfer_time' => 0.132845,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37136,
-)
-=======================================
-=======================================
-2018-10-11 02:53:30
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025330832%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2267.34%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=fdFs%2BWaPEw%2BqBneZe%2BvXnQF2HnQt8IvAjFPiiA7Jvovw3S1OonGwcuzTlYxYB%2Bwq9WXc7NRN8rce1JfJhB6X%2BVkSFx%2FrZsxRK3exYlhtXS7WBoRHdNHD5DeVKIYLr2UxI5qjPa%2BH%2Bkph%2F5mnROqqZKGun8aDhTv%2BbWOviF9UQRF7FThij55ii2hvDbX81Kstn%2FHE%2B1AxPY8vG3e6pD1NY0zHDjt%2FhhxgZJPOBIZmbFMOqJiUNAHrwWaqP5G%2Bv3LHmpw1l5b3AewacyLD1zmZa9D3ymYmUVjbwAlJPPC75%2F9H41EY1Dlw6u6XHvyW%2FIv%2F5%2F97MFuUlH8Eog7ZftjGwQ%3D%3D&timestamp=2018-10-11+02%3A53%3A30&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1210,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.131406,
-  'namelookup_time' => 0.004146,
-  'connect_time' => 0.016821,
-  'pretransfer_time' => 0.082348,
-  'size_upload' => 527.0,
-  'size_download' => 487.0,
-  'speed_download' => 3717.0,
-  'speed_upload' => 4022.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 527.0,
-  'starttransfer_time' => 0.131327,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37138,
-)
-=======================================
-=======================================
-2018-10-11 02:53:36
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025336965%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%225.21%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%222088102146225135%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=PhZ56a7btg%2FwbOkpzGThH2kTdvNOsN42f3iBvbrD7GUlT15tePrNdwJDJApSMMQHms5v6kfaNcxDUS%2B0iIxjmlKVSg5kQouDciPKO0dRsWG%2BeFq3Ijswq%2FisfxkahQDB%2F5Q%2Fv9r8lI0K%2FPX%2BqV9XSInCwz6j8ZGIuiq%2Bx9mmevsRbHbn4LjQXzyBwd4QKD07SBWFhNQKIC1OUFxG5kDGj2vixA4ObBqC60XMHwpXc%2ByzDJeSuN91nR7BqKxJ2symTKoe8zZefjtEolwBuzk%2FhQibO9rBZYP18eWqi4fibRk912YdB7twtkwTHu1v5unyJICy3bsHjsMoHR18y4aeCQ%3D%3D&timestamp=2018-10-11+02%3A53%3A36&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1213,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.154573,
-  'namelookup_time' => 0.004166,
-  'connect_time' => 0.018026,
-  'pretransfer_time' => 0.087156,
-  'size_upload' => 544.0,
-  'size_download' => 488.0,
-  'speed_download' => 3168.0,
-  'speed_upload' => 3532.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 544.0,
-  'starttransfer_time' => 0.154491,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37142,
-)
-=======================================
-=======================================
-2018-10-11 02:53:37
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025337759%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2253.30%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%222088102146225135%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=IwSg7vDyxjvsm1BtrE5%2BJVDhnMo38YHEFZDiY8ifFBzb%2BpVYdpKOT63E92xiakLDp3JdPrCaIm5RzsRTCfQJXYzStl7xeM9EdxM%2Fjb%2Fzer%2FOlsEddl52j5v4LvKkwvH45Ru1ylaKKboLT8yC%2FcZX%2BbCSD25ild5BOaqEad8sgOsLS1vPknivApAldxrm%2FQvCdakOA2YQLra7y3nlX2vANC8TUYMz2JarsTQ8C53F59%2Fk0X7647SFYBOJrBM8AmaPhdYmFHyDTJ3dMXejJcW1tSiiAeCDR2ZyTTp0dkYvnanx7c6Px1smzh%2BLemBmR1WmG5llWSkhoXmQyhxEGI6n1w%3D%3D&timestamp=2018-10-11+02%3A53%3A37&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1212,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.157605,
-  'namelookup_time' => 0.004188,
-  'connect_time' => 0.017909,
-  'pretransfer_time' => 0.084186,
-  'size_upload' => 545.0,
-  'size_download' => 488.0,
-  'speed_download' => 3108.0,
-  'speed_upload' => 3471.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 545.0,
-  'starttransfer_time' => 0.157479,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37144,
-)
-=======================================
-=======================================
-2018-10-11 02:57:17
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025717868%22%2C%22seller_id%22%3Anull%2C%22total_amount%22%3A%2222.53%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%222088102174782608%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_SELLER_EQUAL","sub_msg":"å–å®¶ä¹°å®¶è´¦å·ç›¸åŒï¼Œä¸èƒ½è¿›è¡Œäº¤æ˜“"},"sign":"FfqfBSduYR7+g52GKkHjPSijjuKofTTkfINlBaSgmJqShOAC/M1eG09/BlZ2sRkJy8EDEUb60/WOA7utO9qWBcEmeKIpE6fdlZo6KFbSAn30Op4Bp0Iy4ZjASlNiVU7H6gxMv67nPzgBsvo1/H5W052c4K1P4b9S9pdgAgHkbVXmDkjtiGP61I6xko7YF0G5T/ngkD9Ez1JrMeSTip0PqAdX3vn5Z0F05YT5uLyUF0M4+AmWvNcouULuscGgc8VuosK8h27kC3k6vlQlhpFhxaUnsf5qtKLfkYyX0GDYOxgPPbWBAXUyoL+9PpMw+/ti442SCnbrziKM3SUsD+0DVA=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=AmUtIracMIN%2Bn45hgYEw9BhsLZlRUFGZe%2BWn88KgHjRrh2qiAxeI20EMaTr%2FnreTPuC5p4NutdMrpmKhG6%2BQ3N3beHG0sDgw%2Fz2GC%2FIN1ii1x%2F2XLcIGDDFMUSe5sDS7ATSuApGR%2Bi8BOFz6BHajET9gdCyJTame4jeB6SxACWXG6jR0QBY4ddl2%2BCgik9MAyETskHHHSPePSRCGDRQA%2F92tB88WT7Vxq26nrMjq0X7DYhKjpKonZwhJ%2BB9daDJcA1gTzW0J2D55dgk3mD6Iv7sd9ICLIWzVBpXA10i%2Fup4UKzY79XhzjcoUaGIwogxx9IMA4j1O%2BF5rNU%2BQurCpCA%3D%3D&timestamp=2018-10-11+02%3A57%3A17&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1220,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.190641,
-  'namelookup_time' => 0.012323,
-  'connect_time' => 0.025847,
-  'pretransfer_time' => 0.093863,
-  'size_upload' => 545.0,
-  'size_download' => 521.0,
-  'speed_download' => 2742.0,
-  'speed_upload' => 2868.0,
-  'download_content_length' => 521.0,
-  'upload_content_length' => 545.0,
-  'starttransfer_time' => 0.190549,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37364,
-)
-=======================================
-=======================================
-2018-10-11 02:57:29
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011025729649%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2231.52%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3A%222088102174782609%22%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.BUYER_NOT_EXIST","sub_msg":"ä¹°å®¶ä¸å­˜åœ¨"},"sign":"ZLIu8SOS+WwNxgzrHsPXIYcdJfGgm1SKJqHPA3JzMhbeJ/1bylV488TKjAS/NjvY0wwTOpjeyGafVMEsqUN8pf5py5YNM8kLK+W0vT6oCf9dxpIv61RWxlGhNHVLRyFhwpalZOj49uD6q7xVAaPmObzf5+zfULBMNazmH+/qB5etW4YX/FSHH+2RMRXTIgzZ9Sa96zFb6jcyR8EsSbVUxNmDtwqf6dML5CSwjcCnE+MOdHkan8Wc23v/QFra1VvrvtG6nY3m/Hv6IlBTq7pPgzpNtKW+jAouDOgWQkx4acLfm+ALfAJmqj3oUbt93ipe6OjSEcX/fHeHIn0juoTZrQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=XjTAAxjyheHKfq%2B6y30sOQTNNAEJ5qRmc9h%2BCtptBPRHqTcWEtAdoxttjxOe6H%2FhAAuN7kKaOm8ab9mm4%2BG8UgAJe20YqVV%2BwOgFPJJfi0pCyS7%2B5HTo6CoG4g4vGvit9Xtr93YT2ycF5PZzQT%2FU1lRuJqxLQst6hzEiVoHaWmp%2FDl%2F6DDudJtL3VK8MUY3j0VmlL2G%2BF1ZBBLSwJLZcXt%2BRsT8X8TK0ZjScQMP9gydAyOJxiELDWngqenS9p0oyIYTuu6SSy5dxLQ4w%2FO%2Bg0rP0aBr2GkoRbNrEWNUnXxENlRkNRx96VZ2LInLaoWD1zsLubK2rIhzcleYZcmgV2A%3D%3D&timestamp=2018-10-11+02%3A57%3A29&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1236,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.650072,
-  'namelookup_time' => 0.004179,
-  'connect_time' => 0.018273,
-  'pretransfer_time' => 0.086265,
-  'size_upload' => 563.0,
-  'size_download' => 488.0,
-  'speed_download' => 750.0,
-  'speed_upload' => 866.0,
-  'download_content_length' => 488.0,
-  'upload_content_length' => 563.0,
-  'starttransfer_time' => 0.650001,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37368,
-)
-=======================================
-=======================================
-2018-10-11 03:04:42
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011030442230%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2214.59%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=o1bmsCZVRo%2FTpMMUIWcl%2BYw%2BXDF%2FO15B8XW57nLcMy2M25P9w4wifUuLp7BMdNVqYyJSgG3BRepyVJ66imyAp%2FdyXgLvXKxCeGaq3yQlrGG25lZcAxmnXvW531TyrKO3EVuqbahWro6oONgzkKMqtZlIjgzc%2BZdG0WSJrvYYhBzuEQuNVFtFvJA0Rh1qVpy5AP6U2gpAVcuhSVzjFV6O4rwEjVIFl3a95gyHl3IYxMY5uitmrUpCgPeD55LMeueiGEiN6TUWITCYB%2BPhkvMoXPrOzjmqJMMLhmfWCKnNz%2BpfQrCBLQRSNx%2F7CTcIccOXQH5OlGKe5Ew3YS8HzELYZA%3D%3D&timestamp=2018-10-11+03%3A04%3A42&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1210,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.156187,
-  'namelookup_time' => 0.012264,
-  'connect_time' => 0.027974,
-  'pretransfer_time' => 0.10118,
-  'size_upload' => 545.0,
-  'size_download' => 487.0,
-  'speed_download' => 3121.0,
-  'speed_upload' => 3493.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 545.0,
-  'starttransfer_time' => 0.156102,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 37878,
-)
-=======================================
-=======================================
-2018-10-11 07:50:29
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011075029159%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2279.30%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_create_response":{"code":"40004","msg":"Business Failed","sub_code":"ACQ.INVALID_PARAMETER","sub_msg":"å‚æ•°æ— æ•ˆ"},"sign":"TnGjBGSJnrfyn35AS0uD7AGd+rkqEKDhYgfRoULnVOelKtqMGh+y3NUdtZlnGJZ7MM/m7/Te2A5bSWW8HeHhnVNfaqfa8+XgbCCc/YK07wDgfQN6kU0EA4yPTBV0cdqyGoksLuKZv1I2I9lgLhyncHtCHSad5Q9o0/FZZoEqnvev13/RRx4sk+4+N5YLYlKhEwgcEYwk/9Edb077gl4bUqDvKNKwPgfWe5Q++EClgfGIZtqTS12ixQgo7nRGCfjB0xmjZhSr0V6fuaw9dMSlbKPhRbpAhqgyqrBJoFQUs2AgGpEHnxlKcDhxh/ciKauJ5cLaO38Q1XoouGkQT0Qdog=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.create&format=JSON&charset=UTF-8&sign_type=RSA2&sign=k3%2BLlpJA7uUtIJrC3QWCqCrFOpMRGVsMxkCefczsItI%2BR%2BuYBc1eATS50FykFUm%2Bo%2BD1IowEF4%2Btyp5FooUqPYrxAsmzh%2BJej9uxL%2Fh0rG0%2FtdJPPKbdxh2rLcIsWaYUhEVTKdPC4LGX8%2FsUPeoZIBrYxWlQi0lNetKVrdSr%2Fey3WtVzmkF29rX9L8L81UtHxAVbplM6MRjfmpLD4Dwb5wRkpfBcaFmHGvv5F94lhS9B0ofzJSBwQc7CQ%2B89e1jXycsztgT5c3Py9w0r1Jo2aUPo%2Fyg0M3w7Jx8J06X3Uv7fgAnAvI7bpxopjf4gp%2FoSmLUeHzOMlHFEHm1uScKbrg%3D%3D&timestamp=2018-10-11+07%3A50%3A29&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1220,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.298793,
-  'namelookup_time' => 0.028356,
-  'connect_time' => 0.041293,
-  'pretransfer_time' => 0.127476,
-  'size_upload' => 545.0,
-  'size_download' => 487.0,
-  'speed_download' => 1634.0,
-  'speed_upload' => 1828.0,
-  'download_content_length' => 487.0,
-  'upload_content_length' => 545.0,
-  'starttransfer_time' => 0.298699,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 43836,
-)
-=======================================
-=======================================
-2018-10-11 07:50:40
----------------------------------------
-'biz_content=%7B%22out_trade_no%22%3A%2220181011075040603%22%2C%22seller_id%22%3A%222088102174782608%22%2C%22total_amount%22%3A%2266.33%22%2C%22discountable_amount%22%3Anull%2C%22subject%22%3A%22testmain%22%2C%22body%22%3Anull%2C%22buyer_id%22%3Anull%2C%22goods_detail%22%3Anull%2C%22operator_id%22%3Anull%2C%22store_id%22%3Anull%2C%22terminal_id%22%3Anull%2C%22extend_params%22%3Anull%2C%22timeout_express%22%3Anull%2C%22settle_info%22%3Anull%2C%22business_params%22%3Anull%2C%22receiver_address_info%22%3Anull%2C%22logistics_detail%22%3Anull%7D'
-
-'{"alipay_trade_precreate_response":{"code":"10000","msg":"Success","out_trade_no":"20181011075040603","qr_code":"https:\\/\\/qr.alipay.com\\/bax02440vfstiahblzka00f9"},"sign":"aNE+lI0v6hwRK6LNpmKAiNQcFqnCxYjWJ4v1e05MSgUDIP43y1wk/2s37H0uA1Sy4dhFoYYs7HMv4bkTB0tY3+2q5M7lDhfepex4u1lP0qx3uqjnGRKt9PGKCXTvOAfe0YSo/kpemyKCyZrhGfq9JzdyXrMFeHSZ5xQBUQZnUrRFLp987MfTmbnH29HyqfM/Ip7Ov9OynONrOuf4St05NjxYMtCcymIvBExIsKg7gr+kALsYbcmh+RAja99QaKckyV0dZDVe2V5vGsXnIthl2Xkd2sSJIIJ4llU1W9nCdow2eAGxxbV3aCfNTlc+2/jtvsF1iSfiRPq7wflRA3NzaQ=="}'
-array (
-  'url' => 'https://openapi.alipaydev.com/gateway.do?app_id=2016090900468991&method=alipay.trade.precreate&format=JSON&charset=UTF-8&sign_type=RSA2&sign=BYZdJgKllTXY%2BVlwTQg5jgIk%2BuLvXKawhLHa%2FycXYkY%2BRlbjcCnqSxZk9%2FiKgpPNp7XnjBqTg3jSXV1EkF%2F67nTN55Aa%2FReVKiDAMR8lH0EMcTTo9HHMF4Yyq8V6u12xiDOLwjNDj4%2BVV5UA9k3r38IfHhlqIMpW5dXDclD3GHivitqtdiamWNDbGtmT8MoCA3RB1OBhWep0E5btFHYw39VevJmplf%2FKqTSF%2BnrWSmR%2Fk2QVugBpgjFTqWrfSfg9Ov8e%2B6OzgrKZPRASOCps51fA7rksZ8F0aYlOtUHAKJNSv0dUsfHG7HuREMV3OT%2BSmM7WBJBVZqLxTbTgH7UXlg%3D%3D&timestamp=2018-10-11+07%3A50%3A40&version=1.0',
-  'content_type' => 'text/html;charset=UTF-8',
-  'http_code' => 200,
-  'header_size' => 256,
-  'request_size' => 1221,
-  'filetime' => -1,
-  'ssl_verify_result' => 0,
-  'redirect_count' => 0,
-  'total_time' => 0.197998,
-  'namelookup_time' => 0.00417,
-  'connect_time' => 0.017261,
-  'pretransfer_time' => 0.092844,
-  'size_upload' => 545.0,
-  'size_download' => 519.0,
-  'speed_download' => 2634.0,
-  'speed_upload' => 2766.0,
-  'download_content_length' => 519.0,
-  'upload_content_length' => 545.0,
-  'starttransfer_time' => 0.197828,
-  'redirect_time' => 0.0,
-  'redirect_url' => '',
-  'primary_ip' => '115.124.16.119',
-  'certinfo' => 
-  array (
-  ),
-  'primary_port' => 443,
-  'local_ip' => '10.111.10.34',
-  'local_port' => 43838,
+  'local_ip' => '192.168.0.102',
+  'local_port' => 58964,
 )
 =======================================

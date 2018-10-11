@@ -35,7 +35,7 @@ class Client implements ClientInterface
     public function request(string $builder_name, array $assign_data = []) : ResponseInterface
     {
         $Builder            = $this->findBuilder($builder_name);
-        $Builder            = $Builder->assignData($AssignDataObject);
+        $Builder            = $Builder->assignData($assign_data);
         if($this->gateway_uri){
             $Builder    = $Builder->setGateway($this->gateway_uri);
         }
