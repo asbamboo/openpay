@@ -1,25 +1,26 @@
 <?php
-namespace asbamboo\openpay\common\traits;
+namespace asbamboo\openpay\payMethod\Alipay\builder\tool;
+
 use asbamboo\http\StreamInterface;
 use asbamboo\http\Stream;
 
 /**
- * 用于BuilderInterface实例生成RequestInterface时获取body参数
+ * 处理生成请求http request body
  *
  * @author 李春寅 <licy2013@aliyun.com>
- * @since 2018年10月9日
+ * @since 2018年10月11日
  */
-trait MakeRequestBodyTrait
+trait BodyTrait
 {
     /**
      * 传入一个数组生成stream body
      *
      * @param array $assign_data
      */
-    public function makeStream(array $assign_data = []) : StreamInterface
+    public function body() : StreamInterface
     {
         $Stream = new Stream('php://temp', 'w+b');
-        $Stream->write(http_build_query($assign_data));
+        $Stream->write(http_build_query(['biz_content' => $this->assign_data['biz_content']]));
         return $Stream;
     }
 }

@@ -1,13 +1,13 @@
 <?php
-namespace asbamboo\openpay\payment\alipay\requestParams;
+namespace asbamboo\openpay\payMethod\alipay\requestParams;
 
-use asbamboo\openpay\common\traits\MappingDataTrait;
 use asbamboo\helper\env\Env AS EnvHelper;
 use asbamboo\openpay\env;
 
 /**
  * 公共请求参数
  *
+ * @see https://docs.open.alipay.com/api
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年10月9日
  */
@@ -15,16 +15,75 @@ class CommonParams implements CommonParamsInterface
 {
     use MappingDataTrait;
 
+    /**
+     * 必填 最大长度32
+     * 支付宝分配给开发者的应用ID
+     *
+     * @var string
+     */
     public $app_id;
+
+    /**
+     * 必填 最大长度128
+     * 接口名称
+     *
+     * @var string
+     */
     public $method; // 这个参数每个接口有固定值
+
     public $format;
+
+    /**
+     * 必填 最大长度10
+     * 请求使用的编码格式，如utf-8,gbk,gb2312等
+     *
+     * @var string
+     */
     public $charset;
+
+    /**
+     * 必填 最大长度10
+     * 商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2
+     *
+     * 虽然支付宝接收 RSA2和RSA 但是这个类只支持RSA2
+     *
+     * @var string
+     */
     public $sign_type;
+
+    /**
+     * 必填 最大长度344
+     * 商户请求参数的签名串，详见签名
+     *
+     * @see https://docs.open.alipay.com/291/105974
+     * @var string
+     */
     public $sign;
+
+    /**
+     * 必填 最大长度19
+     * 发送请求的时间，格式"yyyy-MM-dd HH:mm:ss"
+     *
+     * @var string
+     */
     public $timestamp;
+
+    /**
+     * 必填 最大长度3
+     * 调用的接口版本
+     *
+     * @var string
+     */
     public $version;
-    public $notify_url;
+
     public $app_auth_token;
+
+    /**
+     * 必填
+     * 请求参数的集合，最大长度不限，除公共参数外所有请求参数都必须放在这个参数中传递，具体参照各产品快速接入文档
+     *
+     * @var string
+     */
     public $biz_content;
 
     /**
@@ -40,24 +99,9 @@ class CommonParams implements CommonParamsInterface
     }
 
     /**
-     * 数据映射配置
-     *  - 返回的数组时请求参数的key与接受参数的key的映射关系
-     *
-     * @return array
-     */
-    private function mappingConfig() : array
-    {
-        return [
-            'app_id'            => 'app_id',
-            'notify_url'        => 'notify_url',
-            'app_auth_token'    => 'app_auth_token',
-        ];
-    }
-
-    /**
      *
      * {@inheritDoc}
-     * @see \asbamboo\openpay\payment\alipay\requestParams\CommonParamsInterface::setBizContent()
+     * @see \asbamboo\openpay\payMethod\alipay\requestParams\CommonParamsInterface::setBizContent()
      */
     public function setBizContent(BizContentInterface $BizContent) : CommonParamsInterface
     {
@@ -69,7 +113,7 @@ class CommonParams implements CommonParamsInterface
     /**
      *
      * {@inheritDoc}
-     * @see \asbamboo\openpay\payment\alipay\requestParams\CommonParamsInterface::makeSign()
+     * @see \asbamboo\openpay\payMethod\alipay\requestParams\CommonParamsInterface::makeSign()
      */
     public function makeSign() : string
     {

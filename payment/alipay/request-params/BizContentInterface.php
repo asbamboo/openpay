@@ -15,7 +15,6 @@ interface BizContentInterface
      * 使用指定的数据字段集合，映射到biz content实例的属性
      *
      * @param AssignDataInterface $AssignData
-     * @return BizContentInterface
      */
-    public function mappingData(AssignDataInterface $AssignData) : BizContentInterface;
+    public function mappingData(AssignDataInterface $AssignData) : void;
 }

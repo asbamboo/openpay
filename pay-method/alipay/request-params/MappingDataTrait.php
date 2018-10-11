@@ -1,7 +1,5 @@
 <?php
-namespace asbamboo\openpay\common\traits;
-
-use asbamboo\openpay\AssignDataInterface;
+namespace asbamboo\openpay\payMethod\alipay\requestParams;
 
 /**
  * 用于接口参数映射关系处理
@@ -17,13 +15,13 @@ trait MappingDataTrait
 {
     /**
      *
-     * @param AssignDataInterface $AssignData
+     * @param array $assign_data
      */
-    public function mappingData(AssignDataInterface $AssignData) : void
+    public function mappingData(array $assign_data) : void
     {
-        foreach($this->mappingConfig() AS $this_key => $assign_data_key){
-            if(property_exists($this, $this_key) && property_exists($AssignData, $assign_data_key)){
-                $this->{$this_key}  = $AssignData->{$assign_data_key};
+        foreach($assign_data AS $key => $value){
+            if(property_exists($this, $key)){
+                $this->{$key}   = $value;
             }
         }
     }

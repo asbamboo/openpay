@@ -15,9 +15,8 @@ interface RequestParamsInterface
      * 使用指定的数据字段集合，映射到公共请求参数实例的属性
      *
      * @param AssignDataInterface $AssignData
-     * @return RequestParamsInterface
      */
-    public function mappingData(AssignDataInterface $AssignData) : RequestParamsInterface;
+    public function mappingData(AssignDataInterface $AssignData) : void;
 
     /**
      * 生成签名

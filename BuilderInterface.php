@@ -31,10 +31,10 @@ interface BuilderInterface
      * 指定请求数据
      *  - 在这个方法中处理映射关系，不同的支付方式$assign_data中的key映射为不同支付方式请求的参数
      *
-     * @param AssignDataInterface $AssignData
+     * @param array $AssignData
      * @return BuilderInterface
      */
-    public function assignData(AssignDataInterface $AssignData) : BuilderInterface;
+    public function assignData(array $assign_data) : BuilderInterface;
 
     /**
      * 创建请求对象

@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\payment\alipay\request;
+namespace asbamboo\openpay\payment\alipay\builder;
 
 use asbamboo\http\Request;
 use asbamboo\http\StreamInterface;
@@ -7,7 +7,7 @@ use asbamboo\http\RequestInterface;
 use asbamboo\http\Constant;
 use asbamboo\openpay\payment\alipay\traits\GatewayUriTrait;
 use asbamboo\openpay\BuilderInterface;
-use asbamboo\openpay\common\traits\MakeRequstBodyTrait;
+use asbamboo\openpay\common\traits\MakeRequestBodyTrait;
 use asbamboo\openpay\AssignDataInterface;
 use asbamboo\openpay\payment\alipay\requestParams\bizContent\TradeCreateParams;
 use asbamboo\openpay\payment\alipay\requestParams\CommonParams;
@@ -22,33 +22,80 @@ use asbamboo\openpay\payment\alipay\requestParams\CommonParams;
 class TradeCreate implements BuilderInterface
 {
     use GatewayUriTrait;
-    use MakeRequstBodyTrait;
+    use MakeRequestBodyTrait;
 
+    /**
+     * 接口请求的method参数的固定值
+     *
+     * @var string
+     */
+    const METHOD    = 'alipay.trade.precreate';
+
+    /**
+     * 指派参数数据集
+     *
+     * @var array
+     */
     private $assign_data;
 
-    public function body() : StreamInterface
+    public function uri()
     {
-        return $this->makeStream($this->assign_data);
+        $query_data   = $this->assign_data;
+        unset($query_data['biz_content']);
+        return $this->getGateway()->withQuery(http_build_query($query_data));
     }
 
+    /**
+     * 接口请求Request对象的body
+     *
+     * @return StreamInterface
+     */
+    public function body() : StreamInterface
+    {
+        return $this->makeStream(['biz_content' => $this->assign_data['biz_content']]);
+    }
+
+    /**
+     * 指派请求数据集
+     *
+     * {@inheritDoc}
+     * @see \asbamboo\openpay\BuilderInterface::assignData()
+     */
     public function assignData(AssignDataInterface $AssignData) : BuilderInterface
     {
-        $BizContent         = new TradeCreateParams();
-        $BizContent         = $BizContent->mappingData($AssignData);
-        $CommonParams       = new CommonParams();
-        $CommonParams       = $CommonParams->mappingData($AssignData);
-        $CommonParams       = $CommonParams->setBizContent($BizContent);
-        $CommonParams->sign = $CommonParams->makeSign();
-        $this->assign_data  = get_object_vars($CommonParams);
+        $BizContent                 = new TradeCreateParams();
+        $BizContent->mappingData($AssignData);
+
+        $BizContent->total_amount           = (string) bcdiv($BizContent->total_amount, 100, 2);    // 原始金额单位是，分支付宝的单位是元
+        if($BizContent->discountable_amount > 0){
+            $BizContent->discountable_amount    = (string) bcdiv($BizContent->discountable_amount, 100, 2);    // 原始金额单位是，分支付宝的单位是元
+        }
+
+        $CommonParams           = new CommonParams();
+        $CommonParams->mappingData($AssignData);
+
+        $CommonParams           = $CommonParams->setBizContent($BizContent);
+        $CommonParams->method   = self::METHOD;
+        $CommonParams->sign     = $CommonParams->makeSign();
+
+        $this->assign_data      = get_object_vars($CommonParams);
+
         return $this;
     }
 
+    /**
+     * 创建request对象
+     *
+     * {@inheritDoc}
+     * @see \asbamboo\openpay\BuilderInterface::create()
+     */
     public function create() : RequestInterface
     {
         return new Request(
-            $this->getGateway(),
+            $this->uri(),
             $this->body(),
-            Constant::METHOD_POST
+            Constant::METHOD_POST,
+            ['content-type' => ['application/x-www-form-urlencoded;charset=UTF-8']]
         );
     }
 }

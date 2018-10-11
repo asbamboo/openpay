@@ -1,7 +1,5 @@
 <?php
-namespace asbamboo\openpay\payment\alipay\requestParams;
-
-use asbamboo\openpay\AssignDataInterface;
+namespace asbamboo\openpay\payMethod\alipay\requestParams;
 
 /**
  * 公共参数接口
@@ -14,15 +12,15 @@ interface CommonParamsInterface
     /**
      * 使用指定的数据字段集合，映射到公共请求参数实例的属性
      *
-     * @param AssignDataInterface $AssignData
-     * @return CommonParamsInterface
+     * @param array $assign_data
      */
-    public function mappingData(AssignDataInterface $AssignData) : void;
+    public function mappingData(array $assign_data) : void;
 
     /**
      * 设置$biz_content字段
      *
-     * @param string $BizContent
+     * @param BizContentInterface $BizContent
+     * @return CommonParamsInterface
      */
     public function setBizContent(BizContentInterface $BizContent) : CommonParamsInterface;
 
