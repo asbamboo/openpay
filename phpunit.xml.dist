@@ -11,6 +11,9 @@
         <ini name="error_reporting" value="-1" />
         <env name="ALIPAY_APP_ID" value="2016090900468991" />
         <env name="ALIPAY_GATEWAY_URI" value="https://openapi.alipaydev.com/gateway.do" />
+        <env name="WXPAY_GATEWAY_URI" value="https://api.mch.weixin.qq.com/" />
+        <env name="WXPAY_APP_ID" value="wx426b3015555a46be" />
+        <env name="WXPAY_MCH_ID" value="1900009851" />
     </php>
 
     <testsuites>

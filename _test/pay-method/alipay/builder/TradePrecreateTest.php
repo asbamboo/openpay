@@ -3,7 +3,13 @@ namespace asbamboo\openpay\_test\payMethod\alipay\builder;
 
 use PHPUnit\Framework\TestCase;
 use asbamboo\openpay\Client;
+use asbamboo\openpay\payMethod\alipay\response\TradePrecreateResponse;
 
+/**
+ *
+ * @author 李春寅 <licy2013@aliyun.com>
+ * @since 2018年10月12日
+ */
 class TradePrecreateTest extends TestCase
 {
     public function testMain()
@@ -15,9 +21,7 @@ class TradePrecreateTest extends TestCase
             'total_amount'  => (string) rand(0, 9999),
             'subject'       => 'testmain' . uniqid(),
         ]);
-        $b = (string)$Response->getBody();
-        var_dump($b);
-        var_dump(json_decode($Response->getBody()->getContents(), true));
-        exit;
+//         var_dump($Response);
+        $this->assertEquals(TradePrecreateResponse::CODE_SUCCESS, $Response->get('code'));
     }
 }

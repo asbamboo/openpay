@@ -1,15 +1,13 @@
 <?php
 namespace asbamboo\openpay\payMethod\Alipay\builder;
 
-use asbamboo\http\RequestInterface;
 use asbamboo\openpay\BuilderInterface;
 use asbamboo\openpay\payMethod\alipay\gateway\GatewayUriTrait;
 use asbamboo\openpay\payMethod\alipay\requestParams\bizContent\TradePrecreateParams;
 use asbamboo\openpay\payMethod\alipay\requestParams\CommonHasNotifyParams;
 use asbamboo\openpay\payMethod\Alipay\builder\tool\BodyTrait;
 use asbamboo\openpay\payMethod\Alipay\builder\tool\UriTrait;
-use asbamboo\http\Request;
-use asbamboo\http\Constant;
+use asbamboo\openpay\payMethod\Alipay\builder\tool\CreateRequestTrait;
 
 /**
  * alipay.trade.precreate(统一收单线下交易预创建)
@@ -23,6 +21,7 @@ class TradePreCreate implements BuilderInterface
     use GatewayUriTrait;
     use BodyTrait;
     use UriTrait;
+    use CreateRequestTrait;
 
     /**
      * 接口请求的method参数的固定值
@@ -57,15 +56,5 @@ class TradePreCreate implements BuilderInterface
         $this->assign_data      = get_object_vars($CommonParams);
 
         return $this;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     * @see \asbamboo\openpay\BuilderInterface::create()
-     */
-    public function create(): RequestInterface
-    {
-        return new Request($this->uri(), $this->body(), Constant::METHOD_POST, ['content-type' => ['application/x-www-form-urlencoded;charset=UTF-8']]);
     }
 }

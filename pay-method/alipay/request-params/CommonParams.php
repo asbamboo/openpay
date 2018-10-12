@@ -123,9 +123,9 @@ class CommonParams implements CommonParamsInterface
         if(is_file($private_pem)){
             $private_pem    = 'file://' . $private_pem;
         }
-        $parse_key      = openssl_get_privatekey($private_pem);
-        openssl_sign($sign_str, $sign, $parse_key, OPENSSL_ALGO_SHA256);
-        openssl_free_key($parse_key);
+        $ssl    = openssl_get_privatekey($private_pem);
+        openssl_sign($sign_str, $sign, $ssl, OPENSSL_ALGO_SHA256);
+        openssl_free_key($ssl);
         return base64_encode($sign);
     }
 

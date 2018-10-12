@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "bbc951e07fec23658fe008a78235a0b9",
@@ -42,7 +42,7 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/asbamboo/autoload/tree/v1.0.0",
+                "source": "https://github.com/asbamboo/autoload/tree/1.0.0",
                 "issues": "https://github.com/asbamboo/autoload/issues"
             },
             "time": "2018-09-11T10:02:19+00:00"
@@ -80,7 +80,7 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/asbamboo/event/tree/v1.0.0",
+                "source": "https://github.com/asbamboo/event/tree/1.0.0",
                 "issues": "https://github.com/asbamboo/event/issues"
             },
             "time": "2018-09-10T06:50:39+00:00"
@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/http.git",
-                "reference": "69b2e59e0ddfe3e1f1b8f2244712cbdde7fd32ad"
+                "reference": "c4678589501c3c3e44ebe2fa89690681076f6345"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/http/zipball/69b2e59e0ddfe3e1f1b8f2244712cbdde7fd32ad",
-                "reference": "69b2e59e0ddfe3e1f1b8f2244712cbdde7fd32ad",
+                "url": "https://api.github.com/repos/asbamboo/http/zipball/c4678589501c3c3e44ebe2fa89690681076f6345",
+                "reference": "c4678589501c3c3e44ebe2fa89690681076f6345",
                 "shasum": ""
             },
             "require": {
@@ -159,7 +159,7 @@
                 "source": "https://github.com/asbamboo/http/tree/1.1.0",
                 "issues": "https://github.com/asbamboo/http/issues"
             },
-            "time": "2018-10-10T14:03:45+00:00"
+            "time": "2018-10-12T13:25:57+00:00"
         },
         {
             "name": "psr/http-message",
@@ -639,12 +639,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "848f78b3309780fef7ec8c4666b7ab4e6b09b22f"
+                "reference": "daeb2717f3bb0638e71b6dbe06f52fc5abcf186e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/848f78b3309780fef7ec8c4666b7ab4e6b09b22f",
-                "reference": "848f78b3309780fef7ec8c4666b7ab4e6b09b22f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/daeb2717f3bb0638e71b6dbe06f52fc5abcf186e",
+                "reference": "daeb2717f3bb0638e71b6dbe06f52fc5abcf186e",
                 "shasum": ""
             },
             "require": {
@@ -694,7 +694,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-10-04T03:41:23+00:00"
+            "time": "2018-10-12T04:51:12+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -891,12 +891,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2e5304d8a5e54ef30da723de126d36992477c094"
+                "reference": "9ae14a29a980fa1c8a11e15871ee9f42ef26ee70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2e5304d8a5e54ef30da723de126d36992477c094",
-                "reference": "2e5304d8a5e54ef30da723de126d36992477c094",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9ae14a29a980fa1c8a11e15871ee9f42ef26ee70",
+                "reference": "9ae14a29a980fa1c8a11e15871ee9f42ef26ee70",
                 "shasum": ""
             },
             "require": {
@@ -967,7 +967,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-10-10T04:55:27+00:00"
+            "time": "2018-10-12T07:35:18+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

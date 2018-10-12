@@ -2,10 +2,10 @@
 namespace asbamboo\openpay;
 
 use asbamboo\http\RequestInterface;
-use asbamboo\http\ResponseInterface;
+use asbamboo\http\ResponseInterface AS HttpResponseInterface;
 use asbamboo\openpay\exception\NotFoundBuilderException;
-use asbamboo\openpay\exception\NotFoundAssignDataClassException;
 use asbamboo\http\Client;
+use asbamboo\openpay\common\ResponseInterface;
 
 /**
  *
@@ -15,11 +15,9 @@ use asbamboo\http\Client;
 class Factory implements FactoryInterface
 {
     /**
-     * 创建一个接口访问器
      *
-     * @param string $builder_name
-     * @throws NotFoundBuilderException
-     * @return BuilderInterface
+     * {@inheritDoc}
+     * @see \asbamboo\openpay\FactoryInterface::createBuilder()
      */
     static public function createBuilder(string $builder_name) : BuilderInterface
     {
@@ -33,15 +31,30 @@ class Factory implements FactoryInterface
 
     /**
      *
-     * @param RequestInterface $Request
-     * @return ResponseInterface
+     * {@inheritDoc}
+     * @see \asbamboo\openpay\FactoryInterface::sendRequest()
      */
-    static public function sendRequest(RequestInterface $Request) : ResponseInterface
+    static public function sendRequest(RequestInterface $Request) : HttpResponseInterface
     {
         static $Client  = null;
         if(is_null($Client)){
             $Client = new Client();
         }
         return $Client->send($Request);
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \asbamboo\openpay\FactoryInterface::transformResponse()
+     */
+    static public function transformResponse(string $builder_name, HttpResponseInterface $HttpResponse) : ResponseInterface
+    {
+        @list($type, $name) = explode(':', $builder_name);
+        $response_class     = __NAMESPACE__ . "\\payMethod\\{$type}\\response\\{$name}Response";
+        if(!class_exists($response_class)){
+            throw new NotFoundBuilderException(sprintf('%s接口:不支持响应结果转换成实例模式。', $builder_name));
+        }
+        return new $response_class($HttpResponse);
     }
 }
