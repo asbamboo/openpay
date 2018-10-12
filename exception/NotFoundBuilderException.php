@@ -7,7 +7,7 @@ namespace asbamboo\openpay\exception;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年10月10日
  */
-class NotFoundBuilderException extends \RuntimeException
+class NotFoundBuilderException extends OpenpayException
 {
 
 }

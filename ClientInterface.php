@@ -1,7 +1,7 @@
 <?php
 namespace asbamboo\openpay;
 
-use asbamboo\http\ResponseInterface;
+use asbamboo\openpay\common\ResponseInterface;
 
 /**
  * 指定请求接口的 BuilderInterface 实例名称和 assigndata 信息，发起api请求得到相关接口响应

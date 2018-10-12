@@ -1,7 +1,7 @@
 <?php
 namespace asbamboo\openpay;
 
-use asbamboo\http\ResponseInterface;
+use asbamboo\openpay\common\ResponseInterface;
 
 /**
  *
@@ -41,8 +41,10 @@ class Client implements ClientInterface
         }
 
         $Request            = $Builder->create();
+        $HttpResponse       = Factory::sendRequest($Request);
+        $Response           = Factory::transformResponse($builder_name, $HttpResponse);
 
-        return Factory::sendRequest($Request);
+        return $Response;
     }
 
     /**
