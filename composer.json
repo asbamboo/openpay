@@ -1,11 +1,14 @@
 {
-    "name": "asbamboo/api",
-    "description": "一个可以自动生成api文档的api模块",
-    "type": "library",
+    "name": "asbamboo/openpay",
+    "description": "聚合支付模块,集成alipay/微信支付等第三方支付接口",
+    "type": "project",
     "require": {
         "asbamboo/autoload": "^1.0",
-        "asbamboo/http": "^1.0",
-        "asbamboo/helper": "^1.0"
+        "asbamboo/http": "^1.1",
+        "asbamboo/helper": "^1.1",
+        "asbamboo/api": "^1.0",
+        "asbamboo/router": "^1.0",
+        "phpqrcode/phpqrcode": "^1.1"
     },
     "require-dev": {
         "asbamboo/event": "^1.0",
