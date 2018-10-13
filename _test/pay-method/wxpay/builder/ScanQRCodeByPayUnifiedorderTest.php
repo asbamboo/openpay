@@ -4,6 +4,8 @@ namespace asbamboo\openpay\_test\payMethod\wxpay\builder;
 use PHPUnit\Framework\TestCase;
 use asbamboo\openpay\Client;
 use asbamboo\openpay\payMethod\wxpay\response\ScanQRCodeByPayUnifiedorderResponse;
+use asbamboo\helper\env\Env AS EnvHelper;
+use asbamboo\openpay\Env;
 
 /**
  *
@@ -14,10 +16,10 @@ class ScanQRCodeByPayUnifiedorderTest extends TestCase
 {
     public function testMain()
     {
-        $Client                 = new Client($_ENV['WXPAY_GATEWAY_URI']);
+        $Client                 = new Client();
         $Response               = $Client->request('wxpay:ScanQRCodeByPayUnifiedorder', [
-            'appid'             => (string) $_ENV['WXPAY_APP_ID'],
-            'mch_id'            => (string) $_ENV['WXPAY_MCH_ID'],
+            'appid'             => (string) EnvHelper::get(Env::WXPAY_APP_ID),
+            'mch_id'            => (string) EnvHelper::get(Env::WXPAY_MCH_ID),
             'body'              => 'testmain' . uniqid(),
             'out_trade_no'      => (string) date('YmdHis') . str_pad(rand(0, 999), 3, '0', STR_PAD_LEFT),
             'total_fee'         => (string) rand(0, 9999),

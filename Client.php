@@ -11,22 +11,6 @@ use asbamboo\openpay\common\ResponseInterface;
 class Client implements ClientInterface
 {
     /**
-     * 接口网关uri
-     *
-     * @var string
-     */
-    private $gateway_uri;
-
-    /**
-     *
-     * @param string $gateway_url
-     */
-    public function __construct(string $gateway_uri = null)
-    {
-        $this->gateway_uri  = $gateway_uri;
-    }
-
-    /**
      *
      * {@inheritDoc}
      * @see \asbamboo\openpay\ClientInterface::request()
@@ -36,10 +20,6 @@ class Client implements ClientInterface
     {
         $Builder            = $this->findBuilder($builder_name);
         $Builder            = $Builder->assignData($assign_data);
-        if($this->gateway_uri){
-            $Builder    = $Builder->setGateway($this->gateway_uri);
-        }
-
         $Request            = $Builder->create();
         $HttpResponse       = Factory::sendRequest($Request);
         $Response           = Factory::transformResponse($builder_name, $HttpResponse);

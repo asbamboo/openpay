@@ -14,11 +14,18 @@ use asbamboo\openpay\Env;
 $autoload   = include dirname(__DIR__) . '/vendor/asbamboo/autoload/bootstrap.php';
 $autoload->addMappingDir('asbamboo\\openpay\\', dirname(__DIR__));
 
+
+EnvHelper::set(Env::ALIPAY_GATEWAY_URI, 'https://openapi.alipaydev.com/gateway.do');
 EnvHelper::set(Env::ALIPAY_RSA_PRIVATE_KEY, __DIR__ . '/fixtures/alipay-rsa/app_private_key.pem');
 EnvHelper::set(Env::ALIPAY_RSA_PUBLIC_KEY, __DIR__ . '/fixtures/alipay-rsa/app_public_key.pem');
 EnvHelper::set(Env::ALIPAY_RSA_ALIPAY_KEY, __DIR__ . '/fixtures/alipay-rsa/app_alipay_key.pem');
+EnvHelper::set(Env::ALIPAY_APP_ID, '2016090900468991');
 
+
+EnvHelper::set(Env::WXPAY_GATEWAY_URI, 'https://api.mch.weixin.qq.com/');
 EnvHelper::set(Env::WXPAY_SIGN_KEY, '8934e7d15453e97507ef794cf7b0519d');
+EnvHelper::set(Env::WXPAY_APP_ID, 'wx426b3015555a46be');
+EnvHelper::set(Env::WXPAY_MCH_ID, '1900009851');
 
 
 
