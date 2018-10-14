@@ -16,7 +16,9 @@ use asbamboo\di\ServiceMappingCollection;
 use asbamboo\api\apiStore\ApiRequestUris;
 use asbamboo\api\apiStore\ApiRequestUri;
 use asbamboo\openpay\Constant;
-use asbamboo\http\TextResponse;
+use asbamboo\http\Stream;
+use asbamboo\http\Response;
+use asbamboo\http\Constant AS HttpConstant;
 
 /***************************************************************************************************
  * 自动加载
@@ -24,6 +26,7 @@ use asbamboo\http\TextResponse;
 $autoload   = require_once dirname(__DIR__) . '/vendor/asbamboo/autoload/bootstrap.php';
 $autoload->addMappingDir('asbamboo\\openpay\\', dirname(__DIR__));
 /***************************************************************************************************/
+require dirname(__DIR__) . '/phpqrcode/phpqrcode.php';
 
 /***************************************************************************************************
  * 参数配置
@@ -71,8 +74,13 @@ $RouteCollection
     ->add(new Route('api', '/api', [$ApiController, 'api']))
     ->add(new Route('test', '/test', [$ApiController, 'testTool']))
     ->add(new Route('qrcode', Constant::QRCODE_URL, function($qr_code){
-        //         ;
-        return new TextResponse('<img alt="扫码支付" src="qrcode.php?data='.urlencode($qr_code).'" style="width:150px;height:150px;"/>');
+        $Stream = new Stream('php://temp', 'w+b');
+        ob_start();
+        QRcode::png($qr_code);
+        $png    = ob_get_contents();
+        ob_clean();
+        $Stream->write($png);
+        return new Response($Stream, HttpConstant::STATUS_OK, ['content-type' => 'image/png']);
     }))
 ;
 

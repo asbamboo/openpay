@@ -11,7 +11,12 @@ use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\helper\env\Env AS EnvHelper;
 use asbamboo\openpay\Env;
 use asbamboo\openpay\Constant;
-use asbamboo\api\apiStore\traits\CommonApiRequestParamsTrait;
+use asbamboo\openpay\payMethod\wxpay\response\ScanQRCodeByPayUnifiedorderResponse;
+use asbamboo\openpay\apiStore\exception\Get3NotSuccessResponseException;
+use asbamboo\openpay\payMethod\alipay\response\TradePrecreateResponse;
+use asbamboo\api\apiStore\ApiResponseParams;
+use asbamboo\api\exception\ApiException;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequestValidateTrait;
 
 /**
  * @name 交易支付
@@ -23,6 +28,8 @@ use asbamboo\api\apiStore\traits\CommonApiRequestParamsTrait;
  */
 class Pay extends ApiClassAbstract
 {
+    use PayRequestValidateTrait;
+
     /**
      * 支持的支付方式
      * @var string
@@ -49,16 +56,6 @@ class Pay extends ApiClassAbstract
     /**
      *
      * {@inheritDoc}
-     * @see \asbamboo\api\apiStore\ApiClassAbstract::validate()
-     */
-    public function validate(ApiRequestParamsInterface $Params): bool
-    {
-        return true;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
      * @see \asbamboo\api\apiStore\ApiClassAbstract::successApiResponseParams()
      * @var PayRequest $Params
      */
@@ -80,26 +77,43 @@ class Pay extends ApiClassAbstract
      */
     private function requestWxpayQRCD(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
     {
-        $request_data           = [
-            'appid'             => (string) EnvHelper::get(Env::WXPAY_APP_ID),
-            'mch_id'            => (string) EnvHelper::get(Env::WXPAY_MCH_ID),
-            'body'              => $Params->getTitle(),
-            'out_trade_no'      => $Params->getOutTradeNo(),
-            'total_fee'         => $Params->getTotalFee(),
-            'spbill_create_ip'  => $Params->getClientIp(),
-            'notify_url'        => Constant::WXPAY_QRCD_NOTIFY_URL,
-        ];
-        $wx_params              = json_decode((string) $Params->getThirdPart(), true);
-        if(is_array($wx_params)){
-            foreach($wx_params AS $wx_key => $wx_value){
-                $request_data[$wx_key] = $wx_value;
+        try{
+            $request_data           = [
+                'appid'             => (string) EnvHelper::get(Env::WXPAY_APP_ID),
+                'mch_id'            => (string) EnvHelper::get(Env::WXPAY_MCH_ID),
+                'body'              => $Params->getTitle(),
+                'out_trade_no'      => $Params->getOutTradeNo(),
+                'total_fee'         => $Params->getTotalFee(),
+                'spbill_create_ip'  => $Params->getClientIp(),
+                'notify_url'        => Constant::WXPAY_QRCD_NOTIFY_URL,
+            ];
+            $wx_params              = json_decode((string) $Params->getThirdPart(), true);
+            if(is_array($wx_params)){
+                foreach($wx_params AS $wx_key => $wx_value){
+                    $request_data[$wx_key] = $wx_value;
+                }
             }
-        }
 
-        $WxResponse                             = $this->Client->request('wxpay:ScanQRCodeByPayUnifiedorder', $request_data);
-        $PayResponse                            = new PayResponse();
-        $PayResponse->redirect_data['qr_code']   = $WxResponse->get('code_url');
-        return $PayResponse;
+            $WxResponse                             = $this->Client->request('wxpay:ScanQRCodeByPayUnifiedorder', $request_data);
+            if(     $WxResponse->get('return_code') != ScanQRCodeByPayUnifiedorderResponse::RETURN_CODE_SUCCESS
+                ||  $WxResponse->get('result_code') != ScanQRCodeByPayUnifiedorderResponse::RESULT_CODE_SUCCESS
+            ){
+                $Exception                          = new Get3NotSuccessResponseException('微信返回的响应值表示这次业务没有处理成功。');
+                $ApiResponseParams                  = new ApiResponseParams();
+                $ApiResponseParams->return_code     = $WxResponse->get('return_code');
+                $ApiResponseParams->return_msg      = $WxResponse->get('return_msg');
+                $ApiResponseParams->result_code     = $WxResponse->get('result_code');
+                $ApiResponseParams->err_code        = $WxResponse->get('err_code');
+                $ApiResponseParams->err_code_des    = $WxResponse->get('err_code_des');
+                $Exception->setApiResponseParams($ApiResponseParams);
+                throw $Exception;
+            }
+            $PayResponse                            = new PayResponse();
+            $PayResponse->redirect_data['qr_code']   = $WxResponse->get('code_url');
+            return $PayResponse;
+        }catch(\asbamboo\openpay\exception\ResponseFormatException $e){
+            throw new ApiException($e->getMessage());
+        }
     }
 
     /**
@@ -109,22 +123,39 @@ class Pay extends ApiClassAbstract
      */
     private function requestAlipayQRCD(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
     {
-        $request_data           = [
-            'app_id'            => (string) EnvHelper::get(Env::ALIPAY_APP_ID),
-            'out_trade_no'      => $Params->getOutTradeNo(),
-            'total_amount'      => bcdiv($Params->getTotalFee(), 100, 2), //聚合接口接收的单位是分，支付宝的单位是元
-            'subject'           => $Params->getTitle(),
-            'notify_url'        => Constant::ALIPAY_QRCD_NOTIFY_URL,
-        ];
-        $alipay_params          = json_decode((string) $Params->getThirdPart(), true);
-        if(is_array($alipay_params)){
-            foreach($alipay_params AS $alipay_key => $alipay_value){
-                $request_data[$alipay_key] = $alipay_value;
+        try{
+            $request_data           = [
+                'app_id'            => (string) EnvHelper::get(Env::ALIPAY_APP_ID),
+                'out_trade_no'      => $Params->getOutTradeNo(),
+                'total_amount'      => bcdiv($Params->getTotalFee(), 100, 2), //聚合接口接收的单位是分，支付宝的单位是元
+                'subject'           => $Params->getTitle(),
+                'notify_url'        => Constant::ALIPAY_QRCD_NOTIFY_URL,
+            ];
+            $alipay_params          = json_decode((string) $Params->getThirdPart(), true);
+            if(is_array($alipay_params)){
+                foreach($alipay_params AS $alipay_key => $alipay_value){
+                    $request_data[$alipay_key] = $alipay_value;
+                }
             }
-        }
 
-        $AlipayResponse                         = $this->Client->request('alipay:TradePrecreate', $request_data);
-        $PayResponse                            = new PayResponse();
-        $PayResponse->redirect_data['qr_code']  = $AlipayResponse->get('qr_code');
-        return $PayResponse;
-    }}
+            $AlipayResponse                         = $this->Client->request('alipay:TradePrecreate', $request_data);
+            if(     $AlipayResponse->get('code') != TradePrecreateResponse::CODE_SUCCESS
+                ||  $AlipayResponse->get('sub_code') != null
+            ){
+                $Exception  = new Get3NotSuccessResponseException('支付宝返回的响应值表示这次业务没有处理成功。');
+                $ApiResponseParams              = new ApiResponseParams();
+                $ApiResponseParams->code        = $AlipayResponse->get('code');
+                $ApiResponseParams->msg         = $AlipayResponse->get('msg');
+                $ApiResponseParams->sub_code    = $AlipayResponse->get('sub_code');
+                $ApiResponseParams->sub_msg     = $AlipayResponse->get('sub_msg');
+                $Exception->setApiResponseParams($ApiResponseParams);
+                throw $Exception;
+            }
+            $PayResponse                            = new PayResponse();
+            $PayResponse->redirect_data['qr_code']  = $AlipayResponse->get('qr_code');
+            return $PayResponse;
+        }catch(\asbamboo\openpay\exception\ResponseFormatException $e){
+            throw new ApiException($e->getMessage());
+        }
+    }
+}

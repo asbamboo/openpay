@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9a574667c2a1ec00b3b1f750c9080f7",
+    "content-hash": "89ca46ec73cd6c3e0a6efa6b06a58764",
     "packages": [
         {
             "name": "asbamboo/api",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/api.git",
-                "reference": "e7901f26823ab2f6f657ba788444b47a23a0be9e"
+                "reference": "4212b15d5834cd3b309832bb87272fa2fcf4005a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/api/zipball/e7901f26823ab2f6f657ba788444b47a23a0be9e",
-                "reference": "e7901f26823ab2f6f657ba788444b47a23a0be9e",
+                "url": "https://api.github.com/repos/asbamboo/api/zipball/4212b15d5834cd3b309832bb87272fa2fcf4005a",
+                "reference": "4212b15d5834cd3b309832bb87272fa2fcf4005a",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 "source": "https://github.com/asbamboo/api/tree/1.0.0",
                 "issues": "https://github.com/asbamboo/api/issues"
             },
-            "time": "2018-10-13T12:25:06+00:00"
+            "time": "2018-10-14T12:54:38+00:00"
         },
         {
             "name": "asbamboo/autoload",
@@ -278,29 +278,6 @@
             "time": "2018-10-03T13:04:37+00:00"
         },
         {
-            "name": "phpqrcode/phpqrcode",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yafangmaster/QRcode.git",
-                "reference": "24094696f394d0579616b7614321958f6d53639c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yafangmaster/QRcode/zipball/24094696f394d0579616b7614321958f6d53639c",
-                "reference": "24094696f394d0579616b7614321958f6d53639c",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "二维码生成组件",
-            "keywords": [
-                "phpqrcode",
-                "qrcode"
-            ],
-            "time": "2017-07-02T12:49:33+00:00"
-        },
-        {
             "name": "psr/http-message",
             "version": "dev-master",
             "source": {
@@ -358,12 +335,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "8f58c558d3263405c13df40489c35fe1eefd8f0e"
+                "reference": "39c58096189643b0cba013ad51a10098b6907f2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8f58c558d3263405c13df40489c35fe1eefd8f0e",
-                "reference": "8f58c558d3263405c13df40489c35fe1eefd8f0e",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/39c58096189643b0cba013ad51a10098b6907f2c",
+                "reference": "39c58096189643b0cba013ad51a10098b6907f2c",
                 "shasum": ""
             },
             "require": {
@@ -405,7 +382,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2018-09-25T21:32:24+00:00"
+            "time": "2018-10-14T01:03:11+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -778,12 +755,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "daeb2717f3bb0638e71b6dbe06f52fc5abcf186e"
+                "reference": "9fc08d9a8eee088878d136fa88a3a0dc35aadfbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/daeb2717f3bb0638e71b6dbe06f52fc5abcf186e",
-                "reference": "daeb2717f3bb0638e71b6dbe06f52fc5abcf186e",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9fc08d9a8eee088878d136fa88a3a0dc35aadfbe",
+                "reference": "9fc08d9a8eee088878d136fa88a3a0dc35aadfbe",
                 "shasum": ""
             },
             "require": {
@@ -807,7 +784,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.0-dev"
+                    "dev-master": "6.1-dev"
                 }
             },
             "autoload": {
@@ -833,7 +810,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-10-12T04:51:12+00:00"
+            "time": "2018-10-14T12:02:51+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1765,7 +1742,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "phpqrcode/phpqrcode": 20,
         "phpunit/phpunit": 20
     },
     "prefer-stable": false,
