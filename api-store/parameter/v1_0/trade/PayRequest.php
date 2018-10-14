@@ -57,7 +57,7 @@ class PayRequest extends ApiRequestParamsAbstract
 
     /**
      * @desc 异步支付结果通知的回调地址, 如果为空的话只能通过主动查询接口获取订单是否交易成功
-     * @example https://pay.notify.asbamboo.com
+     * @example https://pay.notify.example.asbamboo.com
      * @required 可选
      * @var string(256)
      */
@@ -65,7 +65,7 @@ class PayRequest extends ApiRequestParamsAbstract
 
     /**
      * @desc 第三方支付平台的参数，请自行查阅相关支付平台相关文档中的参数列表
-     * @example {limit_pay:no_credit}
+     * @example {"limit_pay":"no_credit"}
      * @required 可选
      * @var json()
      */
