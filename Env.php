@@ -11,18 +11,24 @@ namespace asbamboo\openpay;
 final class Env
 {
     /*********************************************************************************************
+     * 生成二维码的url
+     *********************************************************************************************/
+    const QRCODE_URL                = 'OPENPAY_QRCODE_URL';
+    /*********************************************************************************************/
+
+    /*********************************************************************************************
      * 支付宝环境变量
      *********************************************************************************************/
     // 支付宝接口网关uri
     const ALIPAY_GATEWAY_URI        = 'OPENPAY_ALIPAY_GATEWAY_URI';
     // 用于设置支付宝私银文件地址
     const ALIPAY_RSA_PRIVATE_KEY    = 'OPENPAY_ALIPAY_RSA_PRIVATE';
-    // 用于设置支付宝应用公银文件地址
-    const ALIPAY_RSA_PUBLIC_KEY     = 'OPENPAY_ALIPAY_RSA_PUBLIC';
     // 用于设置支付宝公银文件地址
     const ALIPAY_RSA_ALIPAY_KEY     = 'OPENPAY_ALIPAY_RSA_ALIPAY';
     // 支付宝 app id
     const ALIPAY_APP_ID             = 'OPENPAY_ALIPAY_APP_ID';
+    // 支付宝扫码支付的消息推送 notify url
+    const ALIPAY_QRCD_NOTIFY_URL    = "OPENPAY_ALIPAY_QRCD_NOTIFY_URL";
     /*********************************************************************************************/
 
     /*********************************************************************************************
@@ -36,5 +42,7 @@ final class Env
     const WXPAY_APP_ID              = 'OPENPAY_WXPAY_APP_ID';
     // 微信商户号
     const WXPAY_MCH_ID              = 'OPENPAY_WXPAY_MCH_ID';
+    // 微信扫码支付的消息推送 notify url
+    const WXPAY_QRCD_NOTIFY_URL     = "OPENPAY_WXPAY_QRCD_NOTIFY_URL";
     /*********************************************************************************************/
 }

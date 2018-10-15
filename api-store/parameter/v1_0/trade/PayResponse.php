@@ -2,7 +2,8 @@
 namespace asbamboo\openpay\apiStore\parameter\v1_0\trade;
 
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
-use asbamboo\openpay\Constant;
+use asbamboo\openpay\Env;
+use asbamboo\helper\env\Env AS EnvHelper;
 
 /**
  * 交易支付接口请求响应值
@@ -48,7 +49,7 @@ class PayResponse extends ApiResponseRedirectParams
      */
     protected function getRedirectUri() : string
     {
-        return Constant::QRCODE_URL;
+        return EnvHelper::get(Env::QRCODE_URL);
     }
 
     /**

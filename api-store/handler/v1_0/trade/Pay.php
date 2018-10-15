@@ -10,7 +10,6 @@ use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayResponse;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\helper\env\Env AS EnvHelper;
 use asbamboo\openpay\Env;
-use asbamboo\openpay\Constant;
 use asbamboo\openpay\payMethod\wxpay\response\ScanQRCodeByPayUnifiedorderResponse;
 use asbamboo\openpay\apiStore\exception\Get3NotSuccessResponseException;
 use asbamboo\openpay\payMethod\alipay\response\TradePrecreateResponse;
@@ -85,7 +84,7 @@ class Pay extends ApiClassAbstract
                 'out_trade_no'      => $Params->getOutTradeNo(),
                 'total_fee'         => $Params->getTotalFee(),
                 'spbill_create_ip'  => $Params->getClientIp(),
-                'notify_url'        => Constant::WXPAY_QRCD_NOTIFY_URL,
+                'notify_url'        => EnvHelper::get(Env::WXPAY_QRCD_NOTIFY_URL),
             ];
             $wx_params              = json_decode((string) $Params->getThirdPart(), true);
             if(is_array($wx_params)){
@@ -109,7 +108,7 @@ class Pay extends ApiClassAbstract
                 throw $Exception;
             }
             $PayResponse                            = new PayResponse();
-            $PayResponse->redirect_data['qr_code']   = $WxResponse->get('code_url');
+            $PayResponse->redirect_data['qr_code']  = $WxResponse->get('code_url');
             return $PayResponse;
         }catch(\asbamboo\openpay\exception\ResponseFormatException $e){
             throw new ApiException($e->getMessage());
@@ -129,7 +128,7 @@ class Pay extends ApiClassAbstract
                 'out_trade_no'      => $Params->getOutTradeNo(),
                 'total_amount'      => bcdiv($Params->getTotalFee(), 100, 2), //聚合接口接收的单位是分，支付宝的单位是元
                 'subject'           => $Params->getTitle(),
-                'notify_url'        => Constant::ALIPAY_QRCD_NOTIFY_URL,
+                'notify_url'        => EnvHelper::get(Env::ALIPAY_QRCD_NOTIFY_URL),
             ];
             $alipay_params          = json_decode((string) $Params->getThirdPart(), true);
             if(is_array($alipay_params)){
