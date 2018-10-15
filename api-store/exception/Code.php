@@ -16,11 +16,5 @@ final class Code
     const TRADE_PAY_OUT_TRADE_NO_INVALID = '2003'; // TradePayOutTradeNoInvalidException
     const TRADE_PAY_TOTAL_FEE_INVALID = '2004'; // TradePayTotalFeeInvalidException
     const TRADE_PAY_CLIENT_IP_INVALID = '2005'; // TradePayClientIpInvalidException
-    const TRADE_PAY_NOTIFY_URL_INVALID = '2006'; // TradePayNotifyUrlInvalidException
-    const TRADE_PAY_THIRD_PART_INVALID = '2007'; // TradePayThirdPartInvalidException
-
-
-
-
-
+    const TRADE_PAY_THIRD_PART_INVALID = '2006'; // TradePayThirdPartInvalidException
 }

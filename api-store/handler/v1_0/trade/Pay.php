@@ -22,7 +22,7 @@ use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequestValidateTrait;
  * @name 交易支付
  * @desc 发起交易支付
  * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequest
- * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\PayResponse
+ * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\PayResponse
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年10月13日
  */

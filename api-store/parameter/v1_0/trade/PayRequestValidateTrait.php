@@ -33,7 +33,6 @@ trait PayRequestValidateTrait
         $this->validateOutTradeNo($Params->getOutTradeNo());
         $this->validateTotalFee($Params->getTotalFee());
         $this->validateClientIp($Params->getClientIp());
-        $this->validateNotifyUrl($Params->getNotifyUrl());
         $this->validateThirdPart($Params->getThirdPart());
         return true;
     }
@@ -117,24 +116,6 @@ trait PayRequestValidateTrait
         }
         if(long2ip(ip2long($client_ip)) != $client_ip){
             throw new TradePayClientIpInvalidException('client_ip 的值不是一个有效的ip地址。');
-        }
-    }
-
-    /**
-     *
-     * @param string $notify_url
-     * @throws TradePayNotifyUrlInvalidException
-     */
-    private function validateNotifyUrl($notify_url)
-    {
-        if(trim($notify_url) === ''){
-            return;
-        }
-
-        $parse_url  = parse_url($notify_url);
-
-        if($parse_url == false){
-            throw new TradePayNotifyUrlInvalidException('notify_url 的值不是一个有效的url地址。');
         }
     }
 

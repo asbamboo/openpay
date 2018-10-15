@@ -55,13 +55,15 @@ class PayRequest extends ApiRequestParamsAbstract
      */
     protected $client_ip;
 
-    /**
-     * @desc 异步支付结果通知的回调地址, 如果为空的话只能通过主动查询接口获取订单是否交易成功
-     * @example https://pay.notify.example.asbamboo.com
-     * @required 可选
-     * @var string(256)
-     */
-    protected $notify_url;
+//     这个notify url在开源代码中不需要，因为每个人的对这个notify url的处理方式都是不一样的
+//     比如有写平台可能吧notify url放在后台设置中，不需要请求接口时传递
+//     /**
+//      * @desc 异步支付结果通知的回调地址, 如果为空的话只能通过主动查询接口获取订单是否交易成功
+//      * @example https://pay.notify.example.asbamboo.com
+//      * @required 可选
+//      * @var string(256)
+//      */
+//     protected $notify_url;
 
     /**
      * @desc 第三方支付平台的参数，请自行查阅相关支付平台相关文档中的参数列表
