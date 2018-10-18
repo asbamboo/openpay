@@ -2,6 +2,7 @@
 namespace asbamboo\openpay\processor;
 
 use asbamboo\console\ProcessorInterface;
+use Composer\Script\Event;
 
 /**
  *
@@ -14,7 +15,7 @@ interface ProcessorManagerInterface
     /**
      * 重写mappingdata
      */
-    public function rewriteMappingData() : void;
+    public function rewriteMappingData(Event $Event) : void;
 
     /**
      *
