@@ -3,6 +3,7 @@
     "description": "聚合支付模块,集成alipay/微信支付等第三方支付接口",
     "type": "project",
     "require": {
+    	"php" : "^7.2",
         "asbamboo/autoload": "^1.0",
         "asbamboo/http": "^1.1",
         "asbamboo/helper": "^1.1",

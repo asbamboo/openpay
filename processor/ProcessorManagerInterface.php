@@ -1,10 +1,7 @@
 <?php
 namespace asbamboo\openpay\processor;
 
-use asbamboo\api\apiStore\ApiRequestParamsInterface;
-use asbamboo\api\apiStore\ApiResponseParamsInterface;
 use asbamboo\console\ProcessorInterface;
-
 
 /**
  *
@@ -15,9 +12,14 @@ use asbamboo\console\ProcessorInterface;
 interface ProcessorManagerInterface
 {
     /**
-     *重写mappingdata
+     * 重写mappingdata
      */
-    public function rewriteMappingData();
+    public function rewriteMappingData() : void;
 
+    /**
+     *
+     * @param string $api_name
+     * @return ProcessorInterface
+     */
     public function getProcessor(string $api_name) : ProcessorInterface;
 }
