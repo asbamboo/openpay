@@ -21,7 +21,7 @@ class PayRequest extends ApiRequestParamsAbstract
      * @required 必须
      * @var string(45)
      */
-    protected $payment;
+    protected $channel;
 
     /**
      * @desc 交易标题

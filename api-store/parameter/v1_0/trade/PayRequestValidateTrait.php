@@ -2,13 +2,11 @@
 namespace asbamboo\openpay\apiStore\parameter\v1_0\trade;
 
 use asbamboo\api\apiStore\ApiRequestParamsInterface;
-use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
-use asbamboo\openpay\apiStore\exception\TradePayPaymentInvalidException;
+use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayTitleInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayTotalFeeInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayOutTradeNoInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayClientIpInvalidException;
-use asbamboo\openpay\apiStore\exception\TradePayNotifyUrlInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayThirdPartInvalidException;
 
 /**
@@ -28,7 +26,7 @@ trait PayRequestValidateTrait
      */
     public function validate(ApiRequestParamsInterface $Params): bool
     {
-        $this->validatePayment($Params->getPayment());
+        $this->validateChannel($Params->getChannel());
         $this->validateTitle($Params->getTitle());
         $this->validateOutTradeNo($Params->getOutTradeNo());
         $this->validateTotalFee($Params->getTotalFee());
@@ -40,12 +38,13 @@ trait PayRequestValidateTrait
     /**
      *
      * @param string $payment
-     * @throws TradePayPaymentInvalidException
+     * @throws TradePayChannelInvalidException
      */
-    private function validatePayment($payment)
+    private function validateChannel($channel)
     {
-        if(!in_array($payment, [Pay::ALIPAY_QRCD, Pay::WXPAY_QRCD])){
-            throw new TradePayPaymentInvalidException(springf('支付渠道%s暂不支持。', $payment));
+        $exist_channels   = $this->ChannelManager->getChannels(get_class($this));
+        if(!array_key_exists($channel, $exist_channels)){
+            throw new TradePayChannelInvalidException(sprintf('支付渠道%s暂不支持。', $channel));
         }
     }
 
