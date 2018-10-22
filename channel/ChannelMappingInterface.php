@@ -12,10 +12,10 @@ interface ChannelMappingInterface
     /**
      * 设置映射关系
      *
-     * @param array $content
+     * @param array $channels 渠道处理的类名
      * @return ChannelMappingInterface
      */
-    public function setMappingContent(array $content) : ChannelMappingInterface;
+    public function addMappingChannels(array $channels) : ChannelMappingInterface;
 
     /**
      * 返回映射关系

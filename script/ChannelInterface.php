@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay;
+namespace asbamboo\openpay\script;
 
 use Composer\Script\Event;
 
@@ -16,5 +16,5 @@ interface ChannelInterface
      *
      * @param Event $Event
      */
-    public function bind(Event $Event) : void;
+    public function generateMappingInfo(Event $Event) : void;
 }

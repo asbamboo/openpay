@@ -61,7 +61,7 @@ class PayResponse extends ApiResponseRedirectParams
     protected function getRedirectResponseData() : array
     {
         return [
-            'qr_code'   => $this->redirect_data['qr_code'],
+            'qr_code'   => $this->_redirect_data['qr_code'],
         ];
     }
 }

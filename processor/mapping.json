@@ -1,8 +1,0 @@
-{
-    "v1.0":{
-        "trade.pay" : {
-           "WXPAY_QRCD" : "asbamboo\\openpay\\apiStore\\handler\\v1_0\\process",
-           "ALIPAY_QRCD" : "asbamboo\\openpay\\apiStore\\handler\\v1_0\\process"
-        }
-    }
-}
