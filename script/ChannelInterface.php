@@ -16,5 +16,5 @@ interface ChannelInterface
      *
      * @param Event $Event
      */
-    public function generateMappingInfo(Event $Event) : void;
+    public static function generateMappingInfo(Event $Event) : void;
 }
