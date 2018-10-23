@@ -17,7 +17,6 @@ $autoload->addMappingDir('asbamboo\\openpay\\', dirname(__DIR__));
 
 EnvHelper::set(Env::ALIPAY_GATEWAY_URI, 'https://openapi.alipaydev.com/gateway.do');
 EnvHelper::set(Env::ALIPAY_RSA_PRIVATE_KEY, __DIR__ . '/fixtures/alipay-rsa/app_private_key.pem');
-EnvHelper::set(Env::ALIPAY_RSA_PUBLIC_KEY, __DIR__ . '/fixtures/alipay-rsa/app_public_key.pem');
 EnvHelper::set(Env::ALIPAY_RSA_ALIPAY_KEY, __DIR__ . '/fixtures/alipay-rsa/app_alipay_key.pem');
 EnvHelper::set(Env::ALIPAY_APP_ID, '2016090900468991');
 
@@ -28,6 +27,7 @@ EnvHelper::set(Env::WXPAY_APP_ID, 'wx426b3015555a46be');
 EnvHelper::set(Env::WXPAY_MCH_ID, '1900009851');
 
 
+@mkdir(__DIR__ . '/cache/', 0744, true);
 
 EventScheduler::instance()->bind(Event::HTTP_CLIENT_SEND_PRE_EXEC, function(
     ClientInterface $Client,

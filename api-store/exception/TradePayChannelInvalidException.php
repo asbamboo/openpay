@@ -9,7 +9,7 @@ use asbamboo\api\exception\InvalidArgumentException;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年10月14日
  */
-class TradePayPaymentInvalidException extends InvalidArgumentException
+class TradePayChannelInvalidException extends InvalidArgumentException
 {
     public function __construct(string $message="参数 payment 无效.", \Exception $previous = null)
     {

@@ -21,7 +21,7 @@ class PayRequest extends ApiRequestParamsAbstract
      * @required 必须
      * @var string(45)
      */
-    protected $payment;
+    protected $channel;
 
     /**
      * @desc 交易标题
@@ -56,18 +56,55 @@ class PayRequest extends ApiRequestParamsAbstract
     protected $client_ip;
 
     /**
-     * @desc 异步支付结果通知的回调地址, 如果为空的话只能通过主动查询接口获取订单是否交易成功
-     * @example https://pay.notify.example.asbamboo.com
-     * @required 可选
-     * @var string(256)
-     */
-    protected $notify_url;
-
-    /**
      * @desc 第三方支付平台的参数，请自行查阅相关支付平台相关文档中的参数列表
      * @example {"limit_pay":"no_credit"}
      * @required 可选
      * @var json()
      */
     protected $third_part;
+
+    /**
+     *
+     * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\string(45)
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     *
+     * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\number(32)
+     */
+    public function getOutTradeNo()
+    {
+        return $this->out_trade_no;
+    }
+
+    /**
+     *
+     * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\price(11)
+     */
+    public function getTotalFee()
+    {
+        return $this->total_fee;
+    }
+
+    /**
+     *
+     * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\string(20)
+     */
+    public function getClientIp()
+    {
+        return $this->client_ip;
+    }
+
+    /**
+     *
+     * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\json()
+     */
+    public function getThirdPart()
+    {
+        return $this->third_part;
+    }
 }
