@@ -21,8 +21,7 @@ class Channel implements ChannelInterface
     public function generateMappingInfo(Event $Event) : void
     {
         $root_dir       = getcwd();
-        $vendor_dir     = $Event->getComposer()->getConfig()->get('vendor-dir');
-        $channels       = $this->findChannel($root_dir, $vendor_dir);
+        $channels       = $this->findChannel($root_dir);
         $ChannelMapping = new ChannelMapping();
         $ChannelMapping->addMappingChannels($channels);
     }
@@ -34,14 +33,19 @@ class Channel implements ChannelInterface
      * @param string $vendor_dir
      * @return array|\\asbamboo\\openpay\\ChannelInterface[]
      */
-    private function findChannel($root_dir, $vendor_dir) : array
+    private function findChannel($root_dir) : array
     {
+        // 在openpay模块内不应该添加处理渠道，有也只可能时单元测试用的文件
+        if(rtrim($root_dir, DIRECTORY_SEPARATOR) == dirname(__DIR__)){
+            return [];
+        }
+
         $channels   = [];
         $paths      = array_diff(scandir($root_dir), ['.', '..', $vendor_dir]);
         foreach($paths AS $path){
             $path   = $root_dir . DIRECTORY_SEPARATOR . $path;
             if(is_dir($path)){
-                $channels   = array_merge($channels, $this->findChannel($path, $vendor_dir));
+                $channels   = array_merge($channels, $this->findChannel($path));
             }
             $file_contents      = file_get_contents($path);
             $classname_data     = [];

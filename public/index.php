@@ -22,8 +22,11 @@ use asbamboo\openpay\Env;
 /***************************************************************************************************
  * 系统文件加载
  ***************************************************************************************************/
-$autoload   = require_once dirname(__DIR__) . '/vendor/asbamboo/autoload/bootstrap.php';
-$autoload->addMappingDir('asbamboo\\openpay\\', dirname(__DIR__));
+$autoload_bootstrap = dirname(__DIR__) . '/vendor/asbamboo/autoload/bootstrap.php';
+if(file_exists($autoload_bootstrap)){
+    $autoload   = require_once $autoload_bootstrap;
+    $autoload->addMappingDir('asbamboo\\openpay\\', dirname(__DIR__));
+}
 require dirname(__DIR__) . '/phpqrcode/phpqrcode.php';
 /***************************************************************************************************/
 
