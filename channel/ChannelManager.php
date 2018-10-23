@@ -32,7 +32,7 @@ class ChannelManager implements ChannelManagerInterface
     public function getChannels(string $handler_class) : array
     {
         $mapping_info   = $this->ChannelMapping->getMappingContent();
-        return isset( $handler_class[$mapping_info] ) ? $handler_class[$mapping_info] : [];
+        return isset( $mapping_info[$handler_class] ) ? $mapping_info[$handler_class] : [];
     }
 
     /**

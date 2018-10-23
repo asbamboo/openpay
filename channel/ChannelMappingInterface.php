@@ -18,6 +18,13 @@ interface ChannelMappingInterface
     public function addMappingChannels(array $channels) : ChannelMappingInterface;
 
     /**
+     * 将渠道映射关系重置为最初的状态
+     *
+     * @return ChannelMappingInterface
+     */
+    public function resetMappingContent() : ChannelMappingInterface;
+
+    /**
      * 返回映射关系
      *
      * @return array

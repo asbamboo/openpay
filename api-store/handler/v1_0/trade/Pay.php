@@ -1,20 +1,12 @@
 <?php
 namespace asbamboo\openpay\apiStore\handler\v1_0\trade;
+//asbamboo\openpay\apiStore\handler\v1_0\trade
+//asbamboo\openpay\apiStore\handler\v1_0\trade\Pay
 
 use asbamboo\api\apiStore\ApiClassAbstract;
 use asbamboo\api\apiStore\ApiRequestParamsInterface;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequest;
-use asbamboo\openpay\ClientInterface;
 use asbamboo\api\apiStore\ApiResponseParamsInterface;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayResponse;
-use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
-use asbamboo\helper\env\Env AS EnvHelper;
-use asbamboo\openpay\Env;
-use asbamboo\openpay\payMethod\wxpay\response\ScanQRCodeByPayUnifiedorderResponse;
-use asbamboo\openpay\apiStore\exception\Get3NotSuccessResponseException;
-use asbamboo\openpay\payMethod\alipay\response\TradePrecreateResponse;
-use asbamboo\api\apiStore\ApiResponseParams;
-use asbamboo\api\exception\ApiException;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequestValidateTrait;
 use asbamboo\openpay\channel\ChannelManagerInterface;
 
@@ -39,7 +31,7 @@ class Pay extends ApiClassAbstract
 
     /**
      *
-     * @param ClientInterface $Client
+     * @param ChannelManagerInterface $Client
      */
     public function __construct(ChannelManagerInterface $ChannelManager)
     {

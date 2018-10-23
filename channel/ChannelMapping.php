@@ -24,14 +24,14 @@ class ChannelMapping implements ChannelMappingInterface
      */
     public function addMappingChannels(array $channels) : ChannelMappingInterface
     {
-        $handlers       = $this->findHandler();
+        $handlers       = $this->findHandlers();
         $mappings       = [];
         foreach($handlers AS $handler){
             $cancel_interface   = str_replace('apiStore\\handler', 'channel', $handler) . 'Interface';
             $mappings[$handler] = [];
             foreach($channels AS $channel){
-                if($channel instanceof $cancel_interface){
-                    $ChannelObj                                 = new $channel();
+                $ChannelObj = new $channel();
+                if($ChannelObj instanceof $cancel_interface){
                     $mappings[$handler][$ChannelObj->getName()] = serialize($ChannelObj);
                 }
             }
@@ -41,6 +41,17 @@ class ChannelMapping implements ChannelMappingInterface
         $encode_content     = json_encode($mappings);
         file_put_contents(self::MAPPING_FILE, $encode_content);
 
+        return $this;
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \asbamboo\openpay\channel\ChannelMappingInterface::resetMappingContent()
+     */
+    public function resetMappingContent() : ChannelMappingInterface
+    {
+        file_put_contents(self::MAPPING_FILE, '[]');
         return $this;
     }
 
@@ -62,7 +73,7 @@ class ChannelMapping implements ChannelMappingInterface
      * @param string $namespace
      * @return array
      */
-    private function findHandler(string $dir = null, string $namespace = null) : array
+    private function findHandlers(string $dir = null, string $namespace = null) : array
     {
         $handlers   = [];
         if($dir == null){
@@ -77,11 +88,12 @@ class ChannelMapping implements ChannelMappingInterface
         foreach($paths AS $path){
             $filepath   = $dir . DIRECTORY_SEPARATOR . $path;
             if(is_dir($filepath)){
-                $namespace  = $namespace . lcfirst(implode('', array_map(ucfirst($path), explode('-', substr($path, 0, -4/*.php*/))))) . '\\';
-                $handlers   = array_merge($this->findHandler($filepath, $namespace));
+                $namespace  = $namespace . lcfirst(implode('', array_map('ucfirst', explode('-', $path)))) . '\\';
+                $handlers   = array_merge($this->findHandlers($filepath, $namespace));
+                continue;
             }
             $class  = $namespace . substr($path, 0, -4/*.php*/);
-            if(is_file($class) instanceof ApiClassInterface){
+            if(class_exists($class) && in_array(ApiClassInterface::class, class_implements($class))){
                 $handlers[] = $class;
             }
         }

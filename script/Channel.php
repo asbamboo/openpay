@@ -3,12 +3,15 @@ namespace asbamboo\openpay\script;
 
 use Composer\Script\Event;
 use asbamboo\openpay\channel\ChannelMapping;
+use ChannelInterface AS ScriptChannelInterface;
+use asbamboo\openpay\channel\ChannelInterface AS OpenpayChannelInterface;
+use asbamboo\autoload\Autoload;
 
 /**
  * open pay 模块的一些和composer script配置相关的方法
  *
  * @author 李春寅 <licy2013@aliyun.com>
- * @since 2018年10月19日
+ * @since 2018年10月19
  */
 class Channel implements ChannelInterface
 {
@@ -20,10 +23,15 @@ class Channel implements ChannelInterface
      */
     public static function generateMappingInfo(Event $Event) : void
     {
+        new Autoload();
         $root_dir       = getcwd();
+        $Event->getIO()->write('当前项目跟目录:' . $root_dir);
         $channels       = static::findChannel($root_dir);
+        $Event->getIO()->write('找出的渠道信息:' . var_export($channels, true));
         $ChannelMapping = new ChannelMapping();
+        $ChannelMapping->resetMappingContent();
         $ChannelMapping->addMappingChannels($channels);
+        $Event->getIO()->write('接口与渠道映射关系:' . var_export($ChannelMapping->getMappingContent(), true));
     }
 
     /**
@@ -46,13 +54,14 @@ class Channel implements ChannelInterface
             $path   = $root_dir . DIRECTORY_SEPARATOR . $path;
             if(is_dir($path)){
                 $channels   = array_merge($channels, static::findChannel($path));
+                continue;
             }
-            $file_contents      = file_get_contents($path);
+            $file_content       = file_get_contents($path);
             $classname_data     = [];
             $getting_namespace  = false;
             $getting_classname  = false;
             try{
-                foreach(token_get_all($file_contents, TOKEN_PARSE) AS $token){
+                foreach(token_get_all($file_content, TOKEN_PARSE) AS $token){
                     if(is_array($token) && $token[0] == T_NAMESPACE){
                         $getting_namespace  = true;
                     }
@@ -76,11 +85,11 @@ class Channel implements ChannelInterface
                 // 不是php文件，这里只解析php文件
                 continue;
             }
-            if(!empty( $classname_data )){
-               $classname  = implode('\\', $classname_data);
-               if(is_file($path) && $classname instanceof ChannelInterface){
-                   $channels[] = $classname;
-               }
+            $classname   = implode('\\', $classname_data);
+            if(class_exists( $classname )){
+                if(in_array(OpenpayChannelInterface::class, class_implements($classname))){
+                    $channels[] = $classname;
+                }
             }
         }
         return $channels;
