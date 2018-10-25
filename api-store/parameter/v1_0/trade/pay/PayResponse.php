@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\apiStore\parameter\v1_0\trade;
+namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
 
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
 use asbamboo\openpay\Env;
