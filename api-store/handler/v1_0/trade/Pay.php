@@ -3,10 +3,10 @@ namespace asbamboo\openpay\apiStore\handler\v1_0\trade;
 
 use asbamboo\api\apiStore\ApiClassAbstract;
 use asbamboo\api\apiStore\ApiRequestParamsInterface;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequest;
 use asbamboo\api\apiStore\ApiResponseParamsInterface;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequestValidateTrait;
 use asbamboo\openpay\channel\ChannelManagerInterface;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequestValidateTrait;
 
 /**
  * @name 交易支付
