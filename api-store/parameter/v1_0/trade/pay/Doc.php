@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\apiStore\parameter\v1_0\trade;
+namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
 
 use asbamboo\openpay\channel\ChannelManagerStatic;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;

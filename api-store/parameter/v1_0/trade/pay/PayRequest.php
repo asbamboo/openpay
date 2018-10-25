@@ -16,8 +16,8 @@ class PayRequest extends ApiRequestParamsAbstract
 
     /**
      * @desc 支付渠道
-     * @example eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\Doc::channelExample();
-     * @range eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\Doc::channelRange()
+     * @example eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\Doc::channelExample();
+     * @range eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\Doc::channelRange()
      * @required 必须
      * @var string(45)
      */
