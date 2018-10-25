@@ -1,7 +1,5 @@
 <?php
 namespace asbamboo\openpay\apiStore\handler\v1_0\trade;
-//asbamboo\openpay\apiStore\handler\v1_0\trade
-//asbamboo\openpay\apiStore\handler\v1_0\trade\Pay
 
 use asbamboo\api\apiStore\ApiClassAbstract;
 use asbamboo\api\apiStore\ApiRequestParamsInterface;
