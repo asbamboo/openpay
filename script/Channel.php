@@ -22,7 +22,7 @@ class Channel implements ScriptChannelInterface
      */
     public static function generateMappingInfo(Event $Event) : void
     {
-        $vendor_dir = $Event->getComposer()->getConfig()->get('vendor_dir');
+        $vendor_dir = $Event->getComposer()->getConfig()->get('vendor-dir');
         include $vendor_dir . DIRECTORY_SEPARATOR . 'asbamboo' . DIRECTORY_SEPARATOR . 'bootstrap.php';
         $root_dir       = getcwd();
         $Event->getIO()->write('当前项目跟目录:' . $root_dir);
