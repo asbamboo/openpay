@@ -48,8 +48,8 @@ class Channel implements ScriptChannelInterface
             return [];
         }
 
-        $channels   = [];
-        $paths      = array_diff(scandir($root_dir), ['.', '..']);
+        $channels           = [];
+        $paths              = array_diff(scandir($root_dir), ['.', '..']);
         foreach($paths AS $path){
             $path   = $root_dir . DIRECTORY_SEPARATOR . $path;
             if(is_dir($path)){
@@ -83,6 +83,9 @@ class Channel implements ScriptChannelInterface
                 }
             }catch(\Throwable $e){
                 // 不是php文件，这里只解析php文件
+                continue;
+            }
+            if($getting_classname == false){
                 continue;
             }
             $classname   = implode('\\', $classname_data);
