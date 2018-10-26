@@ -3,9 +3,8 @@ namespace asbamboo\openpay\script;
 
 use Composer\Script\Event;
 use asbamboo\openpay\channel\ChannelMapping;
-use ChannelInterface AS ScriptChannelInterface;
+use asbamboo\openpay\script\ChannelInterface AS ScriptChannelInterface;
 use asbamboo\openpay\channel\ChannelInterface AS OpenpayChannelInterface;
-use asbamboo\autoload\Autoload;
 
 /**
  * open pay 模块的一些和composer script配置相关的方法
@@ -13,7 +12,7 @@ use asbamboo\autoload\Autoload;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年10月19
  */
-class Channel implements ChannelInterface
+class Channel implements ScriptChannelInterface
 {
     /**
      * 绑定渠道
@@ -23,7 +22,8 @@ class Channel implements ChannelInterface
      */
     public static function generateMappingInfo(Event $Event) : void
     {
-        new Autoload();
+        $vendor_dir = $Event->getComposer()->getConfig()->get('vendor_dir');
+        include $vendor_dir . DIRECTORY_SEPARATOR . 'asbamboo' . DIRECTORY_SEPARATOR . 'bootstrap.php';
         $root_dir       = getcwd();
         $Event->getIO()->write('当前项目跟目录:' . $root_dir);
         $channels       = static::findChannel($root_dir);
