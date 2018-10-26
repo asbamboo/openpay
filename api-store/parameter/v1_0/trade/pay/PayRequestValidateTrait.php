@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\apiStore\parameter\v1_0\trade;
+namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
 
 use asbamboo\api\apiStore\ApiRequestParamsInterface;
 use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
@@ -8,6 +8,7 @@ use asbamboo\openpay\apiStore\exception\TradePayTotalFeeInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayOutTradeNoInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayClientIpInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayThirdPartInvalidException;
+use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
 
 /**
  * 验证 pay request 参数
@@ -42,7 +43,7 @@ trait PayRequestValidateTrait
      */
     private function validateChannel($channel)
     {
-        $exist_channels   = $this->ChannelManager->getChannels(get_class($this));
+        $exist_channels   = $this->ChannelManager->getChannels(Pay::class);
         if(!array_key_exists($channel, $exist_channels)){
             throw new TradePayChannelInvalidException(sprintf('支付渠道%s暂不支持。', $channel));
         }

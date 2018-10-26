@@ -1,20 +1,18 @@
 <?php
 namespace asbamboo\openpay\apiStore\handler\v1_0\trade;
-//asbamboo\openpay\apiStore\handler\v1_0\trade
-//asbamboo\openpay\apiStore\handler\v1_0\trade\Pay
 
 use asbamboo\api\apiStore\ApiClassAbstract;
 use asbamboo\api\apiStore\ApiRequestParamsInterface;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequest;
 use asbamboo\api\apiStore\ApiResponseParamsInterface;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequestValidateTrait;
 use asbamboo\openpay\channel\ChannelManagerInterface;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequestValidateTrait;
 
 /**
  * @name 交易支付
  * @desc 发起交易支付
- * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\PayRequest
- * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\PayResponse
+ * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest
+ * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年10月13日
  */

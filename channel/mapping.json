@@ -1,1 +1,0 @@
-{"asbamboo\\openpay\\apiStore\\handler\\v1_0\\trade\\Pay":{"ALIPAY_QRCD":"O:55:\"asbamboo\\openpayAlipay\\channel\\v1_0\\trade\\PayAlipayQrcd\":0:{}","WXPAY_QRCD":"O:53:\"asbamboo\\openpayWxpay\\channel\\v1_0\\trade\\PayWxpayQrcd\":0:{}"}}

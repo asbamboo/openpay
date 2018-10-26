@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\apiStore\parameter\v1_0\trade;
+namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
 
 use asbamboo\api\apiStore\ApiRequestParamsAbstract;
 use asbamboo\api\apiStore\traits\CommonApiRequestParamsTrait;
@@ -15,9 +15,9 @@ class PayRequest extends ApiRequestParamsAbstract
     use CommonApiRequestParamsTrait;
 
     /**
-     * @desc 支付方式
-     * @example WXPAY_QRCD
-     * @range WXPAY_QRCD[微信扫码],ALIPAY_QRCD[支付宝扫码]
+     * @desc 支付渠道
+     * @example eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\Doc::channelExample();
+     * @range eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\Doc::channelRange()
      * @required 必须
      * @var string(45)
      */
