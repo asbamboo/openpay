@@ -2,31 +2,31 @@
 namespace asbamboo\openpay\apiStore\handler\v1_0\trade;
 
 use asbamboo\api\apiStore\ApiClassAbstract;
-use asbamboo\api\apiStore\ApiRequestParamsInterface;
-use asbamboo\api\apiStore\ApiResponseParamsInterface;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryRequestValidateTrait;
 use asbamboo\openpay\channel\ChannelManagerInterface;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequestValidateTrait;
+use asbamboo\api\apiStore\ApiRequestParamsInterface;
+use asbamboo\api\apiStore\ApiResponseParamsInterface;
 
 /**
- * @name 交易支付
- * @desc 发起交易支付
- * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest
- * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse
- * @author 李春寅 <licy2013@aliyun.com>
- * @since 2018年10月13日
+ * @name 交易查询
+ * @desc 交易查询
+ * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryRequest
+ * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryResponse
+ * @author 李春寅<licy2013@aliyun.com>
+ * @since 2018年10月27日
  */
-class Pay extends ApiClassAbstract
+class Query extends ApiClassAbstract
 {
-    use PayRequestValidateTrait;
-
+    use QueryRequestValidateTrait;
+    
     /**
      * 渠道管理器
      *
      * @var ChannelManagerInterface
      */
     private $ChannelManager;
-
+    
     /**
      *
      * @param ChannelManagerInterface $Client
@@ -35,7 +35,7 @@ class Pay extends ApiClassAbstract
     {
         $this->ChannelManager   = $ChannelManager;
     }
-
+    
     /**
      *
      * {@inheritDoc}
@@ -46,6 +46,7 @@ class Pay extends ApiClassAbstract
     {
         $channel_name   = $Params->getChannel();
         $Channel        = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
-        return  $Channel->execute($Params);
+        $Response       = $Channel->execute($Params);
+        return  $Response;
     }
 }
