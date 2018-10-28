@@ -4,7 +4,6 @@ namespace asbamboo\openpay\script;
 use Composer\Script\Event;
 use asbamboo\openpay\channel\ChannelMapping;
 use asbamboo\openpay\script\ChannelInterface AS ScriptChannelInterface;
-use asbamboo\openpay\channel\ChannelInterface AS OpenpayChannelInterface;
 
 /**
  * open pay 模块的一些和composer script配置相关的方法
@@ -24,6 +23,7 @@ class Channel implements ScriptChannelInterface
     {
         $vendor_dir = $Event->getComposer()->getConfig()->get('vendor-dir');
         include $vendor_dir . DIRECTORY_SEPARATOR . 'asbamboo' . DIRECTORY_SEPARATOR . 'autoload' . DIRECTORY_SEPARATOR . 'bootstrap.php';
+        
         $root_dir       = getcwd();
         $Event->getIO()->write('当前项目跟目录:' . $root_dir);
         $channels       = static::findChannel($root_dir);
@@ -38,7 +38,6 @@ class Channel implements ScriptChannelInterface
      * 返回所有实现了ChannelInterface接口的实例的类名
      *
      * @param string $root_dir
-     * @param string $vendor_dir
      * @return array|\\asbamboo\\openpay\\ChannelInterface[]
      */
     private static function findChannel($root_dir) : array
@@ -55,44 +54,12 @@ class Channel implements ScriptChannelInterface
             if(is_dir($path)){
                 $channels   = array_merge($channels, static::findChannel($path));
                 continue;
-            }
-            $file_content       = file_get_contents($path);
-            $classname_data     = [];
-            $getting_namespace  = false;
-            $getting_classname  = false;
-            try{
-                foreach(token_get_all($file_content, TOKEN_PARSE) AS $token){
-                    if(is_array($token) && $token[0] == T_NAMESPACE){
-                        $getting_namespace  = true;
-                    }
-                    if(is_array($token) && $token[0] == T_CLASS){
-                        $getting_classname  = true;
-                    }
-                    if($getting_namespace == true){
-                        if(is_array($token) && $token[0] == T_STRING ){
-                            $classname_data[]   = $token[1];
-                        }else if($token == ';'){
-                            $getting_namespace  = false;
-                        }
-                    }
-                    if($getting_classname == true && is_array($token) && $token[0] == T_STRING){
-                        $classname_data[]   = $token[1];
-                        $getting_namespace  = false;
-                        break;
-                    }
-                }
-            }catch(\Throwable $e){
-                // 不是php文件，这里只解析php文件
-                continue;
-            }
-            if($getting_classname == false){
-                continue;
-            }
-            $classname   = implode('\\', $classname_data);
-            if(class_exists( $classname )){
-                if(in_array(OpenpayChannelInterface::class, class_implements($classname))){
-                    $channels[] = $classname;
-                }
+            }            
+            $php_bin                = $_SERVER['_'] == $_SERVER['SCRIPT_FILENAME'] ? 'php' : $_SERVER['_'];
+            $check_channel_script   = __DIR__ . DIRECTORY_SEPARATOR . 'CheckIsChannelFile.php';
+            $test_channel           = exec(addslashes("{$php_bin} {$check_channel_script} {$path}"));
+            if(strpos($test_channel, '1:') === 0){
+                $channels[] = substr($test_channel, 2);
             }
         }
         return $channels;
