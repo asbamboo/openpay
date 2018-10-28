@@ -3,6 +3,7 @@ namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
 
 use asbamboo\api\apiStore\ApiRequestParamsAbstract;
 use asbamboo\api\apiStore\traits\CommonApiRequestParamsTrait;
+use asbamboo\openpay\apiStore\parameter\common\RequestThirdPartTrait;
 
 /**
  * 交易支付接口请求传递的参数
@@ -13,6 +14,7 @@ use asbamboo\api\apiStore\traits\CommonApiRequestParamsTrait;
 class PayRequest extends ApiRequestParamsAbstract
 {
     use CommonApiRequestParamsTrait;
+    use RequestThirdPartTrait;
 
     /**
      * @desc 支付渠道
@@ -56,14 +58,6 @@ class PayRequest extends ApiRequestParamsAbstract
     protected $client_ip;
 
     /**
-     * @desc 第三方支付平台的参数，请自行查阅相关支付平台相关文档中的参数列表
-     * @example {"limit_pay":"no_credit"}
-     * @required 可选
-     * @var json()
-     */
-    protected $third_part;
-
-    /**
      *
      * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\string(45)
      */
@@ -97,14 +91,5 @@ class PayRequest extends ApiRequestParamsAbstract
     public function getClientIp()
     {
         return $this->client_ip;
-    }
-
-    /**
-     *
-     * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\json()
-     */
-    public function getThirdPart()
-    {
-        return $this->third_part;
     }
 }

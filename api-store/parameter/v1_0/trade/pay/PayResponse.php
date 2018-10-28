@@ -30,7 +30,7 @@ class PayResponse extends ApiResponseRedirectParams
     /**
      * @desc 交易状态
      * @example PAYDONE
-     * @range PAYDONE[支付成功], PAYING[正在支付], PAYFAILED[支付失败], NOPAY[未支付]
+     * @range eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\Doc::tradeStatusRange();
      * @var string(45)
      */
     protected $trade_status;

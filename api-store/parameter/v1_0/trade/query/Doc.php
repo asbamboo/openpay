@@ -1,8 +1,8 @@
 <?php
-namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
+namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\query;
 
 use asbamboo\openpay\channel\ChannelManagerStatic;
-use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
+use asbamboo\openpay\apiStore\handler\v1_0\trade\Query;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\Constant;
 
 /**
@@ -26,7 +26,7 @@ class Doc
          */
         static $result;
         if(empty($result)){
-            $channels   = ChannelManagerStatic::getInstance()->getChannels(Pay::class);
+            $channels   = ChannelManagerStatic::getInstance()->getChannels(Query::class);
             $Channel    = unserialize(current($channels));
             $result     = $Channel->getName();
         }
@@ -47,7 +47,7 @@ class Doc
         static $result;
         if(empty($result)){
             $result     = [];
-            $channels   = ChannelManagerStatic::getInstance()->getChannels(Pay::class);
+            $channels   = ChannelManagerStatic::getInstance()->getChannels(Query::class);
             foreach($channels AS $Channel){
                 $Channel    = unserialize($Channel);
                 $result[]   = $Channel->getName() . '[' . $Channel->getLabel() . ']';
@@ -57,9 +57,10 @@ class Doc
         return $result;
     }
     
+    
     /**
      * 交易状态取值范围
-     * 
+     *
      * @return string
      */
     public static function tradeStatusRange()
