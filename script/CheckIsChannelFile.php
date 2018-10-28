@@ -11,7 +11,6 @@ use asbamboo\openpay\channel\ChannelInterface;
 
 include dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-
 try{
     $classfile          = $_SERVER['argv'][1];
     $file_content       = file_get_contents($classfile);
