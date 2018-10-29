@@ -1,6 +1,7 @@
 /vendor/
 /_test/cache/
 /channel/mapping.json
+/var/
 .phpunit.result.cache
 .buildpath
 .project
