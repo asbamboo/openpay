@@ -37,7 +37,7 @@ class PayRequest extends ApiRequestParamsAbstract
      * @desc 交易编号只能是数字
      * @example 2018101310270023
      * @required 必须
-     * @var number(32)
+     * @var string(45)
      */
     protected $out_trade_no;
 
@@ -45,7 +45,7 @@ class PayRequest extends ApiRequestParamsAbstract
      * @desc 交易金额 单位为分
      * @example 100
      * @required 必须
-     * @var price(11)
+     * @var price(10)
      */
     protected $total_fee;
 

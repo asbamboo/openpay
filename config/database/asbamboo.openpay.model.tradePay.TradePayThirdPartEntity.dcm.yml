@@ -1,0 +1,14 @@
+asbamboo\openpay\model\tradePay\TradePayThirdPartEntity:
+  type: entity
+  table: tt_trade_pay_third_part
+  id:
+    seq:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    send_data:
+      type: text
+      nullable: false
+      options:
+        default: '[]'

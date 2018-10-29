@@ -1,8 +1,0 @@
-asbamboo\openpay\model\tradePay\TradePayEntity:
-  type: entity
-  table: tt_trade_pay
-  id:
-    seq:
-      type: integer
-      generator:
-        strategy: AUTO

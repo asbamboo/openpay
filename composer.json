@@ -14,7 +14,8 @@
 		"asbamboo/helper" : "^1.1",
 		"asbamboo/api" : "^1.0",
 		"asbamboo/router" : "^1.0",
-		"asbamboo/database" : "^1.0"
+		"asbamboo/database" : "^1.0",
+		"symfony/yaml" : "^4.0"		
 	},
 	"require-dev" : {
 		"asbamboo/event" : "^1.0",

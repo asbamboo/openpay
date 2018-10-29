@@ -75,12 +75,8 @@ trait PayRequestValidateTrait
             throw new TradePayOutTradeNoInvalidException('out_trade_no 是必填项。');
         }
 
-        if(ctype_digit((string) $out_trade_no) == false){
-            throw new TradePayOutTradeNoInvalidException('out_trade_no 只能是数字。');
-        }
-
-        if(strlen($out_trade_no) > 32){
-            throw new TradePayOutTradeNoInvalidException('out_trade_no 长度不能超过32字。');
+        if(strlen($out_trade_no) > 45){
+            throw new TradePayOutTradeNoInvalidException('out_trade_no 长度不能超过45字。');
         }
     }
 
