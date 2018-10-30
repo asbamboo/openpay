@@ -1,31 +1,32 @@
 {
-    "name": "asbamboo/openpay",
-    "description": "聚合支付模块,集成alipay/微信支付等第三方支付接口",
-    "type": "project",
-    "autoload" : {
-        "psr-4" : {
-            "asbamboo\\openpay\\" : ""
-        }
-    },  
-    "require": {
-    	"php" : "^7.2",
-        "asbamboo/autoload": "^1.0",
-        "asbamboo/http": "^1.1",
-        "asbamboo/helper": "^1.1",
-        "asbamboo/api": "^1.0",
-        "asbamboo/router": "^1.0",
-        "asbamboo/database": "^1.0"
-    },
-    "require-dev": {
-        "asbamboo/event": "^1.0",
-        "phpunit/phpunit": "^7.3@dev"
-    },
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "李春寅",
-            "email": "licy2013@aliyun.com"
-        }
-    ],
-    "minimum-stability": "dev"
+	"name" : "asbamboo/openpay",
+	"description" : "聚合支付模块,集成alipay/微信支付等第三方支付接口",
+	"type" : "project",
+	"autoload" : {
+		"psr-4" : {
+			"asbamboo\\openpay\\" : ""
+		}
+	},
+	"require" : {
+		"php" : "^7.2",
+		"asbamboo/autoload" : "^1.0",
+		"asbamboo/di" : "^1.0",
+		"asbamboo/http" : "^1.1",
+		"asbamboo/helper" : "^1.1",
+		"asbamboo/api" : "^1.0",
+		"asbamboo/router" : "^1.0",
+		"asbamboo/database" : "^1.0",
+		"symfony/yaml" : "^4.0"		
+	},
+	"require-dev" : {
+		"asbamboo/event" : "^1.0",
+		"phpunit/phpunit" : "^7.3@dev"
+	},
+	"license" : "BSD-3-Clause",
+	"authors" : [{
+			"name" : "李春寅",
+			"email" : "licy2013@aliyun.com"
+		}
+	],
+	"minimum-stability" : "dev"
 }

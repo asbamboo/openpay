@@ -4,6 +4,7 @@ namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
 use asbamboo\openpay\Env;
 use asbamboo\helper\env\Env AS EnvHelper;
+use asbamboo\api\apiStore\ApiResponseParams;
 
 /**
  * 交易支付接口请求响应值
@@ -11,7 +12,7 @@ use asbamboo\helper\env\Env AS EnvHelper;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年10月13日
  */
-class PayResponse extends ApiResponseRedirectParams
+class PayResponse extends ApiResponseParams
 {
     /**
      * @desc 交易编号 与支付请求的编号一致
@@ -41,27 +42,4 @@ class PayResponse extends ApiResponseRedirectParams
      * @var date(YYYY-mm-dd HH:ii:ss)
      */
     protected $payed_time;
-
-    /**
-     *
-     * {@inheritDoc}
-     * @see \asbamboo\api\apiStore\ApiResponseRedirectParams::getRedirectUri()
-     */
-    protected function getRedirectUri() : string
-    {
-        return EnvHelper::get(Env::QRCODE_URL);
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     * @see \asbamboo\api\apiStore\ApiResponseRedirectParams::getRedirectResponseData()
-     * @see \asbamboo\openpay\apiStore\handler\v1_0\trade\pay
-     */
-    protected function getRedirectResponseData() : array
-    {
-        return [
-            'qr_code'   => $this->_redirect_data['qr_code'],
-        ];
-    }
 }

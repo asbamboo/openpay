@@ -18,6 +18,8 @@ use asbamboo\http\Stream;
 use asbamboo\http\Response;
 use asbamboo\http\Constant AS HttpConstant;
 use asbamboo\openpay\Env;
+use asbamboo\database\Factory;
+use asbamboo\database\Connection;
 
 /***************************************************************************************************
  * 系统文件加载
@@ -25,14 +27,12 @@ use asbamboo\openpay\Env;
 require __DIR__ . '/phpqrcode/phpqrcode.php';
 /***************************************************************************************************/
 
-
 /***************************************************************************************************
  * 参数配置
  ***************************************************************************************************/
 // 二维码生成的url
 EnvHelper::set(Env::QRCODE_URL, '/code_url');
 /***************************************************************************************************/
-
 
 /***************************************************************************************************
  * 系统服务容器配置
@@ -44,13 +44,32 @@ $ApiController      = new Controller($ApiStore, $Request);
 $RouteCollection    = new RouteCollection();
 $Router             = new Router($RouteCollection);
 $ApiRequestUris     = new ApiRequestUris(new ApiRequestUri('http://' . ($_SERVER['HTTP_HOST'] ?? 'xxx')  . '/api', '演示请求地址'));
+$DbFactory          = new Factory();
 
 $Container->set('api-urls', $ApiRequestUris);
 $Container->set('api-store', $ApiStore);
 $Container->set('router', $Router);
+$Container->set('db', $DbFactory);
 $ApiController->setContainer($Container);
 /***************************************************************************************************/
 
+/***************************************************************************************************
+ * 数据库配置
+ ***************************************************************************************************/
+$sqpath             = __DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite';
+$sqmetadata         = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database';
+$sqmetadata_type    = Connection::MATADATA_YAML;
+$sqdir              = dirname($sqpath);
+
+if(!is_file($sqpath)){
+    @mkdir($sqdir, 0644, true);
+    @file_put_contents($sqpath, '');
+}
+$Container->get('db')->addConnection(Connection::create([
+    'driver'    => 'pdo_sqlite',
+    'path'      => $sqpath
+], $sqmetadata, $sqmetadata_type));
+/***************************************************************************************************/
 
 /***************************************************************************************************
  * 路由配置

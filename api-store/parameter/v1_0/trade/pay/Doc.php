@@ -27,8 +27,10 @@ class Doc
         static $result;
         if(empty($result)){
             $channels   = ChannelManagerStatic::getInstance()->getChannels(Pay::class);
-            $Channel    = unserialize(current($channels));
-            $result     = $Channel->getName();
+            foreach($channels AS $channel_name => $channel_info){
+                $result     = $channel_name;
+                break;
+            }
         }
         return $result;
     }
@@ -48,9 +50,10 @@ class Doc
         if(empty($result)){
             $result     = [];
             $channels   = ChannelManagerStatic::getInstance()->getChannels(Pay::class);
-            foreach($channels AS $Channel){
-                $Channel    = unserialize($Channel);
-                $result[]   = $Channel->getName() . '[' . $Channel->getLabel() . ']';
+            foreach($channels AS $channel_name => $channel_info){
+                $channel_label  = $channel_info[0];
+                $Channel        = unserialize($channel_info[1]);
+                $result[]       = $channel_name . '[' . $channel_label . ']';
             }
             $result = implode(' ', $result);
         }
