@@ -11,6 +11,10 @@ use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\api\apiStore\ApiClassInterface;
 use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 use asbamboo\database\Factory;
+use asbamboo\openpay\channel\v1_0\trade\payParameter\Request AS RequestByChannel;
+use asbamboo\api\apiStore\ApiResponseRedirectParams;
+use asbamboo\helper\env\Env AS EnvHelper;
+use asbamboo\openpay\Env;
 
 /**
  * @name 交易支付
@@ -68,6 +72,13 @@ class Pay implements ApiClassInterface
     public function exec(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
     {
         /**
+         * 响应值
+         * 
+         * @var ApiResponseParamsInterface $ApiResponseParams
+         */
+        $ApiResponseParams  = null;
+        
+        /**
          * 创建交易数据信息
          *
          * @var \asbamboo\openpay\model\tradePay\TradePayEntity $TradePayEntity
@@ -90,11 +101,45 @@ class Pay implements ApiClassInterface
          * 发起第三方渠道请求
          *
          * @var PayInterface $Channel
+         * @var \asbamboo\openpay\channel\v1_0\trade\payParameter\Response $ChannelResponse
          */
-        $channel_name   = $Params->getChannel();
-        $Channel        = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
-        $Response       = $Channel->execute($Params);
-
+        $channel_name       = $Params->getChannel();
+        $Channel            = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
+        $ChannelResponse    = $Channel->execute(new RequestByChannel([
+            'channel'       => $TradePayEntity->getChannel(),
+            'title'         => $TradePayEntity->getTitle(),
+            'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
+            'total_fee'     => $TradePayEntity->getTotalFee(),
+            'client_ip'     => $TradePayEntity->getClientIp(),
+            'notify_url'    => 'XXX',
+        ]));
+        
+        /*
+         * 扫二维码支付时应该有的响应结果 
+         */
+        if($ChannelResponse->is_redirect == true && $ChannelResponse->qr_code){
+            $ApiResponseParams  = new class ($ChannelResponse->qr_code) extends ApiResponseRedirectParams{
+                private $qr_code;
+                public function __construct($qr_code)
+                {
+                    $this->qr_code  = $qr_code;
+                }
+                
+                public function getRedirectUri() : string
+                {
+                    return EnvHelper::get(Env::QRCODE_URL);
+                }
+                
+                public function getRedirectResponseData() : array
+                {
+                    return [
+                        'qr_code'   => $this->qr_code,
+                    ];
+                }
+            };
+        }
+            
+        
         /**
          * 数据保存
          */
@@ -103,6 +148,6 @@ class Pay implements ApiClassInterface
         /**
          * 返回
          */
-        return $Response;
+        return $ApiResponseParams;
     }
 }

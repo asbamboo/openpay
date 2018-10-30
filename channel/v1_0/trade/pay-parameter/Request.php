@@ -1,6 +1,8 @@
 <?php
 namespace asbamboo\openpay\channel\v1_0\trade\payParameter;
 
+use asbamboo\openpay\channel\common\ParameterTrait;
+
 /**
  * 传递给渠道处理方法的请求参数
  *
@@ -9,6 +11,8 @@ namespace asbamboo\openpay\channel\v1_0\trade\payParameter;
  */
 final class Request
 {
+    use ParameterTrait;
+    
     /**
      * @desc 支付渠道
      * @required 必须

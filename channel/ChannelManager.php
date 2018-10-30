@@ -44,7 +44,7 @@ class ChannelManager implements ChannelManagerInterface
     {
         $channels   = $this->getChannels($handler_class);
         if(isset($channels[$name])){
-            $channel    = unserialize($channels[$name]);
+            $channel    = unserialize($channels[$name][1]);
             return $channel;
         }
         return null;

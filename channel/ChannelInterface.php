@@ -10,18 +10,11 @@ namespace asbamboo\openpay\channel;
 interface ChannelInterface
 {
     /**
-     * 渠道名称
-     * api 请求时传递的名称
-     *
-     * @return string
+     * 支持的渠道
+     *  - [渠道参数名=>渠道标签名][]
+     *  - 如['ALIPAY_QRCD'=>'支付宝扫码', 'ALIPAY_PC'=>'支付宝PC支付']
+     *  
+     * @return array
      */
-    public function getName() : string;
-
-    /**
-     * 渠道名称
-     * 用于帮助文档中显示的字面意思
-     *
-     * @return string
-     */
-    public function getLabel() : string;
+    public function supports() : array;
 }

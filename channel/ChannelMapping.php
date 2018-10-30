@@ -24,6 +24,10 @@ class ChannelMapping implements ChannelMappingInterface
      */
     public function addMappingChannels(array $channels) : ChannelMappingInterface
     {
+        /**
+         * 
+         * @var ChannelInterface $ChannelObj
+         */
         $handlers       = $this->findHandlers();
         $mappings       = [];
         foreach($handlers AS $handler){
@@ -32,7 +36,10 @@ class ChannelMapping implements ChannelMappingInterface
             foreach($channels AS $channel){
                 $ChannelObj = new $channel();
                 if($ChannelObj instanceof $cancel_interface){
-                    $mappings[$handler][$ChannelObj->getName()] = serialize($ChannelObj);
+                    $supports   = $ChannelObj->supports();
+                    foreach($supports AS $channel_name => $channel_label){
+                        $mappings[$handler][$channel_name] = [$channel_label, serialize($ChannelObj)];
+                    }
                 }
             }
         }
