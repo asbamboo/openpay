@@ -56,8 +56,8 @@ $ApiController->setContainer($Container);
 /***************************************************************************************************
  * 数据库配置
  ***************************************************************************************************/
-$sqpath             = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite';
-$sqmetadata         = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database';
+$sqpath             = __DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite';
+$sqmetadata         = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database';
 $sqmetadata_type    = Connection::MATADATA_YAML;
 $sqdir              = dirname($sqpath);
 

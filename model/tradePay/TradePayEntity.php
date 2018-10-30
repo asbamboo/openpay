@@ -20,6 +20,11 @@ class TradePayEntity
     /**
      * @var string
      */
+    private $title = '';
+
+    /**
+     * @var string
+     */
     private $out_trade_no = '';
 
     /**
@@ -40,7 +45,7 @@ class TradePayEntity
     /**
      * @var int
      */
-    private $trade_status = '';
+    private $trade_status = '0';
 
     /**
      * @var int
@@ -80,6 +85,30 @@ class TradePayEntity
     public function getChannel()
     {
         return $this->channel;
+    }
+
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return TradePayEntity
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**

@@ -1,40 +1,15 @@
 <?php
-namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
+namespace asbamboo\openpay\model\tradePay;
 
-use asbamboo\api\apiStore\ApiRequestParamsInterface;
 use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayTitleInvalidException;
-use asbamboo\openpay\apiStore\exception\TradePayTotalFeeInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayOutTradeNoInvalidException;
+use asbamboo\openpay\apiStore\exception\TradePayTotalFeeInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayClientIpInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayThirdPartInvalidException;
-use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
 
-/**
- * 验证 pay request 参数
- * 使用在pay接口处理器中
- *
- * @author 李春寅 <licy2013@aliyun.com>
- * @since 2018年10月14日
- */
-trait PayRequestValidateTrait
+trait TradePayValidator
 {
-    /**
-     *
-     * {@inheritDoc}
-     * @see \asbamboo\api\apiStore\ApiClassAbstract::validate()
-     * @var PayRequest $Params
-     */
-    public function validate(ApiRequestParamsInterface $Params): bool
-    {
-        $this->validateChannel($Params->getChannel());
-        $this->validateTitle($Params->getTitle());
-        $this->validateOutTradeNo($Params->getOutTradeNo());
-        $this->validateTotalFee($Params->getTotalFee());
-        $this->validateClientIp($Params->getClientIp());
-        $this->validateThirdPart($Params->getThirdPart());
-        return true;
-    }
 
     /**
      *
@@ -43,10 +18,11 @@ trait PayRequestValidateTrait
      */
     private function validateChannel($channel)
     {
-        $exist_channels   = $this->ChannelManager->getChannels(Pay::class);
-        if(!array_key_exists($channel, $exist_channels)){
-            throw new TradePayChannelInvalidException(sprintf('支付渠道%s暂不支持。', $channel));
-        }
+//         $exist_channels   = $this->ChannelManager->getChannels(Pay::class);
+//         if(!array_key_exists($channel, $exist_channels)){
+//             throw new TradePayChannelInvalidException(sprintf('支付渠道%s暂不支持。', $channel));
+//         }
+        return true;
     }
 
     /**
@@ -112,22 +88,6 @@ trait PayRequestValidateTrait
         }
         if(long2ip(ip2long($client_ip)) != $client_ip){
             throw new TradePayClientIpInvalidException('client_ip 的值不是一个有效的ip地址。');
-        }
-    }
-
-    /**
-     *
-     * @param string $third_part json
-     * @throws TradePayThirdPartInvalidException
-     */
-    private function validateThirdPart($third_part)
-    {
-        if(trim($third_part) === ''){
-            return;
-        }
-        json_decode($third_part);
-        if(json_last_error()){
-            throw new TradePayThirdPartInvalidException('third_part 的值不是有效的json格式');
         }
     }
 }

@@ -1,4 +1,4 @@
-asbamboo\openpay\model\tradePay\TradePayThirdPartEntity:
+asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity:
   type: entity
   table: tt_trade_pay_third_part
   id:

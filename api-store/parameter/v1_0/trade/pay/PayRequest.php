@@ -34,6 +34,7 @@ class PayRequest extends ApiRequestParamsAbstract
     protected $title;
 
     /**
+     * 这个对接应用传入的交易编号，实际传送给支付渠道的时聚合平台重新生成的交易编号
      * @desc 交易编号只能是数字
      * @example 2018101310270023
      * @required 必须
@@ -58,12 +59,31 @@ class PayRequest extends ApiRequestParamsAbstract
     protected $client_ip;
 
     /**
+     * @desc 聚合平台服务器主动通知接入应用指定的http url
+     * @example http://api.test.asbamboo.com/notify/trade/pay
+     * @var string(200)
+     */
+    protected $notify_url;
+
+    /**
      *
      * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\string(45)
      */
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * 向第三方平台请求时$out_trade_no字段的值会替换成聚合支付平台生成的交易编号
+     *
+     * @param string $out_trade_no
+     * @return \asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest
+     */
+    public function setOutTradeNo($out_trade_no)
+    {
+        $this->out_trade_no = $out_trade_no;
+        return $this;
     }
 
     /**

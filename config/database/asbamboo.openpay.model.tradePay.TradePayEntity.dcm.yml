@@ -13,6 +13,12 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       nullable: false
       options:
         default: ''
+    title:
+      type: string
+      length: 45
+      nullable: false
+      options:
+        default: ''    
     out_trade_no:
       type: string
       length: 45
@@ -32,6 +38,7 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       options:
         default: ''
     in_trade_no:
+      unique: true
       type: string
       length: 32
       nullable: false
@@ -41,7 +48,7 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       type: smallint
       nullable: false
       options:
-        default: ''
+        default: '0'
     payed_time:
       type: integer
       nullable: false

@@ -10,6 +10,7 @@
 	"require" : {
 		"php" : "^7.2",
 		"asbamboo/autoload" : "^1.0",
+		"asbamboo/di" : "^1.0",
 		"asbamboo/http" : "^1.1",
 		"asbamboo/helper" : "^1.1",
 		"asbamboo/api" : "^1.0",

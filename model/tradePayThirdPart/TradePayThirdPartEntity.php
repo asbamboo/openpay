@@ -1,6 +1,6 @@
 <?php
 
-namespace asbamboo\openpay\model\tradePay;
+namespace asbamboo\openpay\model\tradePayThirdPart;
 
 /**
  * TradePayThirdPartEntity
