@@ -40,6 +40,11 @@ class TradePayEntity
     /**
      * @var string
      */
+    private $notify_url = '';
+
+    /**
+     * @var string
+     */
     private $in_trade_no = '';
 
     /**
@@ -181,6 +186,29 @@ class TradePayEntity
     public function getClientIp()
     {
         return $this->client_ip;
+    }
+
+    /**
+     * Set notify url.
+     *
+     * @param string $notify_url
+     * @return TradePayEntity
+     */
+    public function setNotifyUrl($notify_url)
+    {
+        $this->notify_url   = $notify_url;
+
+        return $this;
+    }
+
+    /**
+     * get notify url.
+     *
+     * @return string
+     */
+    public function getNotifyUrl()
+    {
+        return $this->notify_url;
     }
 
     /**

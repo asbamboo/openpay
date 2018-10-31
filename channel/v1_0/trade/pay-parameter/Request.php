@@ -2,6 +2,8 @@
 namespace asbamboo\openpay\channel\v1_0\trade\payParameter;
 
 use asbamboo\openpay\channel\common\ParameterTrait;
+use asbamboo\helper\env\Env AS EnvHelper;
+use asbamboo\openpay\Env;
 
 /**
  * 传递给渠道处理方法的请求参数
@@ -12,7 +14,7 @@ use asbamboo\openpay\channel\common\ParameterTrait;
 final class Request
 {
     use ParameterTrait;
-    
+
     /**
      * @desc 支付渠道
      * @required 必须
@@ -59,6 +61,13 @@ final class Request
      * @var json()
      */
     protected $third_part;
+
+    /**
+     * @desc 这个notify url时聚合支付平台接收第三方平台推送信息的url并不是对接应用发送的notify url
+     * @example http://api.test.asbamboo.com/notify/trade/pay
+     * @var string(200)
+     */
+    protected $notify_url;
 
     /**
      *
@@ -112,5 +121,17 @@ final class Request
     public function getThirdPart()
     {
         return $this->third_part;
+    }
+
+    /**
+     *
+     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(200)
+     */
+    public function getNotifyUrl()
+    {
+        if(!$this->notify_url){
+            $this->notify_url   = EnvHelper::get(Env::TRADE_PAY_NOTIFY_URL);
+        }
+        return $this->notify_url;
     }
 }

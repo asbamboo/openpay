@@ -6,7 +6,6 @@ use asbamboo\openpay\apiStore\exception\TradePayTitleInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayOutTradeNoInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayTotalFeeInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayClientIpInvalidException;
-use asbamboo\openpay\apiStore\exception\TradePayThirdPartInvalidException;
 
 trait TradePayValidator
 {
@@ -18,10 +17,12 @@ trait TradePayValidator
      */
     private function validateChannel($channel)
     {
-//         $exist_channels   = $this->ChannelManager->getChannels(Pay::class);
-//         if(!array_key_exists($channel, $exist_channels)){
-//             throw new TradePayChannelInvalidException(sprintf('支付渠道%s暂不支持。', $channel));
-//         }
+        if(trim($channel) === ''){
+            throw new TradePayTitleInvalidException('channel 是必填项。');
+        }
+        if(mb_strlen($channel) > 45){
+            throw new TradePayTitleInvalidException('channel 超长。长度不能超过45字。');
+        }
         return true;
     }
 

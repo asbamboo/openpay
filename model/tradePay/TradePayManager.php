@@ -13,7 +13,7 @@ class TradePayManager
 {
     use TradePayValidator;
 
-    const PAY_STATUS_NOPAY  = '0';
+    const TRADE_STATUS_NOPAY  = '0';
 
     /**
      *
@@ -49,7 +49,7 @@ class TradePayManager
         $this->validateInsert($TradePayEntity);
         $TradePayEntity->setInTradeNo($this->makeInTradeNo());
         $TradePayEntity->setPayedTime('0');
-        $TradePayEntity->setTradeStatus(self::PAY_STATUS_NOPAY);
+        $TradePayEntity->setTradeStatus(self::TRADE_STATUS_NOPAY);
         $this->Db->getManager()->persist($TradePayEntity);
     }
 

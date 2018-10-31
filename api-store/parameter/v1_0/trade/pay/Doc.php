@@ -3,7 +3,7 @@ namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
 
 use asbamboo\openpay\channel\ChannelManagerStatic;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\Constant;
+use asbamboo\openpay\Constant;
 
 /**
  * 帮助文档中 动态生成的帮助信息
@@ -59,19 +59,21 @@ class Doc
         }
         return $result;
     }
-    
+
     /**
      * 交易状态取值范围
-     * 
+     *
      * @return string
      */
     public static function tradeStatusRange()
     {
         return implode(' ', [
-            Constant::TRADE_STATUS_NOPAY . '[未支付]',
-            Constant::TRADE_STATUS_PAYFAILED . '[支付失败]',
-            Constant::TRADE_STATUS_PAYING . '[正在支付]',
-            Constant::TRADE_STATUS_PAYOK . '[支付成功]',
+            'NOPAY[尚未支付]',
+            'CANCLE[取消支付]',
+            'PAYFAILED[支付失败]',
+            'PAYING[正在支付]',
+            'PAYOK[支付成功-可退款]',
+            'PAYED[支付成功-不可退款]',
         ]);
     }
 }

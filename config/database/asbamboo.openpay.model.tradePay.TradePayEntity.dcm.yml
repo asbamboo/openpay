@@ -37,6 +37,12 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       nullable: false
       options:
         default: ''
+    notify_url:
+      type: string
+      length: 200
+      nullable: false
+      options:
+        default: ''
     in_trade_no:
       unique: true
       type: string
