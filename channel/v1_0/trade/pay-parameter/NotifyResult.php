@@ -43,6 +43,20 @@ final class NotifyResult
     private $third_part;
 
     /**
+     * 成功时，返回给第三方平台的响应内容
+     *
+     * @var string
+     */
+    private $response_success;
+
+    /**
+    * 失败时，返回给第三方平台的响应内容
+    *
+    * @var string
+    */
+    private $response_failed;
+
+    /**
      *
      * @param string|int $trade_status
      */
@@ -123,5 +137,45 @@ final class NotifyResult
     public function getThirdPart()
     {
         return $this->third_part;
+    }
+
+    /**
+     *
+     * @param string $response_success
+     * @return NotifyResult
+     */
+    public function setResponseSuccess(string $response_success) : NotifyResult
+    {
+        $this->response_success    = $response_success;
+        return $this;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getResponseSuccess()
+    {
+        return $this->response_success;
+    }
+
+    /**
+     *
+     * @param string $response_failed
+     * @return NotifyResult
+     */
+    public function setResponseFailed(string $response_failed) : NotifyResult
+    {
+        $this->response_failed    = $response_failed;
+        return $this;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getResponseFailed()
+    {
+        return $this->response_failed;
     }
 }

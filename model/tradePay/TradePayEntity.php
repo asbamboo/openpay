@@ -48,6 +48,11 @@ class TradePayEntity
     private $in_trade_no = '';
 
     /**
+     * @var string
+     */
+    private $third_trade_no = '';
+
+    /**
      * @var int
      */
     private $trade_status = '0';
@@ -56,6 +61,11 @@ class TradePayEntity
      * @var int
      */
     private $payed_time = '0';
+
+    /**
+     * @var int
+     */
+    private $version;
 
 
     /**
@@ -189,20 +199,21 @@ class TradePayEntity
     }
 
     /**
-     * Set notify url.
+     * Set notifyUrl.
      *
-     * @param string $notify_url
+     * @param string $notifyUrl
+     *
      * @return TradePayEntity
      */
-    public function setNotifyUrl($notify_url)
+    public function setNotifyUrl($notifyUrl)
     {
-        $this->notify_url   = $notify_url;
+        $this->notify_url = $notifyUrl;
 
         return $this;
     }
 
     /**
-     * get notify url.
+     * Get notifyUrl.
      *
      * @return string
      */
@@ -233,6 +244,30 @@ class TradePayEntity
     public function getInTradeNo()
     {
         return $this->in_trade_no;
+    }
+
+    /**
+     * Set thirdTradeNo.
+     *
+     * @param string $thirdTradeNo
+     *
+     * @return TradePayEntity
+     */
+    public function setThirdTradeNo($thirdTradeNo)
+    {
+        $this->third_trade_no = $thirdTradeNo;
+
+        return $this;
+    }
+
+    /**
+     * Get thirdTradeNo.
+     *
+     * @return string
+     */
+    public function getThirdTradeNo()
+    {
+        return $this->third_trade_no;
     }
 
     /**
@@ -281,5 +316,29 @@ class TradePayEntity
     public function getPayedTime()
     {
         return $this->payed_time;
+    }
+
+    /**
+     * Set version.
+     *
+     * @param int $version
+     *
+     * @return TradePayEntity
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version.
+     *
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
     }
 }

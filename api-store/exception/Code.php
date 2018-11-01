@@ -24,5 +24,7 @@ final class Code
     const TRADE_PAY_TOTAL_FEE_INVALID = '2004'; // TradePayTotalFeeInvalidException
     const TRADE_PAY_CLIENT_IP_INVALID = '2005'; // TradePayClientIpInvalidException
     const TRADE_PAY_THIRD_PART_INVALID = '2006'; // TradePayThirdPartInvalidException
+    const TRADE_PAY_THIRD_TRADE_NO_INVALID = '2007'; // TradePayThirdTradeNoInvalidException
+    const TRADE_PAY_TRADE_STATUS = '2008'; // TradePayTradeStatusInvalidException
     /*********************************************************************************************/
 }

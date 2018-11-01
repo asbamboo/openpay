@@ -6,7 +6,14 @@ use asbamboo\openpay\apiStore\exception\TradePayTitleInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayOutTradeNoInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayTotalFeeInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayClientIpInvalidException;
+use asbamboo\openpay\apiStore\exception\TradePayThirdTradeNoInvalidException;
 
+/**
+ * 数据表 trade pay 各个字段的验证器
+ *
+ * @author 李春寅 <licy2013@aliyun.com>
+ * @since 2018年11月1日
+ */
 trait TradePayValidator
 {
 
@@ -18,10 +25,10 @@ trait TradePayValidator
     private function validateChannel($channel)
     {
         if(trim($channel) === ''){
-            throw new TradePayTitleInvalidException('channel 是必填项。');
+            throw new TradePayChannelInvalidException('channel 是必填项。');
         }
         if(mb_strlen($channel) > 45){
-            throw new TradePayTitleInvalidException('channel 超长。长度不能超过45字。');
+            throw new TradePayChannelInvalidException('channel 超长。长度不能超过45字。');
         }
         return true;
     }
@@ -89,6 +96,18 @@ trait TradePayValidator
         }
         if(long2ip(ip2long($client_ip)) != $client_ip){
             throw new TradePayClientIpInvalidException('client_ip 的值不是一个有效的ip地址。');
+        }
+    }
+
+    /**
+     *
+     * @param string $third_trade_no
+     * @throws TradePayOutTradeNoInvalidException
+     */
+    private function validateThirdTradeNo($third_trade_no)
+    {
+        if(strlen($third_trade_no) > 45){
+            throw new TradePayThirdTradeNoInvalidException('third_trade_no 长度不能超过45字。');
         }
     }
 }
