@@ -20,6 +20,7 @@ use asbamboo\http\Constant AS HttpConstant;
 use asbamboo\openpay\Env;
 use asbamboo\database\Factory;
 use asbamboo\database\Connection;
+use asbamboo\openpay\notify\v1_0\trade\PayNotify;
 
 /***************************************************************************************************
  * 系统文件加载
@@ -32,6 +33,7 @@ require __DIR__ . '/phpqrcode/phpqrcode.php';
  ***************************************************************************************************/
 // 二维码生成的url
 EnvHelper::set(Env::QRCODE_URL, '/code_url');
+EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, '/{channel}/notify');
 /***************************************************************************************************/
 
 /***************************************************************************************************
@@ -81,6 +83,8 @@ $RouteCollection
 ->add(new Route('api', '/api', [$ApiController, 'api']))
 // 测试工具
 ->add(new Route('test', '/test', [$ApiController, 'testTool']))
+// notify 这个 id在 trade.pay接口中生成url时需要使用到
+->add(new Route('notify', EnvHelper::get(Env::TRADE_PAY_NOTIFY_URL), [$Container->get(PayNotify::class), 'exec']))
 // 二维码生成
 ->add(new Route('qrcode', EnvHelper::get(Env::QRCODE_URL), function($qr_code){
     $Stream = new Stream('php://temp', 'w+b');

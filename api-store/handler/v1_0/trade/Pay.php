@@ -15,6 +15,10 @@ use asbamboo\openpay\channel\v1_0\trade\payParameter\Request AS RequestByChannel
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
 use asbamboo\helper\env\Env AS EnvHelper;
 use asbamboo\openpay\Env;
+use asbamboo\router\Router;
+use asbamboo\router\RouterInterface;
+use asbamboo\database\FactoryInterface;
+use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
 
 /**
  * @name 交易支付
@@ -35,9 +39,15 @@ class Pay implements ApiClassInterface
 
     /**
      *
-     * @var Factory
+     * @var FactoryInterface
      */
     private $Db;
+
+    /**
+     *
+     * @var RouterInterface
+     */
+    private $Router;
 
     /**
      *
@@ -53,11 +63,21 @@ class Pay implements ApiClassInterface
 
     /**
      *
-     * @param ChannelManagerInterface $Client
+     * @param ChannelManagerInterface $ChannelManager
+     * @param Factory $Db
+     * @param TradePayManager $TradePayManager
+     * @param TradePayThirdPartManager $TradePayThirdPartManager
+     * @param Router $Router
      */
-    public function __construct(ChannelManagerInterface $ChannelManager, Factory $Db, TradePayManager $TradePayManager, TradePayThirdPartManager $TradePayThirdPartManager)
-    {
+    public function __construct(
+        ChannelManagerInterface $ChannelManager,
+        FactoryInterface $Db,
+        TradePayManager $TradePayManager,
+        TradePayThirdPartManager $TradePayThirdPartManager,
+        RouterInterface $Router
+    ){
         $this->Db                       = $Db;
+        $this->Router                   = $Router;
         $this->ChannelManager           = $ChannelManager;
         $this->TradePayManager          = $TradePayManager;
         $this->TradePayThirdPartManager = $TradePayThirdPartManager;
@@ -73,11 +93,11 @@ class Pay implements ApiClassInterface
     {
         /**
          * 响应值
-         * 
+         *
          * @var ApiResponseParamsInterface $ApiResponseParams
          */
         $ApiResponseParams  = null;
-        
+
         /**
          * 创建交易数据信息
          *
@@ -89,6 +109,7 @@ class Pay implements ApiClassInterface
         $TradePayEntity->setTotalFee($Params->getTotalFee());
         $TradePayEntity->setOutTradeNo($Params->getOutTradeNo());
         $TradePayEntity->setClientIp($Params->getClientIp());
+        $TradePayEntity->setNotifyUrl($Params->getNotifyUrl());
         $this->TradePayManager->insert($TradePayEntity);
 
         $TradePayThirdPartEntity = new TradePayThirdPartEntity();
@@ -105,17 +126,20 @@ class Pay implements ApiClassInterface
          */
         $channel_name       = $Params->getChannel();
         $Channel            = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
+        if(!$Channel){
+            throw new TradePayChannelInvalidException(sprintf('支付渠道%s暂不支持。', $Channel));
+        }
         $ChannelResponse    = $Channel->execute(new RequestByChannel([
             'channel'       => $TradePayEntity->getChannel(),
             'title'         => $TradePayEntity->getTitle(),
             'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
             'total_fee'     => $TradePayEntity->getTotalFee(),
             'client_ip'     => $TradePayEntity->getClientIp(),
-            'notify_url'    => 'XXX',
+            'notify_url'    => $this->Router->generateUrl('notify', ['channel' => $channel_name]),
         ]));
-        
+
         /*
-         * 扫二维码支付时应该有的响应结果 
+         * 扫二维码支付时应该有的响应结果
          */
         if($ChannelResponse->is_redirect == true && $ChannelResponse->qr_code){
             $ApiResponseParams  = new class ($ChannelResponse->qr_code) extends ApiResponseRedirectParams{
@@ -124,12 +148,12 @@ class Pay implements ApiClassInterface
                 {
                     $this->qr_code  = $qr_code;
                 }
-                
+
                 public function getRedirectUri() : string
                 {
                     return EnvHelper::get(Env::QRCODE_URL);
                 }
-                
+
                 public function getRedirectResponseData() : array
                 {
                     return [
@@ -138,8 +162,8 @@ class Pay implements ApiClassInterface
                 }
             };
         }
-            
-        
+
+
         /**
          * 数据保存
          */
