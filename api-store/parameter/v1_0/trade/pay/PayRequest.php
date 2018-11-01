@@ -34,7 +34,6 @@ class PayRequest extends ApiRequestParamsAbstract
     protected $title;
 
     /**
-     * 这个对接应用传入的交易编号，实际传送给支付渠道的时聚合平台重新生成的交易编号
      * @desc 交易编号只能是数字
      * @example 2018101310270023
      * @required 必须
