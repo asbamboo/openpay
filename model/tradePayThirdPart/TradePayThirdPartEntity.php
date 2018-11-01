@@ -15,6 +15,11 @@ class TradePayThirdPartEntity
     /**
      * @var string
      */
+    private $in_trade_no = '';
+
+    /**
+     * @var string
+     */
     private $send_data = '[]';
 
 
@@ -26,6 +31,30 @@ class TradePayThirdPartEntity
     public function getSeq()
     {
         return $this->seq;
+    }
+
+    /**
+     * Set inTradeNo.
+     *
+     * @param string $inTradeNo
+     *
+     * @return TradePayThirdPartEntity
+     */
+    public function setInTradeNo($inTradeNo)
+    {
+        $this->in_trade_no = $inTradeNo;
+
+        return $this;
+    }
+
+    /**
+     * Get inTradeNo.
+     *
+     * @return string
+     */
+    public function getInTradeNo()
+    {
+        return $this->in_trade_no;
     }
 
     /**

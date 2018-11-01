@@ -113,6 +113,7 @@ class Pay implements ApiClassInterface
         $this->TradePayManager->insert($TradePayEntity);
 
         $TradePayThirdPartEntity = new TradePayThirdPartEntity();
+        $TradePayThirdPartEntity->setInTradeNo($TradePayEntity->getInTradeNo());
         $TradePayThirdPartEntity->setSendData($Params->getThirdPart());
         $this->TradePayThirdPartManager->insert($TradePayThirdPartEntity);
 

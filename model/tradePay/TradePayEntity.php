@@ -60,7 +60,17 @@ class TradePayEntity
     /**
      * @var int
      */
+    private $payok_time = '0';
+
+    /**
+     * @var int
+     */
     private $payed_time = '0';
+
+    /**
+     * @var int
+     */
+    private $cancel_time = '0';
 
     /**
      * @var int
@@ -295,6 +305,30 @@ class TradePayEntity
     }
 
     /**
+     * Set payokTime.
+     *
+     * @param int $payokTime
+     *
+     * @return TradePayEntity
+     */
+    public function setPayokTime($payokTime)
+    {
+        $this->payok_time = $payokTime;
+
+        return $this;
+    }
+
+    /**
+     * Get payokTime.
+     *
+     * @return int
+     */
+    public function getPayokTime()
+    {
+        return $this->payok_time;
+    }
+
+    /**
      * Set payedTime.
      *
      * @param int $payedTime
@@ -316,6 +350,30 @@ class TradePayEntity
     public function getPayedTime()
     {
         return $this->payed_time;
+    }
+
+    /**
+     * Set cancelTime.
+     *
+     * @param int $cancelTime
+     *
+     * @return TradePayEntity
+     */
+    public function setCancelTime($cancelTime)
+    {
+        $this->cancel_time = $cancelTime;
+
+        return $this;
+    }
+
+    /**
+     * Get cancelTime.
+     *
+     * @return int
+     */
+    public function getCancelTime()
+    {
+        return $this->cancel_time;
     }
 
     /**

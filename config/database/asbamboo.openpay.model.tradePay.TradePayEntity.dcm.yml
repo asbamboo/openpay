@@ -7,6 +7,13 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       generator:
         strategy: AUTO
   fields:
+    in_trade_no:
+      unique: true
+      type: string
+      length: 32
+      nullable: false
+      options:
+        default: ''
     channel:
       type: string
       length: 45
@@ -43,13 +50,6 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       nullable: false
       options:
         default: ''
-    in_trade_no:
-      unique: true
-      type: string
-      length: 32
-      nullable: false
-      options:
-        default: ''
     third_trade_no:
       type: string
       length: 45
@@ -61,7 +61,17 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       nullable: false
       options:
         default: '0'
+    payok_time:
+      type: integer
+      nullable: false
+      options:
+        default: '0'
     payed_time:
+      type: integer
+      nullable: false
+      options:
+        default: '0'
+    cancel_time:
       type: integer
       nullable: false
       options:
