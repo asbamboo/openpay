@@ -117,8 +117,6 @@ class Pay implements ApiClassInterface
         $TradePayThirdPartEntity->setSendData($Params->getThirdPart());
         $this->TradePayThirdPartManager->insert($TradePayThirdPartEntity);
 
-        $Params->setOutTradeNo($TradePayEntity->getInTradeNo());
-
         /**
          * 发起第三方渠道请求
          *
@@ -133,7 +131,7 @@ class Pay implements ApiClassInterface
         $ChannelResponse    = $Channel->execute(new RequestByChannel([
             'channel'       => $TradePayEntity->getChannel(),
             'title'         => $TradePayEntity->getTitle(),
-            'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
+            'in_trade_no'   => $TradePayEntity->getInTradeNo(),
             'total_fee'     => $TradePayEntity->getTotalFee(),
             'client_ip'     => $TradePayEntity->getClientIp(),
             'notify_url'    => $this->Router->generateUrl('notify', ['channel' => $channel_name]),
@@ -142,8 +140,8 @@ class Pay implements ApiClassInterface
         /*
          * 扫二维码支付时应该有的响应结果
          */
-        if($ChannelResponse->is_redirect == true && $ChannelResponse->qr_code){
-            $ApiResponseParams  = new class ($ChannelResponse->qr_code) extends ApiResponseRedirectParams{
+        if($ChannelResponse->getIsRedirect() == true && $ChannelResponse->getQrCode()){
+            $ApiResponseParams  = new class ($ChannelResponse->getQrCode()) extends ApiResponseRedirectParams{
                 private $qr_code;
                 public function __construct($qr_code)
                 {

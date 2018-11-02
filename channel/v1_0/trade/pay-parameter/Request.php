@@ -31,12 +31,12 @@ final class Request
     protected $title;
 
     /**
-     * 这个对接应用传入的交易编号，实际传送给支付渠道的时聚合平台重新生成的交易编号
+     * 聚合平台生成的交易编号, 全局唯一
      * @desc 交易编号只能是数字
      * @example 2018101310270023
-     * @var string(45)
+     * @var number(32)
      */
-    protected $out_trade_no;
+    protected $in_trade_no;
 
     /**
      * @desc 交易金额 单位为分
@@ -91,9 +91,9 @@ final class Request
      *
      * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(45)
      */
-    public function getOutTradeNo()
+    public function getInTradeNo()
     {
-        return $this->out_trade_no;
+        return $this->in_trade_no;
     }
 
     /**
