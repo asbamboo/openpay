@@ -9,13 +9,21 @@ namespace asbamboo\openpay\channel\v1_0\trade\payParameter;
  */
 final class Response
 {
+    /*****************************************************************************
+     * 跳转类型
+    *****************************************************************************/
+    const REDIRECT_TYPE_NONE    = '0';  // 不跳转
+    const REDIRECT_TYPE_QRCD    = '1';  // 跳转扫码支付
+    const REDIRECT_TYPE_PC      = '2';  // 跳转PC支付
+    /****************************************************************************/
+
     /**
      * 是否需要页面跳转
      *  - 比如扫二维码支付,应该返回true
      *
      * @var string
      */
-    private $is_redirect = false;
+    private $redirect_type = '0';
 
     /**
      * 二维码url
@@ -26,13 +34,27 @@ final class Response
     private $qr_code = '';
 
     /**
+     * 跳转PC支付时 表示表单提交的url
+     *
+     * @var string
+     */
+    private $redirect_url = '';
+
+    /**
+     * 跳转PC支付时 表示表单提交的数据
+     *
+     * @var array
+     */
+    private $redirect_data = [];
+
+    /**
      *
      * @param bool $is_redirect
      * @return self
      */
-    public function setIsRedirect(bool $is_redirect) : self
+    public function setRedirectType($redirect_type) : self
     {
-        $this->is_redirect  = $is_redirect;
+        $this->redirect_type  = $redirect_type;
         return $this;
     }
 
@@ -40,9 +62,9 @@ final class Response
      *
      * @return string
      */
-    public function getIsRedirect()
+    public function getRedirectType()
     {
-        return $this->is_redirect;
+        return $this->redirect_type;
     }
 
     /**
@@ -63,5 +85,44 @@ final class Response
     public function getQrCode()
     {
         return $this->qr_code;
+    }
+
+    /**
+     *
+     * @param string $redirect_url
+     */
+    public function setRedirectUrl(string $redirect_url) : self
+    {
+        $this->redirect_url   = $redirect_url;
+        return $this;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getRedirectUrl()
+    {
+        return $this->redirect_url;
+    }
+
+    /**
+     *
+     * @param array $redirect_data
+     * @return self
+     */
+    public function setRedirectData(array $redirect_data) : self
+    {
+        $this->redirect_data    = $redirect_data;
+        return $this;
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function getRedirectData()
+    {
+        return $this->redirect_data;
     }
 }

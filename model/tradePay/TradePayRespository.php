@@ -41,6 +41,6 @@ class TradePayRespository
      */
     public function load(string $in_trade_no) : ?TradePayEntity
     {
-        return $this->Repository->find($in_trade_no);
+        return $this->Repository->findOneBy(['in_trade_no' => $in_trade_no]);
     }
 }

@@ -15,6 +15,8 @@ use asbamboo\http\Client;
 use asbamboo\http\Request;
 use asbamboo\http\Uri;
 use asbamboo\http\Constant AS HttpConstant;
+use asbamboo\openpay\channel\v1_0\trade\payParameter\NotifyResult;
+use asbamboo\openpay\model\tradePay\TradePayEntity;
 
 /**
  * 交易支付接口 trade.pay notify处理
@@ -84,36 +86,10 @@ class PayNotify
          */
         $Response   = new Response(new Stream('php://temp', 'w+b'));
 
-        /**
-         *
-         * @var \asbamboo\openpay\channel\v1_0\trade\PayInterface $Channel
-         * @var \asbamboo\openpay\channel\v1_0\trade\payParameter\NotifyResult $NotifyResult
-         */
-        $Channel        = $this->ChannelManager->getChannel(Pay::class, $channel);
-        $NotifyResult   = $Channel->notify($this->Request);
-
         try{
-            $in_trade_no    = $NotifyResult->getInTradeNo();
-            $third_trade_no = $NotifyResult->getThirdTradeNo();
-            $TradePayEntity = $this->TradePayRespository->load($in_trade_no);
-            
-            /*
-             * 修改数据状态
-             */
-            if($TradePayEntity->getTradeStatus() != $NotifyResult->getTradeStatus()){
-                //支付成功（可退款）
-                if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
-                    $this->TradePayManager->updateTradeStatusToPayok($TradePayEntity, $third_trade_no);
-                //支付成功（不可退款）
-                }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYED){
-                    $this->TradePayManager->updateTradeStatusToPayed($TradePayEntity, $third_trade_no);
-                //支付取消（不可退款）
-                }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCLE){
-                    $this->TradePayManager->updateTradeStatusToCancel($TradePayEntity, $third_trade_no);
-                }
-            }
-            $this->Db->getManager()->flush();
-            
+            $NotifyResult   = $this->getNotifyResult($channel);
+            $TradePayEntity = $this->DbFlush($NotifyResult);
+
             /*
              * 向对接聚合平台的应用推送消息
              * 发送的body 参考 asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse
@@ -139,12 +115,59 @@ class PayNotify
                 ]));
                 $Client->send($Request);
             }
-            
+
             $Response->getBody()->write($NotifyResult->getResponseSuccess());
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
             $Response->getBody()->write($NotifyResult->getResponseFailed());
         }finally{
             return $Response;
         }
+    }
+
+    /**
+     *
+     * @param string $channel_name
+     * @return NotifyResult
+     */
+    protected function getNotifyResult(string $channel_name) : NotifyResult
+    {
+        /**
+         *
+         * @var \asbamboo\openpay\channel\v1_0\trade\PayInterface $Channel
+         */
+        $Channel    = $this->ChannelManager->getChannel(Pay::class, $channel_name);
+        return $Channel->notify($this->Request);
+    }
+
+    /**
+     * 更新数据状态
+     *
+     * @param NotifyResult $NotifyResult
+     * @return TradePayEntity
+     */
+    protected function dbFlush(NotifyResult $NotifyResult) : TradePayEntity
+    {
+        $in_trade_no    = $NotifyResult->getInTradeNo();
+        $third_trade_no = $NotifyResult->getThirdTradeNo();
+        $TradePayEntity = $this->TradePayRespository->load($in_trade_no);
+
+        /*
+         * 修改数据状态
+         */
+        if($TradePayEntity->getTradeStatus() != $NotifyResult->getTradeStatus()){
+            //支付成功（可退款）
+            if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
+                $this->TradePayManager->updateTradeStatusToPayok($TradePayEntity, $third_trade_no);
+                //支付成功（不可退款）
+            }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYED){
+                $this->TradePayManager->updateTradeStatusToPayed($TradePayEntity, $third_trade_no);
+                //支付取消（不可退款）
+            }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCLE){
+                $this->TradePayManager->updateTradeStatusToCancel($TradePayEntity, $third_trade_no);
+            }
+        }
+        $this->Db->getManager()->flush();
+
+        return $TradePayEntity;
     }
 }

@@ -70,6 +70,13 @@ final class Request
     protected $notify_url;
 
     /**
+     * @desc 这个return url时聚合支付平台接收第三方平台推送信息的url并不是对接应用发送的return url
+     * @example http://api.test.asbamboo.com/return/trade/pay
+     * @var string(200)
+     */
+    protected $return_url;
+
+    /**
      *
      * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(45)
      */
@@ -133,5 +140,17 @@ final class Request
             $this->notify_url   = EnvHelper::get(Env::TRADE_PAY_NOTIFY_URL);
         }
         return $this->notify_url;
+    }
+
+    /**
+     *
+     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(200)
+     */
+    public function getReturnUrl()
+    {
+        if(!$this->return_url){
+            $this->return_url   = EnvHelper::get(Env::TRADE_PAY_RETURN_URL);
+        }
+        return $this->return_url;
     }
 }
