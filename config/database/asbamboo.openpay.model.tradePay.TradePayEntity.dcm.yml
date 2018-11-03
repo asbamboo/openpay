@@ -50,6 +50,12 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       nullable: false
       options:
         default: ''
+    return_url:
+      type: string
+      length: 200
+      nullable: false
+      options:
+        default: ''
     third_trade_no:
       type: string
       length: 45
@@ -79,3 +85,6 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
     version:
       type: smallint
       version: true
+      options:
+        default: '0'
+      

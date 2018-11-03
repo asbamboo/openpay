@@ -36,6 +36,9 @@ class TradePayThirdPartManager
      */
     public function insert(TradePayThirdPartEntity $TradePayThirdPartEntity) : void
     {
+        if(is_null($TradePayThirdPartEntity->getSendData())){
+            $TradePayThirdPartEntity->setSendData('[]');
+        }
         $this->validateInsert($TradePayThirdPartEntity);
         $this->Db->getManager()->persist($TradePayThirdPartEntity);
     }

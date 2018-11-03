@@ -45,6 +45,11 @@ class TradePayEntity
     /**
      * @var string
      */
+    private $return_url = '';
+
+    /**
+     * @var string
+     */
     private $in_trade_no = '';
 
     /**
@@ -398,5 +403,29 @@ class TradePayEntity
     public function getVersion()
     {
         return $this->version;
+    }
+
+    /**
+     * Set returnUrl.
+     *
+     * @param string $returnUrl
+     *
+     * @return TradePayEntity
+     */
+    public function setReturnUrl($returnUrl)
+    {
+        $this->return_url = $returnUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get returnUrl.
+     *
+     * @return string
+     */
+    public function getReturnUrl()
+    {
+        return $this->return_url;
     }
 }

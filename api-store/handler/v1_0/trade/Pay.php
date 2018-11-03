@@ -110,6 +110,7 @@ class Pay implements ApiClassInterface
         $TradePayEntity->setOutTradeNo($Params->getOutTradeNo());
         $TradePayEntity->setClientIp($Params->getClientIp());
         $TradePayEntity->setNotifyUrl($Params->getNotifyUrl());
+        $TradePayEntity->setReturnUrl($Params->getReturnUrl());
         $this->TradePayManager->insert($TradePayEntity);
 
         $TradePayThirdPartEntity = new TradePayThirdPartEntity();

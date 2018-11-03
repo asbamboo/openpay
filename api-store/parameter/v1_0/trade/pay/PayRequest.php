@@ -62,5 +62,12 @@ class PayRequest extends ApiRequestParamsAbstract
      * @example http://api.test.asbamboo.com/notify/trade/pay
      * @var string(200)
      */
-    protected $notify_url;
+    protected $notify_url = '';
+
+    /**
+     * @desc 聚合平台跳转到接入应用的指定url，返回参数通过get传递
+     * @example http://api.test.asbamboo.com/return/trade/pay
+     * @var string(200)
+     */
+    protected $return_url = '';
 }
