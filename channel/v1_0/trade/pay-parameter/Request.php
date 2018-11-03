@@ -31,12 +31,12 @@ final class Request
     protected $title;
 
     /**
-     * 这个对接应用传入的交易编号，实际传送给支付渠道的时聚合平台重新生成的交易编号
+     * 聚合平台生成的交易编号, 全局唯一
      * @desc 交易编号只能是数字
      * @example 2018101310270023
-     * @var string(45)
+     * @var number(32)
      */
-    protected $out_trade_no;
+    protected $in_trade_no;
 
     /**
      * @desc 交易金额 单位为分
@@ -70,6 +70,13 @@ final class Request
     protected $notify_url;
 
     /**
+     * @desc 这个return url时聚合支付平台接收第三方平台推送信息的url并不是对接应用发送的return url
+     * @example http://api.test.asbamboo.com/return/trade/pay
+     * @var string(200)
+     */
+    protected $return_url;
+
+    /**
      *
      * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(45)
      */
@@ -91,9 +98,9 @@ final class Request
      *
      * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(45)
      */
-    public function getOutTradeNo()
+    public function getInTradeNo()
     {
-        return $this->out_trade_no;
+        return $this->in_trade_no;
     }
 
     /**
@@ -133,5 +140,17 @@ final class Request
             $this->notify_url   = EnvHelper::get(Env::TRADE_PAY_NOTIFY_URL);
         }
         return $this->notify_url;
+    }
+
+    /**
+     *
+     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(200)
+     */
+    public function getReturnUrl()
+    {
+        if(!$this->return_url){
+            $this->return_url   = EnvHelper::get(Env::TRADE_PAY_RETURN_URL);
+        }
+        return $this->return_url;
     }
 }

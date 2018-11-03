@@ -19,6 +19,8 @@ use asbamboo\router\Router;
 use asbamboo\router\RouterInterface;
 use asbamboo\database\FactoryInterface;
 use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
+use asbamboo\openpay\channel\v1_0\trade\payParameter\Response;
+use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 
 /**
  * @name 交易支付
@@ -110,6 +112,7 @@ class Pay implements ApiClassInterface
         $TradePayEntity->setOutTradeNo($Params->getOutTradeNo());
         $TradePayEntity->setClientIp($Params->getClientIp());
         $TradePayEntity->setNotifyUrl($Params->getNotifyUrl());
+        $TradePayEntity->setReturnUrl($Params->getReturnUrl());
         $this->TradePayManager->insert($TradePayEntity);
 
         $TradePayThirdPartEntity = new TradePayThirdPartEntity();
@@ -117,13 +120,11 @@ class Pay implements ApiClassInterface
         $TradePayThirdPartEntity->setSendData($Params->getThirdPart());
         $this->TradePayThirdPartManager->insert($TradePayThirdPartEntity);
 
-        $Params->setOutTradeNo($TradePayEntity->getInTradeNo());
-
         /**
          * 发起第三方渠道请求
          *
          * @var PayInterface $Channel
-         * @var \asbamboo\openpay\channel\v1_0\trade\payParameter\Response $ChannelResponse
+         * @var Response $ChannelResponse
          */
         $channel_name       = $Params->getChannel();
         $Channel            = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
@@ -133,35 +134,20 @@ class Pay implements ApiClassInterface
         $ChannelResponse    = $Channel->execute(new RequestByChannel([
             'channel'       => $TradePayEntity->getChannel(),
             'title'         => $TradePayEntity->getTitle(),
-            'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
+            'in_trade_no'   => $TradePayEntity->getInTradeNo(),
             'total_fee'     => $TradePayEntity->getTotalFee(),
             'client_ip'     => $TradePayEntity->getClientIp(),
             'notify_url'    => $this->Router->generateUrl('notify', ['channel' => $channel_name]),
+            'return_url'    => $this->Router->generateUrl('return', ['channel' => $channel_name]),
         ]));
 
-        /*
+        /**
          * 扫二维码支付时应该有的响应结果
          */
-        if($ChannelResponse->is_redirect == true && $ChannelResponse->qr_code){
-            $ApiResponseParams  = new class ($ChannelResponse->qr_code) extends ApiResponseRedirectParams{
-                private $qr_code;
-                public function __construct($qr_code)
-                {
-                    $this->qr_code  = $qr_code;
-                }
-
-                public function getRedirectUri() : string
-                {
-                    return EnvHelper::get(Env::QRCODE_URL);
-                }
-
-                public function getRedirectResponseData() : array
-                {
-                    return [
-                        'qr_code'   => $this->qr_code,
-                    ];
-                }
-            };
+        if($ChannelResponse->getRedirectType() == $ChannelResponse::REDIRECT_TYPE_QRCD && $ChannelResponse->getQrCode()){
+            $ApiResponseParams  = $this->makeQrCodeResponse($ChannelResponse);
+        }else if($ChannelResponse->getRedirectType() == $ChannelResponse::REDIRECT_TYPE_PC && $ChannelResponse->getRedirectData()){
+            $ApiResponseParams  = $this->makePcResponse($ChannelResponse);
         }
 
 
@@ -174,5 +160,63 @@ class Pay implements ApiClassInterface
          * 返回
          */
         return $ApiResponseParams;
+    }
+
+    /**
+     * 生成跳转到扫码支付页面的响应
+     *
+     * @param Response $Response
+     * @return ApiResponseRedirectParamsInterface
+     */
+    private function makeQrCodeResponse(Response $Response) : ApiResponseRedirectParamsInterface
+    {
+        return new class ($Response->getQrCode()) extends ApiResponseRedirectParams{
+            private $qr_code;
+            public function __construct($qr_code)
+            {
+                $this->qr_code  = $qr_code;
+            }
+
+            public function getRedirectUri() : string
+            {
+                return EnvHelper::get(Env::QRCODE_URL);
+            }
+
+            public function getRedirectResponseData() : array
+            {
+                return [
+                    'qr_code'   => $this->qr_code,
+                ];
+            }
+        };
+    }
+
+    /**
+     * 生成跳转到PC支付页面的响应
+     *
+     * @param Response $Response
+     * @return ApiResponseRedirectParamsInterface
+     */
+    private function makePcResponse(Response $Response) :  ApiResponseRedirectParamsInterface
+    {
+        return new class ($Response->getRedirectUrl(), $Response->getRedirectData()) extends ApiResponseRedirectParams{
+            private $url;
+            private $data;
+            public function __construct($url, $data)
+            {
+                $this->url      = $url;
+                $this->data     = $data;
+            }
+
+            public function getRedirectUri() : string
+            {
+                return $this->url;
+            }
+
+            public function getRedirectResponseData() : array
+            {
+                return $this->data;
+            }
+        };
     }
 }

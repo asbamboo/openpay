@@ -47,6 +47,9 @@ class TradePayManager
      */
     public function insert(TradePayEntity $TradePayEntity) : void
     {
+        if(is_null($TradePayEntity->getNotifyUrl())){
+            $TradePayEntity->setNotifyUrl('');
+        }
         $this->validateInsert($TradePayEntity);
         $TradePayEntity->setInTradeNo($this->makeInTradeNo());
         $TradePayEntity->setPayedTime('0');
@@ -73,7 +76,7 @@ class TradePayManager
 
     /**
      * 交易状态变更为支付成功(不可退款)
-     * 
+     *
      * @param TradePayEntity $TradePayEntity
      * @param string $third_trade_no
      */
@@ -87,10 +90,10 @@ class TradePayManager
         $TradePayEntity->setPayedTime(time());
         $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
     }
-    
+
     /**
      * 交易状态变更为取消支付
-     * 
+     *
      * @param TradePayEntity $TradePayEntity
      * @param string $third_trade_no
      */
@@ -104,7 +107,7 @@ class TradePayManager
         $TradePayEntity->setCancelTime(time());
         $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
     }
-    
+
     /**
      *
      * @param TradePayEntity $TradePayEntity
@@ -117,7 +120,7 @@ class TradePayManager
         $this->validateTotalFee($TradePayEntity->getTotalFee());
         $this->validateClientIp($TradePayEntity->getClientIp());
     }
-    
+
     /**
      *
      * @param TradePayEntity $TradePayEntity
@@ -130,7 +133,7 @@ class TradePayManager
             throw new TradePayTradeStatusInvalidException('当前交易状态不允许被修改成支付成功[可退款].');
         }
     }
-    
+
     /**
      *
      * @param TradePayEntity $TradePayEntity
@@ -143,7 +146,7 @@ class TradePayManager
             throw new TradePayTradeStatusInvalidException('当前交易状态不允许被修改成支付成功[不可退款].');
         }
     }
-    
+
     /**
      *
      * @param TradePayEntity $TradePayEntity

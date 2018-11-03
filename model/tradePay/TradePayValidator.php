@@ -7,6 +7,8 @@ use asbamboo\openpay\apiStore\exception\TradePayOutTradeNoInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayTotalFeeInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayClientIpInvalidException;
 use asbamboo\openpay\apiStore\exception\TradePayThirdTradeNoInvalidException;
+use asbamboo\openpay\apiStore\exception\TradePayNotifyUrlInvalidException;
+use asbamboo\openpay\apiStore\exception\TradePayReturnUrlInvalidException;
 
 /**
  * 数据表 trade pay 各个字段的验证器
@@ -96,6 +98,30 @@ trait TradePayValidator
         }
         if(long2ip(ip2long($client_ip)) != $client_ip){
             throw new TradePayClientIpInvalidException('client_ip 的值不是一个有效的ip地址。');
+        }
+    }
+
+    /**
+     *
+     * @param string $notify_url
+     * @throws TradePayThirdTradeNoInvalidException
+     */
+    private function validateNotifyUrl($notify_url)
+    {
+        if(strlen($notify_url) > 200){
+            throw new TradePayNotifyUrlInvalidException('notify_url 长度不能超过200字。');
+        }
+    }
+
+    /**
+     *
+     * @param string $return_url
+     * @throws TradePayThirdTradeNoInvalidException
+     */
+    private function validateReturnUrl($return_url)
+    {
+        if(strlen($return_url) > 200){
+            throw new TradePayReturnUrlInvalidException('return_url 长度不能超过200字。');
         }
     }
 
