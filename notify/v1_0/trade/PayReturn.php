@@ -1,17 +1,13 @@
 <?php
 namespace asbamboo\openpay\notify\v1_0\trade;
 
-use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
 use asbamboo\http\ResponseInterface;
 use asbamboo\http\Response;
 use asbamboo\http\Stream;
-use asbamboo\openpay\Constant;
-use asbamboo\http\Client;
-use asbamboo\http\Request;
-use asbamboo\http\Uri;
-use asbamboo\http\Constant AS HttpConstant;
-use asbamboo\http\RedirectResponse;
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
+use asbamboo\openpay\Constant;
+use asbamboo\openpay\channel\v1_0\trade\payParameter\NotifyResult;
+use asbamboo\openpay\model\tradePay\TradePayEntity;
 
 /**
  * 交易支付接口 trade.pay notify处理
@@ -51,7 +47,7 @@ class PayReturn extends PayNotify
                     'out_trade_no'          => $TradePayEntity->getOutTradeNo(),
                     'total_fee'             => $TradePayEntity->getTotalFee(),
                     'client_ip'             => $TradePayEntity->getClientIp(),
-                    'trade_status'          => $TradePayEntity->getTradeStatus(),
+                    'trade_status'          => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
                     'payok_ymdhis'          => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
                     'payed_ymdhis'          => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
                     'cancel_ymdhis'         => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
@@ -86,5 +82,28 @@ class PayReturn extends PayNotify
         }finally{
             return $Response;
         }
+    }
+    
+    /**
+     * 更新数据状态
+     *
+     * @param NotifyResult $NotifyResult
+     * @return TradePayEntity
+     */
+    protected function dbFlush(NotifyResult $NotifyResult) : TradePayEntity
+    {
+        $in_trade_no    = $NotifyResult->getInTradeNo();
+        $third_trade_no = $NotifyResult->getThirdTradeNo();
+        $TradePayEntity = $this->TradePayRespository->load($in_trade_no);
+        
+        /*
+         * 修改数据状态
+         */
+        if(!in_array($TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_PAYOK, Constant::TRADE_PAY_TRADE_STATUS_PAYED])){
+            //支付成功（可退款）
+            $this->TradePayManager->updateTradeStatusToPayok($TradePayEntity, $third_trade_no);
+        }
+        $this->Db->getManager()->flush();
+        return $TradePayEntity;
     }
 }
