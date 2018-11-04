@@ -2,8 +2,8 @@
 namespace asbamboo\openpay\channel\v1_0\trade;
 
 use asbamboo\openpay\channel\ChannelInterface;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryRequest;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryResponse;
+use asbamboo\openpay\channel\v1_0\trade\queryParameter\Request;
+use asbamboo\openpay\channel\v1_0\trade\queryParameter\Response;
 
 /**
  * 交易查询接口 trade.query 1.0版本 渠道处理
@@ -15,8 +15,8 @@ interface QueryInterface extends ChannelInterface
 {
     /**
      * 
-     * @param QueryRequest $QuueryRequest
-     * @return QueryResponse
+     * @param Request $Request
+     * @return Response
      */
-    public function execute(QueryRequest $QueryRequest) : QueryResponse;
+    public function execute(Request $Request) : Response;
 }

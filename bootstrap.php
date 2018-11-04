@@ -26,7 +26,9 @@ use asbamboo\openpay\notify\v1_0\trade\PayReturn;
 /***************************************************************************************************
  * 系统文件加载
  ***************************************************************************************************/
-require __DIR__ . '/phpqrcode/phpqrcode.php';
+if(!class_exists('QRcode')){
+    require __DIR__ . '/phpqrcode/phpqrcode.php';
+}
 /***************************************************************************************************/
 
 /***************************************************************************************************
@@ -34,10 +36,8 @@ require __DIR__ . '/phpqrcode/phpqrcode.php';
  ***************************************************************************************************/
 // 二维码生成的url
 EnvHelper::set(Env::QRCODE_URL, '/code_url');
-// EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, 'http://' . $_SERVER['HTTP_HOST'] . '/{channel}/notify');
-// EnvHelper::set(Env::TRADE_PAY_RETURN_URL, 'http://' . $_SERVER['HTTP_HOST'] . '/{channel}/return');
-EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, '/{channel}/notify');
-EnvHelper::set(Env::TRADE_PAY_RETURN_URL, 'http://asbamboo.com/{channel}/return');
+EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, 'http://' . ($_SERVER['HTTP_HOST'] ?? 'http') . '/{channel}/notify');
+EnvHelper::set(Env::TRADE_PAY_RETURN_URL, 'http://' . ($_SERVER['HTTP_HOST'] ?? 'http') . '/{channel}/return');
 /***************************************************************************************************/
 
 /***************************************************************************************************

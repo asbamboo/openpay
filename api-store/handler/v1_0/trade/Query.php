@@ -1,12 +1,18 @@
 <?php
 namespace asbamboo\openpay\apiStore\handler\v1_0\trade;
 
-use asbamboo\api\apiStore\ApiClassAbstract;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryRequestValidateTrait;
 use asbamboo\openpay\channel\ChannelManagerInterface;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest;
 use asbamboo\api\apiStore\ApiRequestParamsInterface;
 use asbamboo\api\apiStore\ApiResponseParamsInterface;
+use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryRequest;
+use asbamboo\api\apiStore\ApiClassInterface;
+use asbamboo\openpay\apiStore\exception\TradeQueryNotFoundInvalidException;
+use asbamboo\openpay\Constant;
+use asbamboo\openpay\channel\v1_0\trade\queryParameter\Request AS RequestByChannel;
+use asbamboo\openpay\model\tradePay\TradePayManager;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryResponse;
+use asbamboo\database\FactoryInterface;
 
 /**
  * @name 交易查询
@@ -16,10 +22,8 @@ use asbamboo\api\apiStore\ApiResponseParamsInterface;
  * @author 李春寅<licy2013@aliyun.com>
  * @since 2018年10月27日
  */
-class Query extends ApiClassAbstract
-{
-    use QueryRequestValidateTrait;
-    
+class Query implements ApiClassInterface
+{    
     /**
      * 渠道管理器
      *
@@ -28,25 +32,92 @@ class Query extends ApiClassAbstract
     private $ChannelManager;
     
     /**
+     * 
+     * @var TradePayRespository
+     */
+    private $TradePayRespository;
+    
+    /**
+     * 
+     * @var TradePayManager
+     */
+    private $TradePayManager;
+    
+    /**
+     * 
+     * @var FactoryInterface
+     */
+    protected $Db;
+    
+    /**
      *
      * @param ChannelManagerInterface $Client
      */
-    public function __construct(ChannelManagerInterface $ChannelManager)
+    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRespository $TradePayRespository, TradePayManager $TradePayManager)
     {
-        $this->ChannelManager   = $ChannelManager;
+        $this->ChannelManager           = $ChannelManager;
+        $this->TradePayRespository      = $TradePayRespository;
+        $this->TradePayManager          = $TradePayManager;
+        $this->Db                       = $Db;
     }
     
     /**
      *
      * {@inheritDoc}
-     * @see \asbamboo\api\apiStore\ApiClassAbstract::successApiResponseParams()
-     * @var PayRequest $Params
+     * @see \asbamboo\api\apiStore\ApiClassAbstract::exec()
+     * @var QueryRequest $Params
      */
-    public function successApiResponseParams(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
+    public function exec(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
     {
-        $channel_name   = $Params->getChannel();
-        $Channel        = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
-        $Response       = $Channel->execute($Params);
-        return  $Response;
+        $TradePayEntity = null;
+        if(strlen((string)$Params->getOutTradeNo()) > 0){
+            $TradePayEntity = $this->TradePayRespository->loadByOutTradeNo($Params->getOutTradeNo());
+        }elseif(strlen((string)$Params->getInTradeNo()) > 0){
+            $TradePayEntity = $this->TradePayRespository->load($Params->getInTradeNo());
+        }
+        if(empty($TradePayEntity)){
+            throw new TradeQueryNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');
+        }
+        
+        /**
+        * 发起第三方渠道请求
+        *
+        * @var QueryInterface $Channel
+        * @var Response $ChannelResponse
+        */
+        if(!in_array($TradePayEntity->getTradeStatus() , [Constant::TRADE_PAY_TRADE_STATUS_PAYOK, Constant::TRADE_PAY_TRADE_STATUS_PAYED, Constant::TRADE_PAY_TRADE_STATUS_CANCLE])){
+            $channel_name       = $TradePayEntity->getChannel();
+            $Channel            = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
+            $ChannelResponse    = $Channel->execute(new RequestByChannel([
+                'channel'       => $TradePayEntity->getChannel(),
+                'in_trade_no'   => $TradePayEntity->getInTradeNo(),
+            ]));
+            //支付成功（可退款）
+            if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
+                $this->TradePayManager->updateTradeStatusToPayok($TradePayEntity, $ChannelResponse->getThirdTradeNo());
+                $this->Db->getManager()->flush();
+                //支付成功（不可退款）
+            }else if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYED){
+                $this->TradePayManager->updateTradeStatusToPayed($TradePayEntity, $ChannelResponse->getThirdTradeNo());
+                $this->Db->getManager()->flush();
+                //支付取消（不可退款）
+            }else if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCLE){
+                $this->TradePayManager->updateTradeStatusToCancel($TradePayEntity, $ChannelResponse->getThirdTradeNo());
+                $this->Db->getManager()->flush();
+            }
+        }
+        
+        return new QueryResponse([
+            'channel'       => $TradePayEntity->getChannel(),
+            'in_trade_no'   => $TradePayEntity->getInTradeNo(),
+            'title'         => $TradePayEntity->getTitle(),
+            'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
+            'total_fee'     => $TradePayEntity->getTotalFee(),
+            'client_ip'     => $TradePayEntity->getClientIp(),
+            'trade_status'  => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
+            'payok_ymdhis'  => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
+            'payed_ymdhis'  => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
+            'cancel_ymdhis' => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
+        ]);
     }
 }
