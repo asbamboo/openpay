@@ -37,4 +37,21 @@ final class Constant
     const TRADE_PAY_TRADE_STATUS_CANCLE     = '4';  // 交易取消（状态不可再变更）
     const TRADE_PAY_TRADE_STATUS_PAYFAILED  = '9';  // 支付失败
     /***********************************************************************************************/
+    
+    /**
+     * 交易支付状态api接口传递的名称
+     * 
+     * @return array
+     */
+    public static function getTradePayTradeStatusNames() : array
+    {
+        return [
+            static::TRADE_PAY_TRADE_STATUS_NOPAY        => 'NOPAY',
+            static::TRADE_PAY_TRADE_STATUS_PAYOK        => 'PAYOK',
+            static::TRADE_PAY_TRADE_STATUS_PAYED        => 'PAYED',
+            static::TRADE_PAY_TRADE_STATUS_PAYING       => 'PAYING',
+            static::TRADE_PAY_TRADE_STATUS_CANCLE       => 'CANCLE',
+            static::TRADE_PAY_TRADE_STATUS_PAYFAILED    => 'PAYFAILED',
+        ];     
+    }
 }

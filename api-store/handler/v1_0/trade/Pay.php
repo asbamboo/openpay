@@ -37,31 +37,31 @@ class Pay implements ApiClassInterface
      *
      * @var ChannelManagerInterface
      */
-    private $ChannelManager;
+    protected $ChannelManager;
 
     /**
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
      * @var RouterInterface
      */
-    private $Router;
+    protected $Router;
 
     /**
      *
      * @var TradePayManager
      */
-    private $TradePayManager;
+    protected $TradePayManager;
 
     /**
      *
      * @var TradePayThirdPartManager
      */
-    private $TradePayThirdPartManager;
+    protected $TradePayThirdPartManager;
 
     /**
      *
@@ -88,7 +88,7 @@ class Pay implements ApiClassInterface
     /**
      *
      * {@inheritDoc}
-     * @see \asbamboo\api\apiStore\ApiClassAbstract::successApiResponseParams()
+     * @see \asbamboo\api\apiStore\ApiClassAbstract::exec()
      * @var PayRequest $Params
      */
     public function exec(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
@@ -168,7 +168,7 @@ class Pay implements ApiClassInterface
      * @param Response $Response
      * @return ApiResponseRedirectParamsInterface
      */
-    private function makeQrCodeResponse(Response $Response) : ApiResponseRedirectParamsInterface
+    protected function makeQrCodeResponse(Response $Response) : ApiResponseRedirectParamsInterface
     {
         return new class ($Response->getQrCode()) extends ApiResponseRedirectParams{
             private $qr_code;
@@ -197,7 +197,7 @@ class Pay implements ApiClassInterface
      * @param Response $Response
      * @return ApiResponseRedirectParamsInterface
      */
-    private function makePcResponse(Response $Response) :  ApiResponseRedirectParamsInterface
+    protected function makePcResponse(Response $Response) :  ApiResponseRedirectParamsInterface
     {
         return new class ($Response->getRedirectUrl(), $Response->getRedirectData()) extends ApiResponseRedirectParams{
             private $url;

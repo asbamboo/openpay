@@ -30,31 +30,31 @@ class PayNotify
      *
      * @var ChannelManagerInterface
      */
-    private $ChannelManagr;
+    protected $ChannelManagr;
 
     /**
      *
      * @var ServerRequestInterface
      */
-    private $Request;
+    protected $Request;
 
     /**
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
      * @var TradePayRespository
      */
-    private $TradePayRespository;
+    protected $TradePayRespository;
 
     /**
      *
      * @var TradePayManager
      */
-    private $TradePayManager;
+    protected $TradePayManager;
 
     /**
      *
@@ -108,7 +108,7 @@ class PayNotify
                     'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
                     'total_fee'     => $TradePayEntity->getTotalFee(),
                     'client_ip'     => $TradePayEntity->getClientIp(),
-                    'trade_status'  => $TradePayEntity->getTradeStatus(),
+                    'trade_status'  => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
                     'payok_ymdhis'  => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
                     'payed_ymdhis'  => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
                     'cancel_ymdhis' => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
@@ -167,7 +167,6 @@ class PayNotify
             }
         }
         $this->Db->getManager()->flush();
-
         return $TradePayEntity;
     }
 }

@@ -28,5 +28,11 @@ final class Code
     const TRADE_PAY_TRADE_STATUS = '2008'; // TradePayTradeStatusInvalidException
     const TRADE_PAY_NOTIFY_URL = '2009'; // TradePayNotifyUrlInvalidException
     const TRADE_PAY_RETURN_URL = '2010'; // TradePayReturnUrlInvalidException
-/*********************************************************************************************/
+    /*********************************************************************************************/
+
+    /*********************************************************************************************
+     * 交易支付家口trade.query接口的异常
+     *********************************************************************************************/
+    const TRADE_QUERY_NOT_FOUND_INVALID = '3001'; // TradeQueryNotFoundInvalidException
+    /*********************************************************************************************/
 }

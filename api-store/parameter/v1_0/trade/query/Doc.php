@@ -2,8 +2,7 @@
 namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\query;
 
 use asbamboo\openpay\channel\ChannelManagerStatic;
-use asbamboo\openpay\apiStore\handler\v1_0\trade\Query;
-use asbamboo\openpay\apiStore\parameter\v1_0\trade\Constant;
+use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
 
 /**
  * 帮助文档中 动态生成的帮助信息
@@ -26,13 +25,15 @@ class Doc
          */
         static $result;
         if(empty($result)){
-            $channels   = ChannelManagerStatic::getInstance()->getChannels(Query::class);
-            $Channel    = unserialize(current($channels));
-            $result     = $Channel->getName();
+            $channels   = ChannelManagerStatic::getInstance()->getChannels(Pay::class);
+            foreach($channels AS $channel_name => $channel_info){
+                $result     = $channel_name;
+                break;
+            }
         }
         return $result;
     }
-
+    
     /**
      * 渠道取值范围
      *
@@ -47,16 +48,16 @@ class Doc
         static $result;
         if(empty($result)){
             $result     = [];
-            $channels   = ChannelManagerStatic::getInstance()->getChannels(Query::class);
-            foreach($channels AS $Channel){
-                $Channel    = unserialize($Channel);
-                $result[]   = $Channel->getName() . '[' . $Channel->getLabel() . ']';
+            $channels   = ChannelManagerStatic::getInstance()->getChannels(Pay::class);
+            foreach($channels AS $channel_name => $channel_info){
+                $channel_label  = $channel_info[0];
+                $Channel        = unserialize($channel_info[1]);
+                $result[]       = $channel_name . '[' . $channel_label . ']';
             }
             $result = implode(' ', $result);
         }
         return $result;
     }
-    
     
     /**
      * 交易状态取值范围
@@ -66,10 +67,12 @@ class Doc
     public static function tradeStatusRange()
     {
         return implode(' ', [
-            Constant::TRADE_STATUS_NOPAY . '[未支付]',
-            Constant::TRADE_STATUS_PAYFAILED . '[支付失败]',
-            Constant::TRADE_STATUS_PAYING . '[正在支付]',
-            Constant::TRADE_STATUS_PAYOK . '[支付成功]',
+            'NOPAY[尚未支付]',
+            'CANCLE[取消支付]',
+            'PAYFAILED[支付失败]',
+            'PAYING[正在支付]',
+            'PAYOK[支付成功-可退款]',
+            'PAYED[支付成功-不可退款]',
         ]);
     }
 }

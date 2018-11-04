@@ -35,7 +35,7 @@ class PayRequest extends ApiRequestParamsAbstract
 
     /**
      * @desc 交易编号只能是数字
-     * @example 2018101310270023
+     * @example eval:date('YmdHis') . mt_rand(0,999)
      * @required 必须
      * @var string(45)
      */

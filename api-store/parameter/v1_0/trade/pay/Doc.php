@@ -3,7 +3,6 @@ namespace asbamboo\openpay\apiStore\parameter\v1_0\trade\pay;
 
 use asbamboo\openpay\channel\ChannelManagerStatic;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
-use asbamboo\openpay\Constant;
 
 /**
  * 帮助文档中 动态生成的帮助信息
