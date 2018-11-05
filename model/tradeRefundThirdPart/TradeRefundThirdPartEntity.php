@@ -1,11 +1,11 @@
 <?php
 
-namespace asbamboo\openpay\model\tradePayThirdPart;
+namespace asbamboo\openpay\model\tradeRefundThirdPart;
 
 /**
- * TradePayThirdPartEntity
+ * TradeRefundThirdPartEntity
  */
-class TradePayThirdPartEntity
+class TradeRefundThirdPartEntity
 {
     /**
      * @var int
@@ -15,7 +15,7 @@ class TradePayThirdPartEntity
     /**
      * @var string
      */
-    private $in_trade_no = '';
+    private $in_refund_no = '';
 
     /**
      * @var string
@@ -34,27 +34,27 @@ class TradePayThirdPartEntity
     }
 
     /**
-     * Set inTradeNo.
+     * Set inRefundNo.
      *
-     * @param string $inTradeNo
+     * @param string $inRefundNo
      *
-     * @return TradePayThirdPartEntity
+     * @return TradeRefundThirdPartEntity
      */
-    public function setInTradeNo($inTradeNo)
+    public function setInRefundNo($inRefundNo)
     {
-        $this->in_trade_no = $inTradeNo;
+        $this->in_refund_no = $inRefundNo;
 
         return $this;
     }
 
     /**
-     * Get inTradeNo.
+     * Get inRefundNo.
      *
      * @return string
      */
-    public function getInTradeNo()
+    public function getInRefundNo()
     {
-        return $this->in_trade_no;
+        return $this->in_refund_no;
     }
 
     /**
@@ -62,7 +62,7 @@ class TradePayThirdPartEntity
      *
      * @param string $sendData
      *
-     * @return TradePayThirdPartEntity
+     * @return TradeRefundThirdPartEntity
      */
     public function setSendData($sendData)
     {

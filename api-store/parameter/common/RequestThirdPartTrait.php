@@ -16,7 +16,7 @@ trait RequestThirdPartTrait
      * @required 可选
      * @var json()
      */
-    protected $third_part;
+    protected $third_part = '[]';
     
     /**
      *
