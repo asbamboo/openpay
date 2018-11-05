@@ -1,0 +1,21 @@
+asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity:
+  type: entity
+  table: tt_trade_refund_third_part
+  id:
+    seq:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    in_refund_no:
+      unique: true
+      type: string
+      length: 32
+      nullable: false
+      options:
+        default: ''
+    send_data:
+      type: text
+      nullable: false
+      options:
+        default: '[]'

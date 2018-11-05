@@ -35,4 +35,14 @@ final class Code
      *********************************************************************************************/
     const TRADE_QUERY_NOT_FOUND_INVALID = '3001'; // TradeQueryNotFoundInvalidException
     /*********************************************************************************************/
+    
+    /*********************************************************************************************
+     * 交易支付家口trade.refund接口的异常
+     *********************************************************************************************/
+    const TRADE_REFUND_NOT_FOUND_INVALID = '4001'; // TradeRefundNotFoundInvalidException
+    const TRADE_REFUND_OUT_REFUND_NO_INVALID = '4002'; // TradeRefundOutRefundNoInvalidException
+    const TRADE_REFUND_REFUND_FEE_INVALID = '4003'; // TradeRefundRefundFeeInvalidException
+    const TRADE_REFUND_STATUS = '4004'; // TradeRefundStatusInvalidException
+    const TRADE_REFUND_THIRD_PART_INVALID = '4005'; // TradeRefundThirdPartInvalidException
+    /*********************************************************************************************/
 }

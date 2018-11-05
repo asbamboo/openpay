@@ -15,6 +15,11 @@ class TradePayEntity
     /**
      * @var string
      */
+    private $in_trade_no = '';
+
+    /**
+     * @var string
+     */
     private $channel = '';
 
     /**
@@ -50,11 +55,6 @@ class TradePayEntity
     /**
      * @var string
      */
-    private $in_trade_no = '';
-
-    /**
-     * @var string
-     */
     private $third_trade_no = '';
 
     /**
@@ -80,7 +80,7 @@ class TradePayEntity
     /**
      * @var int
      */
-    private $version;
+    private $version = '0';
 
 
     /**
@@ -91,6 +91,30 @@ class TradePayEntity
     public function getSeq()
     {
         return $this->seq;
+    }
+
+    /**
+     * Set inTradeNo.
+     *
+     * @param string $inTradeNo
+     *
+     * @return TradePayEntity
+     */
+    public function setInTradeNo($inTradeNo)
+    {
+        $this->in_trade_no = $inTradeNo;
+
+        return $this;
+    }
+
+    /**
+     * Get inTradeNo.
+     *
+     * @return string
+     */
+    public function getInTradeNo()
+    {
+        return $this->in_trade_no;
     }
 
     /**
@@ -238,27 +262,27 @@ class TradePayEntity
     }
 
     /**
-     * Set inTradeNo.
+     * Set returnUrl.
      *
-     * @param string $inTradeNo
+     * @param string $returnUrl
      *
      * @return TradePayEntity
      */
-    public function setInTradeNo($inTradeNo)
+    public function setReturnUrl($returnUrl)
     {
-        $this->in_trade_no = $inTradeNo;
+        $this->return_url = $returnUrl;
 
         return $this;
     }
 
     /**
-     * Get inTradeNo.
+     * Get returnUrl.
      *
      * @return string
      */
-    public function getInTradeNo()
+    public function getReturnUrl()
     {
-        return $this->in_trade_no;
+        return $this->return_url;
     }
 
     /**
@@ -403,29 +427,5 @@ class TradePayEntity
     public function getVersion()
     {
         return $this->version;
-    }
-
-    /**
-     * Set returnUrl.
-     *
-     * @param string $returnUrl
-     *
-     * @return TradePayEntity
-     */
-    public function setReturnUrl($returnUrl)
-    {
-        $this->return_url = $returnUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get returnUrl.
-     *
-     * @return string
-     */
-    public function getReturnUrl()
-    {
-        return $this->return_url;
     }
 }
