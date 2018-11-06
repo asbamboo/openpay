@@ -139,6 +139,7 @@ class Pay implements ApiClassInterface
             'client_ip'     => $TradePayEntity->getClientIp(),
             'notify_url'    => $this->Router->generateUrl('notify', ['channel' => $channel_name]),
             'return_url'    => $this->Router->generateUrl('return', ['channel' => $channel_name]),
+            'third_part'    => $TradePayThirdPartEntity->getSendData(),
         ]));
 
         /**
