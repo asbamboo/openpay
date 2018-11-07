@@ -35,51 +35,51 @@ class Refund implements ApiClassInterface
      * @var ChannelManagerInterface
      */
     private $ChannelManager;
-    
+
     /**
      *
      * @var FactoryInterface
      */
     protected $Db;
-    
+
     /**
      *
      * @var TradePayRespository
      */
     private $TradePayRespository;
-    
+
     /**
      *
      * @var TradePayManager
      */
     private $TradePayManager;
-    
+
     /**
-     * 
+     *
      * @var TradeRefundRespository
      */
     private $TradeRefundRespository;
-    
+
     /**
-     * 
+     *
      * @var TradeRefundManager
      */
     private $TradeRefundManager;
-    
+
     /**
-     * 
+     *
      * @var TradeRefundThirdPartRespository
      */
     private $TradeRefundThirdPartRespository;
-    
+
     /**
-     * 
+     *
      * @var TradeRefundThirdPartManager
      */
     private $TradeRefundThirdPartManager;
-    
+
     /**
-     * 
+     *
      * @param ChannelManagerInterface $ChannelManager
      * @param FactoryInterface $Db
      * @param TradePayRespository $TradePayRespository
@@ -90,10 +90,10 @@ class Refund implements ApiClassInterface
      * @param TradeRefundThirdPartManager $TradeRefundThirdPartManager
      */
     public function __construct(
-        ChannelManagerInterface $ChannelManager, 
-        FactoryInterface $Db, 
-        TradePayRespository $TradePayRespository, 
-        TradePayManager $TradePayManager, 
+        ChannelManagerInterface $ChannelManager,
+        FactoryInterface $Db,
+        TradePayRespository $TradePayRespository,
+        TradePayManager $TradePayManager,
         TradeRefundRespository $TradeRefundRespository,
         TradeRefundManager $TradeRefundManager,
         TradeRefundThirdPartRespository $TradeRefundThirdPartRespository,
@@ -108,9 +108,9 @@ class Refund implements ApiClassInterface
         $this->TradeRefundThirdPartRespository      = $TradeRefundThirdPartRespository;
         $this->TradeRefundThirdPartManager          = $TradeRefundThirdPartManager;
     }
-    
+
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \asbamboo\api\apiStore\ApiClassInterface::exec()
      * @var RefundRequest $Params
@@ -134,7 +134,7 @@ class Refund implements ApiClassInterface
         if($TradeRefundEntity->getRefundFee() != $Params->getRefundFee()){
             throw new TradeRefundRefundFeeInvalidException('一个out_refund_no只能对应一笔退款,当请求失败需要重新请求时,不应该改变退款的金额。');
         }
-        
+
         /**
          * 发起第三方渠道请求
          * 如果退款已经成功的话，不要再向第三方渠道发请求
@@ -148,7 +148,7 @@ class Refund implements ApiClassInterface
             }
             $this->TradeRefundManager->updateRequest($TradeRefundEntity);
             $this->Db->getManager()->flush();
-            
+
             $channel_name       = $TradePayEntity->getChannel();
             $Channel            = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
             $ChannelResponse    = $Channel->execute(new RequestByChannel([
@@ -158,16 +158,15 @@ class Refund implements ApiClassInterface
                 'refund_fee'    => $TradeRefundEntity->getRefundFee(),
                 'third_part'    => $TradeRefundThirdPartEntity->getSendData(),
             ]));
-            
             if($ChannelResponse->getIsSuccess() == true){
                 $this->TradeRefundManager->updateRefundSuccess($TradeRefundEntity, strtotime($ChannelResponse->getPayYmdhis()));
             }else{
-                $this->TradeRefundManager->updateRefundFailed($TradeRefundEntity); 
+                $this->TradeRefundManager->updateRefundFailed($TradeRefundEntity);
             }
-        
+
             $this->Db->getManager()->flush();
         }
-        
+
         return new RefundResponse([
             'in_trade_no'       => $TradeRefundEntity->getInTradeNo(),
             'out_trade_no'      => $TradeRefundEntity->getOutTradeNo(),

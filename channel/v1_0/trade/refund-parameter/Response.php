@@ -47,10 +47,10 @@ final class Response
      */
     public function setInRefundNo($in_refund_no) : self
     {
-        if(ctype_digit((string) $in_trade_no) == false){
+        if(ctype_digit((string) $in_refund_no) == false && $in_refund_no != ''){
             throw new OpenpayException('聚合平台交易编号必须时数字。');
         }
-        if(strlen((string) $in_trade_no) > 32){
+        if(strlen((string) $in_refund_no) > 32){
             throw new OpenpayException('聚合平台交易编号不能超过32个字。');
         }
         $this->in_refund_no;

@@ -56,7 +56,7 @@ final class Response
      */
     public function setRedirectType($redirect_type) : self
     {
-        if(!in_array($trade_status, [self::REDIRECT_TYPE_NONE, self::REDIRECT_TYPE_PC, self::REDIRECT_TYPE_QRCD])){
+        if(!in_array($redirect_type, [self::REDIRECT_TYPE_NONE, self::REDIRECT_TYPE_PC, self::REDIRECT_TYPE_QRCD])){
             throw new OpenpayException('支付需要，页面跳转类型超出有效范围。');
         }
         $this->redirect_type  = $redirect_type;
