@@ -32,49 +32,87 @@ if(!class_exists('QRcode')){
 /***************************************************************************************************/
 
 /***************************************************************************************************
- * 参数配置
+ * 系统服务容器
+ ***************************************************************************************************/
+$Container          = new Container(new ServiceMappingCollection());
+/***************************************************************************************************/
+
+/***************************************************************************************************
+ * 读取项目自定义配置
+ ***************************************************************************************************/
+$guess_config_in_dir    = getcwd();
+for($i = 0; $i < 3; $i++ ){
+    $custom_config_path = $guess_config_in_dir . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'openpay-config.php';
+    if(file_exists($custom_config_path)){
+        break;
+    }
+    $guess_config_in_dir    = dirname($guess_config_in_dir);
+}
+if(file_exists($custom_config_path)){
+    include $custom_config_path;
+}
+/***************************************************************************************************/
+
+/***************************************************************************************************
+ * 环境参数配置
  ***************************************************************************************************/
 // 二维码生成的url
-EnvHelper::set(Env::QRCODE_URL, '/code_url');
-EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, 'http://' . ($_SERVER['HTTP_HOST'] ?? 'http') . '/{channel}/notify');
-EnvHelper::set(Env::TRADE_PAY_RETURN_URL, 'http://' . ($_SERVER['HTTP_HOST'] ?? 'http') . '/{channel}/return');
+if(!EnvHelper::has(Env::QRCODE_URL)){
+    EnvHelper::set(Env::QRCODE_URL, '/code_url');
+}
+// 支付接口，接收第三方平台通知的URL
+if(!EnvHelper::has(Env::TRADE_PAY_NOTIFY_URL)){
+    EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, '/{channel}/notify');
+}
+// 支付接口，第三方平台页面跳转回聚合平台的URL
+if(!EnvHelper::has(Env::TRADE_PAY_RETURN_URL)){
+    EnvHelper::set(Env::TRADE_PAY_RETURN_URL, '/{channel}/return');
+}
 /***************************************************************************************************/
 
 /***************************************************************************************************
  * 系统服务容器配置
  ***************************************************************************************************/
-$Container          = new Container(new ServiceMappingCollection());
+$RouteCollection    = new RouteCollection();
+$Router             = new Router($RouteCollection);
 $ApiStore           = new ApiStore('asbamboo\\openpay\\apiStore\\handler\\', __DIR__ . DIRECTORY_SEPARATOR . 'api-store' . DIRECTORY_SEPARATOR . 'handler');
 $Request            = new ServerRequest();
 $ApiController      = new Controller($ApiStore, $Request);
-$RouteCollection    = new RouteCollection();
-$Router             = new Router($RouteCollection);
-$ApiRequestUris     = new ApiRequestUris(new ApiRequestUri('http://' . ($_SERVER['HTTP_HOST'] ?? 'xxx')  . '/api', '演示请求地址'));
-$DbFactory          = new Factory();
-
-$Container->set('api-urls', $ApiRequestUris);
 $Container->set('api-store', $ApiStore);
 $Container->set('router', $Router);
-$Container->set('db', $DbFactory);
 $ApiController->setContainer($Container);
+/***************************************************************************************************/
+
+/***************************************************************************************************
+ * api接口请求的地址(项目可能部署多种环境，在文档中列出的各个环境请求的url地址)
+ ***************************************************************************************************/
+if(!$Container->has('api-urls')){
+    $ApiRequestUris     = new ApiRequestUris(new ApiRequestUri('http://' . ($_SERVER['HTTP_HOST'] ?? 'xxx')  . '/api', '演示请求地址'));
+    $Container->set('api-urls', $ApiRequestUris);
+}
 /***************************************************************************************************/
 
 /***************************************************************************************************
  * 数据库配置
  ***************************************************************************************************/
-$sqpath             = __DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite';
-$sqmetadata         = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database';
-$sqmetadata_type    = Connection::MATADATA_YAML;
-$sqdir              = dirname($sqpath);
+if(!$Container->has('db')){
+    $DbFactory          = new Factory();
+    $Container->set('db', $DbFactory);
 
-if(!is_file($sqpath)){
-    @mkdir($sqdir, 0644, true);
-    @file_put_contents($sqpath, '');
+    $sqpath             = __DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite';
+    $sqmetadata         = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database';
+    $sqmetadata_type    = Connection::MATADATA_YAML;
+    $sqdir              = dirname($sqpath);
+
+    if(!is_file($sqpath)){
+        @mkdir($sqdir, 0644, true);
+        @file_put_contents($sqpath, '');
+    }
+    $Container->get('db')->addConnection(Connection::create([
+        'driver'    => 'pdo_sqlite',
+        'path'      => $sqpath
+    ], $sqmetadata, $sqmetadata_type));
 }
-$Container->get('db')->addConnection(Connection::create([
-    'driver'    => 'pdo_sqlite',
-    'path'      => $sqpath
-], $sqmetadata, $sqmetadata_type));
 /***************************************************************************************************/
 
 /***************************************************************************************************
@@ -88,9 +126,9 @@ $RouteCollection
 // 测试工具
 ->add(new Route('test', '/test', [$ApiController, 'testTool']))
 // notify 这个 id在 trade.pay接口中生成url时需要使用到
-->add(new Route('notify', '/{channel}/notify', [$Container->get(PayNotify::class), 'exec']))
+->add(new Route('notify', EnvHelper::get(Env::TRADE_PAY_NOTIFY_URL), [$Container->get(PayNotify::class), 'exec']))
 // return 这个 id在 trade.pay接口中生成url时需要使用到
-->add(new Route('return', '/{channel}/return', [$Container->get(PayReturn::class), 'exec']))
+->add(new Route('return', EnvHelper::get(Env::TRADE_PAY_RETURN_URL), [$Container->get(PayReturn::class), 'exec']))
 // 二维码生成
 ->add(new Route('qrcode', EnvHelper::get(Env::QRCODE_URL), function($qr_code){
     $Stream = new Stream('php://temp', 'w+b');
@@ -103,7 +141,6 @@ $RouteCollection
 }))
 ;
 /***************************************************************************************************/
-
 
 /***************************************************************************************************
  * 响应客户端请求
