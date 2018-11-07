@@ -43,18 +43,35 @@ class TradePayManager
     /**
      * 插入一条数据用
      *
-     * @param TradePayEntity $TradePayEntity
+     * @param string $channel
+     * @param string $title
+     * @param string $total_fee
+     * @param string $out_trade_no
+     * @param string $client_ip
+     * @param string $notify_url
+     * @param string $return_url
+     * @return TradePayEntity
      */
-    public function insert(TradePayEntity $TradePayEntity) : void
+    public function insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url) : TradePayEntity
     {
-        if(is_null($TradePayEntity->getNotifyUrl())){
-            $TradePayEntity->setNotifyUrl('');
-        }
+        $TradePayEntity     = new TradePayEntity();
+        $TradePayEntity->setChannel($channel);
+        $TradePayEntity->setTitle($title);
+        $TradePayEntity->setTotalFee($total_fee);
+        $TradePayEntity->setOutTradeNo($out_trade_no);
+        $TradePayEntity->setClientIp($client_ip);
+        $TradePayEntity->setNotifyUrl($notify_url);
+        $TradePayEntity->setReturnUrl($return_url);
+
         $this->validateInsert($TradePayEntity);
         $TradePayEntity->setInTradeNo($this->makeInTradeNo());
+        $TradePayEntity->setPayokTime('0');
         $TradePayEntity->setPayedTime('0');
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_NOPAY);
+
         $this->Db->getManager()->persist($TradePayEntity);
+
+        return $TradePayEntity;
     }
 
     /**
@@ -63,15 +80,17 @@ class TradePayManager
      * @param TradePayEntity $TradePayEntity
      * @param string $thrid_trade_no
      */
-    public function updateTradeStatusToPayok(TradePayEntity $TradePayEntity, string $third_trade_no) : void
+    public function updateTradeStatusToPayok(TradePayEntity $TradePayEntity, string $third_trade_no) : TradePayEntity
     {
         $TradePayEntity->setThirdTradeNo($third_trade_no);
-        $this->validateUpdateTradeStatusToPayok($TradePayEntity);
+
         $time   = time();
+        $this->validateUpdateTradeStatusToPayok($TradePayEntity);
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setPayokTime($time);
-        $TradePayEntity->setPayedTime($time);
         $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
+
+        return $TradePayEntity;
     }
 
     /**
@@ -80,15 +99,18 @@ class TradePayManager
      * @param TradePayEntity $TradePayEntity
      * @param string $third_trade_no
      */
-    public function updateTradeStatusToPayed(TradePayEntity $TradePayEntity, string $third_trade_no = null) : void
+    public function updateTradeStatusToPayed(TradePayEntity $TradePayEntity, string $third_trade_no = null) : TradePayEntity
     {
         if(!is_null($third_trade_no)){
             $TradePayEntity->setThirdTradeNo($third_trade_no);
         }
+
         $this->validateUpdateTradeStatusToPayed($TradePayEntity);
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYED);
         $TradePayEntity->setPayedTime(time());
         $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
+
+        return $TradePayEntity;
     }
 
     /**
@@ -97,15 +119,18 @@ class TradePayManager
      * @param TradePayEntity $TradePayEntity
      * @param string $third_trade_no
      */
-    public function updateTradeStatusToCancel(TradePayEntity $TradePayEntity, string $third_trade_no = null) : void
+    public function updateTradeStatusToCancel(TradePayEntity $TradePayEntity, string $third_trade_no = null) : TradePayEntity
     {
         if(!is_null($third_trade_no)){
             $TradePayEntity->setThirdTradeNo($third_trade_no);
         }
+
         $this->validateUpdateTradeStatusToCancel($TradePayEntity);
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_CANCLE);
         $TradePayEntity->setCancelTime(time());
         $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
+
+        return $TradePayEntity;
     }
 
     /**
