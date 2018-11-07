@@ -20,7 +20,7 @@
 	},
 	"require-dev" : {
 		"asbamboo/event" : "^1.0",
-		"phpunit/phpunit" : "^7.3@dev"
+		"phpunit/phpunit" : "^7.2"
 	},
 	"license" : "BSD-3-Clause",
 	"authors" : [{
