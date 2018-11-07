@@ -70,10 +70,10 @@ class Query implements ApiClassInterface
     public function exec(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
     {
         $TradePayEntity = null;
-        if(strlen((string)$Params->getOutTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRespository->loadByOutTradeNo($Params->getOutTradeNo());
-        }elseif(strlen((string)$Params->getInTradeNo()) > 0){
+        if(strlen((string)$Params->getInTradeNo()) > 0){
             $TradePayEntity = $this->TradePayRespository->load($Params->getInTradeNo());
+        }elseif(strlen((string)$Params->getOutTradeNo()) > 0){
+            $TradePayEntity = $this->TradePayRespository->loadByOutTradeNo($Params->getOutTradeNo());
         }
         if(empty($TradePayEntity)){
             throw new TradeQueryNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');

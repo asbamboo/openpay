@@ -45,4 +45,11 @@ final class Code
     const TRADE_REFUND_STATUS = '4004'; // TradeRefundStatusInvalidException
     const TRADE_REFUND_THIRD_PART_INVALID = '4005'; // TradeRefundThirdPartInvalidException
     /*********************************************************************************************/
+
+    /*********************************************************************************************
+     * 交易支付家口trade.cancel接口的异常
+     *********************************************************************************************/
+    const TRADE_CANCEL_NOT_FOUND_INVALID = '5001'; // TradeCancelNotFoundInvalidException
+    const TRADE_CANCEL_NOT_ALLOWED = '5002'; // TradeCancelNotAllowedException
+    /*********************************************************************************************/
 }

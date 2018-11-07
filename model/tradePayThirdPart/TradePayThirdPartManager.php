@@ -2,6 +2,7 @@
 namespace asbamboo\openpay\model\tradePayThirdPart;
 
 use asbamboo\database\Factory;
+use asbamboo\openpay\model\tradePay\TradePayEntity;
 
 /**
  * 管理TradePayThirdPart的数据变更
@@ -32,15 +33,20 @@ class TradePayThirdPartManager
     /**
      * 添加一条新数据
      *
-     * @param TradePayThirdPartEntity $TradePayThirdPartEntity
+     *
+     * @param TradePayEntity $TradePayEntity
+     * @param string $send_data
      */
-    public function insert(TradePayThirdPartEntity $TradePayThirdPartEntity) : void
+    public function insert(TradePayEntity $TradePayEntity, $send_data) : TradePayThirdPartEntity
     {
-        if(is_null($TradePayThirdPartEntity->getSendData())){
-            $TradePayThirdPartEntity->setSendData('[]');
-        }
+        $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
+        $TradePayThirdPartEntity->setInTradeNo($TradePayEntity->getInTradeNo());
+        $TradePayThirdPartEntity->setSendData($send_data);
+
         $this->validateInsert($TradePayThirdPartEntity);
         $this->Db->getManager()->persist($TradePayThirdPartEntity);
+
+        return $TradePayThirdPartEntity;
     }
 
     /**

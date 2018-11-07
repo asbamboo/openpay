@@ -7,9 +7,7 @@ use asbamboo\openpay\channel\ChannelManagerInterface;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest;
 use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartManager;
-use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\api\apiStore\ApiClassInterface;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 use asbamboo\database\Factory;
 use asbamboo\openpay\channel\v1_0\trade\payParameter\Request AS RequestByChannel;
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
@@ -104,21 +102,18 @@ class Pay implements ApiClassInterface
          * 创建交易数据信息
          *
          * @var \asbamboo\openpay\model\tradePay\TradePayEntity $TradePayEntity
+         * @var \asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity $TradePayThirdPartEntity;
          */
-        $TradePayEntity = new TradePayEntity();
-        $TradePayEntity->setChannel($Params->getChannel());
-        $TradePayEntity->setTitle($Params->getTitle());
-        $TradePayEntity->setTotalFee($Params->getTotalFee());
-        $TradePayEntity->setOutTradeNo($Params->getOutTradeNo());
-        $TradePayEntity->setClientIp($Params->getClientIp());
-        $TradePayEntity->setNotifyUrl($Params->getNotifyUrl());
-        $TradePayEntity->setReturnUrl($Params->getReturnUrl());
-        $this->TradePayManager->insert($TradePayEntity);
-
-        $TradePayThirdPartEntity = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($TradePayEntity->getInTradeNo());
-        $TradePayThirdPartEntity->setSendData($Params->getThirdPart());
-        $this->TradePayThirdPartManager->insert($TradePayThirdPartEntity);
+        $TradePayEntity = $this->TradePayManager->insert(
+            $Params->getChannel(),
+            $Params->getTitle(),
+            $Params->getTotalFee(),
+            $Params->getOutTradeNo(),
+            $Params->getClientIp(),
+            $Params->getNotifyUrl(),
+            $Params->getReturnUrl()
+        );
+        $TradePayThirdPartEntity    = $this->TradePayThirdPartManager->insert($TradePayEntity, $Params->getThirdPart());
 
         /**
          * 发起第三方渠道请求
@@ -139,6 +134,7 @@ class Pay implements ApiClassInterface
             'client_ip'     => $TradePayEntity->getClientIp(),
             'notify_url'    => $this->Router->generateUrl('notify', ['channel' => $channel_name]),
             'return_url'    => $this->Router->generateUrl('return', ['channel' => $channel_name]),
+            'third_part'    => $TradePayThirdPartEntity->getSendData(),
         ]));
 
         /**

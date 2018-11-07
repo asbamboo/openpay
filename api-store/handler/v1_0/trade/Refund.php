@@ -15,8 +15,6 @@ use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\model\tradeRefund\TradeRefundRespository;
 use asbamboo\openpay\model\tradeRefund\TradeRefundManager;
 use asbamboo\openpay\Constant;
-use asbamboo\openpay\channel\v1_0\trade\RefundInterface;
-use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Response;
 use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Request AS RequestByChannel;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRespository;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartManager;
@@ -121,10 +119,10 @@ class Refund implements ApiClassInterface
     public function exec(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
     {
         $TradePayEntity = null;
-        if(strlen((string)$Params->getOutTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRespository->loadByOutTradeNo($Params->getOutTradeNo());
-        }elseif(strlen((string)$Params->getInTradeNo()) > 0){
+        if(strlen((string)$Params->getInTradeNo()) > 0){
             $TradePayEntity = $this->TradePayRespository->load($Params->getInTradeNo());
+        }elseif(strlen((string)$Params->getOutTradeNo()) > 0){
+            $TradePayEntity = $this->TradePayRespository->loadByOutTradeNo($Params->getOutTradeNo());
         }
         if(empty($TradePayEntity)){
             throw new TradeRefundNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');
@@ -140,10 +138,10 @@ class Refund implements ApiClassInterface
         /**
          * 发起第三方渠道请求
          * 如果退款已经成功的话，不要再向第三方渠道发请求
-         * @var RefundInterface $Channel
-         * @var Response $ChannelResponse
+         * @var \asbamboo\openpay\channel\v1_0\trade\RefundInterface $Channel
+         * @var \asbamboo\openpay\channel\v1_0\trade\RefundParameter\Response $ChannelResponse
          */
-        if($TradeRefundEntity->getStatus() != Constant::TRADE_REFUND_STATUS_SUCCESS){
+       if($TradeRefundEntity->getStatus() != Constant::TRADE_REFUND_STATUS_SUCCESS){
             $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartRespository->findOneByInRefundNo($TradeRefundEntity->getInRefundNo());
             if(empty($TradeRefundThirdPartEntity)){
                 $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartManager->insert($TradeRefundEntity, $Params->getThirdPart());
