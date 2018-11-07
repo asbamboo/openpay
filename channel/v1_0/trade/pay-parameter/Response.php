@@ -1,6 +1,8 @@
 <?php
 namespace asbamboo\openpay\channel\v1_0\trade\payParameter;
 
+use asbamboo\openpay\exception\OpenpayException;
+
 /**
  * 渠道处理方法处理请求后应该返回的结果
  *
@@ -54,6 +56,9 @@ final class Response
      */
     public function setRedirectType($redirect_type) : self
     {
+        if(!in_array($trade_status, [self::REDIRECT_TYPE_NONE, self::REDIRECT_TYPE_PC, self::REDIRECT_TYPE_QRCD])){
+            throw new OpenpayException('支付需要，页面跳转类型超出有效范围。');
+        }
         $this->redirect_type  = $redirect_type;
         return $this;
     }
