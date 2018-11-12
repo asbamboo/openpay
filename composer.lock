@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "917518fd3aeec3b2b9a4c60e451c156b",
+    "content-hash": "48c4511f5238732a916f00a3cedfd548",
     "packages": [
         {
             "name": "asbamboo/api",
@@ -544,12 +544,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "31add665194a9e834e936ca21c7dc4b129d6c0ec"
+                "reference": "8005be8abe3ad9e251f9202e7373feb24dc19d3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/31add665194a9e834e936ca21c7dc4b129d6c0ec",
-                "reference": "31add665194a9e834e936ca21c7dc4b129d6c0ec",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/8005be8abe3ad9e251f9202e7373feb24dc19d3b",
+                "reference": "8005be8abe3ad9e251f9202e7373feb24dc19d3b",
                 "shasum": ""
             },
             "require": {
@@ -572,7 +572,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.9.x-dev"
+                    "dev-master": "2.10.x-dev"
                 }
             },
             "autoload": {
@@ -617,7 +617,7 @@
                 "doctrine",
                 "php"
             ],
-            "time": "2018-10-19T05:32:45+00:00"
+            "time": "2018-11-11T11:23:21+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -625,12 +625,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "88b80bf35068e3f29cbe0e03c351bd9320ca0728"
+                "reference": "ff6cbdbca6b8bde0bc54e1e13836f9b75782a50d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/88b80bf35068e3f29cbe0e03c351bd9320ca0728",
-                "reference": "88b80bf35068e3f29cbe0e03c351bd9320ca0728",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ff6cbdbca6b8bde0bc54e1e13836f9b75782a50d",
+                "reference": "ff6cbdbca6b8bde0bc54e1e13836f9b75782a50d",
                 "shasum": ""
             },
             "require": {
@@ -699,7 +699,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2018-11-04T23:25:53+00:00"
+            "time": "2018-11-12T04:27:47+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -965,12 +965,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "01cff97edae8d7d80cc8fb3ac6804cdb7cf9a4d5"
+                "reference": "62fb493e5f394caa07e0eb255a60205a1a27f4b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/01cff97edae8d7d80cc8fb3ac6804cdb7cf9a4d5",
-                "reference": "01cff97edae8d7d80cc8fb3ac6804cdb7cf9a4d5",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/62fb493e5f394caa07e0eb255a60205a1a27f4b9",
+                "reference": "62fb493e5f394caa07e0eb255a60205a1a27f4b9",
                 "shasum": ""
             },
             "require": {
@@ -1039,20 +1039,20 @@
                 "database",
                 "orm"
             ],
-            "time": "2018-09-23T05:10:33+00:00"
+            "time": "2018-11-11T22:31:23+00:00"
         },
         {
             "name": "doctrine/persistence",
-            "version": "v1.0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "af1ec238659a83e320f03e0e454e200f689b4b97"
+                "reference": "01c5f07bc091787b552d73669808defa7545720a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/af1ec238659a83e320f03e0e454e200f689b4b97",
-                "reference": "af1ec238659a83e320f03e0e454e200f689b4b97",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/01c5f07bc091787b552d73669808defa7545720a",
+                "reference": "01c5f07bc091787b552d73669808defa7545720a",
                 "shasum": ""
             },
             "require": {
@@ -1064,10 +1064,10 @@
                 "php": "^7.1"
             },
             "conflict": {
-                "doctrine/common": "<2.9@dev"
+                "doctrine/common": "<2.10@dev"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^4.0",
+                "doctrine/coding-standard": "^5.0",
                 "phpstan/phpstan": "^0.8",
                 "phpunit/phpunit": "^7.0"
             },
@@ -1112,12 +1112,16 @@
                     "email": "ocramius@gmail.com"
                 }
             ],
-            "description": "Doctrine Persistence abstractions.",
+            "description": "The Doctrine Persistence project is a set of shared interfaces and functionality that the different Doctrine object mappers share.",
             "homepage": "https://doctrine-project.org/projects/persistence.html",
             "keywords": [
+                "mapper",
+                "object",
+                "odm",
+                "orm",
                 "persistence"
             ],
-            "time": "2018-07-12T12:37:50+00:00"
+            "time": "2018-10-30T09:30:58+00:00"
         },
         {
             "name": "doctrine/reflection",
@@ -1253,12 +1257,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "0a26a2eadf8d06b48074daae9ce7e208d690e151"
+                "reference": "7b2dc3ee659453b97bf2f6e887fc036475389a49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/0a26a2eadf8d06b48074daae9ce7e208d690e151",
-                "reference": "0a26a2eadf8d06b48074daae9ce7e208d690e151",
+                "url": "https://api.github.com/repos/symfony/console/zipball/7b2dc3ee659453b97bf2f6e887fc036475389a49",
+                "reference": "7b2dc3ee659453b97bf2f6e887fc036475389a49",
                 "shasum": ""
             },
             "require": {
@@ -1314,7 +1318,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-31T10:56:31+00:00"
+            "time": "2018-11-11T19:52:12+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -1507,12 +1511,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "7228a3e2163ab5623231f126cf8d7701072f9d16"
+                "reference": "c41175c801e3edfda90f32e292619d10c27103d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/7228a3e2163ab5623231f126cf8d7701072f9d16",
-                "reference": "7228a3e2163ab5623231f126cf8d7701072f9d16",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/c41175c801e3edfda90f32e292619d10c27103d7",
+                "reference": "c41175c801e3edfda90f32e292619d10c27103d7",
                 "shasum": ""
             },
             "require": {
@@ -1558,7 +1562,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T16:38:08+00:00"
+            "time": "2018-11-11T19:52:12+00:00"
         }
     ],
     "packages-dev": [
@@ -2185,12 +2189,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9754efc737a576523e97e496346dd7accdabb6e2"
+                "reference": "0057bca9f0292519cb3eb01a62cbc70b9c0667ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9754efc737a576523e97e496346dd7accdabb6e2",
-                "reference": "9754efc737a576523e97e496346dd7accdabb6e2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0057bca9f0292519cb3eb01a62cbc70b9c0667ee",
+                "reference": "0057bca9f0292519cb3eb01a62cbc70b9c0667ee",
                 "shasum": ""
             },
             "require": {
@@ -2261,7 +2265,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-11-06T20:49:12+00:00"
+            "time": "2018-11-08T11:40:33+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2919,9 +2923,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "phpunit/phpunit": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
