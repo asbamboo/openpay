@@ -19,6 +19,8 @@ use asbamboo\database\FactoryInterface;
 use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
 use asbamboo\openpay\channel\v1_0\trade\payParameter\Response;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
+use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse;
+use asbamboo\openpay\Constant;
 
 /**
  * @name 交易支付
@@ -140,10 +142,23 @@ class Pay implements ApiClassInterface
         /**
          * 扫二维码支付时应该有的响应结果
          */
-        if($ChannelResponse->getRedirectType() == $ChannelResponse::REDIRECT_TYPE_QRCD && $ChannelResponse->getQrCode()){
+        if($ChannelResponse->getRedirectType() == Response::REDIRECT_TYPE_QRCD && $ChannelResponse->getQrCode()){
             $ApiResponseParams  = $this->makeQrCodeResponse($ChannelResponse);
-        }else if($ChannelResponse->getRedirectType() == $ChannelResponse::REDIRECT_TYPE_PC && $ChannelResponse->getRedirectData()){
+        }elseif($ChannelResponse->getRedirectType() == Response::REDIRECT_TYPE_PC && $ChannelResponse->getRedirectData()){
             $ApiResponseParams  = $this->makePcResponse($ChannelResponse);
+        }else{
+            $ApiResponseParams  = new PayResponse([
+                'channel'       => $TradePayEntity->getChannel(),
+                'in_trade_no'   => $TradePayEntity->getInTradeNo(),
+                'title'         => $TradePayEntity->getTitle(),
+                'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
+                'total_fee'     => $TradePayEntity->getTotalFee(),
+                'client_ip'     => $TradePayEntity->getClientIp(),
+                'trade_status'  => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
+                'payok_ymdhis'  => '',
+                'payed_ymdhis'  => '',
+                'cancel_ymdhis' => '',
+            ]);
         }
 
 

@@ -119,7 +119,7 @@ class Cancel implements ApiClassInterface
             'out_trade_no'      => $TradePayEntity->getOutTradeNo(),
             'total_fee'         => $TradePayEntity->getTotalFee(),
             'client_ip'         => $TradePayEntity->getClientIp(),
-            'trade_status'      => $TradePayEntity->getTradeStatus(),
+            'trade_status'      => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
             'cancel_ymdhis'     => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
         ]);
     }
