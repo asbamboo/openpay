@@ -162,7 +162,7 @@ class PayNotify
             }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYED){
                 $this->TradePayManager->updateTradeStatusToPayed($TradePayEntity, $third_trade_no);
                 //支付取消（不可退款）
-            }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCLE){
+            }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
                 $this->TradePayManager->updateTradeStatusToCancel($TradePayEntity, $third_trade_no);
             }
         }

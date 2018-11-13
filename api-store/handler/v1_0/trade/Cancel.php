@@ -95,7 +95,7 @@ class Cancel implements ApiClassInterface
          * @var \asbamboo\openpay\channel\v1_0\trade\CancelInterface $Channel
          * @var \asbamboo\openpay\channel\v1_0\trade\cancelParameter\Response $ChannelResponse
          */
-        if($TradePayEntity->getTradeStatus() != Constant::TRADE_PAY_TRADE_STATUS_CANCLE){
+        if($TradePayEntity->getTradeStatus() != Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
 
             $TradePayThirdPartEntity    = $this->TradePayThirdPartRespository->findOneByInTradeNo($TradePayEntity->getInTradeNo());
             $channel_name               = $TradePayEntity->getChannel();

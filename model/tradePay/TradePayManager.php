@@ -107,6 +107,9 @@ class TradePayManager
 
         $this->validateUpdateTradeStatusToPayed($TradePayEntity);
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYED);
+        if(empty($TradePayEntity->getPayokTime())){
+            $TradePayEntity->setPayokTime(time());
+        }
         $TradePayEntity->setPayedTime(time());
         $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
 
@@ -126,7 +129,7 @@ class TradePayManager
         }
 
         $this->validateUpdateTradeStatusToCancel($TradePayEntity);
-        $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_CANCLE);
+        $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_CANCEL);
         $TradePayEntity->setCancelTime(time());
         $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
 
