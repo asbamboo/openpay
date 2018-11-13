@@ -6,7 +6,13 @@ use asbamboo\openpay\channel\ChannelInterface;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Cancel;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Query;
+use asbamboo\openpay\apiStore\handler\v1_0\trade\Refund;
 
+/**
+ *
+ * @author 李春寅 <licy2013@aliyun.com>
+ * @since 2018年11月13日
+ */
 class ChannelManager implements ChannelManagerInterface
 {
     /**
@@ -30,6 +36,7 @@ class ChannelManager implements ChannelManagerInterface
                 'TEST_QUERY_PAYED'      => ['QUERY_PAYED', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\QueryPayed())],
                 'TEST_QUERY_PAYOK'      => ['QUERY_PAYOK', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\QueryPayok())],
             ],
+            Refund::class               => ['TEST' => ['测试', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\Refund())]],
         ][$handler_class];
     }
 
