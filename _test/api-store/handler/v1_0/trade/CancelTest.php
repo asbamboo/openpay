@@ -127,7 +127,7 @@ class CancelTest extends TestCase
                 $this->assertEquals($out_trade_no, $response_array['out_trade_no']);
                 $this->assertEquals($total_fee, $response_array['total_fee']);
                 $this->assertEquals($ip, $response_array['client_ip']);
-                $this->assertEquals(Constant::getTradePayTradeStatusNames()[Constant::TRADE_PAY_TRADE_STATUS_CANCLE], $response_array['trade_status']);
+                $this->assertEquals(Constant::getTradePayTradeStatusNames()[Constant::TRADE_PAY_TRADE_STATUS_CANCEL], $response_array['trade_status']);
                 $this->assertNotEmpty($response_array['cancel_ymdhis']);
                 throw new RollbackException('rollback');
             });
@@ -176,7 +176,7 @@ class CancelTest extends TestCase
                 $this->assertEquals($out_trade_no, $response_array['out_trade_no']);
                 $this->assertEquals($total_fee, $response_array['total_fee']);
                 $this->assertEquals($ip, $response_array['client_ip']);
-                $this->assertEquals(Constant::getTradePayTradeStatusNames()[Constant::TRADE_PAY_TRADE_STATUS_CANCLE], $response_array['trade_status']);
+                $this->assertEquals(Constant::getTradePayTradeStatusNames()[Constant::TRADE_PAY_TRADE_STATUS_CANCEL], $response_array['trade_status']);
                 $this->assertNotEmpty($response_array['cancel_ymdhis']);
                 throw new RollbackException('rollback');
             });

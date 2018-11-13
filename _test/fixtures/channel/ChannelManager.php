@@ -5,6 +5,7 @@ use asbamboo\openpay\channel\ChannelManagerInterface;
 use asbamboo\openpay\channel\ChannelInterface;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Cancel;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
+use asbamboo\openpay\apiStore\handler\v1_0\trade\Query;
 
 class ChannelManager implements ChannelManagerInterface
 {
@@ -22,7 +23,13 @@ class ChannelManager implements ChannelManagerInterface
                 'TEST_PAY_PC'           => ['测试PC支付', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\PayPc())],
                 'TEST_PAY_QRCD'         => ['测试扫码支付', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\PayQrcd())],
                 'TEST_PAY_NO_REDIRECT'  => ['测试NO_REDIRECT支付', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\PayNoRedirect())],
-            ]
+            ],
+            Query::class                => [
+                'TEST_QUERY'            => ['QUERY', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\Query())],
+                'TEST_QUERY_CANCEL'     => ['QUERY_CANCEL', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\QueryCancel())],
+                'TEST_QUERY_PAYED'      => ['QUERY_PAYED', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\QueryPayed())],
+                'TEST_QUERY_PAYOK'      => ['QUERY_PAYOK', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\QueryPayok())],
+            ],
         ][$handler_class];
     }
 

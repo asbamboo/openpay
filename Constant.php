@@ -34,7 +34,7 @@ final class Constant
     const TRADE_PAY_TRADE_STATUS_PAYOK      = '1';  // 支付成功（可退款）
     const TRADE_PAY_TRADE_STATUS_PAYED      = '2';  // 支付成功（不可退款）
     const TRADE_PAY_TRADE_STATUS_PAYING     = '3';  // 正在支付
-    const TRADE_PAY_TRADE_STATUS_CANCLE     = '4';  // 交易取消（状态不可再变更）
+    const TRADE_PAY_TRADE_STATUS_CANCEL     = '4';  // 交易取消（状态不可再变更）
     const TRADE_PAY_TRADE_STATUS_PAYFAILED  = '9';  // 支付失败
     
     /*
@@ -49,7 +49,7 @@ final class Constant
             static::TRADE_PAY_TRADE_STATUS_PAYOK        => 'PAYOK',
             static::TRADE_PAY_TRADE_STATUS_PAYED        => 'PAYED',
             static::TRADE_PAY_TRADE_STATUS_PAYING       => 'PAYING',
-            static::TRADE_PAY_TRADE_STATUS_CANCLE       => 'CANCLE',
+            static::TRADE_PAY_TRADE_STATUS_CANCEL       => 'CANCLE',
             static::TRADE_PAY_TRADE_STATUS_PAYFAILED    => 'PAYFAILED',
         ];     
     }

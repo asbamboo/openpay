@@ -85,7 +85,7 @@ class Query implements ApiClassInterface
         * @var QueryInterface $Channel
         * @var Response $ChannelResponse
         */
-        if(!in_array($TradePayEntity->getTradeStatus() , [Constant::TRADE_PAY_TRADE_STATUS_PAYOK, Constant::TRADE_PAY_TRADE_STATUS_PAYED, Constant::TRADE_PAY_TRADE_STATUS_CANCLE])){
+        if(!in_array($TradePayEntity->getTradeStatus() , [Constant::TRADE_PAY_TRADE_STATUS_PAYOK, Constant::TRADE_PAY_TRADE_STATUS_PAYED, Constant::TRADE_PAY_TRADE_STATUS_CANCEL])){
             $channel_name       = $TradePayEntity->getChannel();
             $Channel            = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
             $ChannelResponse    = $Channel->execute(new RequestByChannel([
@@ -101,7 +101,7 @@ class Query implements ApiClassInterface
                 $this->TradePayManager->updateTradeStatusToPayed($TradePayEntity, $ChannelResponse->getThirdTradeNo());
                 $this->Db->getManager()->flush();
                 //支付取消（不可退款）
-            }else if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCLE){
+            }else if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
                 $this->TradePayManager->updateTradeStatusToCancel($TradePayEntity, $ChannelResponse->getThirdTradeNo());
                 $this->Db->getManager()->flush();
             }

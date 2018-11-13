@@ -64,7 +64,7 @@ final class NotifyResult
     public function setTradeStatus($trade_status) : self
     {
         if(!in_array($trade_status, [
-            Constant::TRADE_PAY_TRADE_STATUS_CANCLE,
+            Constant::TRADE_PAY_TRADE_STATUS_CANCEL,
             Constant::TRADE_PAY_TRADE_STATUS_NOPAY,
             Constant::TRADE_PAY_TRADE_STATUS_PAYED,
             Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED,
