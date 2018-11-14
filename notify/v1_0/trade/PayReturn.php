@@ -76,14 +76,11 @@ class PayReturn extends PayNotify
             }
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
             $Response->getBody()->write($NotifyResult->getResponseFailed());
-        }catch(\Throwable $e){
-            var_dump((string) $e);
-            exit;
         }finally{
             return $Response;
         }
     }
-    
+
     /**
      * 更新数据状态
      *
@@ -95,7 +92,7 @@ class PayReturn extends PayNotify
         $in_trade_no    = $NotifyResult->getInTradeNo();
         $third_trade_no = $NotifyResult->getThirdTradeNo();
         $TradePayEntity = $this->TradePayRespository->load($in_trade_no);
-        
+
         /*
          * 修改数据状态
          */
