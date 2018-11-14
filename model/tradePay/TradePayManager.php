@@ -170,7 +170,7 @@ class TradePayManager
     private function validateUpdateTradeStatusToPayed(TradePayEntity $TradePayEntity) : void
     {
         $this->validateThirdTradeNo($TradePayEntity->getThirdTradeNo());
-        if(!in_array($TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING, Constant::TRADE_PAY_TRADE_STATUS_PAYED ])){
+        if(!in_array($TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
             throw new TradePayTradeStatusInvalidException('当前交易状态不允许被修改成支付成功[不可退款].');
         }
     }
