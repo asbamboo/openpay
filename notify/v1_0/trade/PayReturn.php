@@ -69,13 +69,20 @@ class PayReturn extends PayNotify
                     {
                         return $this->data;
                     }
+
+                    protected function getRedirectType() : string
+                    {
+                        return self::REDIRECT_TYPE_GET_REQUEST;
+                    }
                 };
                 $Response   = $ApiResponseRedirectParams->makeRedirectResponse();
             }else{
                 $Response->getBody()->write($NotifyResult->getResponseSuccess());
+                $Response->getBody()->rewind();
             }
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
             $Response->getBody()->write($NotifyResult->getResponseFailed());
+            $Response->getBody()->rewind();
         }finally{
             return $Response;
         }

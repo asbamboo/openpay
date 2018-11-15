@@ -14,7 +14,6 @@ use asbamboo\router\Router;
 use asbamboo\router\Route;
 use asbamboo\database\Factory;
 use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
-use asbamboo\api\apiStore\ApiResponseRedirectParams;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\openpay\Constant;
 

@@ -10,7 +10,6 @@ use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
 use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\model\tradePay\TradePayRespository;
 use asbamboo\http\ServerRequest;
-use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\Constant;
 
 /**
