@@ -36,12 +36,12 @@ class PayPc implements PayInterface
     public function notify(ServerRequestInterface $Request) : NotifyResult
     {
         $NotifyResult = new NotifyResult();
-        $NotifyResult->setInTradeNo($Request->getRequestParams('in_trade_no'));
+        $NotifyResult->setInTradeNo($Request->getRequestParam('in_trade_no'));
         $NotifyResult->setResponseSuccess('SUCCESS');
         $NotifyResult->setResponseFailed('FAILED');
         $NotifyResult->setThirdPart('third_part_data');
         $NotifyResult->setThirdTradeNo('third_trade_no');
-        $NotifyResult->setTradeStatus($Request->getRequestParams('test_pay_status'));
+        $NotifyResult->setTradeStatus($Request->getRequestParam('test_pay_status'));
         return $NotifyResult;
     }
 
