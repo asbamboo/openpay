@@ -18,7 +18,12 @@ use asbamboo\openpay\apiStore\exception\TradeCancelNotAllowedException;
 use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 
 /**
- * 测试支付取消接口
+ * - 参数没有时抛出异常。
+ * - out_trade_no无效，并且没有传入in_trade_no抛出异常
+ * - in_trade_no无效时抛出异常
+ * - out_trade_no 和 in_trade_no同时传入时优先使用in_trade_no
+ * - 使用out_trade_no取消订单
+ * - 使用in_trade_no取消订单
  *
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年11月12日
@@ -85,6 +90,7 @@ class CancelTest extends TestCase
                 'in_trade_no'   => $in_trade_no,
             ]);
             $Handler->exec($Request);
+            throw new RollbackException('rollback');
         });
     }
 

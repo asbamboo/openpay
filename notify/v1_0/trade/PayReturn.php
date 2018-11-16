@@ -69,21 +69,25 @@ class PayReturn extends PayNotify
                     {
                         return $this->data;
                     }
+
+                    protected function getRedirectType() : string
+                    {
+                        return self::REDIRECT_TYPE_GET_REQUEST;
+                    }
                 };
                 $Response   = $ApiResponseRedirectParams->makeRedirectResponse();
             }else{
                 $Response->getBody()->write($NotifyResult->getResponseSuccess());
+                $Response->getBody()->rewind();
             }
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
             $Response->getBody()->write($NotifyResult->getResponseFailed());
-        }catch(\Throwable $e){
-            var_dump((string) $e);
-            exit;
+            $Response->getBody()->rewind();
         }finally{
             return $Response;
         }
     }
-    
+
     /**
      * 更新数据状态
      *
@@ -95,7 +99,7 @@ class PayReturn extends PayNotify
         $in_trade_no    = $NotifyResult->getInTradeNo();
         $third_trade_no = $NotifyResult->getThirdTradeNo();
         $TradePayEntity = $this->TradePayRespository->load($in_trade_no);
-        
+
         /*
          * 修改数据状态
          */

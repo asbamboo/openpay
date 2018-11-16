@@ -14,10 +14,21 @@ use asbamboo\router\Router;
 use asbamboo\router\Route;
 use asbamboo\database\Factory;
 use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
-use asbamboo\api\apiStore\ApiResponseRedirectParams;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\openpay\Constant;
 
+/**
+ * - 参数没有时抛出异常。
+ * - out_trade_no无效，并且没有传入in_trade_no抛出异常
+ * - in_trade_no无效时抛出异常
+ * - out_trade_no 和 in_trade_no同时传入时优先使用in_trade_no
+ * - 测试扫码支付
+ * - 测试PC支付
+ * - 测试不跳转页面的支付
+ *
+ * @author 李春寅 <licy2013@aliyun.com>
+ * @since 2018年11月14日
+ */
 class PayTest extends TestCase
 {
     public $request;
@@ -37,39 +48,48 @@ class PayTest extends TestCase
     public function testExecTradePayChannelInvalidException()
     {
         $this->expectException(TradePayChannelInvalidException::class);
-        $Request            = $this->getRequest([
-            'channel'       => 'ChannelInvalidException',
-            'title'         => 'test',
-            'out_trade_no'  => 'test',
-            'total_fee'     => '100',
-            'client_ip'     => '192.168.3.2',
-        ]);
-        $Handler        = $this->getHandler();
-        $Handler->exec($Request);
+        try{
+            $Handler        = $this->getHandler();
+            $this->Db->getManager()->transactional(function()use($Handler){
+                $Request            = $this->getRequest([
+                    'channel'       => 'ChannelInvalidException',
+                    'title'         => 'test',
+                    'out_trade_no'  => 'test',
+                    'total_fee'     => '100',
+                    'client_ip'     => '192.168.3.2',
+                ]);
+                $Handler->exec($Request);
+                throw new RollbackException('rollback exception');
+            });
+        }catch(RollbackException $e){
+            //
+        }
     }
 
     public function testExecPayPc()
     {
         try{
-            $title              = 'testTitle' . mt_rand(0, 9999);
-            $out_trade_no       = 'no' . date('ymdhis') . mt_rand(0, 9999);
-            $total_fee          = mt_rand(0, 9999);
-            $client_ip          = '192.168.3.' . mt_rand(0,255);
-            $Request            = $this->getRequest([
-                'channel'       => 'TEST_PAY_PC',
-                'title'         => $title,
-                'out_trade_no'  => $out_trade_no,
-                'total_fee'     => $total_fee,
-                'client_ip'     => $client_ip,
-                'notify_url'    => 'notify_url',
-                'return_url'    => 'return_url',
-            ]);
             $Handler        = $this->getHandler();
-            $PayResponse    = $Handler->exec($Request);
+            $this->Db->getManager()->transactional(function()use($Handler){
+                $title              = 'testTitle' . mt_rand(0, 9999);
+                $out_trade_no       = 'no' . date('ymdhis') . mt_rand(0, 9999);
+                $total_fee          = mt_rand(0, 9999);
+                $client_ip          = '192.168.3.' . mt_rand(0,255);
+                $Request            = $this->getRequest([
+                    'channel'       => 'TEST_PAY_PC',
+                    'title'         => $title,
+                    'out_trade_no'  => $out_trade_no,
+                    'total_fee'     => $total_fee,
+                    'client_ip'     => $client_ip,
+                    'notify_url'    => 'notify_url',
+                    'return_url'    => 'return_url',
+                ]);
+                $PayResponse    = $Handler->exec($Request);
 
-            $this->assertInstanceOf(ApiResponseRedirectParamsInterface::class, $PayResponse);
-            $this->assertEquals(['data'=>'test'], $PayResponse->getRedirectResponseData());
-            throw new RollbackException('rollback exception');
+                $this->assertInstanceOf(ApiResponseRedirectParamsInterface::class, $PayResponse);
+                $this->assertEquals(['data'=>'test'], $PayResponse->getRedirectResponseData());
+                throw new RollbackException('rollback exception');
+            });
         }catch(RollbackException $e){
             //
         }
@@ -78,25 +98,27 @@ class PayTest extends TestCase
     public function testExecPayQRCD()
     {
         try{
-            $title              = 'testTitle' . mt_rand(0, 9999);
-            $out_trade_no       = 'no' . date('ymdhis') . mt_rand(0, 9999);
-            $total_fee          = mt_rand(0, 9999);
-            $client_ip          = '192.168.3.' . mt_rand(0,255);
-            $Request            = $this->getRequest([
-                'channel'       => 'TEST_PAY_QRCD',
-                'title'         => $title,
-                'out_trade_no'  => $out_trade_no,
-                'total_fee'     => $total_fee,
-                'client_ip'     => $client_ip,
-                'notify_url'    => 'notify_url',
-                'return_url'    => 'return_url',
-            ]);
             $Handler        = $this->getHandler();
-            $PayResponse    = $Handler->exec($Request);
+            $this->Db->getManager()->transactional(function()use($Handler){
+                $title              = 'testTitle' . mt_rand(0, 9999);
+                $out_trade_no       = 'no' . date('ymdhis') . mt_rand(0, 9999);
+                $total_fee          = mt_rand(0, 9999);
+                $client_ip          = '192.168.3.' . mt_rand(0,255);
+                $Request            = $this->getRequest([
+                    'channel'       => 'TEST_PAY_QRCD',
+                    'title'         => $title,
+                    'out_trade_no'  => $out_trade_no,
+                    'total_fee'     => $total_fee,
+                    'client_ip'     => $client_ip,
+                    'notify_url'    => 'notify_url',
+                    'return_url'    => 'return_url',
+                ]);
+                $PayResponse    = $Handler->exec($Request);
 
-            $this->assertInstanceOf(ApiResponseRedirectParamsInterface::class, $PayResponse);
-            $this->assertEquals('qrcode', $PayResponse->getRedirectResponseData()['qr_code']);
-            throw new RollbackException('rollback exception');
+                $this->assertInstanceOf(ApiResponseRedirectParamsInterface::class, $PayResponse);
+                $this->assertEquals('qrcode', $PayResponse->getRedirectResponseData()['qr_code']);
+                throw new RollbackException('rollback exception');
+            });
         }catch(RollbackException $e){
             //
         }
@@ -105,35 +127,37 @@ class PayTest extends TestCase
     public function testExecPayNoRedirect()
     {
         try{
-            $title              = 'testTitle' . mt_rand(0, 9999);
-            $out_trade_no       = 'no' . date('ymdhis') . mt_rand(0, 9999);
-            $total_fee          = mt_rand(0, 9999);
-            $client_ip          = '192.168.3.' . mt_rand(0,255);
-            $Request            = $this->getRequest([
-                'channel'       => 'TEST_PAY_NO_REDIRECT',
-                'title'         => $title,
-                'out_trade_no'  => $out_trade_no,
-                'total_fee'     => $total_fee,
-                'client_ip'     => $client_ip,
-                'notify_url'    => 'notify_url',
-                'return_url'    => 'return_url',
-            ]);
             $Handler        = $this->getHandler();
-            $PayResponse    = $Handler->exec($Request);
-            $response_array = $PayResponse->getObjectVars();
+            $this->Db->getManager()->transactional(function()use($Handler){
+                $title              = 'testTitle' . mt_rand(0, 9999);
+                $out_trade_no       = 'no' . date('ymdhis') . mt_rand(0, 9999);
+                $total_fee          = mt_rand(0, 9999);
+                $client_ip          = '192.168.3.' . mt_rand(0,255);
+                $Request            = $this->getRequest([
+                    'channel'       => 'TEST_PAY_NO_REDIRECT',
+                    'title'         => $title,
+                    'out_trade_no'  => $out_trade_no,
+                    'total_fee'     => $total_fee,
+                    'client_ip'     => $client_ip,
+                    'notify_url'    => 'notify_url',
+                    'return_url'    => 'return_url',
+                ]);
+                $PayResponse    = $Handler->exec($Request);
+                $response_array = $PayResponse->getObjectVars();
 
-            $this->assertEquals('TEST_PAY_NO_REDIRECT', $response_array['channel']);
-            $this->assertNotEmpty($response_array['in_trade_no']);
-            $this->assertEquals($title, $response_array['title']);
-            $this->assertEquals($out_trade_no, $response_array['out_trade_no']);
-            $this->assertEquals($total_fee, $response_array['total_fee']);
-            $this->assertEquals($client_ip, $response_array['client_ip']);
-            $this->assertEquals(Constant::getTradePayTradeStatusNames()[Constant::TRADE_PAY_TRADE_STATUS_NOPAY], $response_array['trade_status']);
-            $this->assertEquals('', $response_array['payok_ymdhis']);
-            $this->assertEquals('', $response_array['payed_ymdhis']);
-            $this->assertEquals('', $response_array['cancel_ymdhis']);
+                $this->assertEquals('TEST_PAY_NO_REDIRECT', $response_array['channel']);
+                $this->assertNotEmpty($response_array['in_trade_no']);
+                $this->assertEquals($title, $response_array['title']);
+                $this->assertEquals($out_trade_no, $response_array['out_trade_no']);
+                $this->assertEquals($total_fee, $response_array['total_fee']);
+                $this->assertEquals($client_ip, $response_array['client_ip']);
+                $this->assertEquals(Constant::getTradePayTradeStatusNames()[Constant::TRADE_PAY_TRADE_STATUS_NOPAY], $response_array['trade_status']);
+                $this->assertEquals('', $response_array['payok_ymdhis']);
+                $this->assertEquals('', $response_array['payed_ymdhis']);
+                $this->assertEquals('', $response_array['cancel_ymdhis']);
 
-            throw new RollbackException('rollback exception');
+                throw new RollbackException('rollback exception');
+            });
         }catch(RollbackException $e){
             //
         }

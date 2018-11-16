@@ -117,8 +117,10 @@ class PayNotify
             }
 
             $Response->getBody()->write($NotifyResult->getResponseSuccess());
+            $Response->getBody()->rewind();
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
             $Response->getBody()->write($NotifyResult->getResponseFailed());
+            $Response->getBody()->rewind();
         }finally{
             return $Response;
         }

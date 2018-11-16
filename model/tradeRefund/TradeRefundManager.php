@@ -97,7 +97,7 @@ class TradeRefundManager
 
         $this->validateUpdateRefundSuccess($TradeRefundEntity);
         $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_SUCCESS);
-        $TradeRefundEntity->getResponseTime(time());
+        $TradeRefundEntity->setResponseTime(time());
 
         return $TradeRefundEntity;
     }
@@ -111,7 +111,7 @@ class TradeRefundManager
     {
         $this->validateUpdateRefundFailed($TradeRefundEntity);
         $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_FAILED);
-        $TradeRefundEntity->getResponseTime(time());
+        $TradeRefundEntity->setResponseTime(time());
 
         return $TradeRefundEntity;
     }
