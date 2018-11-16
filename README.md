@@ -11,7 +11,9 @@ asbamboo\openpay是一个聚合支付工具，它实现了通过一个统一的�
 可以参考 asbamboo\openepay-example 创建 asbamboo\openpay的web程序。
 
 第一步创建composer.json, 声明聚合支付项目依赖的扩展。
+
 注意: 必须配置scripts,post-install-cmd和post-update-cmd将asbamboo\\openpay\\script\\Channel::generateMappingInfo脚本配置为composer install/update 执行后的运行脚本
+
 如,asbamboo\openepay-example的composer.json例子中：安装了asbamboo/openpay-wxpay和asbamboo/openpay-alipay两个扩展
 ```
 {
@@ -46,7 +48,9 @@ asbamboo\openpay是一个聚合支付工具，它实现了通过一个统一的�
 第二步 执行composer install将相关的支付渠道下载到项目中。
 
 第三步 创建web入口文件
+
 web入口文件是一个通过http请求访问的入口。这个入口文件需要载入asbamboo\openpay中的bootsstrap程序，和配置第三方支付渠道扩展需要的参数。
+
 如asbamboo\openepay-example的入口文件：
 ```
 <?php
@@ -93,7 +97,9 @@ require dirname(__DIR__) . '/vendor/asbamboo/openpay/bootstrap.php';
 ```
 
 第四步 启动web程序
+
 在浏览器输入相关的url 127.0.0.1:8000 可以查看调用接口的文档和测试接口的调用
+
 如asbamboo\openepay-example：进入public目录执行
 ```
 php -S 127.0.0.1:8000
@@ -109,7 +115,9 @@ php -S 127.0.0.1:8000
 ## 开发新的扩展
 
 简单来说,目前1.0版本，开发新的第三方支付扩展只需要实现openpay中的四个interface接口。
+
 这四个接口实现的实现说明请参考这几个接口中的注释，和已经开发好的扩展如（asbamboo\openpay-alipay）
+
 * asbamboo\openpay\channel\v1_0\trade\PayInterface.php 创建交易
 * asbamboo\openpay\channel\v1_0\trade\CancelInterface 取消支付
 * asbamboo\openpay\channel\v1_0\trade\QueryInterface 查询交易
@@ -118,6 +126,7 @@ php -S 127.0.0.1:8000
 ## 报告bug或与我交流
 
 加我请备注:asbamboo项目交流
+
 * 我的QQ号: 787211820
 * 我的微信号: lichunyin860302
 * 邮箱：licy2013#aliyun.com 
