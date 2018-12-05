@@ -156,6 +156,7 @@ class Refund implements ApiClassInterface
                 'in_trade_no'   => $TradeRefundEntity->getInTradeNo(),
                 'in_refund_no'  => $TradeRefundEntity->getInRefundNo(),
                 'refund_fee'    => $TradeRefundEntity->getRefundFee(),
+                'trade_pay_fee' => $TradePayEntity->getTotalFee(),
                 'third_part'    => $TradeRefundThirdPartEntity->getSendData(),
             ]));
             if($ChannelResponse->getIsSuccess() == true){
