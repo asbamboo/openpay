@@ -1,5 +1,5 @@
 asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity:
-  type: entity
+  type: mappedSuperclass
   table: tt_trade_pay_third_part
   id:
     seq:
