@@ -1,13 +1,13 @@
 <?php
 namespace asbamboo\openpay\model\tradeRefund;
 
-use asbamboo\database\Factory;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\apiStore\exception\TradeRefundRefundFeeInvalidException;
 use asbamboo\openpay\apiStore\exception\TradeRefundStatusInvalidException;
 use Doctrine\DBAL\LockMode;
 use asbamboo\openpay\apiStore\exception\TradeRefundTradeStatusInvalidException;
+use asbamboo\database\FactoryInterface;
 
 /**
  * 管理TradePayEntity的数据变更
@@ -21,7 +21,7 @@ class TradeRefundManager
 
     /**
      *
-     * @var Factory
+     * @var FactoryInterface
      */
     private $Db;
 
@@ -33,9 +33,9 @@ class TradeRefundManager
 
     /**
      *
-     * @param Factory $Db
+     * @param FactoryInterface $Db
      */
-    public function __construct(Factory $Db, TradeRefundRespository $TradeRefundRespository)
+    public function __construct(FactoryInterface $Db, TradeRefundRespository $TradeRefundRespository)
     {
         $this->Db                       = $Db;
         $this->TradeRefundRespository   = $TradeRefundRespository;

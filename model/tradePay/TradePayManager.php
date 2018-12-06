@@ -1,10 +1,10 @@
 <?php
 namespace asbamboo\openpay\model\tradePay;
 
-use asbamboo\database\Factory;
 use asbamboo\openpay\Constant;
 use Doctrine\DBAL\LockMode;
 use asbamboo\openpay\apiStore\exception\TradePayTradeStatusInvalidException;
+use asbamboo\database\FactoryInterface;
 
 /**
  * 管理TradePayEntity的数据变更
@@ -18,15 +18,15 @@ class TradePayManager
 
     /**
      *
-     * @var Factory
+     * @var FactoryInterface
      */
     private $Db;
 
     /**
      *
-     * @param Factory $Db
+     * @param FactoryInterface $Db
      */
-    public function __construct(Factory $Db)
+    public function __construct(FactoryInterface $Db)
     {
         $this->Db   = $Db;
     }
