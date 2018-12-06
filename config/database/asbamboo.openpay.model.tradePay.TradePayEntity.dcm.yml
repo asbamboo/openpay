@@ -1,6 +1,6 @@
 asbamboo\openpay\model\tradePay\TradePayEntity:
   type: mappedSuperclass
-  table: tt_trade_pay
+  table: t_api_trade_pay
   id:
     seq:
       type: integer
