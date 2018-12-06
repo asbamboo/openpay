@@ -1,8 +1,8 @@
 <?php
 namespace asbamboo\openpay\model\tradePayThirdPart;
 
-use asbamboo\database\Factory;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
+use asbamboo\database\FactoryInterface;
 
 /**
  * 管理TradePayThirdPart的数据变更
@@ -17,15 +17,15 @@ class TradePayThirdPartManager
 
     /**
      *
-     * @var Factory
+     * @var FactoryInterface
      */
     private $Db;
 
     /**
      *
-     * @param Factory $Db
+     * @param FactoryInterface $Db
      */
-    public function __construct(Factory $Db)
+    public function __construct(FactoryInterface $Db)
     {
         $this->Db   = $Db;
     }

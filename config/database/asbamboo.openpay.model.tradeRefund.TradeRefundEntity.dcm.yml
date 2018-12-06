@@ -1,5 +1,5 @@
 asbamboo\openpay\model\tradeRefund\TradeRefundEntity:
-  type: entity
+  type: mappedSuperclass
   table: tt_trade_refund
   id:
     seq:
