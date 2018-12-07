@@ -12,6 +12,6 @@ class AppKeyInvalidException extends ApiException
 {
     public function __construct(string $message="App key 无效.", \Exception $previous = null)
     {
-        parent::__construct($message, Code::INVALID_APP_KEY, $previous);
+        parent::__construct($message, Code::APP_KEY_INVALID, $previous);
     }
 }
