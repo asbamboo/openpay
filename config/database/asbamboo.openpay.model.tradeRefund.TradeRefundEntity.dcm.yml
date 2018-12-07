@@ -17,7 +17,7 @@ asbamboo\openpay\model\tradeRefund\TradeRefundEntity:
     out_refund_no:
       unique: true
       type: string
-      length: 32
+      length: 45
       nullable: false
       options:
         default: ''
