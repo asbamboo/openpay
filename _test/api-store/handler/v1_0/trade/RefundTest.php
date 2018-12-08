@@ -227,11 +227,11 @@ class RefundTest extends TestCase
         $this->Db                       = $Db;
 
         $ChannelManager                     = new ChannelManager();
-        $TradePayRepository                = new TradePayRepository($Db);
-        $TradeRefundRepository             = new TradeRefundRepository($Db);
+        $TradePayRepository                 = new TradePayRepository($Db);
+        $TradeRefundRepository              = new TradeRefundRepository($Db);
         $TradeRefundManager                 = new TradeRefundManager($Db, $TradeRefundRepository);
-        $TradeRefundThirdPartRepository    = new TradeRefundThirdPartRepository($Db);
-        $TradeRefundThirdPartManager        = new TradeRefundThirdPartManager($Db);
+        $TradeRefundThirdPartRepository     = new TradeRefundThirdPartRepository($Db);
+        $TradeRefundThirdPartManager        = new TradeRefundThirdPartManager($Db, $TradeRefundThirdPartRepository);
         $ChannelHandler                     = new Refund(
             $ChannelManager,
             $Db,

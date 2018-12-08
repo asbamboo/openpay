@@ -9,6 +9,8 @@ use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartManager;
 use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
+use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
 
 /**
  * - 测试insert
@@ -62,14 +64,17 @@ class TradePayThirdPartManagerTest extends TestCase
         $client_ip          = mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255);
         $notify_url         = 'notify_url' . mt_rand(0, 999);
         $return_url         = 'return_url' . mt_rand(0, 999);
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayEntity     = new TradePayEntity();
-        $TradePayManager->load($TradePayEntity)->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load();
+        $TradePayManager->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        static::$Db->getManager()->flush();
 
-        $send_data                  = json_encode('send_data' . mt_rand(0, 999));
-        $TradePayThirdPartManager   = new TradePayThirdPartManager(static::$Db);
-        $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
-        $TradePayThirdPartManager->load($TradePayThirdPartEntity)->insert($TradePayEntity, $send_data);
+        $send_data                      = json_encode('send_data' . mt_rand(0, 999));
+        $TradePayThirdPartRepository    = new TradePayThirdPartRepository(static::$Db);
+        $TradePayThirdPartManager       = new TradePayThirdPartManager(static::$Db, $TradePayThirdPartRepository);
+        $TradePayThirdPartEntity        = $TradePayThirdPartManager->load($TradePayEntity->getInTradeNo());
+        $TradePayThirdPartManager->insert($TradePayEntity, $send_data);
 
         $this->assertEquals($TradePayEntity->getInTradeNo(), $TradePayThirdPartEntity->getInTradeNo());
         $this->assertEquals($send_data, $TradePayThirdPartEntity->getSendData());

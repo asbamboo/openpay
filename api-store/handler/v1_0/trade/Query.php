@@ -94,15 +94,18 @@ class Query implements ApiClassInterface
             ]));
             //支付成功（可退款）
             if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayok($ChannelResponse->getThirdTradeNo());
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToPayok($ChannelResponse->getThirdTradeNo());
                 $this->Db->getManager()->flush();
                 //支付成功（不可退款）
             }else if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYED){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayed($ChannelResponse->getThirdTradeNo());
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToPayed($ChannelResponse->getThirdTradeNo());
                 $this->Db->getManager()->flush();
                 //支付取消（不可退款）
             }else if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToCancel($ChannelResponse->getThirdTradeNo());
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToCancel($ChannelResponse->getThirdTradeNo());
                 $this->Db->getManager()->flush();
             }
         }

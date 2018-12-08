@@ -9,6 +9,7 @@ use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\apiStore\exception\TradePayTradeStatusInvalidException;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 
 /**
  * - 测试创建支付交易
@@ -66,9 +67,10 @@ class TradePayManagerTest extends TestCase
         $notify_url         = 'notify_url' . mt_rand(0, 999);
         $return_url         = 'return_url' . mt_rand(0, 999);
 
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayEntity     = new TradePayEntity();
-        $TradePayManager->load($TradePayEntity)->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load();
+        $TradePayManager->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
 
         $this->assertEquals('0', $TradePayEntity->getCancelTime());
         $this->assertEquals($channel, $TradePayEntity->getChannel());
@@ -83,7 +85,7 @@ class TradePayManagerTest extends TestCase
         $this->assertEquals($title, $TradePayEntity->getTitle());
         $this->assertEquals($total_fee, $TradePayEntity->getTotalFee());
         $this->assertEquals(Constant::TRADE_PAY_TRADE_STATUS_NOPAY, $TradePayEntity->getTradeStatus());
-
+        static::$Db->getManager()->flush();
         return $TradePayEntity;
     }
 
@@ -94,8 +96,10 @@ class TradePayManagerTest extends TestCase
     {
         $third_trade_no     = 'third_trade_no' . mt_rand(0, 999);
 
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayManager->load($TradePayEntity)->updateTradeStatusToPayok($third_trade_no);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load($TradePayEntity->getInTradeNo());
+        $TradePayManager->updateTradeStatusToPayok($third_trade_no);
 
         $this->assertEquals($third_trade_no, $TradePayEntity->getThirdTradeNo());
         $this->assertEquals(Constant::TRADE_PAY_TRADE_STATUS_PAYOK, $TradePayEntity->getTradeStatus());
@@ -111,8 +115,10 @@ class TradePayManagerTest extends TestCase
     {
         $this->expectException(TradePayTradeStatusInvalidException::class);
         $third_trade_no     = 'third_trade_no' . mt_rand(0, 999);
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayManager->load($TradePayEntity)->updateTradeStatusToPayok($third_trade_no);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load($TradePayEntity->getInTradeNo());
+        $TradePayManager->updateTradeStatusToPayok($third_trade_no);
     }
 
     /**
@@ -129,14 +135,19 @@ class TradePayManagerTest extends TestCase
         $notify_url         = 'notify_url' . mt_rand(0, 999);
         $return_url         = 'return_url' . mt_rand(0, 999);
 
-        $TradePayManager    = new TradePayManager(static::$Db);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
         $TradePayEntity     = new TradePayEntity();
-        $TradePayManager->load($TradePayEntity)->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        $TradePayEntity    = $TradePayManager->load();
+        $TradePayManager->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        static::$Db->getManager()->flush();
 
         $third_trade_no     = 'third_trade_no' . mt_rand(0, 999);
 
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayManager->load($TradePayEntity)->updateTradeStatusToPayed($third_trade_no);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load($TradePayEntity->getInTradeNo());
+        $TradePayManager->updateTradeStatusToPayed($third_trade_no);
 
         $this->assertEquals($third_trade_no, $TradePayEntity->getThirdTradeNo());
         $this->assertEquals(Constant::TRADE_PAY_TRADE_STATUS_PAYED, $TradePayEntity->getTradeStatus());
@@ -154,8 +165,10 @@ class TradePayManagerTest extends TestCase
     {
         $this->expectException(TradePayTradeStatusInvalidException::class);
         $third_trade_no     = 'third_trade_no' . mt_rand(0, 999);
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayManager->load($TradePayEntity)->updateTradeStatusToPayed($third_trade_no);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load($TradePayEntity->getInTradeNo());
+        $TradePayManager->updateTradeStatusToPayed($third_trade_no);
     }
 
     /**
@@ -172,13 +185,17 @@ class TradePayManagerTest extends TestCase
         $notify_url         = 'notify_url' . mt_rand(0, 999);
         $return_url         = 'return_url' . mt_rand(0, 999);
 
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayEntity     = new TradePayEntity();
-        $TradePayManager->load($TradePayEntity)->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load();
+        $TradePayManager->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        static::$Db->getManager()->flush();
 
 
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayManager->load($TradePayEntity)->updateTradeStatusToCancel();
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load($TradePayEntity->getInTradeNo());
+        $TradePayManager->updateTradeStatusToCancel();
 
         $this->assertEquals(Constant::TRADE_PAY_TRADE_STATUS_CANCEL, $TradePayEntity->getTradeStatus());
         $this->assertNotEmpty($TradePayEntity->getCancelTime());
@@ -194,7 +211,9 @@ class TradePayManagerTest extends TestCase
     {
         $this->expectException(TradePayTradeStatusInvalidException::class);
         $third_trade_no     = 'third_trade_no' . mt_rand(0, 999);
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayManager->load($TradePayEntity)->updateTradeStatusToCancel($third_trade_no);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load($TradePayEntity->getInTradeNo());
+        $TradePayManager->updateTradeStatusToCancel($third_trade_no);
     }
 }

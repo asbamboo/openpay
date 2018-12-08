@@ -208,9 +208,9 @@ class CancelTest extends TestCase
         $this->Db                       = $Db;
 
         $ChannelManager                 = new ChannelManager();
-        $TradePayRepository            = new TradePayRepository($Db);
-        $TradePayManager                = new TradePayManager($Db);
-        $TradePayThirdPartRepository   = new TradePayThirdPartRepository($Db);
+        $TradePayRepository             = new TradePayRepository($Db);
+        $TradePayManager                = new TradePayManager($Db, $TradePayRepository);
+        $TradePayThirdPartRepository    = new TradePayThirdPartRepository($Db);
         $Cancel                         = new Cancel($ChannelManager, $Db, $TradePayRepository, $TradePayManager, $TradePayThirdPartRepository);
         return $Cancel;
     }

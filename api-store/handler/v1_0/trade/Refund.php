@@ -121,8 +121,10 @@ class Refund implements ApiClassInterface
         }
         $TradeRefundEntity  = $this->TradeRefundRepository->loadByOutTradeNo($Params->getOutRefundNo());
         if(is_null($TradeRefundEntity)){
-            $TradeRefundEntity  = new TradeRefundEntity();
-            $this->TradeRefundManager->load($TradeRefundEntity)->insert($TradePayEntity, $Params->getOutRefundNo(), $Params->getRefundFee());
+            $TradeRefundEntity  = $this->TradeRefundManager->load();
+            $this->TradeRefundManager->insert($TradePayEntity, $Params->getOutRefundNo(), $Params->getRefundFee());
+        }else{
+            $TradeRefundEntity  = $this->TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
         }
         if($TradeRefundEntity->getRefundFee() != $Params->getRefundFee()){
             throw new TradeRefundRefundFeeInvalidException('一个out_refund_no只能对应一笔退款,当请求失败需要重新请求时,不应该改变退款的金额。');
@@ -137,10 +139,10 @@ class Refund implements ApiClassInterface
        if($TradeRefundEntity->getStatus() != Constant::TRADE_REFUND_STATUS_SUCCESS){
             $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartRepository->findOneByInRefundNo($TradeRefundEntity->getInRefundNo());
             if(empty($TradeRefundThirdPartEntity)){
-                $TradeRefundThirdPartEntity = new TradeRefundThirdPartEntity();
-                $this->TradeRefundThirdPartManager->load($TradeRefundThirdPartEntity)->insert($TradeRefundEntity, $Params->getThirdPart());
+                $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartManager->load($TradeRefundEntity->getInRefundNo());
+                $this->TradeRefundThirdPartManager->insert($TradeRefundEntity, $Params->getThirdPart());
             }
-            $this->TradeRefundManager->load($TradeRefundEntity)->updateRequest();
+            $this->TradeRefundManager->updateRequest();
             $this->Db->getManager()->flush();
 
             $channel_name       = $TradePayEntity->getChannel();
@@ -154,9 +156,9 @@ class Refund implements ApiClassInterface
                 'third_part'    => $TradeRefundThirdPartEntity->getSendData(),
             ]));
             if($ChannelResponse->getIsSuccess() == true){
-                $this->TradeRefundManager->load($TradeRefundEntity)->updateRefundSuccess(strtotime($ChannelResponse->getPayYmdhis()));
+                $this->TradeRefundManager->updateRefundSuccess(strtotime($ChannelResponse->getPayYmdhis()));
             }else{
-                $this->TradeRefundManager->load($TradeRefundEntity)->updateRefundFailed();
+                $this->TradeRefundManager->updateRefundFailed();
             }
 
             $this->Db->getManager()->flush();

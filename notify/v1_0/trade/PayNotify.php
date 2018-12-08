@@ -159,13 +159,16 @@ class PayNotify
         if($TradePayEntity->getTradeStatus() != $NotifyResult->getTradeStatus()){
             //支付成功（可退款）
             if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayok($third_trade_no);
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToPayok($third_trade_no);
                 //支付成功（不可退款）
             }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYED){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayed($third_trade_no);
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToPayed($third_trade_no);
                 //支付取消（不可退款）
             }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToCancel($third_trade_no);
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToCancel($third_trade_no);
             }
         }
         $this->Db->getManager()->flush();

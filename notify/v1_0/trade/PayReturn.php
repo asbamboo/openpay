@@ -105,7 +105,8 @@ class PayReturn extends PayNotify
          */
         if(!in_array($TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_PAYOK, Constant::TRADE_PAY_TRADE_STATUS_PAYED])){
             //支付成功（可退款）
-            $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayok($third_trade_no);
+            $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+            $this->TradePayManager->updateTradeStatusToPayok($third_trade_no);
         }
         $this->Db->getManager()->flush();
         return $TradePayEntity;

@@ -8,6 +8,7 @@ use asbamboo\openpay\apiStore\exception\TradeRefundStatusInvalidException;
 use Doctrine\DBAL\LockMode;
 use asbamboo\openpay\apiStore\exception\TradeRefundTradeStatusInvalidException;
 use asbamboo\database\FactoryInterface;
+use asbamboo\openpay\apiStore\exception\NotFoundTradeRefundException;
 
 /**
  * 管理TradePayEntity的数据变更
@@ -58,19 +59,32 @@ class TradeRefundManager
 
     /**
      *
-     * @param TradeRefundEntity $TradeRefundEntity
-     * @return self
+     * @param string $in_refund_no
+     * @throws NotFoundTradeRefundException
+     * @return TradeRefundEntity
      */
-    public function load(TradeRefundEntity $TradeRefundEntity) : self
+    public function load(string $in_refund_no = null) : TradeRefundEntity
     {
+        if(is_null($in_refund_no)){
+            $TradeRefundEntity  = new TradeRefundEntity();
+        }else{
+            $TradeRefundEntity  = $this->TradeRefundRepository->load($in_refund_no);
+            if(empty($TradeRefundEntity)){
+                throw new NotFoundTradeRefundException('退款不存在。');
+            }
+        }
         $this->TradeRefundEntity = $TradeRefundEntity;
-        return $this;
+        return $this->TradeRefundEntity;
     }
 
     /**
-     * 插入一条数据用
+     *
+     * @param TradePayEntity $TradePayEntity
+     * @param string $out_refund_no
+     * @param int $refund_fee
+     * @return TradeRefundManager
      */
-    public function insert(TradePayEntity $TradePayEntity, $out_refund_no, $refund_fee) : self
+    public function insert(TradePayEntity $TradePayEntity, $out_refund_no, $refund_fee) : TradeRefundManager
     {
         $this->TradeRefundEntity->setOutTradeNo($TradePayEntity->getOutTradeNo());
         $this->TradeRefundEntity->setInTradeNo($TradePayEntity->getInTradeNo());
@@ -85,11 +99,10 @@ class TradeRefundManager
     }
 
     /**
-     * 更新状态后通过渠道发送退款请求
      *
-     * @return TradeRefundEntity
+     * @return TradeRefundManager
      */
-    public function updateRequest() : self
+    public function updateRequest() : TradeRefundManager
     {
         $this->validateUpdateRequest();
         $this->TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_REQUEST);
@@ -101,9 +114,9 @@ class TradeRefundManager
     /**
      *
      * @param int $pay_time
-     * @return TradeRefundEntity
+     * @return TradeRefundManager
      */
-    public function updateRefundSuccess($pay_time) : self
+    public function updateRefundSuccess($pay_time) : TradeRefundManager
     {
         $this->TradeRefundEntity->setPayTime($pay_time);
 
@@ -116,9 +129,9 @@ class TradeRefundManager
 
     /**
      *
-     * @return TradeRefundEntity
+     * @return TradeRefundManager
      */
-    public function updateRefundFailed() : self
+    public function updateRefundFailed() : TradeRefundManager
     {
         $this->validateUpdateRefundFailed();
         $this->TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_FAILED);

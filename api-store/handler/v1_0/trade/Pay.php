@@ -108,9 +108,8 @@ class Pay implements ApiClassInterface
          * @var \asbamboo\openpay\model\tradePay\TradePayEntity $TradePayEntity
          * @var \asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity $TradePayThirdPartEntity;
          */
-        $TradePayEntity             = new TradePayEntity();
-        $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
-        $this->TradePayManager->load($TradePayEntity)->insert(
+        $TradePayEntity             = $this->TradePayManager->load();
+        $this->TradePayManager->insert(
             $Params->getChannel(),
             $Params->getTitle(),
             $Params->getTotalFee(),
@@ -119,7 +118,8 @@ class Pay implements ApiClassInterface
             $Params->getNotifyUrl(),
             $Params->getReturnUrl()
         );
-        $this->TradePayThirdPartManager->load($TradePayThirdPartEntity)->insert($TradePayEntity, $Params->getThirdPart());
+        $TradePayThirdPartEntity    = $this->TradePayThirdPartManager->load($TradePayEntity->getInTradeNo());
+        $this->TradePayThirdPartManager->insert($TradePayEntity, $Params->getThirdPart());
 
         /**
          * 发起第三方渠道请求

@@ -23,6 +23,12 @@ class TradeRefundThirdPartManager
 
     /**
      *
+     * @var TradeRefundThirdPartRepository
+     */
+    protected $TradeRefundThirdPartRepository;
+
+    /**
+     *
      * @var TradeRefundThirdPartEntity
      */
     protected $TradeRefundThirdPartEntity;
@@ -31,26 +37,35 @@ class TradeRefundThirdPartManager
      *
      * @param FactoryInterface $Db
      */
-    public function __construct(FactoryInterface $Db)
+    public function __construct(FactoryInterface $Db, TradeRefundThirdPartRepository $TradeRefundThirdPartRepository)
     {
-        $this->Db   = $Db;
+        $this->Db                               = $Db;
+        $this->TradeRefundThirdPartRepository   = $TradeRefundThirdPartRepository;
     }
 
     /**
      *
-     * @param TradeRefundThirdPartEntity $TradeRefundThirdPartEntity
-     * @return self
+     * @param string $in_refund_no
+     * @return TradeRefundThirdPartEntity
      */
-    public function load(TradeRefundThirdPartEntity $TradeRefundThirdPartEntity) : self
+    public function load(string $in_refund_no = null) : TradeRefundThirdPartEntity
     {
+        if(is_null($in_refund_no)){
+            $TradeRefundThirdPartEntity = new TradeRefundThirdPartEntity();
+        }else{
+            $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartRepository->findOneByInRefundNo($in_refund_no);
+            if(empty($TradeRefundThirdPartEntity)){
+                $TradeRefundThirdPartEntity = new TradeRefundThirdPartEntity();
+            }
+        }
         $this->TradeRefundThirdPartEntity = $TradeRefundThirdPartEntity;
-        return $this;
+        return $this->TradeRefundThirdPartEntity;
     }
 
     /**
      * 添加一条新数据
      */
-    public function insert(TradeRefundEntity $TradeRefundEntity, $send_data) : self
+    public function insert(TradeRefundEntity $TradeRefundEntity, $send_data) : TradeRefundThirdPartManager
     {
         $this->TradeRefundThirdPartEntity->setInRefundNo($TradeRefundEntity->getInRefundNo());
         $this->TradeRefundThirdPartEntity->setSendData($send_data);

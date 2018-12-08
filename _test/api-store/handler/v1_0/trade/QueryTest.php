@@ -298,8 +298,8 @@ class QueryTest extends TestCase
         $this->Db                       = $Db;
 
         $ChannelManager         = new ChannelManager();
-        $TradePayRepository    = new TradePayRepository($Db);
-        $TradePayManager        = new TradePayManager($Db);
+        $TradePayRepository     = new TradePayRepository($Db);
+        $TradePayManager        = new TradePayManager($Db, $TradePayRepository);
         $Query                  = new Query($ChannelManager, $Db, $TradePayRepository, $TradePayManager);
         return $Query;
     }

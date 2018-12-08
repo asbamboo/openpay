@@ -88,8 +88,8 @@ class TradeRefundManagerTest extends TestCase
         $refund_fee             = rand(0, $total_fee);
         $TradeRefundRepository = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
-        $TradeRefundEntity      = new TradeRefundEntity();
-        $TradeRefundManager->load($TradeRefundEntity)->insert($TradePayEntity, $out_refund_no, $refund_fee);
+        $TradeRefundEntity      = $TradeRefundManager->load();
+        $TradeRefundManager->insert($TradePayEntity, $out_refund_no, $refund_fee);
     }
 
     public function testInsertTradeRefundRefundFeeInvalidException1()
@@ -117,8 +117,8 @@ class TradeRefundManagerTest extends TestCase
         $refund_fee             = rand($total_fee+1, 999999);
         $TradeRefundRepository = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
-        $TradeRefundEntity      = new TradeRefundEntity();
-        $TradeRefundManager->load($TradeRefundEntity)->insert($TradePayEntity, $out_refund_no, $refund_fee);
+        $TradeRefundEntity      = $TradeRefundManager->load();
+        $TradeRefundManager->insert($TradePayEntity, $out_refund_no, $refund_fee);
     }
 
     public function testInsertTradeRefundRefundFeeInvalidException2()
@@ -162,8 +162,8 @@ class TradeRefundManagerTest extends TestCase
         $refund_fee             = $total_fee - $refund_fee + 1;
         $TradeRefundRepository = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
-        $TradeRefundEntity      = new TradeRefundEntity();
-        $TradeRefundManager->load($TradeRefundEntity)->insert($TradePayEntity, $out_refund_no, $refund_fee);
+        $TradeRefundEntity      = $TradeRefundManager->load();
+        $TradeRefundManager->insert($TradePayEntity, $out_refund_no, $refund_fee);
     }
 
     public function testInsertOk()
@@ -193,8 +193,8 @@ class TradeRefundManagerTest extends TestCase
         $refund_fee             = $total_fee;
         $TradeRefundRepository = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
-        $TradeRefundEntity      = new TradeRefundEntity();
-        $TradeRefundManager->load($TradeRefundEntity)->insert($TradePayEntity, $out_refund_no, $refund_fee);
+        $TradeRefundEntity      = $TradeRefundManager->load();
+        $TradeRefundManager->insert($TradePayEntity, $out_refund_no, $refund_fee);
 
         $this->assertNotEmpty($TradeRefundEntity->getInRefundNo());
         $this->assertEquals($out_refund_no, $TradeRefundEntity->getOutRefundNo());
@@ -244,7 +244,8 @@ class TradeRefundManagerTest extends TestCase
         $this->expectException(TradeRefundStatusInvalidException::class);
         $TradeRefundRepository = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
-        $TradeRefundManager->load($TradeRefundEntity)->updateRequest($TradeRefundEntity);
+        $TradeRefundEntity      = $TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
+        $TradeRefundManager->updateRequest($TradeRefundEntity);
     }
 
     public function testUpdateRequestOk()
@@ -284,7 +285,8 @@ class TradeRefundManagerTest extends TestCase
 
         $TradeRefundRepository = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
-        $TradeRefundManager->load($TradeRefundEntity)->updateRequest($TradeRefundEntity);
+        $TradeRefundEntity      = $TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
+        $TradeRefundManager->updateRequest($TradeRefundEntity);
 
         $this->assertEquals(Constant::TRADE_REFUND_STATUS_REQUEST, $TradeRefundEntity->getStatus());
         $this->assertNotEmpty($TradeRefundEntity->getRequestTime());
@@ -330,7 +332,8 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
 
         $pay_time               = date('Y-m-d H:i:s', mt_rand(0, 99999999));
-        $TradeRefundManager->load($TradeRefundEntity)->updateRefundSuccess($pay_time);
+        $TradeRefundEntity      = $TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
+        $TradeRefundManager->updateRefundSuccess($pay_time);
     }
 
     public function testUpdateRefundSuccessOk()
@@ -371,7 +374,8 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
 
         $pay_time               = time();
-        $TradeRefundManager->load($TradeRefundEntity)->updateRefundSuccess($pay_time);
+        $TradeRefundEntity      = $TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
+        $TradeRefundManager->updateRefundSuccess($pay_time);
 
         $this->assertEquals(Constant::TRADE_REFUND_STATUS_SUCCESS, $TradeRefundEntity->getStatus());
         $this->assertEquals($pay_time,$TradeRefundEntity->getPayTime());
@@ -414,10 +418,11 @@ class TradeRefundManagerTest extends TestCase
         static::$Db->getManager()->flush();
 
         $this->expectException(TradeRefundStatusInvalidException::class);
-        $TradeRefundRepository = new TradeRefundRepository(static::$Db);
+        $TradeRefundRepository  = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
 
-        $TradeRefundManager->load($TradeRefundEntity)->updateRefundFailed();
+        $TradeRefundEntity      = $TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
+        $TradeRefundManager->updateRefundFailed();
     }
 
     public function testUpdateRefundFailedOk()
@@ -457,7 +462,8 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundRepository = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
 
-        $TradeRefundManager->load($TradeRefundEntity)->updateRefundFailed();
+        $TradeRefundEntity      = $TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
+        $TradeRefundManager->updateRefundFailed();
 
         $this->assertEquals(Constant::TRADE_REFUND_STATUS_FAILED, $TradeRefundEntity->getStatus());
         $this->assertNotEmpty($TradeRefundEntity->getResponseTime());
