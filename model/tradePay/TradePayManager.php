@@ -49,9 +49,9 @@ class TradePayManager
     /**
      *
      * @param TradePayEntity $TradePayEntity
-     * @return self
+     * @return TradePayManager
      */
-    public function load(TradePayEntity $TradePayEntity) : self
+    public function load(TradePayEntity $TradePayEntity) : TradePayManager
     {
         $this->TradePayEntity = $TradePayEntity;
         return $this;
@@ -69,7 +69,7 @@ class TradePayManager
      * @param string $return_url
      * @return TradePayEntity
      */
-    public function insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url) : self
+    public function insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url) : TradePayManager
     {
         $this->TradePayEntity->setChannel($channel);
         $this->TradePayEntity->setTitle($title);
@@ -95,7 +95,7 @@ class TradePayManager
      *
      * @param string $thrid_trade_no
      */
-    public function updateTradeStatusToPayok(string $third_trade_no) : self
+    public function updateTradeStatusToPayok(string $third_trade_no) : TradePayManager
     {
         $this->TradePayEntity->setThirdTradeNo($third_trade_no);
 
@@ -113,7 +113,7 @@ class TradePayManager
      *
      * @param string $third_trade_no
      */
-    public function updateTradeStatusToPayed(string $third_trade_no = null) : self
+    public function updateTradeStatusToPayed(string $third_trade_no = null) : TradePayManager
     {
         if(!is_null($third_trade_no)){
             $this->TradePayEntity->setThirdTradeNo($third_trade_no);
@@ -135,7 +135,7 @@ class TradePayManager
      *
      * @param string $third_trade_no
      */
-    public function updateTradeStatusToCancel(string $third_trade_no = null) : self
+    public function updateTradeStatusToCancel(string $third_trade_no = null) : TradePayManager
     {
         if(!is_null($third_trade_no)){
             $this->TradePayEntity->setThirdTradeNo($third_trade_no);

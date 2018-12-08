@@ -16,13 +16,13 @@ class TradePayThirdPartRepository
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
      * @var EntityRepository
      */
-    private $Repository;
+    protected $Repository;
 
     /**
      *
@@ -35,7 +35,7 @@ class TradePayThirdPartRepository
     }
 
     /**
-     * 
+     *
      * @param string $in_trade_no
      * @return TradePayThirdPartEntity|NULL
      */

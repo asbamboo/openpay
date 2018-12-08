@@ -19,7 +19,7 @@ class TradePayThirdPartManager
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
@@ -68,7 +68,7 @@ class TradePayThirdPartManager
     /**
      * 验证
      */
-    private function validateInsert() : void
+    protected function validateInsert() : void
     {
         $this->validateSendData($this->TradePayThirdPartEntity->getSendData());
     }

@@ -15,7 +15,7 @@ trait TradePayThirdPartValidator
      * @param string $third_part json
      * @throws TradePayThirdPartInvalidException
      */
-    private function validateSendData($third_part)
+    public function validateSendData($third_part)
     {
         if(trim($third_part) === ''){
             return;

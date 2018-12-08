@@ -62,7 +62,7 @@ class TradeRefundThirdPartManager
     /**
      * 验证
      */
-    private function validateInsert() : void
+    protected function validateInsert() : void
     {
         $this->validateSendData($this->TradeRefundThirdPartEntity->getSendData());
     }

@@ -23,19 +23,19 @@ class TradeRefundManager
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
      * @var TradeRefundRepository
      */
-    private $TradeRefundRepository;
+    protected $TradeRefundRepository;
 
     /**
      *
      * @var TradeRefundEntity
      */
-    private $TradeRefundEntity;
+    protected $TradeRefundEntity;
 
     /**
      *
@@ -132,7 +132,7 @@ class TradeRefundManager
      *
      * @param TradePayEntity $TradePayEntity
      */
-    private function validateInsert(TradePayEntity $TradePayEntity) : void
+    protected function validateInsert(TradePayEntity $TradePayEntity) : void
     {
         if($TradePayEntity->getTradeStatus() != Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
             throw new TradeRefundTradeStatusInvalidException('当前订单状态不允许退款.');
@@ -150,7 +150,7 @@ class TradeRefundManager
     /**
      *
      */
-    private function validateUpdateRequest() : void
+    protected function validateUpdateRequest() : void
     {
         if(!in_array($this->TradeRefundEntity->getStatus(), [Constant::TRADE_REFUND_STATUS_FAILED, Constant::TRADE_REFUND_STATUS_REQUEST])){
             throw new TradeRefundStatusInvalidException('只有上一次请求失败, 或者还没有发起退款请求的退款信息能发起退款。');
@@ -161,7 +161,7 @@ class TradeRefundManager
      *
      * @throws TradeRefundStatusInvalidException
      */
-    private function validateUpdateRefundSuccess() : void
+    protected function validateUpdateRefundSuccess() : void
     {
         if(!in_array($this->TradeRefundEntity->getStatus(), [Constant::TRADE_REFUND_STATUS_REQUEST])){
             throw new TradeRefundStatusInvalidException('只有请求中的退款，状态才能修改为成功。');
@@ -172,7 +172,7 @@ class TradeRefundManager
      *
      * @throws TradeRefundStatusInvalidException
      */
-    private function validateUpdateRefundFailed() : void
+    protected function validateUpdateRefundFailed() : void
     {
         if(!in_array($this->TradeRefundEntity->getStatus(), [Constant::TRADE_REFUND_STATUS_REQUEST])){
             throw new TradeRefundStatusInvalidException('只有请求中的退款，状态才能修改为失败。');
