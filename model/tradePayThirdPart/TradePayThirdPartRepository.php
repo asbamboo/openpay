@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\model\tradePay;
+namespace asbamboo\openpay\model\tradePayThirdPart;
 
 use asbamboo\database\FactoryInterface;
 use Doctrine\ORM\EntityRepository;
@@ -10,19 +10,19 @@ use Doctrine\ORM\EntityRepository;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年11月1日
  */
-class TradePayRespository
+class TradePayThirdPartRepository
 {
     /**
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
      * @var EntityRepository
      */
-    private $Repository;
+    protected $Repository;
 
     /**
      *
@@ -31,26 +31,16 @@ class TradePayRespository
     public function __construct(FactoryInterface $Db)
     {
         $this->Db           = $Db;
-        $this->Repository   = $this->Db->getManager()->getRepository(TradePayEntity::class);
+        $this->Repository   = $this->Db->getManager()->getRepository(TradePayThirdPartEntity::class);
     }
 
     /**
      *
      * @param string $in_trade_no
-     * @return TradePayEntity|NULL
+     * @return TradePayThirdPartEntity|NULL
      */
-    public function load(string $in_trade_no) : ?TradePayEntity
+    public function findOneByInTradeNo(string $in_trade_no) : ?TradePayThirdPartEntity
     {
         return $this->Repository->findOneBy(['in_trade_no' => $in_trade_no]);
-    }
-    
-    /**
-     * 
-     * @param string $out_trade_no
-     * @return TradePayEntity|NULL
-     */
-    public function loadByOutTradeNo(string $out_trade_no) : ?TradePayEntity
-    {
-        return $this->Repository->findOneBy(['out_trade_no' => $out_trade_no]);
     }
 }

@@ -16,6 +16,8 @@ use asbamboo\database\Factory;
 use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\openpay\Constant;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
+use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
 
 /**
  * - 参数没有时抛出异常。
@@ -188,8 +190,10 @@ class PayTest extends TestCase
         ->add(new Route('return', 'test-return', function(){}));
 
         $ChannelManager                 = new ChannelManager();
-        $TradePayManager                = new TradePayManager($Db);
-        $TradePayThirdPartManager       = new TradePayThirdPartManager($Db);
+        $TradePayRepository             = new TradePayRepository($Db);
+        $TradePayManager                = new TradePayManager($Db, $TradePayRepository);
+        $TradePayThirdPartRepository    = new TradePayThirdPartRepository($Db);
+        $TradePayThirdPartManager       = new TradePayThirdPartManager($Db, $TradePayThirdPartRepository);
         $Cancel                         = new Pay($ChannelManager, $Db, $TradePayManager, $TradePayThirdPartManager, $Router);
         return $Cancel;
     }

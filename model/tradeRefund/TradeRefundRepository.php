@@ -10,19 +10,19 @@ use Doctrine\ORM\EntityRepository;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年11月1日
  */
-class TradeRefundRespository
+class TradeRefundRepository
 {
     /**
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
      * @var EntityRepository
      */
-    private $Repository;
+    protected $Repository;
 
     /**
      *
@@ -35,7 +35,7 @@ class TradeRefundRespository
     }
 
     /**
-     * 
+     *
      * @param string $in_refund_no
      * @return TradeRefundEntity|NULL
      */
@@ -43,9 +43,9 @@ class TradeRefundRespository
     {
         return $this->Repository->findOneBy(['in_refund_no' => $in_refund_no]);
     }
-    
+
     /**
-     * 
+     *
      * @param string $out_refund_no
      * @return TradeRefundEntity|NULL
      */
@@ -53,10 +53,10 @@ class TradeRefundRespository
     {
         return $this->Repository->findOneBy(['out_refund_no' => $out_refund_no]);
     }
-    
+
     /**
      * 通过一个聚合平台的支付交易单号, 获取与他对应的总的创建的退款金额
-     * 
+     *
      * @param string $in_trade_no
      * @return int
      */
@@ -64,12 +64,12 @@ class TradeRefundRespository
     {
         $QueryBuilder   = $this->Repository->createQueryBuilder('t');
         $andx           = $QueryBuilder->expr()->andX();
-        
+
         $QueryBuilder->select('SUM(t.refund_fee) AS rf');
-        
+
         $andx->add($QueryBuilder->expr()->eq('t.in_trade_no', ':in_trade_no'));
         $QueryBuilder->setParameter('in_trade_no', $in_trade_no);
-        
+
         return (int) $QueryBuilder->where($andx)->getQuery()->getSingleScalarResult();
     }
 }

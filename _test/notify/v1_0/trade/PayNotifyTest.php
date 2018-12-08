@@ -8,7 +8,7 @@ use asbamboo\database\FactoryInterface;
 use asbamboo\database\Connection;
 use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
 use asbamboo\openpay\model\tradePay\TradePayManager;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\http\ServerRequest;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
@@ -93,13 +93,13 @@ class PayNotifyTest extends TestCase
         $client_ip          = mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255);
 
         $ChannelManager             = new ChannelManager();
-        $TradePayManager            = new TradePayManager(static::$Db);
-        $TradePayRespository        = new TradePayRespository(static::$Db);
+        $TradePayRepository         = new TradePayRepository(static::$Db);
+        $TradePayManager            = new TradePayManager(static::$Db, $TradePayRepository);
         $Request                    = new ServerRequest();
-        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
+        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRepository, static::$Db);
 
-        $TradePayEntity             = new TradePayEntity();
-        $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
+        $TradePayEntity             = $TradePayManager->load();
+        $TradePayManager->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
         static::$Db->getManager()->flush($TradePayEntity);
         $_REQUEST['in_trade_no']        = $TradePayEntity->getInTradeNo();
         $_REQUEST['test_pay_status']    = Constant::TRADE_PAY_TRADE_STATUS_PAYOK;
@@ -121,13 +121,14 @@ class PayNotifyTest extends TestCase
         $client_ip          = mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255);
 
         $ChannelManager             = new ChannelManager();
-        $TradePayManager            = new TradePayManager(static::$Db);
-        $TradePayRespository        = new TradePayRespository(static::$Db);
+        $TradePayRepository         = new TradePayRepository(static::$Db);
+        $TradePayManager            = new TradePayManager(static::$Db, $TradePayRepository);
         $Request                    = new ServerRequest();
-        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
+        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRepository, static::$Db);
 
         $TradePayEntity             = new TradePayEntity();
-        $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
+        $TradePayEntity             = $TradePayManager->load();
+        $TradePayManager->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
         static::$Db->getManager()->flush($TradePayEntity);
         $_REQUEST['in_trade_no']        = $TradePayEntity->getInTradeNo();
         $_REQUEST['test_pay_status']    = Constant::TRADE_PAY_TRADE_STATUS_PAYED;
@@ -150,13 +151,13 @@ class PayNotifyTest extends TestCase
         $client_ip          = mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255);
 
         $ChannelManager             = new ChannelManager();
-        $TradePayManager            = new TradePayManager(static::$Db);
-        $TradePayRespository        = new TradePayRespository(static::$Db);
+        $TradePayRepository         = new TradePayRepository(static::$Db);
+        $TradePayManager            = new TradePayManager(static::$Db, $TradePayRepository);
         $Request                    = new ServerRequest();
-        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
+        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRepository, static::$Db);
 
-        $TradePayEntity             = new TradePayEntity();
-        $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
+        $TradePayEntity             = $TradePayManager->load();
+        $TradePayManager->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
         static::$Db->getManager()->flush($TradePayEntity);
         $_REQUEST['in_trade_no']        = $TradePayEntity->getInTradeNo();
         $_REQUEST['test_pay_status']    = Constant::TRADE_PAY_TRADE_STATUS_CANCEL;

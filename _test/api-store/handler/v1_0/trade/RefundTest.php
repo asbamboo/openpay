@@ -7,10 +7,10 @@ use asbamboo\http\ServerRequest;
 use asbamboo\database\Factory;
 use asbamboo\database\Connection;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Refund;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
-use asbamboo\openpay\model\tradeRefund\TradeRefundRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
+use asbamboo\openpay\model\tradeRefund\TradeRefundRepository;
 use asbamboo\openpay\model\tradeRefund\TradeRefundManager;
-use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRespository;
+use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRepository;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartManager;
 use asbamboo\openpay\apiStore\exception\TradeRefundNotFoundInvalidException;
 use asbamboo\openpay\apiStore\exception\TradeRefundRefundFeeInvalidException;
@@ -227,18 +227,18 @@ class RefundTest extends TestCase
         $this->Db                       = $Db;
 
         $ChannelManager                     = new ChannelManager();
-        $TradePayRespository                = new TradePayRespository($Db);
-        $TradeRefundRespository             = new TradeRefundRespository($Db);
-        $TradeRefundManager                 = new TradeRefundManager($Db, $TradeRefundRespository);
-        $TradeRefundThirdPartRespository    = new TradeRefundThirdPartRespository($Db);
-        $TradeRefundThirdPartManager        = new TradeRefundThirdPartManager($Db);
+        $TradePayRepository                 = new TradePayRepository($Db);
+        $TradeRefundRepository              = new TradeRefundRepository($Db);
+        $TradeRefundManager                 = new TradeRefundManager($Db, $TradeRefundRepository);
+        $TradeRefundThirdPartRepository     = new TradeRefundThirdPartRepository($Db);
+        $TradeRefundThirdPartManager        = new TradeRefundThirdPartManager($Db, $TradeRefundThirdPartRepository);
         $ChannelHandler                     = new Refund(
             $ChannelManager,
             $Db,
-            $TradePayRespository,
-            $TradeRefundRespository,
+            $TradePayRepository,
+            $TradeRefundRepository,
             $TradeRefundManager,
-            $TradeRefundThirdPartRespository,
+            $TradeRefundThirdPartRepository,
             $TradeRefundThirdPartManager
         );
         return $ChannelHandler;

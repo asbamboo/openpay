@@ -24,7 +24,7 @@ trait TradePayValidator
      * @param string $payment
      * @throws TradePayChannelInvalidException
      */
-    private function validateChannel($channel)
+    public function validateChannel($channel)
     {
         if(trim($channel) === ''){
             throw new TradePayChannelInvalidException('channel 是必填项。');
@@ -40,7 +40,7 @@ trait TradePayValidator
      * @param string $title
      * @throws TradePayTitleInvalidException
      */
-    private function validateTitle($title)
+    public function validateTitle($title)
     {
         if(trim($title) === ''){
             throw new TradePayTitleInvalidException('title 是必填项。');
@@ -55,7 +55,7 @@ trait TradePayValidator
      * @param number $out_trade_no
      * @throws TradePayOutTradeNoInvalidException
      */
-    private function validateOutTradeNo($out_trade_no)
+    public function validateOutTradeNo($out_trade_no)
     {
         if(trim($out_trade_no) === ''){
             throw new TradePayOutTradeNoInvalidException('out_trade_no 是必填项。');
@@ -71,7 +71,7 @@ trait TradePayValidator
      * @param number $total_fee
      * @throws TradePayTotalFeeInvalidException
      */
-    private function validateTotalFee($total_fee)
+    public function validateTotalFee($total_fee)
     {
         if(trim($total_fee) === ''){
             throw new TradePayTotalFeeInvalidException('total_fee 是必填项。');
@@ -91,7 +91,7 @@ trait TradePayValidator
      * @param string $client_ip
      * @throws TradePayClientIpInvalidException
      */
-    private function validateClientIp($client_ip)
+    public function validateClientIp($client_ip)
     {
         if(trim($client_ip) === ''){
             throw new TradePayClientIpInvalidException('client_ip 是必填项。');
@@ -106,7 +106,7 @@ trait TradePayValidator
      * @param string $notify_url
      * @throws TradePayThirdTradeNoInvalidException
      */
-    private function validateNotifyUrl($notify_url)
+    public function validateNotifyUrl($notify_url)
     {
         if(strlen($notify_url) > 200){
             throw new TradePayNotifyUrlInvalidException('notify_url 长度不能超过200字。');
@@ -118,7 +118,7 @@ trait TradePayValidator
      * @param string $return_url
      * @throws TradePayThirdTradeNoInvalidException
      */
-    private function validateReturnUrl($return_url)
+    public function validateReturnUrl($return_url)
     {
         if(strlen($return_url) > 200){
             throw new TradePayReturnUrlInvalidException('return_url 长度不能超过200字。');
@@ -130,7 +130,7 @@ trait TradePayValidator
      * @param string $third_trade_no
      * @throws TradePayOutTradeNoInvalidException
      */
-    private function validateThirdTradeNo($third_trade_no)
+    public function validateThirdTradeNo($third_trade_no)
     {
         if(strlen($third_trade_no) > 45){
             throw new TradePayThirdTradeNoInvalidException('third_trade_no 长度不能超过45字。');

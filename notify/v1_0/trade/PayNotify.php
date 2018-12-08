@@ -8,7 +8,7 @@ use asbamboo\http\ResponseInterface;
 use asbamboo\http\Response;
 use asbamboo\http\Stream;
 use asbamboo\database\FactoryInterface;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\http\Client;
@@ -46,9 +46,9 @@ class PayNotify
 
     /**
      *
-     * @var TradePayRespository
+     * @var TradePayRepository
      */
-    protected $TradePayRespository;
+    protected $TradePayRepository;
 
     /**
      *
@@ -64,12 +64,12 @@ class PayNotify
         ChannelManagerInterface $ChannelManager,
         ServerRequestInterface $Request,
         TradePayManager $TradePayManager,
-        TradePayRespository $TradePayRespository,
+        TradePayRepository $TradePayRepository,
         FactoryInterface $Db
     ){
         $this->ChannelManager           = $ChannelManager;
         $this->Request                  = $Request;
-        $this->TradePayRespository      = $TradePayRespository;
+        $this->TradePayRepository      = $TradePayRepository;
         $this->TradePayManager          = $TradePayManager;
         $this->Db                       = $Db;
     }
@@ -151,7 +151,7 @@ class PayNotify
     {
         $in_trade_no    = $NotifyResult->getInTradeNo();
         $third_trade_no = $NotifyResult->getThirdTradeNo();
-        $TradePayEntity = $this->TradePayRespository->load($in_trade_no);
+        $TradePayEntity = $this->TradePayRepository->load($in_trade_no);
 
         /*
          * 修改数据状态
@@ -159,13 +159,16 @@ class PayNotify
         if($TradePayEntity->getTradeStatus() != $NotifyResult->getTradeStatus()){
             //支付成功（可退款）
             if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayok($third_trade_no);
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToPayok($third_trade_no);
                 //支付成功（不可退款）
             }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYED){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayed($third_trade_no);
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToPayed($third_trade_no);
                 //支付取消（不可退款）
             }else if($NotifyResult->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToCancel($third_trade_no);
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToCancel($third_trade_no);
             }
         }
         $this->Db->getManager()->flush();

@@ -13,9 +13,9 @@ trait TradeRefundThirdPartValidator
     /**
      *
      * @param string $third_part json
-     * @throws TradeRefundThirdPartInvalidException 
+     * @throws TradeRefundThirdPartInvalidException
      */
-    private function validateSendData($third_part)
+    public function validateSendData($third_part)
     {
         if(trim($third_part) === ''){
             return;

@@ -5,6 +5,7 @@ use asbamboo\openpay\Constant;
 use Doctrine\DBAL\LockMode;
 use asbamboo\openpay\apiStore\exception\TradePayTradeStatusInvalidException;
 use asbamboo\database\FactoryInterface;
+use asbamboo\openpay\apiStore\exception\NotFoundTradePayException;
 
 /**
  * 管理TradePayEntity的数据变更
@@ -30,11 +31,18 @@ class TradePayManager
 
     /**
      *
+     * @var TradePayRepository
+     */
+    protected $TradePayRepository;
+
+    /**
+     *
      * @param FactoryInterface $Db
      */
-    public function __construct(FactoryInterface $Db)
+    public function __construct(FactoryInterface $Db, TradePayRepository $TradePayRepository)
     {
-        $this->Db   = $Db;
+        $this->Db                   = $Db;
+        $this->TradePayRepository   = $TradePayRepository;
     }
 
     /**
@@ -48,13 +56,22 @@ class TradePayManager
 
     /**
      *
-     * @param TradePayEntity $TradePayEntity
-     * @return self
+     * @param string $in_trade_no
+     * @throws NotFoundTradePayException
+     * @return TradePayEntity
      */
-    public function load(TradePayEntity $TradePayEntity) : self
+    public function load(string $in_trade_no = null) : TradePayEntity
     {
+        if(is_null($in_trade_no)){
+            $TradePayEntity = new TradePayEntity();
+        }else{
+            $TradePayEntity = $this->TradePayRepository->load($in_trade_no);
+            if(empty($TradePayEntity)){
+                throw new NotFoundTradePayException('支付交易不存在。');
+            }
+        }
         $this->TradePayEntity = $TradePayEntity;
-        return $this;
+        return $this->TradePayEntity;
     }
 
     /**
@@ -62,14 +79,14 @@ class TradePayManager
      *
      * @param string $channel
      * @param string $title
-     * @param string $total_fee
+     * @param int $total_fee
      * @param string $out_trade_no
      * @param string $client_ip
      * @param string $notify_url
      * @param string $return_url
-     * @return TradePayEntity
+     * @return TradePayManager
      */
-    public function insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url) : self
+    public function insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url) : TradePayManager
     {
         $this->TradePayEntity->setChannel($channel);
         $this->TradePayEntity->setTitle($title);
@@ -93,9 +110,10 @@ class TradePayManager
     /**
      * 交易状态变更为支付成功(可退款)
      *
-     * @param string $thrid_trade_no
+     * @param string $third_trade_no
+     * @return TradePayManager
      */
-    public function updateTradeStatusToPayok(string $third_trade_no) : self
+    public function updateTradeStatusToPayok(string $third_trade_no) : TradePayManager
     {
         $this->TradePayEntity->setThirdTradeNo($third_trade_no);
 
@@ -112,8 +130,9 @@ class TradePayManager
      * 交易状态变更为支付成功(不可退款)
      *
      * @param string $third_trade_no
+     * @return TradePayManager
      */
-    public function updateTradeStatusToPayed(string $third_trade_no = null) : self
+    public function updateTradeStatusToPayed(string $third_trade_no = null) : TradePayManager
     {
         if(!is_null($third_trade_no)){
             $this->TradePayEntity->setThirdTradeNo($third_trade_no);
@@ -134,8 +153,9 @@ class TradePayManager
      * 交易状态变更为取消支付
      *
      * @param string $third_trade_no
+     * @return TradePayManager
      */
-    public function updateTradeStatusToCancel(string $third_trade_no = null) : self
+    public function updateTradeStatusToCancel(string $third_trade_no = null) : TradePayManager
     {
         if(!is_null($third_trade_no)){
             $this->TradePayEntity->setThirdTradeNo($third_trade_no);

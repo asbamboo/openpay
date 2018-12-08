@@ -12,6 +12,9 @@ use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartManager;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
+use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
+use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRepository;
 
 /**
  * - 测试insert方法
@@ -65,14 +68,16 @@ class TradeRefundThirdPartManagerTest extends TestCase
         $client_ip          = mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255);
         $notify_url         = 'notify_url' . mt_rand(0, 999);
         $return_url         = 'return_url' . mt_rand(0, 999);
-        $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayEntity     = new TradePayEntity();
-        $TradePayManager->load($TradePayEntity)->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load();
+        $TradePayManager->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
 
-        $send_data                  = json_encode('send_data' . mt_rand(0, 999));
-        $TradePayThirdPartManager   = new TradePayThirdPartManager(static::$Db);
-        $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
-        $TradePayThirdPartManager->load($TradePayThirdPartEntity)->insert($TradePayEntity, $send_data);
+        $send_data                      = json_encode('send_data' . mt_rand(0, 999));
+        $TradePayThirdPartRepository    = new TradePayThirdPartRepository(static::$Db);
+        $TradePayThirdPartManager       = new TradePayThirdPartManager(static::$Db, $TradePayThirdPartRepository);
+        $TradePayThirdPartEntity        = $TradePayThirdPartManager->load();
+        $TradePayThirdPartManager->insert($TradePayEntity, $send_data);
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -89,9 +94,10 @@ class TradeRefundThirdPartManagerTest extends TestCase
         static::$Db->getManager()->flush();
 
         $send_data                      = json_encode('send_data' . mt_rand(0, 9999));
-        $TradeRefundThirdPartManager    = new TradeRefundThirdPartManager(static::$Db);
-        $TradeRefundThirdPartEntity     = new TradeRefundThirdPartEntity();
-        $TradeRefundThirdPartManager->load($TradeRefundThirdPartEntity)->insert($TradeRefundEntity, $send_data);
+        $TradeRefundThirdPartRepository = new TradeRefundThirdPartRepository(static::$Db);
+        $TradeRefundThirdPartManager    = new TradeRefundThirdPartManager(static::$Db, $TradeRefundThirdPartRepository);
+        $TradeRefundThirdPartEntity     = $TradeRefundThirdPartManager->load();
+        $TradeRefundThirdPartManager->insert($TradeRefundEntity, $send_data);
 
         $this->assertEquals($in_refund_no, $TradeRefundThirdPartEntity->getInRefundNo());
         $this->assertEquals($send_data, $TradeRefundThirdPartEntity->getSendData());

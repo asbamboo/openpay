@@ -19,7 +19,13 @@ class TradePayThirdPartManager
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
+
+    /**
+     *
+     * @var $TradePayThirdPartRepository
+     */
+    protected $TradePayThirdPartRepository;
 
     /**
      *
@@ -31,20 +37,29 @@ class TradePayThirdPartManager
      *
      * @param FactoryInterface $Db
      */
-    public function __construct(FactoryInterface $Db)
+    public function __construct(FactoryInterface $Db, TradePayThirdPartRepository $TradePayThirdPartRepository)
     {
-        $this->Db   = $Db;
+        $this->Db                               = $Db;
+        $this->TradePayThirdPartRepository      = $TradePayThirdPartRepository;
     }
 
     /**
      *
-     * @param TradePayEntity $TradePayEntity
-     * @return self
+     * @param string $in_trade_no
+     * @return TradePayThirdPartEntity
      */
-    public function load(TradePayThirdPartEntity $TradePayThirdPartEntity) : self
+    public function load(string $in_trade_no = null) : TradePayThirdPartEntity
     {
+        if(is_null($in_trade_no)){
+            $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
+        }else{
+            $TradePayThirdPartEntity    = $this->TradePayThirdPartRepository->findOneByInTradeNo($in_trade_no);
+            if(empty($TradePayThirdPartEntity)){
+                $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
+            }
+        }
         $this->TradePayThirdPartEntity = $TradePayThirdPartEntity;
-        return $this;
+        return $this->TradePayThirdPartEntity;
     }
 
     /**
@@ -54,7 +69,7 @@ class TradePayThirdPartManager
      * @param TradePayEntity $TradePayEntity
      * @param string $send_data
      */
-    public function insert(TradePayEntity $TradePayEntity, $send_data) : self
+    public function insert(TradePayEntity $TradePayEntity, $send_data) : TradePayThirdPartManager
     {
         $this->TradePayThirdPartEntity->setInTradeNo($TradePayEntity->getInTradeNo());
         $this->TradePayThirdPartEntity->setSendData($send_data);
@@ -68,7 +83,7 @@ class TradePayThirdPartManager
     /**
      * 验证
      */
-    private function validateInsert() : void
+    protected function validateInsert() : void
     {
         $this->validateSendData($this->TradePayThirdPartEntity->getSendData());
     }

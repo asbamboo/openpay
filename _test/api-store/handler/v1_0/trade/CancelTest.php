@@ -5,9 +5,9 @@ use PHPUnit\Framework\TestCase;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Cancel;
 use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
 use asbamboo\database\Factory;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\openpay\model\tradePay\TradePayManager;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRespository;
+use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
 use asbamboo\database\Connection;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\cancel\CancelRequest;
 use asbamboo\http\ServerRequest;
@@ -208,10 +208,10 @@ class CancelTest extends TestCase
         $this->Db                       = $Db;
 
         $ChannelManager                 = new ChannelManager();
-        $TradePayRespository            = new TradePayRespository($Db);
-        $TradePayManager                = new TradePayManager($Db);
-        $TradePayThirdPartRespository   = new TradePayThirdPartRespository($Db);
-        $Cancel                         = new Cancel($ChannelManager, $Db, $TradePayRespository, $TradePayManager, $TradePayThirdPartRespository);
+        $TradePayRepository             = new TradePayRepository($Db);
+        $TradePayManager                = new TradePayManager($Db, $TradePayRepository);
+        $TradePayThirdPartRepository    = new TradePayThirdPartRepository($Db);
+        $Cancel                         = new Cancel($ChannelManager, $Db, $TradePayRepository, $TradePayManager, $TradePayThirdPartRepository);
         return $Cancel;
     }
 }

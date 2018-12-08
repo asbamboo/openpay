@@ -6,13 +6,13 @@ use asbamboo\api\apiStore\ApiRequestParamsInterface;
 use asbamboo\api\apiStore\ApiResponseParamsInterface;
 use asbamboo\openpay\channel\ChannelManagerInterface;
 use asbamboo\database\FactoryInterface;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\apiStore\exception\TradeCancelNotFoundInvalidException;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\apiStore\exception\TradeCancelNotAllowedException;
 use asbamboo\openpay\channel\v1_0\trade\cancelParameter\Request AS RequestByChannel;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRespository;
+use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\cancel\CancelResponse;
 
 /**
@@ -34,9 +34,9 @@ class Cancel implements ApiClassInterface
 
     /**
      *
-     * @var TradePayRespository
+     * @var TradePayRepository
      */
-    private $TradePayRespository;
+    private $TradePayRepository;
 
     /**
      *
@@ -46,9 +46,9 @@ class Cancel implements ApiClassInterface
 
     /**
      *
-     * @var TradePayThirdPartRespository
+     * @var TradePayThirdPartRepository
      */
-    private $TradePayThirdPartRespository;
+    private $TradePayThirdPartRepository;
 
     /**
      *
@@ -60,12 +60,12 @@ class Cancel implements ApiClassInterface
      *
      * @param ChannelManagerInterface $Client
      */
-    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRespository $TradePayRespository, TradePayManager $TradePayManager, TradePayThirdPartRespository $TradePayThirdPartRespository)
+    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRepository $TradePayRepository, TradePayManager $TradePayManager, TradePayThirdPartRepository $TradePayThirdPartRepository)
     {
         $this->ChannelManager                   = $ChannelManager;
-        $this->TradePayRespository              = $TradePayRespository;
+        $this->TradePayRepository              = $TradePayRepository;
         $this->TradePayManager                  = $TradePayManager;
-        $this->TradePayThirdPartRespository     = $TradePayThirdPartRespository;
+        $this->TradePayThirdPartRepository     = $TradePayThirdPartRepository;
         $this->Db                               = $Db;
     }
 
@@ -78,9 +78,9 @@ class Cancel implements ApiClassInterface
     {
         $TradePayEntity = null;
         if(strlen((string)$Params->getInTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRespository->load($Params->getInTradeNo());
+            $TradePayEntity = $this->TradePayRepository->load($Params->getInTradeNo());
         }elseif(strlen((string)$Params->getOutTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRespository->loadByOutTradeNo($Params->getOutTradeNo());
+            $TradePayEntity = $this->TradePayRepository->loadByOutTradeNo($Params->getOutTradeNo());
         }
         if(empty($TradePayEntity)){
             throw new TradeCancelNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');
@@ -97,7 +97,7 @@ class Cancel implements ApiClassInterface
          */
         if($TradePayEntity->getTradeStatus() != Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
 
-            $TradePayThirdPartEntity    = $this->TradePayThirdPartRespository->findOneByInTradeNo($TradePayEntity->getInTradeNo());
+            $TradePayThirdPartEntity    = $this->TradePayThirdPartRepository->findOneByInTradeNo($TradePayEntity->getInTradeNo());
             $channel_name               = $TradePayEntity->getChannel();
             $Channel                    = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
             $ChannelResponse            = $Channel->execute(new RequestByChannel([
@@ -107,7 +107,8 @@ class Cancel implements ApiClassInterface
             ]));
 
             if($ChannelResponse->getIsSuccess() == true){
-                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToCancel();
+                $TradePayEntity = $this->TradePayManager->load($TradePayEntity->getInTradeNo());
+                $this->TradePayManager->updateTradeStatusToCancel();
                 $this->Db->getManager()->flush();
             }
         }

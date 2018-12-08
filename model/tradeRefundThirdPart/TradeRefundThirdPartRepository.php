@@ -10,19 +10,19 @@ use Doctrine\ORM\EntityRepository;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年11月1日
  */
-class TradeRefundThirdPartRespository
+class TradeRefundThirdPartRepository
 {
     /**
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
      * @var EntityRepository
      */
-    private $Repository;
+    protected $Repository;
 
     /**
      *
@@ -35,7 +35,7 @@ class TradeRefundThirdPartRespository
     }
 
     /**
-     * 
+     *
      * @param string $in_trade_no
      * @return TradeRefundThirdPartEntity|NULL
      */

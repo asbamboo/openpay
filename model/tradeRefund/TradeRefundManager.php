@@ -8,6 +8,7 @@ use asbamboo\openpay\apiStore\exception\TradeRefundStatusInvalidException;
 use Doctrine\DBAL\LockMode;
 use asbamboo\openpay\apiStore\exception\TradeRefundTradeStatusInvalidException;
 use asbamboo\database\FactoryInterface;
+use asbamboo\openpay\apiStore\exception\NotFoundTradeRefundException;
 
 /**
  * 管理TradePayEntity的数据变更
@@ -23,28 +24,28 @@ class TradeRefundManager
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
 
     /**
      *
-     * @var TradeRefundRespository
+     * @var TradeRefundRepository
      */
-    private $TradeRefundRespository;
+    protected $TradeRefundRepository;
 
     /**
      *
      * @var TradeRefundEntity
      */
-    private $TradeRefundEntity;
+    protected $TradeRefundEntity;
 
     /**
      *
      * @param FactoryInterface $Db
      */
-    public function __construct(FactoryInterface $Db, TradeRefundRespository $TradeRefundRespository)
+    public function __construct(FactoryInterface $Db, TradeRefundRepository $TradeRefundRepository)
     {
         $this->Db                       = $Db;
-        $this->TradeRefundRespository   = $TradeRefundRespository;
+        $this->TradeRefundRepository   = $TradeRefundRepository;
     }
 
     /**
@@ -58,19 +59,32 @@ class TradeRefundManager
 
     /**
      *
-     * @param TradeRefundEntity $TradeRefundEntity
-     * @return self
+     * @param string $in_refund_no
+     * @throws NotFoundTradeRefundException
+     * @return TradeRefundEntity
      */
-    public function load(TradeRefundEntity $TradeRefundEntity) : self
+    public function load(string $in_refund_no = null) : TradeRefundEntity
     {
+        if(is_null($in_refund_no)){
+            $TradeRefundEntity  = new TradeRefundEntity();
+        }else{
+            $TradeRefundEntity  = $this->TradeRefundRepository->load($in_refund_no);
+            if(empty($TradeRefundEntity)){
+                throw new NotFoundTradeRefundException('退款不存在。');
+            }
+        }
         $this->TradeRefundEntity = $TradeRefundEntity;
-        return $this;
+        return $this->TradeRefundEntity;
     }
 
     /**
-     * 插入一条数据用
+     *
+     * @param TradePayEntity $TradePayEntity
+     * @param string $out_refund_no
+     * @param int $refund_fee
+     * @return TradeRefundManager
      */
-    public function insert(TradePayEntity $TradePayEntity, $out_refund_no, $refund_fee) : self
+    public function insert(TradePayEntity $TradePayEntity, $out_refund_no, $refund_fee) : TradeRefundManager
     {
         $this->TradeRefundEntity->setOutTradeNo($TradePayEntity->getOutTradeNo());
         $this->TradeRefundEntity->setInTradeNo($TradePayEntity->getInTradeNo());
@@ -85,11 +99,10 @@ class TradeRefundManager
     }
 
     /**
-     * 更新状态后通过渠道发送退款请求
      *
-     * @return TradeRefundEntity
+     * @return TradeRefundManager
      */
-    public function updateRequest() : self
+    public function updateRequest() : TradeRefundManager
     {
         $this->validateUpdateRequest();
         $this->TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_REQUEST);
@@ -101,9 +114,9 @@ class TradeRefundManager
     /**
      *
      * @param int $pay_time
-     * @return TradeRefundEntity
+     * @return TradeRefundManager
      */
-    public function updateRefundSuccess($pay_time) : self
+    public function updateRefundSuccess($pay_time) : TradeRefundManager
     {
         $this->TradeRefundEntity->setPayTime($pay_time);
 
@@ -116,9 +129,9 @@ class TradeRefundManager
 
     /**
      *
-     * @return TradeRefundEntity
+     * @return TradeRefundManager
      */
-    public function updateRefundFailed() : self
+    public function updateRefundFailed() : TradeRefundManager
     {
         $this->validateUpdateRefundFailed();
         $this->TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_FAILED);
@@ -132,7 +145,7 @@ class TradeRefundManager
      *
      * @param TradePayEntity $TradePayEntity
      */
-    private function validateInsert(TradePayEntity $TradePayEntity) : void
+    protected function validateInsert(TradePayEntity $TradePayEntity) : void
     {
         if($TradePayEntity->getTradeStatus() != Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
             throw new TradeRefundTradeStatusInvalidException('当前订单状态不允许退款.');
@@ -141,7 +154,7 @@ class TradeRefundManager
         $this->validateOutRefundNo($this->TradeRefundEntity->getOutRefundNo());
         $this->validateRefundFee($this->TradeRefundEntity->getRefundFee());
 
-        $total_refund_fee   = $this->TradeRefundRespository->getTotalRefundFeeByInTradeNo($this->TradeRefundEntity->getInTradeNo());
+        $total_refund_fee   = $this->TradeRefundRepository->getTotalRefundFeeByInTradeNo($this->TradeRefundEntity->getInTradeNo());
         if(bccomp($this->TradeRefundEntity->getRefundFee(), bcsub($TradePayEntity->getTotalFee(), $total_refund_fee)) > 0){
             throw new TradeRefundRefundFeeInvalidException('退款金额不能大于交易总金额减去已退款金额.');
         }
@@ -150,7 +163,7 @@ class TradeRefundManager
     /**
      *
      */
-    private function validateUpdateRequest() : void
+    protected function validateUpdateRequest() : void
     {
         if(!in_array($this->TradeRefundEntity->getStatus(), [Constant::TRADE_REFUND_STATUS_FAILED, Constant::TRADE_REFUND_STATUS_REQUEST])){
             throw new TradeRefundStatusInvalidException('只有上一次请求失败, 或者还没有发起退款请求的退款信息能发起退款。');
@@ -161,7 +174,7 @@ class TradeRefundManager
      *
      * @throws TradeRefundStatusInvalidException
      */
-    private function validateUpdateRefundSuccess() : void
+    protected function validateUpdateRefundSuccess() : void
     {
         if(!in_array($this->TradeRefundEntity->getStatus(), [Constant::TRADE_REFUND_STATUS_REQUEST])){
             throw new TradeRefundStatusInvalidException('只有请求中的退款，状态才能修改为成功。');
@@ -172,7 +185,7 @@ class TradeRefundManager
      *
      * @throws TradeRefundStatusInvalidException
      */
-    private function validateUpdateRefundFailed() : void
+    protected function validateUpdateRefundFailed() : void
     {
         if(!in_array($this->TradeRefundEntity->getStatus(), [Constant::TRADE_REFUND_STATUS_REQUEST])){
             throw new TradeRefundStatusInvalidException('只有请求中的退款，状态才能修改为失败。');
