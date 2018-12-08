@@ -107,7 +107,7 @@ class Cancel implements ApiClassInterface
             ]));
 
             if($ChannelResponse->getIsSuccess() == true){
-                $this->TradePayManager->updateTradeStatusToCancel($TradePayEntity);
+                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToCancel();
                 $this->Db->getManager()->flush();
             }
         }

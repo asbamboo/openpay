@@ -21,6 +21,8 @@ use asbamboo\openpay\channel\v1_0\trade\payParameter\Response;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse;
 use asbamboo\openpay\Constant;
+use asbamboo\openpay\model\tradePay\TradePayEntity;
+use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 
 /**
  * @name 交易支付
@@ -106,7 +108,9 @@ class Pay implements ApiClassInterface
          * @var \asbamboo\openpay\model\tradePay\TradePayEntity $TradePayEntity
          * @var \asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity $TradePayThirdPartEntity;
          */
-        $TradePayEntity = $this->TradePayManager->insert(
+        $TradePayEntity             = new TradePayEntity();
+        $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
+        $this->TradePayManager->load($TradePayEntity)->insert(
             $Params->getChannel(),
             $Params->getTitle(),
             $Params->getTotalFee(),
@@ -115,7 +119,7 @@ class Pay implements ApiClassInterface
             $Params->getNotifyUrl(),
             $Params->getReturnUrl()
         );
-        $TradePayThirdPartEntity    = $this->TradePayThirdPartManager->insert($TradePayEntity, $Params->getThirdPart());
+        $this->TradePayThirdPartManager->load($TradePayThirdPartEntity)->insert($TradePayEntity, $Params->getThirdPart());
 
         /**
          * 发起第三方渠道请求

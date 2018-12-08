@@ -9,6 +9,9 @@ use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartManager;
 use asbamboo\openpay\model\tradeRefund\TradeRefundEntity;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartManager;
+use asbamboo\openpay\model\tradePay\TradePayEntity;
+use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
+use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity;
 
 /**
  * - 测试insert方法
@@ -63,11 +66,13 @@ class TradeRefundThirdPartManagerTest extends TestCase
         $notify_url         = 'notify_url' . mt_rand(0, 999);
         $return_url         = 'return_url' . mt_rand(0, 999);
         $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayEntity     = $TradePayManager->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
+        $TradePayEntity     = new TradePayEntity();
+        $TradePayManager->load($TradePayEntity)->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
 
         $send_data                  = json_encode('send_data' . mt_rand(0, 999));
         $TradePayThirdPartManager   = new TradePayThirdPartManager(static::$Db);
-        $TradePayThirdPartEntity    = $TradePayThirdPartManager->insert($TradePayEntity, $send_data);
+        $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
+        $TradePayThirdPartManager->load($TradePayThirdPartEntity)->insert($TradePayEntity, $send_data);
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -85,7 +90,8 @@ class TradeRefundThirdPartManagerTest extends TestCase
 
         $send_data                      = json_encode('send_data' . mt_rand(0, 9999));
         $TradeRefundThirdPartManager    = new TradeRefundThirdPartManager(static::$Db);
-        $TradeRefundThirdPartEntity     = $TradeRefundThirdPartManager->insert($TradeRefundEntity, $send_data);
+        $TradeRefundThirdPartEntity     = new TradeRefundThirdPartEntity();
+        $TradeRefundThirdPartManager->load($TradeRefundThirdPartEntity)->insert($TradeRefundEntity, $send_data);
 
         $this->assertEquals($in_refund_no, $TradeRefundThirdPartEntity->getInRefundNo());
         $this->assertEquals($send_data, $TradeRefundThirdPartEntity->getSendData());

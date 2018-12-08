@@ -23,11 +23,28 @@ class TradePayThirdPartManager
 
     /**
      *
+     * @var TradePayThirdPartEntity
+     */
+    protected $TradePayThirdPartEntity;
+
+    /**
+     *
      * @param FactoryInterface $Db
      */
     public function __construct(FactoryInterface $Db)
     {
         $this->Db   = $Db;
+    }
+
+    /**
+     *
+     * @param TradePayEntity $TradePayEntity
+     * @return self
+     */
+    public function load(TradePayThirdPartEntity $TradePayThirdPartEntity) : self
+    {
+        $this->TradePayThirdPartEntity = $TradePayThirdPartEntity;
+        return $this;
     }
 
     /**
@@ -37,25 +54,22 @@ class TradePayThirdPartManager
      * @param TradePayEntity $TradePayEntity
      * @param string $send_data
      */
-    public function insert(TradePayEntity $TradePayEntity, $send_data) : TradePayThirdPartEntity
+    public function insert(TradePayEntity $TradePayEntity, $send_data) : self
     {
-        $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($TradePayEntity->getInTradeNo());
-        $TradePayThirdPartEntity->setSendData($send_data);
+        $this->TradePayThirdPartEntity->setInTradeNo($TradePayEntity->getInTradeNo());
+        $this->TradePayThirdPartEntity->setSendData($send_data);
 
-        $this->validateInsert($TradePayThirdPartEntity);
-        $this->Db->getManager()->persist($TradePayThirdPartEntity);
+        $this->validateInsert();
+        $this->Db->getManager()->persist($this->TradePayThirdPartEntity);
 
-        return $TradePayThirdPartEntity;
+        return $this;
     }
 
     /**
      * 验证
-     *
-     * @param TradePayThirdPartEntity $TradePayThirdPartEntity
      */
-    private function validateInsert(TradePayThirdPartEntity $TradePayThirdPartEntity) : void
+    private function validateInsert() : void
     {
-        $this->validateSendData($TradePayThirdPartEntity->getSendData());
+        $this->validateSendData($this->TradePayThirdPartEntity->getSendData());
     }
 }

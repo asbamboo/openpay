@@ -7,6 +7,8 @@ use asbamboo\database\Connection;
 use asbamboo\database\FactoryInterface;
 use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartManager;
 use asbamboo\openpay\model\tradePay\TradePayManager;
+use asbamboo\openpay\model\tradePay\TradePayEntity;
+use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 
 /**
  * - 测试insert
@@ -61,12 +63,13 @@ class TradePayThirdPartManagerTest extends TestCase
         $notify_url         = 'notify_url' . mt_rand(0, 999);
         $return_url         = 'return_url' . mt_rand(0, 999);
         $TradePayManager    = new TradePayManager(static::$Db);
-        $TradePayEntity     = $TradePayManager->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
-
+        $TradePayEntity     = new TradePayEntity();
+        $TradePayManager->load($TradePayEntity)->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
 
         $send_data                  = json_encode('send_data' . mt_rand(0, 999));
         $TradePayThirdPartManager   = new TradePayThirdPartManager(static::$Db);
-        $TradePayThirdPartEntity    = $TradePayThirdPartManager->insert($TradePayEntity, $send_data);
+        $TradePayThirdPartEntity    = new TradePayThirdPartEntity();
+        $TradePayThirdPartManager->load($TradePayThirdPartEntity)->insert($TradePayEntity, $send_data);
 
         $this->assertEquals($TradePayEntity->getInTradeNo(), $TradePayThirdPartEntity->getInTradeNo());
         $this->assertEquals($send_data, $TradePayThirdPartEntity->getSendData());

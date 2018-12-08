@@ -13,6 +13,7 @@ use asbamboo\openpay\Constant;
 use asbamboo\openpay\notify\v1_0\trade\PayReturn;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\http\RedirectResponse;
+use asbamboo\openpay\model\tradePay\TradePayEntity;
 
 /**
  * - 基础功能测试
@@ -97,7 +98,8 @@ class PayReturnTest extends TestCase
         $Request                    = new ServerRequest();
         $PayReturn                  = new PayReturn($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
 
-        $TradePayEntity             = $TradePayManager->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, 'notify_url', 'return_url');
+        $TradePayEntity             = new TradePayEntity();
+        $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, 'notify_url', 'return_url');
         static::$Db->getManager()->flush($TradePayEntity);
 
         $_REQUEST['in_trade_no']        = $TradePayEntity->getInTradeNo();

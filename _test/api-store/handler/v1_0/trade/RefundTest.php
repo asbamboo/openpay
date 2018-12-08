@@ -8,7 +8,6 @@ use asbamboo\database\Factory;
 use asbamboo\database\Connection;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Refund;
 use asbamboo\openpay\model\tradePay\TradePayRespository;
-use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\model\tradeRefund\TradeRefundRespository;
 use asbamboo\openpay\model\tradeRefund\TradeRefundManager;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRespository;
@@ -229,7 +228,6 @@ class RefundTest extends TestCase
 
         $ChannelManager                     = new ChannelManager();
         $TradePayRespository                = new TradePayRespository($Db);
-        $TradePayManager                    = new TradePayManager($Db);
         $TradeRefundRespository             = new TradeRefundRespository($Db);
         $TradeRefundManager                 = new TradeRefundManager($Db, $TradeRefundRespository);
         $TradeRefundThirdPartRespository    = new TradeRefundThirdPartRespository($Db);
@@ -238,7 +236,6 @@ class RefundTest extends TestCase
             $ChannelManager,
             $Db,
             $TradePayRespository,
-            $TradePayManager,
             $TradeRefundRespository,
             $TradeRefundManager,
             $TradeRefundThirdPartRespository,
