@@ -27,9 +27,9 @@ class TradeRefundManager
 
     /**
      *
-     * @var TradeRefundRespository
+     * @var TradeRefundRepository
      */
-    private $TradeRefundRespository;
+    private $TradeRefundRepository;
 
     /**
      *
@@ -41,10 +41,10 @@ class TradeRefundManager
      *
      * @param FactoryInterface $Db
      */
-    public function __construct(FactoryInterface $Db, TradeRefundRespository $TradeRefundRespository)
+    public function __construct(FactoryInterface $Db, TradeRefundRepository $TradeRefundRepository)
     {
         $this->Db                       = $Db;
-        $this->TradeRefundRespository   = $TradeRefundRespository;
+        $this->TradeRefundRepository   = $TradeRefundRepository;
     }
 
     /**
@@ -141,7 +141,7 @@ class TradeRefundManager
         $this->validateOutRefundNo($this->TradeRefundEntity->getOutRefundNo());
         $this->validateRefundFee($this->TradeRefundEntity->getRefundFee());
 
-        $total_refund_fee   = $this->TradeRefundRespository->getTotalRefundFeeByInTradeNo($this->TradeRefundEntity->getInTradeNo());
+        $total_refund_fee   = $this->TradeRefundRepository->getTotalRefundFeeByInTradeNo($this->TradeRefundEntity->getInTradeNo());
         if(bccomp($this->TradeRefundEntity->getRefundFee(), bcsub($TradePayEntity->getTotalFee(), $total_refund_fee)) > 0){
             throw new TradeRefundRefundFeeInvalidException('退款金额不能大于交易总金额减去已退款金额.');
         }

@@ -98,7 +98,7 @@ class PayReturn extends PayNotify
     {
         $in_trade_no    = $NotifyResult->getInTradeNo();
         $third_trade_no = $NotifyResult->getThirdTradeNo();
-        $TradePayEntity = $this->TradePayRespository->load($in_trade_no);
+        $TradePayEntity = $this->TradePayRepository->load($in_trade_no);
 
         /*
          * 修改数据状态

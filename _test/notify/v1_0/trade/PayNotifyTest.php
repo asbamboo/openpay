@@ -8,7 +8,7 @@ use asbamboo\database\FactoryInterface;
 use asbamboo\database\Connection;
 use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
 use asbamboo\openpay\model\tradePay\TradePayManager;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\http\ServerRequest;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
@@ -94,9 +94,9 @@ class PayNotifyTest extends TestCase
 
         $ChannelManager             = new ChannelManager();
         $TradePayManager            = new TradePayManager(static::$Db);
-        $TradePayRespository        = new TradePayRespository(static::$Db);
+        $TradePayRepository        = new TradePayRepository(static::$Db);
         $Request                    = new ServerRequest();
-        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
+        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRepository, static::$Db);
 
         $TradePayEntity             = new TradePayEntity();
         $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
@@ -122,9 +122,9 @@ class PayNotifyTest extends TestCase
 
         $ChannelManager             = new ChannelManager();
         $TradePayManager            = new TradePayManager(static::$Db);
-        $TradePayRespository        = new TradePayRespository(static::$Db);
+        $TradePayRepository        = new TradePayRepository(static::$Db);
         $Request                    = new ServerRequest();
-        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
+        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRepository, static::$Db);
 
         $TradePayEntity             = new TradePayEntity();
         $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
@@ -151,9 +151,9 @@ class PayNotifyTest extends TestCase
 
         $ChannelManager             = new ChannelManager();
         $TradePayManager            = new TradePayManager(static::$Db);
-        $TradePayRespository        = new TradePayRespository(static::$Db);
+        $TradePayRepository        = new TradePayRepository(static::$Db);
         $Request                    = new ServerRequest();
-        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
+        $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRepository, static::$Db);
 
         $TradePayEntity             = new TradePayEntity();
         $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');

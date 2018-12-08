@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityRepository;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年11月1日
  */
-class TradeRefundThirdPartRespository
+class TradeRefundThirdPartRepository
 {
     /**
      *

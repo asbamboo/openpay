@@ -6,7 +6,7 @@ use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryRequest;
 use asbamboo\database\Factory;
 use asbamboo\database\Connection;
 use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Query;
 use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\http\ServerRequest;
@@ -298,9 +298,9 @@ class QueryTest extends TestCase
         $this->Db                       = $Db;
 
         $ChannelManager         = new ChannelManager();
-        $TradePayRespository    = new TradePayRespository($Db);
+        $TradePayRepository    = new TradePayRepository($Db);
         $TradePayManager        = new TradePayManager($Db);
-        $Query                  = new Query($ChannelManager, $Db, $TradePayRespository, $TradePayManager);
+        $Query                  = new Query($ChannelManager, $Db, $TradePayRepository, $TradePayManager);
         return $Query;
     }
 }

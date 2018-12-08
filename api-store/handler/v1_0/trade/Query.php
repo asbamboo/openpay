@@ -4,7 +4,7 @@ namespace asbamboo\openpay\apiStore\handler\v1_0\trade;
 use asbamboo\openpay\channel\ChannelManagerInterface;
 use asbamboo\api\apiStore\ApiRequestParamsInterface;
 use asbamboo\api\apiStore\ApiResponseParamsInterface;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryRequest;
 use asbamboo\api\apiStore\ApiClassInterface;
 use asbamboo\openpay\apiStore\exception\TradeQueryNotFoundInvalidException;
@@ -33,9 +33,9 @@ class Query implements ApiClassInterface
 
     /**
      *
-     * @var TradePayRespository
+     * @var TradePayRepository
      */
-    private $TradePayRespository;
+    private $TradePayRepository;
 
     /**
      *
@@ -53,10 +53,10 @@ class Query implements ApiClassInterface
      *
      * @param ChannelManagerInterface $Client
      */
-    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRespository $TradePayRespository, TradePayManager $TradePayManager)
+    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRepository $TradePayRepository, TradePayManager $TradePayManager)
     {
         $this->ChannelManager           = $ChannelManager;
-        $this->TradePayRespository      = $TradePayRespository;
+        $this->TradePayRepository      = $TradePayRepository;
         $this->TradePayManager          = $TradePayManager;
         $this->Db                       = $Db;
     }
@@ -71,9 +71,9 @@ class Query implements ApiClassInterface
     {
         $TradePayEntity = null;
         if(strlen((string)$Params->getInTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRespository->load($Params->getInTradeNo());
+            $TradePayEntity = $this->TradePayRepository->load($Params->getInTradeNo());
         }elseif(strlen((string)$Params->getOutTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRespository->loadByOutTradeNo($Params->getOutTradeNo());
+            $TradePayEntity = $this->TradePayRepository->loadByOutTradeNo($Params->getOutTradeNo());
         }
         if(empty($TradePayEntity)){
             throw new TradeQueryNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');

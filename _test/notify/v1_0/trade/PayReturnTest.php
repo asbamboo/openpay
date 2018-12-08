@@ -7,7 +7,7 @@ use asbamboo\database\Factory;
 use asbamboo\database\Connection;
 use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
 use asbamboo\openpay\model\tradePay\TradePayManager;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\http\ServerRequest;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\notify\v1_0\trade\PayReturn;
@@ -94,9 +94,9 @@ class PayReturnTest extends TestCase
 
         $ChannelManager             = new ChannelManager();
         $TradePayManager            = new TradePayManager(static::$Db);
-        $TradePayRespository        = new TradePayRespository(static::$Db);
+        $TradePayRepository        = new TradePayRepository(static::$Db);
         $Request                    = new ServerRequest();
-        $PayReturn                  = new PayReturn($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
+        $PayReturn                  = new PayReturn($ChannelManager, $Request, $TradePayManager, $TradePayRepository, static::$Db);
 
         $TradePayEntity             = new TradePayEntity();
         $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, 'notify_url', 'return_url');

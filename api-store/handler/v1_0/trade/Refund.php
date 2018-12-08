@@ -10,12 +10,12 @@ use asbamboo\openpay\apiStore\exception\TradeRefundNotFoundInvalidException;
 use asbamboo\openpay\apiStore\exception\TradeRefundRefundFeeInvalidException;
 use asbamboo\openpay\channel\ChannelManagerInterface;
 use asbamboo\database\FactoryInterface;
-use asbamboo\openpay\model\tradePay\TradePayRespository;
-use asbamboo\openpay\model\tradeRefund\TradeRefundRespository;
+use asbamboo\openpay\model\tradePay\TradePayRepository;
+use asbamboo\openpay\model\tradeRefund\TradeRefundRepository;
 use asbamboo\openpay\model\tradeRefund\TradeRefundManager;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Request AS RequestByChannel;
-use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRespository;
+use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRepository;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartManager;
 use asbamboo\openpay\model\tradeRefund\TradeRefundEntity;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity;
@@ -45,15 +45,15 @@ class Refund implements ApiClassInterface
 
     /**
      *
-     * @var TradePayRespository
+     * @var TradePayRepository
      */
-    private $TradePayRespository;
+    private $TradePayRepository;
 
     /**
      *
-     * @var TradeRefundRespository
+     * @var TradeRefundRepository
      */
-    private $TradeRefundRespository;
+    private $TradeRefundRepository;
 
     /**
      *
@@ -63,9 +63,9 @@ class Refund implements ApiClassInterface
 
     /**
      *
-     * @var TradeRefundThirdPartRespository
+     * @var TradeRefundThirdPartRepository
      */
-    private $TradeRefundThirdPartRespository;
+    private $TradeRefundThirdPartRepository;
 
     /**
      *
@@ -77,27 +77,27 @@ class Refund implements ApiClassInterface
      *
      * @param ChannelManagerInterface $ChannelManager
      * @param FactoryInterface $Db
-     * @param TradePayRespository $TradePayRespository
-     * @param TradeRefundRespository $TradeRefundRespository
+     * @param TradePayRepository $TradePayRepository
+     * @param TradeRefundRepository $TradeRefundRepository
      * @param TradeRefundManager $TradeRefundManager
-     * @param TradeRefundThirdPartRespository $TradeRefundThirdPartRespository
+     * @param TradeRefundThirdPartRepository $TradeRefundThirdPartRepository
      * @param TradeRefundThirdPartManager $TradeRefundThirdPartManager
      */
     public function __construct(
         ChannelManagerInterface $ChannelManager,
         FactoryInterface $Db,
-        TradePayRespository $TradePayRespository,
-        TradeRefundRespository $TradeRefundRespository,
+        TradePayRepository $TradePayRepository,
+        TradeRefundRepository $TradeRefundRepository,
         TradeRefundManager $TradeRefundManager,
-        TradeRefundThirdPartRespository $TradeRefundThirdPartRespository,
+        TradeRefundThirdPartRepository $TradeRefundThirdPartRepository,
         TradeRefundThirdPartManager $TradeRefundThirdPartManager
     ){
         $this->ChannelManager                       = $ChannelManager;
         $this->Db                                   = $Db;
-        $this->TradePayRespository                  = $TradePayRespository;
-        $this->TradeRefundRespository               = $TradeRefundRespository;
+        $this->TradePayRepository                  = $TradePayRepository;
+        $this->TradeRefundRepository               = $TradeRefundRepository;
         $this->TradeRefundManager                   = $TradeRefundManager;
-        $this->TradeRefundThirdPartRespository      = $TradeRefundThirdPartRespository;
+        $this->TradeRefundThirdPartRepository      = $TradeRefundThirdPartRepository;
         $this->TradeRefundThirdPartManager          = $TradeRefundThirdPartManager;
     }
 
@@ -112,14 +112,14 @@ class Refund implements ApiClassInterface
     {
         $TradePayEntity = null;
         if(strlen((string)$Params->getInTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRespository->load($Params->getInTradeNo());
+            $TradePayEntity = $this->TradePayRepository->load($Params->getInTradeNo());
         }elseif(strlen((string)$Params->getOutTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRespository->loadByOutTradeNo($Params->getOutTradeNo());
+            $TradePayEntity = $this->TradePayRepository->loadByOutTradeNo($Params->getOutTradeNo());
         }
         if(empty($TradePayEntity)){
             throw new TradeRefundNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');
         }
-        $TradeRefundEntity  = $this->TradeRefundRespository->loadByOutTradeNo($Params->getOutRefundNo());
+        $TradeRefundEntity  = $this->TradeRefundRepository->loadByOutTradeNo($Params->getOutRefundNo());
         if(is_null($TradeRefundEntity)){
             $TradeRefundEntity  = new TradeRefundEntity();
             $this->TradeRefundManager->load($TradeRefundEntity)->insert($TradePayEntity, $Params->getOutRefundNo(), $Params->getRefundFee());
@@ -135,7 +135,7 @@ class Refund implements ApiClassInterface
          * @var \asbamboo\openpay\channel\v1_0\trade\RefundParameter\Response $ChannelResponse
          */
        if($TradeRefundEntity->getStatus() != Constant::TRADE_REFUND_STATUS_SUCCESS){
-            $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartRespository->findOneByInRefundNo($TradeRefundEntity->getInRefundNo());
+            $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartRepository->findOneByInRefundNo($TradeRefundEntity->getInRefundNo());
             if(empty($TradeRefundThirdPartEntity)){
                 $TradeRefundThirdPartEntity = new TradeRefundThirdPartEntity();
                 $this->TradeRefundThirdPartManager->load($TradeRefundThirdPartEntity)->insert($TradeRefundEntity, $Params->getThirdPart());
