@@ -23,32 +23,32 @@ use asbamboo\database\FactoryInterface;
  * @since 2018年10月27日
  */
 class Query implements ApiClassInterface
-{    
+{
     /**
      * 渠道管理器
      *
      * @var ChannelManagerInterface
      */
     private $ChannelManager;
-    
+
     /**
-     * 
+     *
      * @var TradePayRespository
      */
     private $TradePayRespository;
-    
+
     /**
-     * 
+     *
      * @var TradePayManager
      */
     private $TradePayManager;
-    
+
     /**
-     * 
+     *
      * @var FactoryInterface
      */
     protected $Db;
-    
+
     /**
      *
      * @param ChannelManagerInterface $Client
@@ -60,7 +60,7 @@ class Query implements ApiClassInterface
         $this->TradePayManager          = $TradePayManager;
         $this->Db                       = $Db;
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -78,7 +78,7 @@ class Query implements ApiClassInterface
         if(empty($TradePayEntity)){
             throw new TradeQueryNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');
         }
-        
+
         /**
         * 发起第三方渠道请求
         *
@@ -94,19 +94,19 @@ class Query implements ApiClassInterface
             ]));
             //支付成功（可退款）
             if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYOK){
-                $this->TradePayManager->updateTradeStatusToPayok($TradePayEntity, $ChannelResponse->getThirdTradeNo());
+                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayok($ChannelResponse->getThirdTradeNo());
                 $this->Db->getManager()->flush();
                 //支付成功（不可退款）
             }else if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYED){
-                $this->TradePayManager->updateTradeStatusToPayed($TradePayEntity, $ChannelResponse->getThirdTradeNo());
+                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToPayed($ChannelResponse->getThirdTradeNo());
                 $this->Db->getManager()->flush();
                 //支付取消（不可退款）
             }else if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
-                $this->TradePayManager->updateTradeStatusToCancel($TradePayEntity, $ChannelResponse->getThirdTradeNo());
+                $this->TradePayManager->load($TradePayEntity)->updateTradeStatusToCancel($ChannelResponse->getThirdTradeNo());
                 $this->Db->getManager()->flush();
             }
         }
-        
+
         return new QueryResponse([
             'channel'       => $TradePayEntity->getChannel(),
             'in_trade_no'   => $TradePayEntity->getInTradeNo(),

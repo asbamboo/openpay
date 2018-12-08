@@ -19,7 +19,13 @@ class TradeRefundThirdPartManager
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
+
+    /**
+     *
+     * @var TradeRefundThirdPartEntity
+     */
+    protected $TradeRefundThirdPartEntity;
 
     /**
      *
@@ -31,27 +37,33 @@ class TradeRefundThirdPartManager
     }
 
     /**
-     * 添加一条新数据
      *
      * @param TradeRefundThirdPartEntity $TradeRefundThirdPartEntity
+     * @return self
      */
-    public function insert(TradeRefundEntity $TradeRefundEntity, $send_data) : TradeRefundThirdPartEntity
+    public function load(TradeRefundThirdPartEntity $TradeRefundThirdPartEntity) : self
     {
-        $TradeRefundThirdPartEntity = new TradeRefundThirdPartEntity();
-        $TradeRefundThirdPartEntity->setInRefundNo($TradeRefundEntity->getInRefundNo());
-        $TradeRefundThirdPartEntity->setSendData($send_data);
-        $this->validateInsert($TradeRefundThirdPartEntity);
-        $this->Db->getManager()->persist($TradeRefundThirdPartEntity);
-        return $TradeRefundThirdPartEntity;
+        $this->TradeRefundThirdPartEntity = $TradeRefundThirdPartEntity;
+        return $this;
+    }
+
+    /**
+     * 添加一条新数据
+     */
+    public function insert(TradeRefundEntity $TradeRefundEntity, $send_data) : self
+    {
+        $this->TradeRefundThirdPartEntity->setInRefundNo($TradeRefundEntity->getInRefundNo());
+        $this->TradeRefundThirdPartEntity->setSendData($send_data);
+        $this->validateInsert();
+        $this->Db->getManager()->persist($this->TradeRefundThirdPartEntity);
+        return $this;
     }
 
     /**
      * 验证
-     *
-     * @param TradeRefundThirdPartEntity $TradeRefundThirdPartEntity
      */
-    private function validateInsert(TradeRefundThirdPartEntity $TradeRefundThirdPartEntity) : void
+    private function validateInsert() : void
     {
-        $this->validateSendData($TradeRefundThirdPartEntity->getSendData());
+        $this->validateSendData($this->TradeRefundThirdPartEntity->getSendData());
     }
 }

@@ -11,6 +11,7 @@ use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\model\tradePay\TradePayRespository;
 use asbamboo\http\ServerRequest;
 use asbamboo\openpay\Constant;
+use asbamboo\openpay\model\tradePay\TradePayEntity;
 
 /**
  * - 通知支付成功（不可退款）
@@ -97,7 +98,8 @@ class PayNotifyTest extends TestCase
         $Request                    = new ServerRequest();
         $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
 
-        $TradePayEntity             = $TradePayManager->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
+        $TradePayEntity             = new TradePayEntity();
+        $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
         static::$Db->getManager()->flush($TradePayEntity);
         $_REQUEST['in_trade_no']        = $TradePayEntity->getInTradeNo();
         $_REQUEST['test_pay_status']    = Constant::TRADE_PAY_TRADE_STATUS_PAYOK;
@@ -124,7 +126,8 @@ class PayNotifyTest extends TestCase
         $Request                    = new ServerRequest();
         $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
 
-        $TradePayEntity             = $TradePayManager->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
+        $TradePayEntity             = new TradePayEntity();
+        $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
         static::$Db->getManager()->flush($TradePayEntity);
         $_REQUEST['in_trade_no']        = $TradePayEntity->getInTradeNo();
         $_REQUEST['test_pay_status']    = Constant::TRADE_PAY_TRADE_STATUS_PAYED;
@@ -152,7 +155,8 @@ class PayNotifyTest extends TestCase
         $Request                    = new ServerRequest();
         $PayNotify                  = new PayNotify($ChannelManager, $Request, $TradePayManager, $TradePayRespository, static::$Db);
 
-        $TradePayEntity             = $TradePayManager->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
+        $TradePayEntity             = new TradePayEntity();
+        $TradePayManager->load($TradePayEntity)->insert('TEST_PAY_PC', $title, $total_fee, $out_trade_no, $client_ip, '', '');
         static::$Db->getManager()->flush($TradePayEntity);
         $_REQUEST['in_trade_no']        = $TradePayEntity->getInTradeNo();
         $_REQUEST['test_pay_status']    = Constant::TRADE_PAY_TRADE_STATUS_CANCEL;

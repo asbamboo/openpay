@@ -20,7 +20,13 @@ class TradePayManager
      *
      * @var FactoryInterface
      */
-    private $Db;
+    protected $Db;
+
+    /**
+     *
+     * @var TradePayEntity
+     */
+    protected $TradePayEntity;
 
     /**
      *
@@ -41,6 +47,17 @@ class TradePayManager
     }
 
     /**
+     *
+     * @param TradePayEntity $TradePayEntity
+     * @return self
+     */
+    public function load(TradePayEntity $TradePayEntity) : self
+    {
+        $this->TradePayEntity = $TradePayEntity;
+        return $this;
+    }
+
+    /**
      * 插入一条数据用
      *
      * @param string $channel
@@ -52,138 +69,130 @@ class TradePayManager
      * @param string $return_url
      * @return TradePayEntity
      */
-    public function insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url) : TradePayEntity
+    public function insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url) : self
     {
-        $TradePayEntity     = new TradePayEntity();
-        $TradePayEntity->setChannel($channel);
-        $TradePayEntity->setTitle($title);
-        $TradePayEntity->setTotalFee($total_fee);
-        $TradePayEntity->setOutTradeNo($out_trade_no);
-        $TradePayEntity->setClientIp($client_ip);
-        $TradePayEntity->setNotifyUrl($notify_url);
-        $TradePayEntity->setReturnUrl($return_url);
+        $this->TradePayEntity->setChannel($channel);
+        $this->TradePayEntity->setTitle($title);
+        $this->TradePayEntity->setTotalFee($total_fee);
+        $this->TradePayEntity->setOutTradeNo($out_trade_no);
+        $this->TradePayEntity->setClientIp($client_ip);
+        $this->TradePayEntity->setNotifyUrl($notify_url);
+        $this->TradePayEntity->setReturnUrl($return_url);
 
-        $this->validateInsert($TradePayEntity);
-        $TradePayEntity->setInTradeNo($this->makeInTradeNo());
-        $TradePayEntity->setPayokTime('0');
-        $TradePayEntity->setPayedTime('0');
-        $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_NOPAY);
+        $this->validateInsert();
+        $this->TradePayEntity->setInTradeNo($this->makeInTradeNo());
+        $this->TradePayEntity->setPayokTime('0');
+        $this->TradePayEntity->setPayedTime('0');
+        $this->TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_NOPAY);
 
-        $this->Db->getManager()->persist($TradePayEntity);
+        $this->Db->getManager()->persist($this->TradePayEntity);
 
-        return $TradePayEntity;
+        return $this;
     }
 
     /**
      * 交易状态变更为支付成功(可退款)
      *
-     * @param TradePayEntity $TradePayEntity
      * @param string $thrid_trade_no
      */
-    public function updateTradeStatusToPayok(TradePayEntity $TradePayEntity, string $third_trade_no) : TradePayEntity
+    public function updateTradeStatusToPayok(string $third_trade_no) : self
     {
-        $TradePayEntity->setThirdTradeNo($third_trade_no);
+        $this->TradePayEntity->setThirdTradeNo($third_trade_no);
 
         $time   = time();
-        $this->validateUpdateTradeStatusToPayok($TradePayEntity);
-        $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
-        $TradePayEntity->setPayokTime($time);
-        $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
+        $this->validateUpdateTradeStatusToPayok();
+        $this->TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
+        $this->TradePayEntity->setPayokTime($time);
+        $this->Db->getManager()->lock($this->TradePayEntity, LockMode::OPTIMISTIC);
 
-        return $TradePayEntity;
+        return $this;
     }
 
     /**
      * 交易状态变更为支付成功(不可退款)
      *
-     * @param TradePayEntity $TradePayEntity
      * @param string $third_trade_no
      */
-    public function updateTradeStatusToPayed(TradePayEntity $TradePayEntity, string $third_trade_no = null) : TradePayEntity
+    public function updateTradeStatusToPayed(string $third_trade_no = null) : self
     {
         if(!is_null($third_trade_no)){
-            $TradePayEntity->setThirdTradeNo($third_trade_no);
+            $this->TradePayEntity->setThirdTradeNo($third_trade_no);
         }
 
-        $this->validateUpdateTradeStatusToPayed($TradePayEntity);
-        $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYED);
-        if(empty($TradePayEntity->getPayokTime())){
-            $TradePayEntity->setPayokTime(time());
+        $this->validateUpdateTradeStatusToPayed();
+        $this->TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYED);
+        if(empty($this->TradePayEntity->getPayokTime())){
+            $this->TradePayEntity->setPayokTime(time());
         }
-        $TradePayEntity->setPayedTime(time());
-        $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
+        $this->TradePayEntity->setPayedTime(time());
+        $this->Db->getManager()->lock($this->TradePayEntity, LockMode::OPTIMISTIC);
 
-        return $TradePayEntity;
+        return $this;
     }
 
     /**
      * 交易状态变更为取消支付
      *
-     * @param TradePayEntity $TradePayEntity
      * @param string $third_trade_no
      */
-    public function updateTradeStatusToCancel(TradePayEntity $TradePayEntity, string $third_trade_no = null) : TradePayEntity
+    public function updateTradeStatusToCancel(string $third_trade_no = null) : self
     {
         if(!is_null($third_trade_no)){
-            $TradePayEntity->setThirdTradeNo($third_trade_no);
+            $this->TradePayEntity->setThirdTradeNo($third_trade_no);
         }
 
-        $this->validateUpdateTradeStatusToCancel($TradePayEntity);
-        $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_CANCEL);
-        $TradePayEntity->setCancelTime(time());
-        $this->Db->getManager()->lock($TradePayEntity, LockMode::OPTIMISTIC);
+        $this->validateUpdateTradeStatusToCancel();
+        $this->TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_CANCEL);
+        $this->TradePayEntity->setCancelTime(time());
+        $this->Db->getManager()->lock($this->TradePayEntity, LockMode::OPTIMISTIC);
 
-        return $TradePayEntity;
+        return $this;
     }
 
     /**
      *
-     * @param TradePayEntity $TradePayEntity
      */
-    private function validateInsert(TradePayEntity $TradePayEntity) : void
+    protected function validateInsert() : void
     {
-        $this->validateChannel($TradePayEntity->getChannel());
-        $this->validateTitle($TradePayEntity->getTitle());
-        $this->validateOutTradeNo($TradePayEntity->getOutTradeNo());
-        $this->validateTotalFee($TradePayEntity->getTotalFee());
-        $this->validateClientIp($TradePayEntity->getClientIp());
+        $this->validateChannel($this->TradePayEntity->getChannel());
+        $this->validateTitle($this->TradePayEntity->getTitle());
+        $this->validateOutTradeNo($this->TradePayEntity->getOutTradeNo());
+        $this->validateTotalFee($this->TradePayEntity->getTotalFee());
+        $this->validateClientIp($this->TradePayEntity->getClientIp());
     }
 
     /**
      *
-     * @param TradePayEntity $TradePayEntity
      * @throws TradePayTradeStatusInvalidException
      */
-    private function validateUpdateTradeStatusToPayok(TradePayEntity $TradePayEntity) : void
+    protected function validateUpdateTradeStatusToPayok() : void
     {
-        $this->validateThirdTradeNo($TradePayEntity->getThirdTradeNo());
-        if(!in_array($TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
+        $this->validateThirdTradeNo($this->TradePayEntity->getThirdTradeNo());
+        if(!in_array($this->TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
             throw new TradePayTradeStatusInvalidException('当前交易状态不允许被修改成支付成功[可退款].');
         }
     }
 
     /**
      *
-     * @param TradePayEntity $TradePayEntity
      * @throws TradePayTradeStatusInvalidException
      */
-    private function validateUpdateTradeStatusToPayed(TradePayEntity $TradePayEntity) : void
+    protected function validateUpdateTradeStatusToPayed() : void
     {
-        $this->validateThirdTradeNo($TradePayEntity->getThirdTradeNo());
-        if(!in_array($TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
+        $this->validateThirdTradeNo($this->TradePayEntity->getThirdTradeNo());
+        if(!in_array($this->TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
             throw new TradePayTradeStatusInvalidException('当前交易状态不允许被修改成支付成功[不可退款].');
         }
     }
 
     /**
      *
-     * @param TradePayEntity $TradePayEntity
      * @throws TradePayTradeStatusInvalidException
      */
-    private function validateUpdateTradeStatusToCancel(TradePayEntity $TradePayEntity) : void
+    protected function validateUpdateTradeStatusToCancel() : void
     {
-        $this->validateThirdTradeNo($TradePayEntity->getThirdTradeNo());
-        if(!in_array($TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
+        $this->validateThirdTradeNo($this->TradePayEntity->getThirdTradeNo());
+        if(!in_array($this->TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
             throw new TradePayTradeStatusInvalidException('当前交易状态不允许被修改成取消支付.');
         }
     }
