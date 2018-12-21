@@ -23,7 +23,7 @@ class Channel implements ScriptChannelInterface
     {
         $vendor_dir = $Event->getComposer()->getConfig()->get('vendor-dir');
         include $vendor_dir . DIRECTORY_SEPARATOR . 'asbamboo' . DIRECTORY_SEPARATOR . 'autoload' . DIRECTORY_SEPARATOR . 'bootstrap.php';
-        
+
         $root_dir       = getcwd();
         $Event->getIO()->write('当前项目跟目录:' . $root_dir);
         $channels       = static::findChannel($root_dir);
@@ -48,14 +48,27 @@ class Channel implements ScriptChannelInterface
         }
 
         $channels           = [];
-        $paths              = array_diff(scandir($root_dir), ['.', '..']);
+        $paths              = [];
+        try{
+            $paths              = array_diff(scandir($root_dir), ['.', '..']);
+        }catch(\ErrorException $e){
+            /*
+             * 可能由于目录权限等原因无法读取目录
+             */
+            print (string) $e;
+        }
         foreach($paths AS $path){
             $path   = $root_dir . DIRECTORY_SEPARATOR . $path;
             if(is_dir($path)){
                 $channels   = array_merge($channels, static::findChannel($path));
                 continue;
-            }            
-            $php_bin                = $_SERVER['_'] == $_SERVER['SCRIPT_FILENAME'] ? 'php' : $_SERVER['_'];
+            }
+            $php_bin                = 'php';
+            if(isset($_SERVER['_'])){
+                $php_bin            = $_SERVER['_'] == $_SERVER['SCRIPT_FILENAME'] ? 'php' : $_SERVER['_'];
+            }elseif(isset($_SERVER['PHP_INI_DIR'])){
+                $php_bin            = $_SERVER['PHP_INI_DIR'] == $_SERVER['SCRIPT_FILENAME'] ? 'php' : $_SERVER['PHP_INI_DIR'];
+            }
             $check_channel_script   = __DIR__ . DIRECTORY_SEPARATOR . 'CheckIsChannelFile.php';
             $test_channel           = exec(addslashes("{$php_bin} {$check_channel_script} {$path}"));
             if(strpos($test_channel, '1:') === 0){
