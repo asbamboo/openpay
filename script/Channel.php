@@ -48,7 +48,15 @@ class Channel implements ScriptChannelInterface
         }
 
         $channels           = [];
-        $paths              = array_diff(scandir($root_dir), ['.', '..']);
+        $paths              = [];
+        try{
+            $paths              = array_diff(scandir($root_dir), ['.', '..']);
+        }catch(\ErrorException $e){
+            /*
+             * 可能由于目录权限等原因无法读取目录
+             */
+            print (string) $e;
+        }
         foreach($paths AS $path){
             $path   = $root_dir . DIRECTORY_SEPARATOR . $path;
             if(is_dir($path)){
