@@ -1,0 +1,71 @@
+asbamboo\openpay\model\tradeRefund\TradeRefundEntity:
+  type: entity
+  table: t_api_trade_refund
+  id:
+    seq:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    in_refund_no:
+      unique: true
+      type: string
+      length: 32
+      nullable: false
+      options:
+        default: ''
+    out_refund_no:
+      unique: true
+      type: string
+      length: 45
+      nullable: false
+      options:
+        default: ''
+    out_trade_no:
+      type: string
+      length: 45
+      nullable: false
+      options:
+        default: ''
+    in_trade_no:
+      type: string
+      length: 32
+      nullable: false
+      options:
+        default: ''
+    refund_fee:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: '0'
+    status:
+      type: smallint
+      nullable: false
+      options:
+        default: '0'
+    request_time:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: '0'
+    response_time:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: '0'
+    pay_time:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: '0'
+    version:
+      type: smallint
+      version: true
+      options:
+        unsigned: true
+        default: '0'
+      

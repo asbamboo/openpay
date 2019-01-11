@@ -26,7 +26,8 @@ use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 
 /**
  * @name 交易支付
- * @desc 发起交易支付
+ * @desc 发起交易支付, 这个接口的响应值，会根据请求时渠道类型[channel]，返回相应的data信息。
+ * @desc 本文档列出的响应值data包含了所有可能的响应值。
  * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest
  * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse
  * @author 李春寅 <licy2013@aliyun.com>

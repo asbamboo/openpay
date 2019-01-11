@@ -6,6 +6,12 @@ asbamboo\openpay是一个聚合支付工具，它实现了通过一个统一的�
 
 将来你需要添加新的支付渠道时，你不需要修改你已有的代码，你只需要安装(或者时自行开发)你需要的扩展就可以。
 
+## 特别说明
+
+这个代码已经做了比较大的改动，本说明文件很多地方已经不适用了。	
+
+数据库doctrine orm的配置，如果需要继承openpay中的配置信息然后加以扩展，那么使用config/database/mapped-supperclass下面的配置，如果直接使用openpay中的配置不做扩展，那么使用config/database/entity下面的配置
+
 ## 如何使用
 
 可以参考 asbamboo\openepay-example 创建 asbamboo\openpay的web程序。
