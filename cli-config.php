@@ -6,7 +6,7 @@ use asbamboo\database\Connection;
 // replace with mechanism to retrieve EntityManager in your app
 $DbFactory          = new Factory();
 $sqpath             = __DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite';
-$sqmetadata         = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database';
+$sqmetadata         = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity';
 $sqmetadata_type    = Connection::MATADATA_YAML;
 $sqdir              = dirname($sqpath);
 

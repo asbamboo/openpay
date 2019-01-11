@@ -12,7 +12,7 @@ use asbamboo\openpay\channel\v1_0\trade\payParameter\NotifyResult;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年11月12日
  */
-class PayNoRedirect implements PayInterface
+class PayGeneral implements PayInterface
 {
     /**
      *
@@ -22,7 +22,7 @@ class PayNoRedirect implements PayInterface
     public function execute(Request $Request) : Response
     {
         $Response   = new Response();
-        $Response->setRedirectType(Response::REDIRECT_TYPE_NONE);
+        $Response->setType(Response::TYPE_GENERAL);
         return $Response;
     }
 
@@ -44,7 +44,7 @@ class PayNoRedirect implements PayInterface
     public function supports() : array
     {
         return [
-            'TEST_PAY_NO_REDIRECT'  => '测试NO_REDIRECT支付',
+            'TEST_PAY_GENERAL'  => '测试GENERAL支付',
         ];
     }
 }

@@ -12,38 +12,45 @@ use asbamboo\openpay\exception\OpenpayException;
 final class Response
 {
     /*****************************************************************************
-     * 跳转类型
+     * 支付类型
     *****************************************************************************/
-    const REDIRECT_TYPE_NONE    = '0';  // 不跳转
-    const REDIRECT_TYPE_QRCD    = '1';  // 跳转扫码支付
-    const REDIRECT_TYPE_PC      = '2';  // 跳转PC支付
+    const TYPE_GENERAL  = '0';  // 普通类型
+    const TYPE_QRCD     = '1';  // 扫码支付（顾客手机扫描商户）
+    const TYPE_PC       = '2';  // PC支付
+    const TYPE_H5       = '3';  // H5支付
     /****************************************************************************/
 
     /**
-     * 是否需要页面跳转
-     *  - 比如扫二维码支付,应该返回true
-     *
+     * 支付类型
+     *  - TYPE_GENERAL：返回值没有什么特殊字段的状况
+     *  - TYPE_QRCD：扫码支付（顾客手机扫描商户）这是比如返回$qr_code
+     *  - TYPE_PC: PC页面支付 这是必须返回$redirect_url和$redirect_data
+     *  - TYPE_H5：H5页面支付 这是必须返回$redirect_url和$redirect_data
      * @var string
      */
-    private $redirect_type = '0';
+    private $type   = '0';
 
     /**
      * 二维码url
-     *  - 属于二维码支付时应该不为空
+     *  - $type == TYPE_QRCD 时，不能为空
      *
      * @var string
      */
     private $qr_code = '';
 
     /**
-     * 跳转PC支付时 表示表单提交的url
+     * 页面跳转目标URL
+     *  - $type == TYPE_PC 时，不能为空
+     *  - $type == TYPE_H5 时，不能为空
      *
      * @var string
      */
     private $redirect_url = '';
 
     /**
-     * 跳转PC支付时 表示表单提交的数据
+     * 像跳转目标URL传递的参数
+     *  - $type == TYPE_PC 时，不能为空
+     *  - $type == TYPE_H5 时，不能为空
      *
      * @var array
      */
@@ -51,15 +58,16 @@ final class Response
 
     /**
      *
-     * @param bool $is_redirect
+     * @param string|int $type
+     * @throws OpenpayException
      * @return self
      */
-    public function setRedirectType($redirect_type) : self
+    public function setType($type) : self
     {
-        if(!in_array($redirect_type, [self::REDIRECT_TYPE_NONE, self::REDIRECT_TYPE_PC, self::REDIRECT_TYPE_QRCD])){
+        if(!in_array($type, [self::TYPE_GENERAL, self::TYPE_QRCD, self::TYPE_PC, self::TYPE_H5])){
             throw new OpenpayException('支付需要，页面跳转类型超出有效范围。');
         }
-        $this->redirect_type  = $redirect_type;
+        $this->type  = $type;
         return $this;
     }
 
@@ -67,9 +75,9 @@ final class Response
      *
      * @return string
      */
-    public function getRedirectType()
+    public function getType()
     {
-        return $this->redirect_type;
+        return $this->type;
     }
 
     /**

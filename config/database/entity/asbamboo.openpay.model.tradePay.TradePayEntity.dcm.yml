@@ -1,0 +1,93 @@
+asbamboo\openpay\model\tradePay\TradePayEntity:
+  type: entity
+  table: t_api_trade_pay
+  id:
+    seq:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    in_trade_no:
+      unique: true
+      type: string
+      length: 32
+      nullable: false
+      options:
+        default: ''
+    channel:
+      type: string
+      length: 45
+      nullable: false
+      options:
+        default: ''
+    title:
+      type: string
+      length: 45
+      nullable: false
+      options:
+        default: ''    
+    out_trade_no:
+      type: string
+      length: 45
+      nullable: false
+      options:
+        default: ''
+    total_fee:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: '0'
+    client_ip:
+      type: string
+      length: 20
+      nullable: false
+      options:
+        default: ''
+    notify_url:
+      type: string
+      length: 200
+      nullable: false
+      options:
+        default: ''
+    return_url:
+      type: string
+      length: 200
+      nullable: false
+      options:
+        default: ''
+    third_trade_no:
+      type: string
+      length: 45
+      nullable: false
+      options:
+        default: ''
+    trade_status:
+      type: smallint
+      nullable: false
+      options:
+        default: '0'
+    payok_time:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: '0'
+    payed_time:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: '0'
+    cancel_time:
+      type: integer
+      nullable: false
+      options:
+        unsigned: true
+        default: '0'
+    version:
+      type: smallint
+      version: true
+      options:
+        unsigned: true      
+        default: '0'

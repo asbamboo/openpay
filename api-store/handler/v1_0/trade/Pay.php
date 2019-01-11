@@ -21,12 +21,11 @@ use asbamboo\openpay\channel\v1_0\trade\payParameter\Response;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse;
 use asbamboo\openpay\Constant;
-use asbamboo\openpay\model\tradePay\TradePayEntity;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 
 /**
  * @name 交易支付
- * @desc 发起交易支付
+ * @desc 发起交易支付, 这个接口的响应值，会根据请求时渠道类型[channel]，返回相应的data信息。
+ * @desc 本文档列出的响应值data包含了所有可能的响应值。具体各个渠道的响应结果请参考测试工具。
  * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest
  * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse
  * @author 李春寅 <licy2013@aliyun.com>
@@ -146,9 +145,11 @@ class Pay implements ApiClassInterface
         /**
          * 扫二维码支付时应该有的响应结果
          */
-        if($ChannelResponse->getRedirectType() == Response::REDIRECT_TYPE_QRCD && $ChannelResponse->getQrCode()){
+        if($ChannelResponse->getType() == Response::TYPE_QRCD && $ChannelResponse->getQrCode()){
             $ApiResponseParams  = $this->makeQrCodeResponse($ChannelResponse);
-        }elseif($ChannelResponse->getRedirectType() == Response::REDIRECT_TYPE_PC && $ChannelResponse->getRedirectData()){
+        }elseif($ChannelResponse->getType() == Response::TYPE_PC && $ChannelResponse->getRedirectData()){
+            $ApiResponseParams  = $this->makePcResponse($ChannelResponse);
+        }elseif($ChannelResponse->getType() == Response::TYPE_H5 && $ChannelResponse->getRedirectData()){
             $ApiResponseParams  = $this->makePcResponse($ChannelResponse);
         }else{
             $ApiResponseParams  = new PayResponse([

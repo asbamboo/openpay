@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "48c4511f5238732a916f00a3cedfd548",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/api.git",
-                "reference": "bd92d96e711206292ae387abe6f179c9c83a1f55"
+                "reference": "ccac311ba86929611e96681d323f90414eeda0dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/api/zipball/bd92d96e711206292ae387abe6f179c9c83a1f55",
-                "reference": "bd92d96e711206292ae387abe6f179c9c83a1f55",
+                "url": "https://api.github.com/repos/asbamboo/api/zipball/ccac311ba86929611e96681d323f90414eeda0dd",
+                "reference": "ccac311ba86929611e96681d323f90414eeda0dd",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 "source": "https://github.com/asbamboo/api/tree/1.0.0",
                 "issues": "https://github.com/asbamboo/api/issues"
             },
-            "time": "2018-10-25T08:38:43+00:00"
+            "time": "2019-01-11T07:11:17+00:00"
         },
         {
             "name": "asbamboo/autoload",
@@ -91,22 +91,22 @@
             "time": "2018-10-26T09:20:13+00:00"
         },
         {
-            "name": "asbamboo/database",
+            "name": "asbamboo/console",
             "version": "1.0.0.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/asbamboo/database.git",
-                "reference": "d15650813a58861ba1c94a8866a6f18736ac9698"
+                "url": "https://github.com/asbamboo/console.git",
+                "reference": "d53204c756e45651d23a52a2c6a6934f13138d06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/database/zipball/d15650813a58861ba1c94a8866a6f18736ac9698",
-                "reference": "d15650813a58861ba1c94a8866a6f18736ac9698",
+                "url": "https://api.github.com/repos/asbamboo/console/zipball/d53204c756e45651d23a52a2c6a6934f13138d06",
+                "reference": "d53204c756e45651d23a52a2c6a6934f13138d06",
                 "shasum": ""
             },
             "require": {
                 "asbamboo/autoload": "^1.0",
-                "doctrine/orm": "^2.6",
+                "asbamboo/event": "^1.0",
                 "php": "^7.2"
             },
             "require-dev": {
@@ -122,24 +122,73 @@
                     "email": "licy2013@aliyun.com"
                 }
             ],
-            "description": "数据操作模块",
             "support": {
-                "source": "https://github.com/asbamboo/database/tree/1.0.0"
+                "source": "https://github.com/asbamboo/console/tree/v1.0.0",
+                "issues": "https://github.com/asbamboo/console/issues"
             },
-            "time": "2018-10-28T06:17:21+00:00"
+            "time": "2018-09-10T07:02:17+00:00"
         },
         {
-            "name": "asbamboo/di",
-            "version": "1.0.1.x-dev",
+            "name": "asbamboo/database",
+            "version": "1.1.0.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/asbamboo/di.git",
-                "reference": "2d19fd12f9b990af9305a7d563baa5aef1146789"
+                "url": "https://github.com/asbamboo/database.git",
+                "reference": "09b4417f0657f85c7c1c194ee89988b9deb84425"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/di/zipball/2d19fd12f9b990af9305a7d563baa5aef1146789",
-                "reference": "2d19fd12f9b990af9305a7d563baa5aef1146789",
+                "url": "https://api.github.com/repos/asbamboo/database/zipball/09b4417f0657f85c7c1c194ee89988b9deb84425",
+                "reference": "09b4417f0657f85c7c1c194ee89988b9deb84425",
+                "shasum": ""
+            },
+            "require": {
+                "asbamboo/autoload": "^1.0",
+                "asbamboo/console": "^1.0",
+                "asbamboo/event": "^1.0",
+                "doctrine/orm": "^2.6",
+                "php": "^7.2",
+                "symfony/yaml": "^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.2.0"
+            },
+            "bin": [
+                "bin/asbamboo-database"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "asbamboo\\database\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "李春寅",
+                    "email": "licy2013@aliyun.com"
+                }
+            ],
+            "description": "数据操作模块",
+            "support": {
+                "source": "https://github.com/asbamboo/database/tree/1.1.0"
+            },
+            "time": "2018-12-18T10:26:35+00:00"
+        },
+        {
+            "name": "asbamboo/di",
+            "version": "1.0.2.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asbamboo/di.git",
+                "reference": "e5c948477745313ba55dfa389646e0a909186778"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asbamboo/di/zipball/e5c948477745313ba55dfa389646e0a909186778",
+                "reference": "e5c948477745313ba55dfa389646e0a909186778",
                 "shasum": ""
             },
             "require": {
@@ -161,23 +210,23 @@
             ],
             "description": "依赖注入模块",
             "support": {
-                "source": "https://github.com/asbamboo/di/tree/v1.0.1",
+                "source": "https://github.com/asbamboo/di/tree/1.0.2",
                 "issues": "https://github.com/asbamboo/di/issues"
             },
-            "time": "2018-10-02T06:14:01+00:00"
+            "time": "2018-11-30T12:59:47+00:00"
         },
         {
             "name": "asbamboo/event",
-            "version": "1.0.0.x-dev",
+            "version": "1.1.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/event.git",
-                "reference": "77ffb989b24018e204925ce6c2956e8c7960797e"
+                "reference": "1fb8391b435e95d93ab9c86a3539add3a1341829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/event/zipball/77ffb989b24018e204925ce6c2956e8c7960797e",
-                "reference": "77ffb989b24018e204925ce6c2956e8c7960797e",
+                "url": "https://api.github.com/repos/asbamboo/event/zipball/1fb8391b435e95d93ab9c86a3539add3a1341829",
+                "reference": "1fb8391b435e95d93ab9c86a3539add3a1341829",
                 "shasum": ""
             },
             "require": {
@@ -189,6 +238,11 @@
                 "phpunit/phpunit": "^7.2"
             },
             "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "asbamboo\\event\\": ""
+                }
+            },
             "license": [
                 "BSD-3-Clause"
             ],
@@ -199,10 +253,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/asbamboo/event/tree/v1.0.0",
+                "source": "https://github.com/asbamboo/event/tree/1.1.0",
                 "issues": "https://github.com/asbamboo/event/issues"
             },
-            "time": "2018-09-10T06:50:39+00:00"
+            "time": "2018-12-18T06:05:55+00:00"
         },
         {
             "name": "asbamboo/helper",
@@ -210,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/helper.git",
-                "reference": "de1351cfbb477dd9505d3d72f58bb2b1397ea5e3"
+                "reference": "2ffe400ca3f3eb489afdf20fe00d2aff50a9f6d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/helper/zipball/de1351cfbb477dd9505d3d72f58bb2b1397ea5e3",
-                "reference": "de1351cfbb477dd9505d3d72f58bb2b1397ea5e3",
+                "url": "https://api.github.com/repos/asbamboo/helper/zipball/2ffe400ca3f3eb489afdf20fe00d2aff50a9f6d6",
+                "reference": "2ffe400ca3f3eb489afdf20fe00d2aff50a9f6d6",
                 "shasum": ""
             },
             "require": {
@@ -226,6 +280,11 @@
                 "phpunit/phpunit": "^7.2"
             },
             "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "asbamboo\\helper\\": ""
+                }
+            },
             "license": [
                 "BSD-3-Clause"
             ],
@@ -239,7 +298,7 @@
                 "source": "https://github.com/asbamboo/helper/tree/1.1.0",
                 "issues": "https://github.com/asbamboo/helper/issues"
             },
-            "time": "2018-10-10T13:22:04+00:00"
+            "time": "2018-12-04T06:20:21+00:00"
         },
         {
             "name": "asbamboo/http",
@@ -247,12 +306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/http.git",
-                "reference": "c4678589501c3c3e44ebe2fa89690681076f6345"
+                "reference": "9c2f02c35c80e0e4fdf5541a991a18b9f16f8b2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/http/zipball/c4678589501c3c3e44ebe2fa89690681076f6345",
-                "reference": "c4678589501c3c3e44ebe2fa89690681076f6345",
+                "url": "https://api.github.com/repos/asbamboo/http/zipball/9c2f02c35c80e0e4fdf5541a991a18b9f16f8b2e",
+                "reference": "9c2f02c35c80e0e4fdf5541a991a18b9f16f8b2e",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +337,7 @@
                 "source": "https://github.com/asbamboo/http/tree/1.1.0",
                 "issues": "https://github.com/asbamboo/http/issues"
             },
-            "time": "2018-10-12T13:25:57+00:00"
+            "time": "2019-01-05T12:28:51+00:00"
         },
         {
             "name": "asbamboo/router",
@@ -392,12 +451,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "36c114783b9f30abfd1054e59c28e6e2e8152481"
+                "reference": "bdf3e32d07a8978c713a726d9bc60b7fa6b4dbff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/36c114783b9f30abfd1054e59c28e6e2e8152481",
-                "reference": "36c114783b9f30abfd1054e59c28e6e2e8152481",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/bdf3e32d07a8978c713a726d9bc60b7fa6b4dbff",
+                "reference": "bdf3e32d07a8978c713a726d9bc60b7fa6b4dbff",
                 "shasum": ""
             },
             "require": {
@@ -467,7 +526,7 @@
                 "riak",
                 "xcache"
             ],
-            "time": "2018-09-25T21:24:06+00:00"
+            "time": "2018-12-27T18:07:28+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -475,12 +534,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "92ab93e18163df880458f31bd1d4a51239e53a9d"
+                "reference": "73b0d9ac2fd3d5aecc94f1e217b408fe59e3d265"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/92ab93e18163df880458f31bd1d4a51239e53a9d",
-                "reference": "92ab93e18163df880458f31bd1d4a51239e53a9d",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/73b0d9ac2fd3d5aecc94f1e217b408fe59e3d265",
+                "reference": "73b0d9ac2fd3d5aecc94f1e217b408fe59e3d265",
                 "shasum": ""
             },
             "require": {
@@ -536,7 +595,7 @@
                 "iterators",
                 "php"
             ],
-            "time": "2018-10-15T15:10:34+00:00"
+            "time": "2018-11-17T21:20:15+00:00"
         },
         {
             "name": "doctrine/common",
@@ -544,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "8005be8abe3ad9e251f9202e7373feb24dc19d3b"
+                "reference": "af54fea8cfd8e61863492a7a6ebbc81788150c0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/8005be8abe3ad9e251f9202e7373feb24dc19d3b",
-                "reference": "8005be8abe3ad9e251f9202e7373feb24dc19d3b",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/af54fea8cfd8e61863492a7a6ebbc81788150c0a",
+                "reference": "af54fea8cfd8e61863492a7a6ebbc81788150c0a",
                 "shasum": ""
             },
             "require": {
@@ -559,7 +618,7 @@
                 "doctrine/event-manager": "^1.0",
                 "doctrine/inflector": "^1.0",
                 "doctrine/lexer": "^1.0",
-                "doctrine/persistence": "^1.0",
+                "doctrine/persistence": "^1.1",
                 "doctrine/reflection": "^1.0",
                 "php": "^7.1"
             },
@@ -572,7 +631,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.10.x-dev"
+                    "dev-master": "2.11.x-dev"
                 }
             },
             "autoload": {
@@ -617,7 +676,7 @@
                 "doctrine",
                 "php"
             ],
-            "time": "2018-11-11T11:23:21+00:00"
+            "time": "2018-12-18T23:16:11+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -625,19 +684,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "ff6cbdbca6b8bde0bc54e1e13836f9b75782a50d"
+                "reference": "0731608045c810f97e93483fdb6cbf43e7b3ba45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ff6cbdbca6b8bde0bc54e1e13836f9b75782a50d",
-                "reference": "ff6cbdbca6b8bde0bc54e1e13836f9b75782a50d",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0731608045c810f97e93483fdb6cbf43e7b3ba45",
+                "reference": "0731608045c810f97e93483fdb6cbf43e7b3ba45",
                 "shasum": ""
             },
             "require": {
                 "doctrine/cache": "^1.0",
                 "doctrine/event-manager": "^1.0",
                 "ext-pdo": "*",
-                "php": "^7.1"
+                "php": "^7.2"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^5.0",
@@ -699,7 +758,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2018-11-12T04:27:47+00:00"
+            "time": "2019-01-06T19:25:53+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -707,12 +766,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/event-manager.git",
-                "reference": "13dff35955fdbfbaec62138f9db8ef5aca45d4c3"
+                "reference": "dbdc567ffe3bb6c77b29931f0d8448f515da7577"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/13dff35955fdbfbaec62138f9db8ef5aca45d4c3",
-                "reference": "13dff35955fdbfbaec62138f9db8ef5aca45d4c3",
+                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/dbdc567ffe3bb6c77b29931f0d8448f515da7577",
+                "reference": "dbdc567ffe3bb6c77b29931f0d8448f515da7577",
                 "shasum": ""
             },
             "require": {
@@ -775,7 +834,7 @@
                 "event system",
                 "events"
             ],
-            "time": "2018-10-14T01:04:00+00:00"
+            "time": "2018-12-12T09:36:29+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -964,13 +1023,13 @@
             "version": "2.7.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "62fb493e5f394caa07e0eb255a60205a1a27f4b9"
+                "url": "https://github.com/doctrine/orm.git",
+                "reference": "266f0d7df6aa6343c7c646d7090f0dde8e2e5937"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/62fb493e5f394caa07e0eb255a60205a1a27f4b9",
-                "reference": "62fb493e5f394caa07e0eb255a60205a1a27f4b9",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/266f0d7df6aa6343c7c646d7090f0dde8e2e5937",
+                "reference": "266f0d7df6aa6343c7c646d7090f0dde8e2e5937",
                 "shasum": ""
             },
             "require": {
@@ -1039,20 +1098,20 @@
                 "database",
                 "orm"
             ],
-            "time": "2018-11-11T22:31:23+00:00"
+            "time": "2018-12-12T20:10:50+00:00"
         },
         {
             "name": "doctrine/persistence",
-            "version": "dev-master",
+            "version": "1.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "01c5f07bc091787b552d73669808defa7545720a"
+                "reference": "559d323c9c9de70ade1b415a919eededf3d8ed89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/01c5f07bc091787b552d73669808defa7545720a",
-                "reference": "01c5f07bc091787b552d73669808defa7545720a",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/559d323c9c9de70ade1b415a919eededf3d8ed89",
+                "reference": "559d323c9c9de70ade1b415a919eededf3d8ed89",
                 "shasum": ""
             },
             "require": {
@@ -1074,7 +1133,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -1121,7 +1180,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2018-10-30T09:30:58+00:00"
+            "time": "2018-12-12T20:17:12+00:00"
         },
         {
             "name": "doctrine/reflection",
@@ -1129,12 +1188,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/reflection.git",
-                "reference": "ad11fb5d5dbd17ae384137b7c4586ba96f766ad4"
+                "reference": "4a97a22032919548b932482f36172ae3ea976632"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/reflection/zipball/ad11fb5d5dbd17ae384137b7c4586ba96f766ad4",
-                "reference": "ad11fb5d5dbd17ae384137b7c4586ba96f766ad4",
+                "url": "https://api.github.com/repos/doctrine/reflection/zipball/4a97a22032919548b932482f36172ae3ea976632",
+                "reference": "4a97a22032919548b932482f36172ae3ea976632",
                 "shasum": ""
             },
             "require": {
@@ -1199,7 +1258,7 @@
                 "reflection",
                 "static"
             ],
-            "time": "2018-10-15T11:19:19+00:00"
+            "time": "2018-12-12T20:24:29+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1257,12 +1316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "7b2dc3ee659453b97bf2f6e887fc036475389a49"
+                "reference": "4a5d48d2ca2422c5c02ed37e4146fb65591369d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/7b2dc3ee659453b97bf2f6e887fc036475389a49",
-                "reference": "7b2dc3ee659453b97bf2f6e887fc036475389a49",
+                "url": "https://api.github.com/repos/symfony/console/zipball/4a5d48d2ca2422c5c02ed37e4146fb65591369d5",
+                "reference": "4a5d48d2ca2422c5c02ed37e4146fb65591369d5",
                 "shasum": ""
             },
             "require": {
@@ -1291,7 +1350,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -1318,7 +1377,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-11T19:52:12+00:00"
+            "time": "2019-01-10T07:43:17+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -1326,12 +1385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "4a33574d5771f4b04334cd4f7d43de96a92efb62"
+                "reference": "1aa7ab2429c3d594dd70689604b5cf7421254cdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/4a33574d5771f4b04334cd4f7d43de96a92efb62",
-                "reference": "4a33574d5771f4b04334cd4f7d43de96a92efb62",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/1aa7ab2429c3d594dd70689604b5cf7421254cdf",
+                "reference": "1aa7ab2429c3d594dd70689604b5cf7421254cdf",
                 "shasum": ""
             },
             "require": {
@@ -1386,7 +1445,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2018-10-31T08:00:32+00:00"
+            "time": "2018-12-05T08:06:11+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1511,12 +1570,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "c41175c801e3edfda90f32e292619d10c27103d7"
+                "reference": "6e8c0d1188d5ba60752b8b523db1f1bdbac203da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/c41175c801e3edfda90f32e292619d10c27103d7",
-                "reference": "c41175c801e3edfda90f32e292619d10c27103d7",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/6e8c0d1188d5ba60752b8b523db1f1bdbac203da",
+                "reference": "6e8c0d1188d5ba60752b8b523db1f1bdbac203da",
                 "shasum": ""
             },
             "require": {
@@ -1535,7 +1594,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -1562,7 +1621,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-11T19:52:12+00:00"
+            "time": "2019-01-03T09:16:58+00:00"
         }
     ],
     "packages-dev": [
@@ -1874,12 +1933,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "3660b2eed90abdf92ac2e9dae9a238d2701bfa77"
+                "reference": "7e272180527c34a97680de85eb5aba0847a664e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/3660b2eed90abdf92ac2e9dae9a238d2701bfa77",
-                "reference": "3660b2eed90abdf92ac2e9dae9a238d2701bfa77",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/7e272180527c34a97680de85eb5aba0847a664e0",
+                "reference": "7e272180527c34a97680de85eb5aba0847a664e0",
                 "shasum": ""
             },
             "require": {
@@ -1900,8 +1959,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Prophecy\\": "src/"
+                "psr-4": {
+                    "Prophecy\\": "src/Prophecy"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1929,7 +1988,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-11-04T18:50:11+00:00"
+            "time": "2018-12-18T15:40:51+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1937,31 +1996,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "807e6013b00af69b6c5d9ceb4282d0393dbb9d8d"
+                "reference": "afe4b8aa7526dafeb5a642a70e54a0083ff54d80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/807e6013b00af69b6c5d9ceb4282d0393dbb9d8d",
-                "reference": "807e6013b00af69b6c5d9ceb4282d0393dbb9d8d",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/afe4b8aa7526dafeb5a642a70e54a0083ff54d80",
+                "reference": "afe4b8aa7526dafeb5a642a70e54a0083ff54d80",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-xmlwriter": "*",
                 "php": "^7.1",
-                "phpunit/php-file-iterator": "^2.0",
+                "phpunit/php-file-iterator": "^2.0.2",
                 "phpunit/php-text-template": "^1.2.1",
-                "phpunit/php-token-stream": "^3.0",
+                "phpunit/php-token-stream": "^3.0.1",
                 "sebastian/code-unit-reverse-lookup": "^1.0.1",
-                "sebastian/environment": "^3.1 || ^4.0",
+                "sebastian/environment": "^4.0",
                 "sebastian/version": "^2.0.1",
                 "theseer/tokenizer": "^1.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.0"
+                "phpunit/phpunit": "^7.4.4"
             },
             "suggest": {
-                "ext-xdebug": "^2.6.0"
+                "ext-xdebug": "^2.6.1"
             },
             "type": "library",
             "extra": {
@@ -1992,7 +2051,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-10-31T16:06:48+00:00"
+            "time": "2018-12-09T08:02:16+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2185,16 +2244,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "dev-master",
+            "version": "7.5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0057bca9f0292519cb3eb01a62cbc70b9c0667ee"
+                "reference": "6bef716234a519ee880b593179a52bb6ddd2cbd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0057bca9f0292519cb3eb01a62cbc70b9c0667ee",
-                "reference": "0057bca9f0292519cb3eb01a62cbc70b9c0667ee",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6bef716234a519ee880b593179a52bb6ddd2cbd3",
+                "reference": "6bef716234a519ee880b593179a52bb6ddd2cbd3",
                 "shasum": ""
             },
             "require": {
@@ -2215,7 +2274,7 @@
                 "phpunit/php-timer": "^2.0",
                 "sebastian/comparator": "^3.0",
                 "sebastian/diff": "^3.0",
-                "sebastian/environment": "^3.1 || ^4.0",
+                "sebastian/environment": "^4.0",
                 "sebastian/exporter": "^3.1",
                 "sebastian/global-state": "^2.0",
                 "sebastian/object-enumerator": "^3.0.3",
@@ -2265,7 +2324,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-11-08T11:40:33+00:00"
+            "time": "2019-01-11T06:11:07+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2318,12 +2377,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "71bdaddd52ddb753a144c78289f21abb719aebc4"
+                "reference": "33825cd25f073faafe98c4a017a5d2b69f3e09d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/71bdaddd52ddb753a144c78289f21abb719aebc4",
-                "reference": "71bdaddd52ddb753a144c78289f21abb719aebc4",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/33825cd25f073faafe98c4a017a5d2b69f3e09d3",
+                "reference": "33825cd25f073faafe98c4a017a5d2b69f3e09d3",
                 "shasum": ""
             },
             "require": {
@@ -2374,7 +2433,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2018-10-30T05:42:23+00:00"
+            "time": "2018-12-04T14:31:16+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -2438,12 +2497,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "c38399052e96de3846f635b8791c2e447a06040d"
+                "reference": "585fbcdeff7fb58c4b7596d8b2d6e97aef510611"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/c38399052e96de3846f635b8791c2e447a06040d",
-                "reference": "c38399052e96de3846f635b8791c2e447a06040d",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/585fbcdeff7fb58c4b7596d8b2d6e97aef510611",
+                "reference": "585fbcdeff7fb58c4b7596d8b2d6e97aef510611",
                 "shasum": ""
             },
             "require": {
@@ -2480,7 +2539,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2018-10-23T06:03:07+00:00"
+            "time": "2019-01-07T17:23:37+00:00"
         },
         {
             "name": "sebastian/exporter",
@@ -2551,16 +2610,16 @@
         },
         {
             "name": "sebastian/global-state",
-            "version": "dev-master",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "30367ea06c5cc3bf684457ac793fb2b863d783c6"
+                "reference": "e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/30367ea06c5cc3bf684457ac793fb2b863d783c6",
-                "reference": "30367ea06c5cc3bf684457ac793fb2b863d783c6",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4",
+                "reference": "e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4",
                 "shasum": ""
             },
             "require": {
@@ -2598,7 +2657,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2018-05-15T05:52:33+00:00"
+            "time": "2017-04-27T15:39:26+00:00"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -2872,20 +2931,21 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "dev-master",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "53927dddf3afa2088b355188e143bba42159bf5d"
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/53927dddf3afa2088b355188e143bba42159bf5d",
-                "reference": "53927dddf3afa2088b355188e143bba42159bf5d",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/83e253c8e0be5b0257b881e1827274667c5c17a9",
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3 || ^7.0"
+                "php": "^5.3.3 || ^7.0",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.6",
@@ -2918,7 +2978,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-05-29T14:25:02+00:00"
+            "time": "2018-12-25T11:19:39+00:00"
         }
     ],
     "aliases": [],

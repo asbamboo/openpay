@@ -28,7 +28,7 @@ class ChannelManager implements ChannelManagerInterface
             Pay::class                  => [
                 'TEST_PAY_PC'           => ['测试PC支付', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\PayPc())],
                 'TEST_PAY_QRCD'         => ['测试扫码支付', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\PayQrcd())],
-                'TEST_PAY_NO_REDIRECT'  => ['测试NO_REDIRECT支付', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\PayNoRedirect())],
+                'TEST_PAY_GENERAL'      => ['测试GENERAL支付', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\PayGeneral())],
             ],
             Query::class                => [
                 'TEST_QUERY'            => ['QUERY', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\Query())],
