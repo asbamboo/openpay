@@ -22,7 +22,7 @@ class PayQrcd implements PayInterface
     public function execute(Request $Request) : Response
     {
         $Response   = new Response();
-        $Response->setRedirectType(Response::REDIRECT_TYPE_QRCD);
+        $Response->setType(Response::TYPE_QRCD);
         $Response->setQrCode('qrcode');
         return $Response;
     }

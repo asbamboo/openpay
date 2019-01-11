@@ -22,7 +22,7 @@ class PayPc implements PayInterface
     public function execute(Request $Request) : Response
     {
         $Response   = new Response();
-        $Response->setRedirectType(Response::REDIRECT_TYPE_PC);
+        $Response->setType(Response::TYPE_PC);
         $Response->setRedirectUrl('redirect_url');
         $Response->setRedirectData(['data'=>'test']);
         return $Response;

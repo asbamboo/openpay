@@ -126,7 +126,7 @@ class PayTest extends TestCase
         }
     }
 
-    public function testExecPayNoRedirect()
+    public function testExecPayGeneral()
     {
         try{
             $Handler        = $this->getHandler();
@@ -136,7 +136,7 @@ class PayTest extends TestCase
                 $total_fee          = mt_rand(0, 9999);
                 $client_ip          = '192.168.3.' . mt_rand(0,255);
                 $Request            = $this->getRequest([
-                    'channel'       => 'TEST_PAY_NO_REDIRECT',
+                    'channel'       => 'TEST_PAY_GENERAL',
                     'title'         => $title,
                     'out_trade_no'  => $out_trade_no,
                     'total_fee'     => $total_fee,
@@ -147,7 +147,7 @@ class PayTest extends TestCase
                 $PayResponse    = $Handler->exec($Request);
                 $response_array = $PayResponse->getObjectVars();
 
-                $this->assertEquals('TEST_PAY_NO_REDIRECT', $response_array['channel']);
+                $this->assertEquals('TEST_PAY_GENERAL', $response_array['channel']);
                 $this->assertNotEmpty($response_array['in_trade_no']);
                 $this->assertEquals($title, $response_array['title']);
                 $this->assertEquals($out_trade_no, $response_array['out_trade_no']);
@@ -178,7 +178,7 @@ class PayTest extends TestCase
         $Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
             'path'      => dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
-        ], dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database', Connection::MATADATA_YAML));
+        ], dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         $this->Db                       = $Db;
 
         $RouteCollection        = new RouteCollection();
