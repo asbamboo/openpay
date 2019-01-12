@@ -146,11 +146,16 @@ class Pay implements ApiClassInterface
          * 扫二维码支付时应该有的响应结果
          */
         if($ChannelResponse->getType() == Response::TYPE_QRCD && $ChannelResponse->getQrCode()){
-            $ApiResponseParams  = $this->makeQrCodeResponse($ChannelResponse);
-        }elseif($ChannelResponse->getType() == Response::TYPE_PC && $ChannelResponse->getRedirectData()){
-            $ApiResponseParams  = $this->makePcResponse($ChannelResponse);
-        }elseif($ChannelResponse->getType() == Response::TYPE_H5 && $ChannelResponse->getRedirectData()){
-            $ApiResponseParams  = $this->makePcResponse($ChannelResponse);
+            $TradePayEntity->setQrCode($ChannelResponse->getQrCode());
+        }
+
+        /**
+         * 拼装response结果
+         */
+        if($ChannelResponse->getType() == Response::TYPE_PC && $ChannelResponse->getRedirectData()){    //电脑PC 支付
+            $ApiResponseParams  = $this->makePcOrH5Response($ChannelResponse);
+        }elseif($ChannelResponse->getType() == Response::TYPE_H5 && $ChannelResponse->getRedirectData()){    //H5 支付
+            $ApiResponseParams  = $this->makePcOrH5Response($ChannelResponse);
         }else{
             $ApiResponseParams  = new PayResponse([
                 'channel'       => $TradePayEntity->getChannel(),
@@ -163,6 +168,7 @@ class Pay implements ApiClassInterface
                 'payok_ymdhis'  => '',
                 'payed_ymdhis'  => '',
                 'cancel_ymdhis' => '',
+                'qr_code'       => $TradePayEntity->getQrCode(),
             ]);
         }
 
@@ -179,41 +185,12 @@ class Pay implements ApiClassInterface
     }
 
     /**
-     * 生成跳转到扫码支付页面的响应
-     *
-     * @param Response $Response
-     * @return ApiResponseRedirectParamsInterface
-     */
-    protected function makeQrCodeResponse(Response $Response) : ApiResponseRedirectParamsInterface
-    {
-        return new class ($Response->getQrCode()) extends ApiResponseRedirectParams{
-            private $qr_code;
-            public function __construct($qr_code)
-            {
-                $this->qr_code  = $qr_code;
-            }
-
-            public function getRedirectUri() : string
-            {
-                return EnvHelper::get(Env::QRCODE_URL);
-            }
-
-            public function getRedirectResponseData() : array
-            {
-                return [
-                    'qr_code'   => $this->qr_code,
-                ];
-            }
-        };
-    }
-
-    /**
      * 生成跳转到PC支付页面的响应
      *
      * @param Response $Response
      * @return ApiResponseRedirectParamsInterface
      */
-    protected function makePcResponse(Response $Response) :  ApiResponseRedirectParamsInterface
+    protected function makePcOrH5Response(Response $Response) :  ApiResponseRedirectParamsInterface
     {
         return new class ($Response->getRedirectUrl(), $Response->getRedirectData()) extends ApiResponseRedirectParams{
             private $url;

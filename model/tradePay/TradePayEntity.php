@@ -58,6 +58,11 @@ class TradePayEntity
     private $third_trade_no = '';
 
     /**
+     * @var string
+     */
+    private $qr_code = '';
+
+    /**
      * @var int
      */
     private $trade_status = '0';
@@ -307,6 +312,30 @@ class TradePayEntity
     public function getThirdTradeNo()
     {
         return $this->third_trade_no;
+    }
+
+    /**
+     * Set qrCode.
+     *
+     * @param string $qrCode
+     *
+     * @return TradePayEntity
+     */
+    public function setQrCode($qrCode)
+    {
+        $this->qr_code = $qrCode;
+
+        return $this;
+    }
+
+    /**
+     * Get qrCode.
+     *
+     * @return string
+     */
+    public function getQrCode()
+    {
+        return $this->qr_code;
     }
 
     /**
