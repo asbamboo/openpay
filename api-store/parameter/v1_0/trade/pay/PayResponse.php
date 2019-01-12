@@ -19,8 +19,8 @@ class PayResponse extends ApiResponseParams
      * @var string(45)
      */
     protected $channel;
- 
-    
+
+
     /**
      * @desc 交易编号 与支付请求的编号对应的聚合平台生成的交易编号 是一个全局唯一的编号
      * @example 201810131027242582
@@ -28,7 +28,7 @@ class PayResponse extends ApiResponseParams
      * @var number(32)
      */
     protected $in_trade_no;
-    
+
     /**
      * @desc 交易标题
      * @example 支付测试
@@ -36,7 +36,7 @@ class PayResponse extends ApiResponseParams
      * @var string(45)
      */
     protected $title;
-    
+
     /**
      * @desc 交易编号只能是数字
      * @example 2018101310270023
@@ -52,7 +52,7 @@ class PayResponse extends ApiResponseParams
      * @var price(10)
      */
     protected $total_fee;
-    
+
     /**
      * @desc 客户ip
      * @example 123.123.123.123
@@ -60,7 +60,7 @@ class PayResponse extends ApiResponseParams
      * @var string(20)
      */
     protected $client_ip;
-    
+
     /**
      * @desc 交易状态
      * @example PAYDONE
@@ -89,4 +89,11 @@ class PayResponse extends ApiResponseParams
      * @var date(YYYY-mm-dd HH:ii:ss)
      */
     protected $cancel_ymdhis;
+
+    /**
+     * @desc 二维码(买家扫商家适用),特定的支付渠道返回此参数
+     * @example weixin://wxpay/bizpayurl/up?pr=NwY5Mz9&groupid=00
+     * @var string(200)
+     */
+    protected $qr_code;
 }

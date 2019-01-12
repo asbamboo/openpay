@@ -62,6 +62,12 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       nullable: false
       options:
         default: ''
+    qr_code:
+      type: string
+      length: 200
+      nullable: false
+      options:
+        default: ''
     trade_status:
       type: smallint
       nullable: false
