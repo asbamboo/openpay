@@ -121,6 +121,7 @@ class Query implements ApiClassInterface
             'payok_ymdhis'  => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
             'payed_ymdhis'  => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
             'cancel_ymdhis' => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
+            'qr_code'       => $TradePayEntity->getQrCode(),
         ]);
     }
 }
