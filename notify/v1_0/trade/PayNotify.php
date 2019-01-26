@@ -99,7 +99,7 @@ class PayNotify
              * 事件触发 可以通过监听这个事件处理一些事情，比如:写入日志,校验请求参数等
              * 在api模块内，event-listener定义了几个监听器，如果你有需要的话，请使用EventScheduler::instance()->bind 方法绑定事件监听器
              */
-            EventScheduler::instance()->trigger(Event::PAY_NOTIFY_PRE_EXEC, $this, ...func_get_args());
+            EventScheduler::instance()->trigger(Event::PAY_NOTIFY_PRE_EXEC, [$this, $channel]);
 
             $NotifyResult   = $this->getNotifyResult($channel);
             $TradePayEntity = $this->DbFlush($NotifyResult);
@@ -137,7 +137,7 @@ class PayNotify
              * 事件触发 可以通过监听这个事件处理一些事情，比如:写入日志,校验请求参数等
              * 在api模块内，event-listener定义了几个监听器，如果你有需要的话，请使用EventScheduler::instance()->bind 方法绑定事件监听器
              */
-            EventScheduler::instance()->trigger(Event::PAY_NOTIFY_AFTER_EXEC, $this, $NotifyResult, ...func_get_args());
+            EventScheduler::instance()->trigger(Event::PAY_NOTIFY_AFTER_EXEC, [$this, $NotifyResult, $channel]);
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
             $Response->getBody()->write($NotifyResult->getResponseFailed());
             $Response->getBody()->rewind();
