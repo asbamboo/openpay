@@ -86,7 +86,7 @@ class PayNotifyTest extends TestCase
      */
     public function testExecPayok()
     {
-        $channel            = 'channel' . mt_rand(0,999);
+        $channel            = 'TEST_PAY_PC';
         $title              = 'title' . mt_rand(0,999);
         $total_fee          = mt_rand(0,999);
         $out_trade_no       = 'out_trade_no' . mt_rand(0,999);
@@ -109,6 +109,7 @@ class PayNotifyTest extends TestCase
         $this->assertEquals('SUCCESS', $response_body);
         $this->assertEquals(Constant::TRADE_PAY_TRADE_STATUS_PAYOK, $TradePayEntity->getTradeStatus());
         $this->assertEquals('third_trade_no', $TradePayEntity->getThirdTradeNo());
+        $this->assertEquals('out_trade_no', $PayNotify->getTradeNoKeyName('TEST_PAY_PC'));
         $this->assertNotEmpty($TradePayEntity->getPayokTime());
     }
 

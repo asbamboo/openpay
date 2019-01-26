@@ -19,6 +19,7 @@ use asbamboo\openpay\channel\v1_0\trade\payParameter\NotifyResult;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\event\EventScheduler;
 use asbamboo\openpay\Event;
+use asbamboo\openpay\channel\v1_0\trade\PayInterface;
 
 /**
  * 交易支付接口 trade.pay notify处理
@@ -29,10 +30,15 @@ use asbamboo\openpay\Event;
 class PayNotify
 {
     /**
+     * @var PayInterface
+     */
+    protected $Channel;
+
+    /**
      *
      * @var ChannelManagerInterface
      */
-    protected $ChannelManagr;
+    protected $ChannelManager;
 
     /**
      *
@@ -135,9 +141,34 @@ class PayNotify
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
             $Response->getBody()->write($NotifyResult->getResponseFailed());
             $Response->getBody()->rewind();
-        }finally{
-            return $Response;
         }
+
+        return $Response;
+    }
+
+    /**
+     * 返回渠道支付操作对象
+     *
+     * @param string $channel_name
+     * @return PayInterface
+     */
+    public function getChannel(string $channel_name) : PayInterface
+    {
+        if(empty($this->Channel)){
+            $this->Channel  = $this->ChannelManager->getChannel(Pay::class, $channel_name);
+        }
+        return $this->Channel;
+    }
+
+    /**
+     * 返回第三方平台交易编号的key
+     *
+     * @return string
+     */
+    public function getTradeNoKeyName(string $channel_name) : string
+    {
+        $Channel    = $this->getChannel($channel_name);
+        return $Channel->getTradeNoKeyName();
     }
 
     /**
@@ -145,13 +176,9 @@ class PayNotify
      * @param string $channel_name
      * @return NotifyResult
      */
-    protected function getNotifyResult(string $channel_name) : NotifyResult
+    public function getNotifyResult(string $channel_name) : NotifyResult
     {
-        /**
-         *
-         * @var \asbamboo\openpay\channel\v1_0\trade\PayInterface $Channel
-         */
-        $Channel    = $this->ChannelManager->getChannel(Pay::class, $channel_name);
+        $Channel    = $this->getChannel($channel_name);
         return $Channel->notify($this->Request);
     }
 
