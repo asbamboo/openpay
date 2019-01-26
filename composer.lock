@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "48c4511f5238732a916f00a3cedfd548",
+    "content-hash": "432f83323ec98ea557d20479dbc8e34f",
     "packages": [
         {
             "name": "asbamboo/api",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/api.git",
-                "reference": "ccac311ba86929611e96681d323f90414eeda0dd"
+                "reference": "166ca1c3b139293abc6d450e223afadc2dbe967d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/api/zipball/ccac311ba86929611e96681d323f90414eeda0dd",
-                "reference": "ccac311ba86929611e96681d323f90414eeda0dd",
+                "url": "https://api.github.com/repos/asbamboo/api/zipball/166ca1c3b139293abc6d450e223afadc2dbe967d",
+                "reference": "166ca1c3b139293abc6d450e223afadc2dbe967d",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 "source": "https://github.com/asbamboo/api/tree/1.0.0",
                 "issues": "https://github.com/asbamboo/api/issues"
             },
-            "time": "2019-01-11T07:11:17+00:00"
+            "time": "2019-01-21T06:12:25+00:00"
         },
         {
             "name": "asbamboo/autoload",
@@ -306,12 +306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/http.git",
-                "reference": "9c2f02c35c80e0e4fdf5541a991a18b9f16f8b2e"
+                "reference": "49a8b4c035bcbbc672f6ffcf956dd4b919be1234"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/http/zipball/9c2f02c35c80e0e4fdf5541a991a18b9f16f8b2e",
-                "reference": "9c2f02c35c80e0e4fdf5541a991a18b9f16f8b2e",
+                "url": "https://api.github.com/repos/asbamboo/http/zipball/49a8b4c035bcbbc672f6ffcf956dd4b919be1234",
+                "reference": "49a8b4c035bcbbc672f6ffcf956dd4b919be1234",
                 "shasum": ""
             },
             "require": {
@@ -337,7 +337,7 @@
                 "source": "https://github.com/asbamboo/http/tree/1.1.0",
                 "issues": "https://github.com/asbamboo/http/issues"
             },
-            "time": "2019-01-05T12:28:51+00:00"
+            "time": "2019-01-21T06:19:38+00:00"
         },
         {
             "name": "asbamboo/router",
@@ -684,12 +684,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "0731608045c810f97e93483fdb6cbf43e7b3ba45"
+                "reference": "94cec71120547f827bddf8a72de831af9d7d2428"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0731608045c810f97e93483fdb6cbf43e7b3ba45",
-                "reference": "0731608045c810f97e93483fdb6cbf43e7b3ba45",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/94cec71120547f827bddf8a72de831af9d7d2428",
+                "reference": "94cec71120547f827bddf8a72de831af9d7d2428",
                 "shasum": ""
             },
             "require": {
@@ -701,7 +701,7 @@
             "require-dev": {
                 "doctrine/coding-standard": "^5.0",
                 "jetbrains/phpstorm-stubs": "^2018.1.2",
-                "phpstan/phpstan": "^0.10.1",
+                "phpstan/phpstan": "^0.11.1",
                 "phpunit/phpunit": "^7.4",
                 "symfony/console": "^2.0.5|^3.0|^4.0",
                 "symfony/phpunit-bridge": "^3.4.5|^4.0.5"
@@ -758,7 +758,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2019-01-06T19:25:53+00:00"
+            "time": "2019-01-24T11:06:38+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -1316,12 +1316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "4a5d48d2ca2422c5c02ed37e4146fb65591369d5"
+                "reference": "c195108dddab91f51b9c57f63e8b184d0a257a54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/4a5d48d2ca2422c5c02ed37e4146fb65591369d5",
-                "reference": "4a5d48d2ca2422c5c02ed37e4146fb65591369d5",
+                "url": "https://api.github.com/repos/symfony/console/zipball/c195108dddab91f51b9c57f63e8b184d0a257a54",
+                "reference": "c195108dddab91f51b9c57f63e8b184d0a257a54",
                 "shasum": ""
             },
             "require": {
@@ -1333,6 +1333,9 @@
                 "symfony/dependency-injection": "<3.4",
                 "symfony/process": "<3.3"
             },
+            "provide": {
+                "psr/log-implementation": "1.0"
+            },
             "require-dev": {
                 "psr/log": "~1.0",
                 "symfony/config": "~3.4|~4.0",
@@ -1342,7 +1345,7 @@
                 "symfony/process": "~3.4|~4.0"
             },
             "suggest": {
-                "psr/log-implementation": "For using the console logger",
+                "psr/log": "For using the console logger",
                 "symfony/event-dispatcher": "",
                 "symfony/lock": "",
                 "symfony/process": ""
@@ -1377,7 +1380,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-01-10T07:43:17+00:00"
+            "time": "2019-01-25T14:35:46+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -1570,12 +1573,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "6e8c0d1188d5ba60752b8b523db1f1bdbac203da"
+                "reference": "4c7b2f8f8492da1729aef4c516447716d2987fe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/6e8c0d1188d5ba60752b8b523db1f1bdbac203da",
-                "reference": "6e8c0d1188d5ba60752b8b523db1f1bdbac203da",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/4c7b2f8f8492da1729aef4c516447716d2987fe6",
+                "reference": "4c7b2f8f8492da1729aef4c516447716d2987fe6",
                 "shasum": ""
             },
             "require": {
@@ -1621,7 +1624,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-01-03T09:16:58+00:00"
+            "time": "2019-01-16T21:53:39+00:00"
         }
     ],
     "packages-dev": [
@@ -2248,12 +2251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6bef716234a519ee880b593179a52bb6ddd2cbd3"
+                "reference": "9394dc3eba44ffcd3fd44293e57e847ecbce3bd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6bef716234a519ee880b593179a52bb6ddd2cbd3",
-                "reference": "6bef716234a519ee880b593179a52bb6ddd2cbd3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9394dc3eba44ffcd3fd44293e57e847ecbce3bd6",
+                "reference": "9394dc3eba44ffcd3fd44293e57e847ecbce3bd6",
                 "shasum": ""
             },
             "require": {
@@ -2324,7 +2327,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-01-11T06:11:07+00:00"
+            "time": "2019-01-24T16:01:13+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

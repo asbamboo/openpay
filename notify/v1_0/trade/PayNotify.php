@@ -17,6 +17,8 @@ use asbamboo\http\Uri;
 use asbamboo\http\Constant AS HttpConstant;
 use asbamboo\openpay\channel\v1_0\trade\payParameter\NotifyResult;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
+use asbamboo\event\EventScheduler;
+use asbamboo\openpay\Event;
 
 /**
  * 交易支付接口 trade.pay notify处理
@@ -87,6 +89,12 @@ class PayNotify
         $Response   = new Response(new Stream('php://temp', 'w+b'));
 
         try{
+            /**
+             * 事件触发 可以通过监听这个事件处理一些事情，比如:写入日志,校验请求参数等
+             * 在api模块内，event-listener定义了几个监听器，如果你有需要的话，请使用EventScheduler::instance()->bind 方法绑定事件监听器
+             */
+            EventScheduler::instance()->trigger(Event::PAY_NOTIFY_PRE_EXEC, $this, ...func_get_args());
+
             $NotifyResult   = $this->getNotifyResult($channel);
             $TradePayEntity = $this->DbFlush($NotifyResult);
 
@@ -118,6 +126,12 @@ class PayNotify
 
             $Response->getBody()->write($NotifyResult->getResponseSuccess());
             $Response->getBody()->rewind();
+
+            /**
+             * 事件触发 可以通过监听这个事件处理一些事情，比如:写入日志,校验请求参数等
+             * 在api模块内，event-listener定义了几个监听器，如果你有需要的话，请使用EventScheduler::instance()->bind 方法绑定事件监听器
+             */
+            EventScheduler::instance()->trigger(Event::PAY_NOTIFY_AFTER_EXEC, $this, $NotifyResult, ...func_get_args());
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
             $Response->getBody()->write($NotifyResult->getResponseFailed());
             $Response->getBody()->rewind();
