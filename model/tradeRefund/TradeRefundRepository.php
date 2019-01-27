@@ -49,7 +49,7 @@ class TradeRefundRepository
      * @param string $out_refund_no
      * @return TradeRefundEntity|NULL
      */
-    public function loadByOutTradeNo(string $out_refund_no) : ?TradeRefundEntity
+    public function loadByOutRefundNo(string $out_refund_no) : ?TradeRefundEntity
     {
         return $this->Repository->findOneBy(['out_refund_no' => $out_refund_no]);
     }

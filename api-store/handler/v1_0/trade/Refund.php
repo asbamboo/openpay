@@ -19,6 +19,7 @@ use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRepository;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartManager;
 use asbamboo\openpay\model\tradeRefund\TradeRefundEntity;
 use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity;
+use asbamboo\openpay\apiStore\exception\TradeRefundOutRefundNoInvalidException;
 
 /**
  * @name 发起退款
@@ -119,7 +120,10 @@ class Refund implements ApiClassInterface
         if(empty($TradePayEntity)){
             throw new TradeRefundNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');
         }
-        $TradeRefundEntity  = $this->TradeRefundRepository->loadByOutTradeNo($Params->getOutRefundNo());
+        if(trim($Params->getOutRefundNo()) == ''){
+            throw new TradeRefundOutRefundNoInvalidException("缺少参数：out_refund_no");
+        }
+        $TradeRefundEntity  = $this->TradeRefundRepository->loadByOutRefundNo($Params->getOutRefundNo());
         if(is_null($TradeRefundEntity)){
             $TradeRefundEntity  = $this->TradeRefundManager->load();
             $this->TradeRefundManager->insert($TradePayEntity, $Params->getOutRefundNo(), $Params->getRefundFee());
