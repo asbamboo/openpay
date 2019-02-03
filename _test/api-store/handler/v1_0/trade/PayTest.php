@@ -126,6 +126,45 @@ class PayTest extends TestCase
         }
     }
 
+    public function testExecPayAPP()
+    {
+        try{
+            $Handler        = $this->getHandler();
+            $this->Db->getManager()->transactional(function()use($Handler){
+                $title              = 'testTitle' . mt_rand(0, 9999);
+                $out_trade_no       = 'no' . date('ymdhis') . mt_rand(0, 9999);
+                $total_fee          = mt_rand(0, 9999);
+                $client_ip          = '192.168.3.' . mt_rand(0,255);
+                $Request            = $this->getRequest([
+                    'channel'       => 'TEST_PAY_APP',
+                    'title'         => $title,
+                    'out_trade_no'  => $out_trade_no,
+                    'total_fee'     => $total_fee,
+                    'client_ip'     => $client_ip,
+                    'notify_url'    => 'notify_url',
+                    'return_url'    => 'return_url',
+                ]);
+                $PayResponse    = $Handler->exec($Request);
+                $response_array = $PayResponse->getObjectVars();
+
+                $this->assertEquals('TEST_PAY_APP', $response_array['channel']);
+                $this->assertNotEmpty($response_array['in_trade_no']);
+                $this->assertEquals($title, $response_array['title']);
+                $this->assertEquals($out_trade_no, $response_array['out_trade_no']);
+                $this->assertEquals($total_fee, $response_array['total_fee']);
+                $this->assertEquals($client_ip, $response_array['client_ip']);
+                $this->assertEquals(Constant::getTradePayTradeStatusNames()[Constant::TRADE_PAY_TRADE_STATUS_NOPAY], $response_array['trade_status']);
+                $this->assertEquals('', $response_array['payok_ymdhis']);
+                $this->assertEquals('', $response_array['payed_ymdhis']);
+                $this->assertEquals('', $response_array['cancel_ymdhis']);
+                $this->assertEquals('test_pay_app_json', $response_array['app_pay_json']);
+
+                throw new RollbackException('rollback exception');
+            });
+        }catch(RollbackException $e){
+            //
+        }
+    }
     public function testExecPayQRCD()
     {
         try{

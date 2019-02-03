@@ -18,6 +18,7 @@ final class Response
     const TYPE_QRCD     = '1';  // 扫码支付（顾客手机扫描商户）
     const TYPE_PC       = '2';  // PC支付
     const TYPE_H5       = '3';  // H5支付
+    const TYPE_APP      = '4';  // APP支付
     /****************************************************************************/
 
     /**
@@ -37,6 +38,15 @@ final class Response
      * @var string
      */
     private $qr_code = '';
+
+    /**
+     * 用户APP支付时的请求参数
+     * - app支付时不能为空
+     * - 请求参数的格式为由各渠道API接口说明的相关字段组成的json字符串。
+     *
+     * @var string
+     */
+    private $app_pay_json = "{}";
 
     /**
      * 页面跳转目标URL
@@ -64,7 +74,7 @@ final class Response
      */
     public function setType($type) : self
     {
-        if(!in_array($type, [self::TYPE_GENERAL, self::TYPE_QRCD, self::TYPE_PC, self::TYPE_H5])){
+        if(!in_array($type, [self::TYPE_GENERAL, self::TYPE_QRCD, self::TYPE_PC, self::TYPE_H5, self::TYPE_APP])){
             throw new OpenpayException('支付需要，页面跳转类型超出有效范围。');
         }
         $this->type  = $type;
@@ -98,6 +108,26 @@ final class Response
     public function getQrCode()
     {
         return $this->qr_code;
+    }
+
+    /**
+     *
+     * @param string $app_pay_json
+     * @return self
+     */
+    public function setAppPayJson(string $app_pay_json) : self
+    {
+        $this->app_pay_json  = $app_pay_json;
+        return $this;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getAppPayJson() : string
+    {
+        return $this->app_pay_json;
     }
 
     /**
