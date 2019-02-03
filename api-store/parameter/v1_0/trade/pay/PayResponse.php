@@ -96,4 +96,11 @@ class PayResponse extends ApiResponseParams
      * @var string(200)
      */
     protected $qr_code;
+
+    /**
+     * @desc APP支付时，创建交易订单，并获取APP支付请求参数
+     * @example json格式的字符串，相关参数请参考第三分支付渠道相关文档。
+     * @var string
+     */
+    protected $app_pay_json;
 }

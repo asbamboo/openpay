@@ -68,6 +68,12 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       nullable: false
       options:
         default: ''
+    app_pay_json:
+      type: string
+      length: 2000
+      nullable: false
+      options:
+        default: ''
     trade_status:
       type: smallint
       nullable: false

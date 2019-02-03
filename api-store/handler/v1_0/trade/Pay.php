@@ -147,6 +147,8 @@ class Pay implements ApiClassInterface
          */
         if($ChannelResponse->getType() == Response::TYPE_QRCD && $ChannelResponse->getQrCode()){
             $TradePayEntity->setQrCode($ChannelResponse->getQrCode());
+        }else if($ChannelResponse->getType() == Response::TYPE_APP && $ChannelResponse->getAppPayJson()){
+            $TradePayEntity->setAppPayJson($ChannelResponse->getAppPayJson());
         }
 
         /**
@@ -169,6 +171,7 @@ class Pay implements ApiClassInterface
                 'payed_ymdhis'  => '',
                 'cancel_ymdhis' => '',
                 'qr_code'       => $TradePayEntity->getQrCode(),
+                'app_pay_json'  => $TradePayEntity->getAppPayJson(),
             ]);
         }
 

@@ -63,6 +63,11 @@ class TradePayEntity
     private $qr_code = '';
 
     /**
+     * @var string
+     */
+    private $app_pay_json = '';
+
+    /**
      * @var int
      */
     private $trade_status = '0';
@@ -336,6 +341,30 @@ class TradePayEntity
     public function getQrCode()
     {
         return $this->qr_code;
+    }
+
+    /**
+     * Set appPayJson.
+     *
+     * @param string $appPayJson
+     *
+     * @return TradePayEntity
+     */
+    public function setAppPayJson($appPayJson)
+    {
+        $this->app_pay_json = $appPayJson;
+
+        return $this;
+    }
+
+    /**
+     * Get appPayJson.
+     *
+     * @return string
+     */
+    public function getAppPayJson()
+    {
+        return $this->app_pay_json;
     }
 
     /**
