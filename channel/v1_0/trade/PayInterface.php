@@ -25,11 +25,21 @@ interface PayInterface extends ChannelInterface
 
     /**
      * 第三方支付平台消息推送过来的时候需要通过这个方法处理推送的消息
+     *  - 与return方法的区别是，notify是异步通知。
      *
      * @param ServerRequestInterface $Request
      * @return NotifyResult
      */
     public function notify(ServerRequestInterface $Request) : NotifyResult;
+
+    /**
+     * 第三方支付平台消息推送过来的时候需要通过这个方法处理推送的消息
+     *  - 与notify方法的区别是，return是同步通知。
+     *
+     * @param ServerRequestInterface $Request
+     * @return NotifyResult
+     */
+    public function return(ServerRequestInterface $Request) : NotifyResult;
 
     /**
      * 返回asbamboo系统的订单编号对应第三方平台推送结果的字段名称。

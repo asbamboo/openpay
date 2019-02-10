@@ -102,6 +102,17 @@ class PayReturn extends PayNotify
     }
 
     /**
+     *
+     * @param string $channel_name
+     * @return NotifyResult
+     */
+    public function getNotifyResult(string $channel_name) : NotifyResult
+    {
+        $Channel    = $this->getChannel($channel_name);
+        return $Channel->return($this->Request);
+    }
+
+    /**
      * 更新数据状态
      *
      * @param NotifyResult $NotifyResult

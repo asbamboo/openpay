@@ -40,6 +40,16 @@ class PayQrcd implements PayInterface
     /**
      *
      * {@inheritDoc}
+     * @see \asbamboo\openpay\channel\v1_0\trade\PayInterface::return()
+     */
+    public function return(ServerRequestInterface $Request) : NotifyResult
+    {
+        return $this->notify($Request);
+    }
+
+    /**
+     *
+     * {@inheritDoc}
      * @see \asbamboo\openpay\channel\v1_0\trade\PayInterface::getTradeNoKeyName()
      */
     public function getTradeNoKeyName() : string
