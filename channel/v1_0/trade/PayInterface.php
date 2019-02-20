@@ -40,11 +40,4 @@ interface PayInterface extends ChannelInterface
      * @return NotifyResult
      */
     public function return(ServerRequestInterface $Request) : NotifyResult;
-
-    /**
-     * 返回asbamboo系统的订单编号对应第三方平台推送结果的字段名称。
-     *
-     * @return string
-     */
-    public function getTradeNoKeyName(): string;
 }

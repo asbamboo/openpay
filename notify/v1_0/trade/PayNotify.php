@@ -161,17 +161,6 @@ class PayNotify
     }
 
     /**
-     * 返回第三方平台交易编号的key
-     *
-     * @return string
-     */
-    public function getTradeNoKeyName(string $channel_name) : string
-    {
-        $Channel    = $this->getChannel($channel_name);
-        return $Channel->getTradeNoKeyName();
-    }
-
-    /**
      *
      * @param string $channel_name
      * @return NotifyResult

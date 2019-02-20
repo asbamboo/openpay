@@ -57,16 +57,6 @@ class PayApp implements PayInterface
     /**
      *
      * {@inheritDoc}
-     * @see \asbamboo\openpay\channel\v1_0\trade\PayInterface::getTradeNoKeyName()
-     */
-    public function getTradeNoKeyName() : string
-    {
-        return "out_trade_no";
-    }
-
-    /**
-     *
-     * {@inheritDoc}
      * @see \asbamboo\openpay\channel\ChannelInterface::supports()
      */
     public function supports() : array
