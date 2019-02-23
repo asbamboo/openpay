@@ -2,14 +2,13 @@
 namespace asbamboo\openpay\notify\v1_0\trade;
 
 use asbamboo\http\ResponseInterface;
-use asbamboo\http\Response;
-use asbamboo\http\Stream;
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\channel\v1_0\trade\payParameter\NotifyResult;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\event\EventScheduler;
 use asbamboo\openpay\Event;
+use asbamboo\http\JsonResponse;
 
 /**
  * 交易支付接口 trade.pay notify处理
@@ -26,11 +25,6 @@ class PayReturn extends PayNotify
      */
     public function exec(string $channel) : ResponseInterface
     {
-        /**
-         * @var ResponseInterface $Response
-         */
-        $Response   = new Response(new Stream('php://temp', 'w+b'));
-
         try{
             /**
              * 事件触发 可以通过监听这个事件处理一些事情，比如:写入日志,校验请求参数等
@@ -38,8 +32,20 @@ class PayReturn extends PayNotify
              */
             EventScheduler::instance()->trigger(Event::PAY_RETURN_PRE_EXEC, [$this, $channel]);
 
-            $NotifyResult   = $this->getNotifyResult($channel);
-            $TradePayEntity = $this->dbFlush($NotifyResult);
+            $NotifyResult           = $this->getNotifyResult($channel);
+            $TradePayEntity         = $this->dbFlush($NotifyResult);
+            $trade_pay_info         =   [
+                'channel'           => $TradePayEntity->getChannel(),
+                'in_trade_no'       => $TradePayEntity->getInTradeNo(),
+                'title'             => $TradePayEntity->getTitle(),
+                'out_trade_no'      => $TradePayEntity->getOutTradeNo(),
+                'total_fee'         => $TradePayEntity->getTotalFee(),
+                'client_ip'         => $TradePayEntity->getClientIp(),
+                'trade_status'      => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
+                'payok_ymdhis'      => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
+                'payed_ymdhis'      => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
+                'cancel_ymdhis'     => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
+            ];
 
             /*
              * 向对接聚合平台的应用推送消息
@@ -48,18 +54,7 @@ class PayReturn extends PayNotify
              *  - 但是如果curl请求未成功,第三方平台有重发机制的时候. 由于这个方法抛出了curl client exception,等到第三方重新发送notify过来的时候,这个聚合平台又会再次推送notify.
              */
             if($TradePayEntity->getReturnUrl()){
-                $ApiResponseRedirectParams  = new class ($TradePayEntity->getReturnUrl(), [
-                    'channel'               => $TradePayEntity->getChannel(),
-                    'in_trade_no'           => $TradePayEntity->getInTradeNo(),
-                    'title'                 => $TradePayEntity->getTitle(),
-                    'out_trade_no'          => $TradePayEntity->getOutTradeNo(),
-                    'total_fee'             => $TradePayEntity->getTotalFee(),
-                    'client_ip'             => $TradePayEntity->getClientIp(),
-                    'trade_status'          => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
-                    'payok_ymdhis'          => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
-                    'payed_ymdhis'          => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
-                    'cancel_ymdhis'         => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
-                ]) extends ApiResponseRedirectParams{
+                $ApiResponseRedirectParams  = new class ($TradePayEntity->getReturnUrl(), $trade_pay_info) extends ApiResponseRedirectParams{
                     private $url;
                     private $data;
                     public function __construct($url, $data)
@@ -85,8 +80,7 @@ class PayReturn extends PayNotify
                 };
                 $Response   = $ApiResponseRedirectParams->makeRedirectResponse();
             }else{
-                $Response->getBody()->write($NotifyResult->getResponseSuccess());
-                $Response->getBody()->rewind();
+                $Response   = new JsonResponse(['status' => 'success', 'data' => $trade_pay_info]);
             }
             /**
              * 事件触发 可以通过监听这个事件处理一些事情，比如:写入日志,校验请求参数等
@@ -94,11 +88,21 @@ class PayReturn extends PayNotify
              */
             EventScheduler::instance()->trigger(Event::PAY_RETURN_AFTER_EXEC, [$this, $NotifyResult, $channel]);
         }catch(\asbamboo\openpay\exception\OpenpayException $e){
-            $Response->getBody()->write($NotifyResult->getResponseFailed());
-            $Response->getBody()->rewind();
+            $Response   = new JsonResponse(['status' => 'failed', 'error' => $e->getMessage()]);
         }
 
         return $Response;
+    }
+
+    /**
+     *
+     * @param string $channel_name
+     * @return NotifyResult
+     */
+    public function getNotifyResult(string $channel_name) : NotifyResult
+    {
+        $Channel    = $this->getChannel($channel_name);
+        return $Channel->return($this->Request);
     }
 
     /**

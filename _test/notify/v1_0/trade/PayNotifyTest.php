@@ -109,7 +109,6 @@ class PayNotifyTest extends TestCase
         $this->assertEquals('SUCCESS', $response_body);
         $this->assertEquals(Constant::TRADE_PAY_TRADE_STATUS_PAYOK, $TradePayEntity->getTradeStatus());
         $this->assertEquals('third_trade_no', $TradePayEntity->getThirdTradeNo());
-        $this->assertEquals('out_trade_no', $PayNotify->getTradeNoKeyName('TEST_PAY_PC'));
         $this->assertNotEmpty($TradePayEntity->getPayokTime());
     }
 

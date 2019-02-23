@@ -48,11 +48,11 @@ class PayPc implements PayInterface
     /**
      *
      * {@inheritDoc}
-     * @see \asbamboo\openpay\channel\v1_0\trade\PayInterface::getTradeNoKeyName()
+     * @see \asbamboo\openpay\channel\v1_0\trade\PayInterface::return()
      */
-    public function getTradeNoKeyName() : string
+    public function return(ServerRequestInterface $Request) : NotifyResult
     {
-        return "out_trade_no";
+        return $this->notify($Request);
     }
 
     /**
