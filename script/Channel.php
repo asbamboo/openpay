@@ -26,7 +26,7 @@ class Channel implements ScriptChannelInterface
 
         $root_dir       = getcwd();
         $Event->getIO()->write('当前项目跟目录:' . $root_dir);
-        $channels       = static::findChannel($root_dir);
+        $channels       = static::findChannel($root_dir, $Event);
         $Event->getIO()->write('找出的渠道信息:' . var_export($channels, true));
         $ChannelMapping = new ChannelMapping();
         $ChannelMapping->resetMappingContent();
@@ -40,7 +40,7 @@ class Channel implements ScriptChannelInterface
      * @param string $root_dir
      * @return array|\\asbamboo\\openpay\\ChannelInterface[]
      */
-    private static function findChannel($root_dir) : array
+    private static function findChannel($root_dir, Event $Event) : array
     {
         // 在openpay模块内不应该添加处理渠道，有也只可能时单元测试用的文件
         if(rtrim($root_dir, DIRECTORY_SEPARATOR) == dirname(__DIR__)){
@@ -60,9 +60,10 @@ class Channel implements ScriptChannelInterface
         foreach($paths AS $path){
             $path   = $root_dir . DIRECTORY_SEPARATOR . $path;
             if(is_dir($path)){
-                $channels   = array_merge($channels, static::findChannel($path));
+                $channels   = array_merge($channels, static::findChannel($path, $Event));
                 continue;
             }
+            $Event->getIO()->write("检查是否为接口渠道：" . $path);
             $php_bin                = 'php';
             if(isset($_SERVER['_'])){
                 $php_bin            = $_SERVER['_'] == $_SERVER['SCRIPT_FILENAME'] ? 'php' : $_SERVER['_'];

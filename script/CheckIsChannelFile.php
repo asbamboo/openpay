@@ -9,11 +9,12 @@
  */
 use asbamboo\openpay\channel\ChannelInterface;
 
-include dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'autoload' . DIRECTORY_SEPARATOR . 'bootstrap.php';
-
 try{
     $classfile          = $_SERVER['argv'][1];
     $file_content       = file_get_contents($classfile);
+    if(!preg_match("@^\s*<\?php@i", $file_content)){
+        return 0;
+    }
     $classname_data     = [];
     $getting_namespace  = false;
     $getting_classname  = false;
@@ -37,24 +38,22 @@ try{
             break;
         }
     }
-    
+
     if($getting_classname == false){
         echo 0;
         return;
     }
-    
+
     $classname   = implode('\\', $classname_data);
-    
-    if(class_exists( $classname)){
-        if(in_array(ChannelInterface::class, class_implements($classname))){
-            echo '1:' . $classname;
-            return;
-        }
+
+    if(preg_match('@asbamboo\\\openpay\\\channel\\\\.*Interface@i', $file_content)){
+        echo '1:' . $classname;
+        return;
     }else{
         echo 0;
         return;
     }
-    
+
 }catch(\Throwable $e){
     // 不是php文件，这里只解析php文件
     echo 0;
