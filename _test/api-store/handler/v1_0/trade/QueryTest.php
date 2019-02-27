@@ -14,6 +14,7 @@ use asbamboo\openpay\apiStore\exception\TradeQueryNotFoundInvalidException;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\model\tradePayClob\TradePayClobEntity;
 use asbamboo\openpay\Constant;
+use asbamboo\openpay\model\tradePayClob\TradePayClobRepository;
 
 /**
  * - 参数没有时抛出异常。
@@ -300,7 +301,8 @@ class QueryTest extends TestCase
         $ChannelManager         = new ChannelManager();
         $TradePayRepository     = new TradePayRepository($Db);
         $TradePayManager        = new TradePayManager($Db, $TradePayRepository);
-        $Query                  = new Query($ChannelManager, $Db, $TradePayRepository, $TradePayManager);
+        $TradePayClobRepository = new TradePayClobRepository($Db);
+        $Query                  = new Query($ChannelManager, $Db, $TradePayRepository, $TradePayClobRepository, $TradePayManager);
         return $Query;
     }
 }

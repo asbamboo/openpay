@@ -13,6 +13,7 @@ use asbamboo\openpay\channel\v1_0\trade\queryParameter\Request AS RequestByChann
 use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\query\QueryResponse;
 use asbamboo\database\FactoryInterface;
+use asbamboo\openpay\model\tradePayClob\TradePayClobRepository;
 
 /**
  * @name 交易查询
@@ -39,6 +40,12 @@ class Query implements ApiClassInterface
 
     /**
      *
+     * @var TradePayClobRepository
+     */
+    private $TradePayClobRepository;
+
+    /**
+     *
      * @var TradePayManager
      */
     private $TradePayManager;
@@ -53,11 +60,12 @@ class Query implements ApiClassInterface
      *
      * @param ChannelManagerInterface $Client
      */
-    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRepository $TradePayRepository, TradePayManager $TradePayManager)
+    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRepository $TradePayRepository, TradePayClobRepository $TradePayClobRepository, TradePayManager $TradePayManager)
     {
         $this->ChannelManager           = $ChannelManager;
-        $this->TradePayRepository      = $TradePayRepository;
+        $this->TradePayRepository       = $TradePayRepository;
         $this->TradePayManager          = $TradePayManager;
+        $this->TradePayClobRepository   = $TradePayClobRepository;
         $this->Db                       = $Db;
     }
 
@@ -69,15 +77,17 @@ class Query implements ApiClassInterface
      */
     public function exec(ApiRequestParamsInterface $Params) : ?ApiResponseParamsInterface
     {
-        $TradePayEntity = null;
+        $TradePayEntity     = null;
+        $TradePayClobEntity = null;
         if(strlen((string)$Params->getInTradeNo()) > 0){
-            $TradePayEntity = $this->TradePayRepository->load($Params->getInTradeNo());
+            $TradePayEntity     = $this->TradePayRepository->load($Params->getInTradeNo());
         }elseif(strlen((string)$Params->getOutTradeNo()) > 0){
             $TradePayEntity = $this->TradePayRepository->loadByOutTradeNo($Params->getOutTradeNo());
         }
         if(empty($TradePayEntity)){
             throw new TradeQueryNotFoundInvalidException('没有找到交易记录,请确认 in_trade_no 或 out_trade_no 参数.');
         }
+        $TradePayClobEntity = $this->TradePayClobRepository->findOneByInTradeNo($TradePayEntity->getInTradeNo());
 
         /**
         * 发起第三方渠道请求
@@ -123,6 +133,7 @@ class Query implements ApiClassInterface
             'payed_ymdhis'  => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
             'cancel_ymdhis' => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
             'qr_code'       => $TradePayEntity->getQrCode(),
+            'app_pay_json'  => empty($TradePayClobEntity) ? '{}' : $TradePayClobEntity->getAppPayJson(),
         ]);
     }
 }

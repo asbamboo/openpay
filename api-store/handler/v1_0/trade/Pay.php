@@ -11,8 +11,6 @@ use asbamboo\api\apiStore\ApiClassInterface;
 use asbamboo\database\Factory;
 use asbamboo\openpay\channel\v1_0\trade\payParameter\Request AS RequestByChannel;
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
-use asbamboo\helper\env\Env AS EnvHelper;
-use asbamboo\openpay\Env;
 use asbamboo\router\Router;
 use asbamboo\router\RouterInterface;
 use asbamboo\database\FactoryInterface;
