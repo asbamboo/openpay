@@ -12,7 +12,7 @@ use asbamboo\openpay\apiStore\exception\TradeCancelNotFoundInvalidException;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\apiStore\exception\TradeCancelNotAllowedException;
 use asbamboo\openpay\channel\v1_0\trade\cancelParameter\Request AS RequestByChannel;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
+use asbamboo\openpay\model\tradePayClob\TradePayClobRepository;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\cancel\CancelResponse;
 
 /**
@@ -46,9 +46,9 @@ class Cancel implements ApiClassInterface
 
     /**
      *
-     * @var TradePayThirdPartRepository
+     * @var TradePayClobRepository
      */
-    private $TradePayThirdPartRepository;
+    private $TradePayClobRepository;
 
     /**
      *
@@ -60,13 +60,13 @@ class Cancel implements ApiClassInterface
      *
      * @param ChannelManagerInterface $Client
      */
-    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRepository $TradePayRepository, TradePayManager $TradePayManager, TradePayThirdPartRepository $TradePayThirdPartRepository)
+    public function __construct(ChannelManagerInterface $ChannelManager, FactoryInterface $Db, TradePayRepository $TradePayRepository, TradePayManager $TradePayManager, TradePayClobRepository $TradePayClobRepository)
     {
-        $this->ChannelManager                   = $ChannelManager;
-        $this->TradePayRepository              = $TradePayRepository;
-        $this->TradePayManager                  = $TradePayManager;
-        $this->TradePayThirdPartRepository     = $TradePayThirdPartRepository;
-        $this->Db                               = $Db;
+        $this->ChannelManager             = $ChannelManager;
+        $this->TradePayRepository         = $TradePayRepository;
+        $this->TradePayManager            = $TradePayManager;
+        $this->TradePayClobRepository     = $TradePayClobRepository;
+        $this->Db                         = $Db;
     }
 
     /**
@@ -97,13 +97,13 @@ class Cancel implements ApiClassInterface
          */
         if($TradePayEntity->getTradeStatus() != Constant::TRADE_PAY_TRADE_STATUS_CANCEL){
 
-            $TradePayThirdPartEntity    = $this->TradePayThirdPartRepository->findOneByInTradeNo($TradePayEntity->getInTradeNo());
+            $TradePayClobEntity    = $this->TradePayClobRepository->findOneByInTradeNo($TradePayEntity->getInTradeNo());
             $channel_name               = $TradePayEntity->getChannel();
             $Channel                    = $this->ChannelManager->getChannel(__CLASS__, $channel_name);
             $ChannelResponse            = $Channel->execute(new RequestByChannel([
                 'channel'               => $TradePayEntity->getChannel(),
                 'in_trade_no'           => $TradePayEntity->getInTradeNo(),
-                'third_part'            => $TradePayThirdPartEntity->getSendData(),
+                'third_part'            => $Params->getThirdPart(),
             ]));
 
             if($ChannelResponse->getIsSuccess() == true){

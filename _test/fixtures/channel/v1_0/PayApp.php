@@ -23,7 +23,7 @@ class PayApp implements PayInterface
     {
         $Response   = new Response();
         $Response->setType(Response::TYPE_APP);
-        $Response->setAppPayJson('test_pay_app_json');
+        $Response->setAppPayJson('{"key":"test_pay_app_json"}');
         return $Response;
     }
 

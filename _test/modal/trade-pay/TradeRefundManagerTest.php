@@ -8,7 +8,7 @@ use asbamboo\database\FactoryInterface;
 use asbamboo\openpay\apiStore\exception\TradeRefundTradeStatusInvalidException;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\Constant;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
+use asbamboo\openpay\model\tradePayClob\TradePayClobEntity;
 use asbamboo\openpay\model\tradeRefund\TradeRefundManager;
 use asbamboo\openpay\model\tradeRefund\TradeRefundRepository;
 use asbamboo\openpay\apiStore\exception\TradeRefundRefundFeeInvalidException;
@@ -48,7 +48,7 @@ class TradeRefundManagerTest extends TestCase
         static::$Db     = new Factory();
         static::$Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
-            'path'      => dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
+            'path'      => dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
         ], dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         static::$Db->getManager()->beginTransaction();
     }
@@ -80,9 +80,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_NOPAY);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $out_refund_no          = 'out_refund_no' . mt_rand(0, 999);
         $refund_fee             = rand(0, $total_fee);
@@ -109,9 +109,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $out_refund_no          = 'out_refund_no' . mt_rand(0, 999);
         $refund_fee             = rand($total_fee+1, 999999);
@@ -137,9 +137,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -152,7 +152,7 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundEntity->setRefundFee($refund_fee);
 
         static::$Db->getManager()->persist($TradePayEntity);
-        static::$Db->getManager()->persist($TradePayThirdPartEntity);
+        static::$Db->getManager()->persist($TradePayClobEntity);
         static::$Db->getManager()->persist($TradeRefundEntity);
         static::$Db->getManager()->flush();
 
@@ -182,11 +182,11 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
         static::$Db->getManager()->persist($TradePayEntity);
-        static::$Db->getManager()->persist($TradePayThirdPartEntity);
+        static::$Db->getManager()->persist($TradePayClobEntity);
         static::$Db->getManager()->flush();
 
         $out_refund_no          = 'out_refund_no' . mt_rand(0, 999);
@@ -221,9 +221,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -237,7 +237,7 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_SUCCESS);
 
         static::$Db->getManager()->persist($TradePayEntity);
-        static::$Db->getManager()->persist($TradePayThirdPartEntity);
+        static::$Db->getManager()->persist($TradePayClobEntity);
         static::$Db->getManager()->persist($TradeRefundEntity);
         static::$Db->getManager()->flush();
 
@@ -263,9 +263,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -279,7 +279,7 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_FAILED);
 
         static::$Db->getManager()->persist($TradePayEntity);
-        static::$Db->getManager()->persist($TradePayThirdPartEntity);
+        static::$Db->getManager()->persist($TradePayClobEntity);
         static::$Db->getManager()->persist($TradeRefundEntity);
         static::$Db->getManager()->flush();
 
@@ -307,9 +307,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -323,7 +323,7 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_FAILED);
 
         static::$Db->getManager()->persist($TradePayEntity);
-        static::$Db->getManager()->persist($TradePayThirdPartEntity);
+        static::$Db->getManager()->persist($TradePayClobEntity);
         static::$Db->getManager()->persist($TradeRefundEntity);
         static::$Db->getManager()->flush();
 
@@ -351,9 +351,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -367,7 +367,7 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_REQUEST);
 
         static::$Db->getManager()->persist($TradePayEntity);
-        static::$Db->getManager()->persist($TradePayThirdPartEntity);
+        static::$Db->getManager()->persist($TradePayClobEntity);
         static::$Db->getManager()->persist($TradeRefundEntity);
         static::$Db->getManager()->flush();
         $TradeRefundRepository = new TradeRefundRepository(static::$Db);
@@ -397,9 +397,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -413,7 +413,7 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_FAILED);
 
         static::$Db->getManager()->persist($TradePayEntity);
-        static::$Db->getManager()->persist($TradePayThirdPartEntity);
+        static::$Db->getManager()->persist($TradePayClobEntity);
         static::$Db->getManager()->persist($TradeRefundEntity);
         static::$Db->getManager()->flush();
 
@@ -440,9 +440,9 @@ class TradeRefundManagerTest extends TestCase
         $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
         $TradePayEntity->setInTradeNo($in_trade_no);
         $TradePayEntity->setTotalFee($total_fee);
-        $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-        $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-        $TradePayThirdPartEntity->setSendData('');
+        $TradePayClobEntity     = new TradePayClobEntity();
+        $TradePayClobEntity->setInTradeNo($in_trade_no);
+        $TradePayClobEntity->setThirdPart('');
 
         $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
         $out_refund_no      = 'out_refund_no' . mt_rand(0, 999);
@@ -456,10 +456,10 @@ class TradeRefundManagerTest extends TestCase
         $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_REQUEST);
 
         static::$Db->getManager()->persist($TradePayEntity);
-        static::$Db->getManager()->persist($TradePayThirdPartEntity);
+        static::$Db->getManager()->persist($TradePayClobEntity);
         static::$Db->getManager()->persist($TradeRefundEntity);
         static::$Db->getManager()->flush();
-        $TradeRefundRepository = new TradeRefundRepository(static::$Db);
+        $TradeRefundRepository  = new TradeRefundRepository(static::$Db);
         $TradeRefundManager     = new TradeRefundManager(static::$Db, $TradeRefundRepository);
 
         $TradeRefundEntity      = $TradeRefundManager->load($TradeRefundEntity->getInRefundNo());

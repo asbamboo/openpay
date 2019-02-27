@@ -91,6 +91,7 @@ class Query implements ApiClassInterface
             $ChannelResponse    = $Channel->execute(new RequestByChannel([
                 'channel'       => $TradePayEntity->getChannel(),
                 'in_trade_no'   => $TradePayEntity->getInTradeNo(),
+                'third_part'    => $Params->getThirdPart(),
             ]));
             //支付成功（可退款）
             if($ChannelResponse->getTradeStatus() == Constant::TRADE_PAY_TRADE_STATUS_PAYOK){

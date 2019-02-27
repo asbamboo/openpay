@@ -12,7 +12,7 @@ use asbamboo\openpay\model\tradePay\TradePayManager;
 use asbamboo\http\ServerRequest;
 use asbamboo\openpay\apiStore\exception\TradeQueryNotFoundInvalidException;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
+use asbamboo\openpay\model\tradePayClob\TradePayClobEntity;
 use asbamboo\openpay\Constant;
 
 /**
@@ -92,12 +92,12 @@ class QueryTest extends TestCase
                 $TradePayEntity->setInTradeNo($in_trade_no);
                 $TradePayEntity->setTotalFee($total_fee);
 
-                $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-                $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-                $TradePayThirdPartEntity->setSendData('');
+                $TradePayClobEntity     = new TradePayClobEntity();
+                $TradePayClobEntity->setInTradeNo($in_trade_no);
+                $TradePayClobEntity->setThirdPart('');
 
                 $this->Db->getManager()->persist($TradePayEntity);
-                $this->Db->getManager()->persist($TradePayThirdPartEntity);
+                $this->Db->getManager()->persist($TradePayClobEntity);
                 $this->Db->getManager()->flush();
 
                 $Request            = $this->getRequest([
@@ -144,12 +144,12 @@ class QueryTest extends TestCase
                 $TradePayEntity->setInTradeNo($in_trade_no);
                 $TradePayEntity->setTotalFee($total_fee);
 
-                $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-                $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-                $TradePayThirdPartEntity->setSendData('');
+                $TradePayClobEntity     = new TradePayClobEntity();
+                $TradePayClobEntity->setInTradeNo($in_trade_no);
+                $TradePayClobEntity->setThirdPart('');
 
                 $this->Db->getManager()->persist($TradePayEntity);
-                $this->Db->getManager()->persist($TradePayThirdPartEntity);
+                $this->Db->getManager()->persist($TradePayClobEntity);
                 $this->Db->getManager()->flush();
 
                 $Request            = $this->getRequest([
@@ -196,12 +196,12 @@ class QueryTest extends TestCase
                 $TradePayEntity->setInTradeNo($in_trade_no);
                 $TradePayEntity->setTotalFee($total_fee);
 
-                $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-                $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-                $TradePayThirdPartEntity->setSendData('');
+                $TradePayClobEntity     = new TradePayClobEntity();
+                $TradePayClobEntity->setInTradeNo($in_trade_no);
+                $TradePayClobEntity->setThirdPart('');
 
                 $this->Db->getManager()->persist($TradePayEntity);
-                $this->Db->getManager()->persist($TradePayThirdPartEntity);
+                $this->Db->getManager()->persist($TradePayClobEntity);
                 $this->Db->getManager()->flush();
 
                 $Request            = $this->getRequest([
@@ -248,12 +248,12 @@ class QueryTest extends TestCase
                 $TradePayEntity->setInTradeNo($in_trade_no);
                 $TradePayEntity->setTotalFee($total_fee);
 
-                $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-                $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-                $TradePayThirdPartEntity->setSendData('');
+                $TradePayClobEntity     = new TradePayClobEntity();
+                $TradePayClobEntity->setInTradeNo($in_trade_no);
+                $TradePayClobEntity->setThirdPart('');
 
                 $this->Db->getManager()->persist($TradePayEntity);
-                $this->Db->getManager()->persist($TradePayThirdPartEntity);
+                $this->Db->getManager()->persist($TradePayClobEntity);
                 $this->Db->getManager()->flush();
 
                 $Request            = $this->getRequest([
@@ -293,7 +293,7 @@ class QueryTest extends TestCase
         $Db                             = new Factory();
         $Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
-            'path'      => dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
+            'path'      => dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
         ], dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         $this->Db                       = $Db;
 
