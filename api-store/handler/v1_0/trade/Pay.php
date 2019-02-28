@@ -6,13 +6,11 @@ use asbamboo\api\apiStore\ApiResponseParamsInterface;
 use asbamboo\openpay\channel\ChannelManagerInterface;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayRequest;
 use asbamboo\openpay\model\tradePay\TradePayManager;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartManager;
+use asbamboo\openpay\model\tradePayClob\TradePayClobManager;
 use asbamboo\api\apiStore\ApiClassInterface;
 use asbamboo\database\Factory;
 use asbamboo\openpay\channel\v1_0\trade\payParameter\Request AS RequestByChannel;
 use asbamboo\api\apiStore\ApiResponseRedirectParams;
-use asbamboo\helper\env\Env AS EnvHelper;
-use asbamboo\openpay\Env;
 use asbamboo\router\Router;
 use asbamboo\router\RouterInterface;
 use asbamboo\database\FactoryInterface;
@@ -60,30 +58,30 @@ class Pay implements ApiClassInterface
 
     /**
      *
-     * @var TradePayThirdPartManager
+     * @var TradePayClobManager
      */
-    protected $TradePayThirdPartManager;
+    protected $TradePayClobManager;
 
     /**
      *
      * @param ChannelManagerInterface $ChannelManager
      * @param Factory $Db
      * @param TradePayManager $TradePayManager
-     * @param TradePayThirdPartManager $TradePayThirdPartManager
+     * @param TradePayClobManager $TradePayClobManager
      * @param Router $Router
      */
     public function __construct(
         ChannelManagerInterface $ChannelManager,
         FactoryInterface $Db,
         TradePayManager $TradePayManager,
-        TradePayThirdPartManager $TradePayThirdPartManager,
+        TradePayClobManager $TradePayClobManager,
         RouterInterface $Router
     ){
-        $this->Db                       = $Db;
-        $this->Router                   = $Router;
-        $this->ChannelManager           = $ChannelManager;
-        $this->TradePayManager          = $TradePayManager;
-        $this->TradePayThirdPartManager = $TradePayThirdPartManager;
+        $this->Db                  = $Db;
+        $this->Router              = $Router;
+        $this->ChannelManager      = $ChannelManager;
+        $this->TradePayManager     = $TradePayManager;
+        $this->TradePayClobManager = $TradePayClobManager;
     }
 
     /**
@@ -105,7 +103,7 @@ class Pay implements ApiClassInterface
          * 创建交易数据信息
          *
          * @var \asbamboo\openpay\model\tradePay\TradePayEntity $TradePayEntity
-         * @var \asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity $TradePayThirdPartEntity;
+         * @var \asbamboo\openpay\model\tradePayClob\TradePayClobEntity $TradePayClobEntity;
          */
         $TradePayEntity             = $this->TradePayManager->load();
         $this->TradePayManager->insert(
@@ -117,8 +115,8 @@ class Pay implements ApiClassInterface
             $Params->getNotifyUrl(),
             $Params->getReturnUrl()
         );
-        $TradePayThirdPartEntity    = $this->TradePayThirdPartManager->load($TradePayEntity->getInTradeNo());
-        $this->TradePayThirdPartManager->insert($TradePayEntity, $Params->getThirdPart());
+        $TradePayClobEntity    = $this->TradePayClobManager->load($TradePayEntity->getInTradeNo());
+        $this->TradePayClobManager->insert($TradePayEntity, $Params->getThirdPart());
 
         /**
          * 发起第三方渠道请求
@@ -139,16 +137,16 @@ class Pay implements ApiClassInterface
             'client_ip'     => $TradePayEntity->getClientIp(),
             'notify_url'    => $this->Router->generateUrl('notify', ['channel' => $channel_name]),
             'return_url'    => $this->Router->generateUrl('return', ['channel' => $channel_name]),
-            'third_part'    => $TradePayThirdPartEntity->getSendData(),
+            'third_part'    => $TradePayClobEntity->getThirdPart(),
         ]));
 
         /**
          * 扫二维码支付时应该有的响应结果
          */
         if($ChannelResponse->getType() == Response::TYPE_QRCD && $ChannelResponse->getQrCode()){
-            $TradePayEntity->setQrCode($ChannelResponse->getQrCode());
+            $this->TradePayManager->updateQrCode($ChannelResponse->getQrCode());
         }else if($ChannelResponse->getType() == Response::TYPE_APP && $ChannelResponse->getAppPayJson()){
-            $TradePayEntity->setAppPayJson($ChannelResponse->getAppPayJson());
+            $this->TradePayClobManager->updateAppPayJson($ChannelResponse->getAppPayJson());
         }
 
         /**
@@ -171,7 +169,7 @@ class Pay implements ApiClassInterface
                 'payed_ymdhis'  => '',
                 'cancel_ymdhis' => '',
                 'qr_code'       => $TradePayEntity->getQrCode(),
-                'app_pay_json'  => $TradePayEntity->getAppPayJson(),
+                'app_pay_json'  => $TradePayClobEntity->getAppPayJson(),
             ]);
         }
 

@@ -127,6 +127,18 @@ trait TradePayValidator
 
     /**
      *
+     * @param string $return_url
+     * @throws TradePayThirdTradeNoInvalidException
+     */
+    public function validateQrCode($qr_code)
+    {
+        if(strlen($qr_code) > 200){
+            throw new TradePayReturnUrlInvalidException('qr code 长度不能超过200字。');
+        }
+    }
+
+    /**
+     *
      * @param string $third_trade_no
      * @throws TradePayOutTradeNoInvalidException
      */

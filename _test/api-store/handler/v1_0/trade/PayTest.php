@@ -8,7 +8,7 @@ use asbamboo\database\Connection;
 use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
 use asbamboo\openpay\model\tradePay\TradePayManager;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartManager;
+use asbamboo\openpay\model\tradePayClob\TradePayClobManager;
 use asbamboo\router\RouteCollection;
 use asbamboo\router\Router;
 use asbamboo\router\Route;
@@ -17,7 +17,7 @@ use asbamboo\openpay\apiStore\exception\TradePayChannelInvalidException;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\model\tradePay\TradePayRepository;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
+use asbamboo\openpay\model\tradePayClob\TradePayClobRepository;
 
 /**
  * - 参数没有时抛出异常。
@@ -157,7 +157,7 @@ class PayTest extends TestCase
                 $this->assertEquals('', $response_array['payok_ymdhis']);
                 $this->assertEquals('', $response_array['payed_ymdhis']);
                 $this->assertEquals('', $response_array['cancel_ymdhis']);
-                $this->assertEquals('test_pay_app_json', $response_array['app_pay_json']);
+                $this->assertEquals('{"key":"test_pay_app_json"}', $response_array['app_pay_json']);
 
                 throw new RollbackException('rollback exception');
             });
@@ -256,7 +256,7 @@ class PayTest extends TestCase
         $Db                             = new Factory();
         $Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
-            'path'      => dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
+            'path'      => dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
         ], dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         $this->Db                       = $Db;
 
@@ -268,12 +268,12 @@ class PayTest extends TestCase
         // return 这个 id在 trade.pay接口中生成url时需要使用到
         ->add(new Route('return', 'test-return', function(){}));
 
-        $ChannelManager                 = new ChannelManager();
-        $TradePayRepository             = new TradePayRepository($Db);
-        $TradePayManager                = new TradePayManager($Db, $TradePayRepository);
-        $TradePayThirdPartRepository    = new TradePayThirdPartRepository($Db);
-        $TradePayThirdPartManager       = new TradePayThirdPartManager($Db, $TradePayThirdPartRepository);
-        $Cancel                         = new Pay($ChannelManager, $Db, $TradePayManager, $TradePayThirdPartManager, $Router);
+        $ChannelManager            = new ChannelManager();
+        $TradePayRepository        = new TradePayRepository($Db);
+        $TradePayManager           = new TradePayManager($Db, $TradePayRepository);
+        $TradePayClobRepository    = new TradePayClobRepository($Db);
+        $TradePayClobManager       = new TradePayClobManager($Db, $TradePayClobRepository);
+        $Cancel                    = new Pay($ChannelManager, $Db, $TradePayManager, $TradePayClobManager, $Router);
         return $Cancel;
     }
 }

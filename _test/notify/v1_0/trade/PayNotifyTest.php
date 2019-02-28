@@ -66,7 +66,7 @@ class PayNotifyTest extends TestCase
         static::$Db     = new Factory();
         static::$Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
-            'path'      => dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
+            'path'      => dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
         ], dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         static::$Db->getManager()->beginTransaction();
     }
@@ -109,7 +109,6 @@ class PayNotifyTest extends TestCase
         $this->assertEquals('SUCCESS', $response_body);
         $this->assertEquals(Constant::TRADE_PAY_TRADE_STATUS_PAYOK, $TradePayEntity->getTradeStatus());
         $this->assertEquals('third_trade_no', $TradePayEntity->getThirdTradeNo());
-        $this->assertEquals('out_trade_no', $PayNotify->getTradeNoKeyName('TEST_PAY_PC'));
         $this->assertNotEmpty($TradePayEntity->getPayokTime());
     }
 

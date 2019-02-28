@@ -38,7 +38,7 @@ class TradePayManagerTest extends TestCase
         static::$Db     = new Factory();
         static::$Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
-            'path'      => dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
+            'path'      => dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
         ], dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         static::$Db->getManager()->beginTransaction();
     }
@@ -86,6 +86,23 @@ class TradePayManagerTest extends TestCase
         $this->assertEquals($total_fee, $TradePayEntity->getTotalFee());
         $this->assertEquals(Constant::TRADE_PAY_TRADE_STATUS_NOPAY, $TradePayEntity->getTradeStatus());
         static::$Db->getManager()->flush();
+        return $TradePayEntity;
+    }
+
+    /**
+     * @depends testInsert
+     */
+    public function testUpdateQrCode(TradePayEntity $TradePayEntity)
+    {
+        $qr_code            = 'qr_code' . mt_rand(0, 999);
+
+        $TradePayRepository = new TradePayRepository(static::$Db);
+        $TradePayManager    = new TradePayManager(static::$Db, $TradePayRepository);
+        $TradePayEntity     = $TradePayManager->load($TradePayEntity->getInTradeNo());
+        $TradePayManager->updateQrCode($qr_code);
+
+        $this->assertEquals($qr_code, $TradePayEntity->getQrCode());
+
         return $TradePayEntity;
     }
 

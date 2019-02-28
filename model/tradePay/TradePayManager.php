@@ -108,6 +108,20 @@ class TradePayManager
     }
 
     /**
+     * 修改qr_code字段
+     *
+     * @param string $qr_code
+     * @return TradePayManager
+     */
+    public function updateQrCode($qr_code) : TradePayManager
+    {
+        $this->TradePayEntity->setQrCode($qr_code);
+        $this->validateUpdateQrCode();
+
+        return $this;
+    }
+
+    /**
      * 交易状态变更为支付成功(可退款)
      *
      * @param string $third_trade_no
@@ -179,6 +193,14 @@ class TradePayManager
         $this->validateOutTradeNo($this->TradePayEntity->getOutTradeNo());
         $this->validateTotalFee($this->TradePayEntity->getTotalFee());
         $this->validateClientIp($this->TradePayEntity->getClientIp());
+    }
+
+    /**
+     *
+     */
+    public function validateUpdateQrCode() : void
+    {
+        $this->validateQrCode($this->TradePayEntity->getQrCode());
     }
 
     /**

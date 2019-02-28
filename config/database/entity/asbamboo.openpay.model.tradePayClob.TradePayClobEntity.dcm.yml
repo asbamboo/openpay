@@ -1,6 +1,6 @@
-asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity:
-  type: mappedSuperclass
-  table: t_api_trade_pay_third_part
+asbamboo\openpay\model\tradePayClob\TradePayClobEntity:
+  type: entity
+  table: t_api_trade_pay_clob
   id:
     seq:
       type: integer
@@ -14,8 +14,13 @@ asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity:
       nullable: false
       options:
         default: ''
-    send_data:
+    app_pay_json: 
       type: text
       nullable: false
       options:
-        default: '[]'
+        default: '{}'
+    third_part:
+      type: text
+      nullable: false
+      options:
+        default: '{}'

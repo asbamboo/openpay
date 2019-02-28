@@ -23,7 +23,7 @@ class PayApp implements PayInterface
     {
         $Response   = new Response();
         $Response->setType(Response::TYPE_APP);
-        $Response->setAppPayJson('test_pay_app_json');
+        $Response->setAppPayJson('{"key":"test_pay_app_json"}');
         return $Response;
     }
 
@@ -52,16 +52,6 @@ class PayApp implements PayInterface
     public function return(ServerRequestInterface $Request) : NotifyResult
     {
         return $this->notify($Request);
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     * @see \asbamboo\openpay\channel\v1_0\trade\PayInterface::getTradeNoKeyName()
-     */
-    public function getTradeNoKeyName() : string
-    {
-        return "out_trade_no";
     }
 
     /**

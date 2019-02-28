@@ -10,8 +10,8 @@ use asbamboo\openpay\apiStore\handler\v1_0\trade\Refund;
 use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\openpay\model\tradeRefund\TradeRefundRepository;
 use asbamboo\openpay\model\tradeRefund\TradeRefundManager;
-use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRepository;
-use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartManager;
+use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobRepository;
+use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobManager;
 use asbamboo\openpay\apiStore\exception\TradeRefundNotFoundInvalidException;
 use asbamboo\openpay\apiStore\exception\TradeRefundRefundFeeInvalidException;
 use asbamboo\openpay\model\tradeRefund\TradeRefundEntity;
@@ -222,24 +222,24 @@ class RefundTest extends TestCase
         $Db                             = new Factory();
         $Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
-            'path'      => dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
+            'path'      => dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
         ], dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         $this->Db                       = $Db;
 
-        $ChannelManager                     = new ChannelManager();
-        $TradePayRepository                 = new TradePayRepository($Db);
-        $TradeRefundRepository              = new TradeRefundRepository($Db);
-        $TradeRefundManager                 = new TradeRefundManager($Db, $TradeRefundRepository);
-        $TradeRefundThirdPartRepository     = new TradeRefundThirdPartRepository($Db);
-        $TradeRefundThirdPartManager        = new TradeRefundThirdPartManager($Db, $TradeRefundThirdPartRepository);
-        $ChannelHandler                     = new Refund(
+        $ChannelManager                = new ChannelManager();
+        $TradePayRepository            = new TradePayRepository($Db);
+        $TradeRefundRepository         = new TradeRefundRepository($Db);
+        $TradeRefundManager            = new TradeRefundManager($Db, $TradeRefundRepository);
+        $TradeRefundClobRepository     = new TradeRefundClobRepository($Db);
+        $TradeRefundClobManager        = new TradeRefundClobManager($Db, $TradeRefundClobRepository);
+        $ChannelHandler                = new Refund(
             $ChannelManager,
             $Db,
             $TradePayRepository,
             $TradeRefundRepository,
             $TradeRefundManager,
-            $TradeRefundThirdPartRepository,
-            $TradeRefundThirdPartManager
+            $TradeRefundClobRepository,
+            $TradeRefundClobManager
         );
         return $ChannelHandler;
     }

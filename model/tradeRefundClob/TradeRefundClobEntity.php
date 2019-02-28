@@ -1,11 +1,11 @@
 <?php
 
-namespace asbamboo\openpay\model\tradeRefundThirdPart;
+namespace asbamboo\openpay\model\tradeRefundClob;
 
 /**
- * TradeRefundThirdPartEntity
+ * TradeRefundClobEntity
  */
-class TradeRefundThirdPartEntity
+class TradeRefundClobEntity
 {
     /**
      * @var int
@@ -20,7 +20,7 @@ class TradeRefundThirdPartEntity
     /**
      * @var string
      */
-    private $send_data = '[]';
+    private $third_part = '{}';
 
 
     /**
@@ -38,7 +38,7 @@ class TradeRefundThirdPartEntity
      *
      * @param string $inRefundNo
      *
-     * @return TradeRefundThirdPartEntity
+     * @return TradeRefundClobEntity
      */
     public function setInRefundNo($inRefundNo)
     {
@@ -58,26 +58,26 @@ class TradeRefundThirdPartEntity
     }
 
     /**
-     * Set sendData.
+     * Set thirdPart.
      *
-     * @param string $sendData
+     * @param string $thirdPart
      *
-     * @return TradeRefundThirdPartEntity
+     * @return TradeRefundClobEntity
      */
-    public function setSendData($sendData)
+    public function setThirdPart($thirdPart)
     {
-        $this->send_data = $sendData;
+        $this->third_part = $thirdPart;
 
         return $this;
     }
 
     /**
-     * Get sendData.
+     * Get thirdPart.
      *
      * @return string
      */
-    public function getSendData()
+    public function getThirdPart()
     {
-        return $this->send_data;
+        return $this->third_part;
     }
 }

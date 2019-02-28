@@ -98,8 +98,8 @@ class PayResponse extends ApiResponseParams
     protected $qr_code;
 
     /**
-     * @desc APP支付时，创建交易订单，并获取APP支付请求参数
-     * @example json格式的字符串，相关参数请参考第三分支付渠道相关文档。
+     * @desc APP支付时，创建交易订单，并获取APP支付请求参数, json格式的字符串，相关参数请参考第三分支付渠道相关文档。
+     * @example {"gateway":"https:\/\/openapi.alipaydev.com\/gateway.do","data":{"notify_url":"\/ALIPAY_APP\/notify","app_id":"2016090900468991","method":"alipay.trade.app.pay","format":"JSON","charset":"UTF-8","sign_type":"RSA2","sign":"E5TM1I9rbgrseKFm+SD9klYiV4NE\/sXv3aYWk\/6EhVY8twpbQavv6he0KpKYRtG9ECyayYmAJ\/yXGpJPl6s4YqgOeIV81+bq5xjVuKcYONYTjrVZNXG+srfgqWq7EFQhT7J+FXzatGeEaS2gBQbH1JtXCPc7XMo+3aWie0v0ESsvyPNCrS3o8ykqk9BdBy7xPGP+lwhUximHdb7fL+SUje17xTEj1uHoVqjf6Wiedcih60SkLSBxFKFEgLw6pwdOZcTHOG1Y8U2\/bYBmRlU1c3A3j8dN4fY1mdvTRMiJK5qIeXBLgXHwCzr5SwctW\/L7VjsiFtipQoj\/OcEzZOs5\/Q==","timestamp":"2019-02-27 01:01:45","version":"1.0","app_auth_token":null,"biz_content":"{\"body\":null,\"subject\":\"\u652f\u4ed8\u6d4b\u8bd5\",\"out_trade_no\":\"19057084932006201\",\"timeout_express\":null,\"total_amount\":\"1.00\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"goods_type\":null,\"passback_params\":null,\"promo_params\":null,\"extend_params\":null,\"enable_pay_channels\":null,\"disable_pay_channels\":null,\"store_id\":null,\"ext_user_info\":null}"}}
      * @var string
      */
     protected $app_pay_json;
