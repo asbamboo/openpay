@@ -4,6 +4,7 @@ namespace asbamboo\openpay\script;
 use Composer\Script\Event;
 use asbamboo\openpay\channel\ChannelMapping;
 use asbamboo\openpay\script\ChannelInterface AS ScriptChannelInterface;
+use asbamboo\openpay\channel\ChannelInterface;
 
 /**
  * open pay 模块的一些和composer script配置相关的方法
@@ -73,7 +74,10 @@ class Channel implements ScriptChannelInterface
             $check_channel_script   = __DIR__ . DIRECTORY_SEPARATOR . 'CheckIsChannelFile.php';
             $test_channel           = exec(addslashes("{$php_bin} {$check_channel_script} {$path}"));
             if(strpos($test_channel, '1:') === 0){
-                $channels[] = substr($test_channel, 2);
+                $classname  = substr($test_channel, 2);
+                if(class_exists($classname) && in_array(ChannelInterface::class, class_implements($classname))){
+                    $channels[] = $classname;
+                }
             }
         }
         return $channels;

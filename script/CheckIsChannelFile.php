@@ -7,8 +7,6 @@
  *  - 如果结果输出 0 表示这个类不是是一个渠道处理类
  *  - 可能会因为这个类文件内部有异常，php抛出致命错误，这种情况下输出异常。
  */
-use asbamboo\openpay\channel\ChannelInterface;
-
 try{
     $classfile          = $_SERVER['argv'][1];
     $file_content       = file_get_contents($classfile);
