@@ -90,7 +90,7 @@ asbamboo/openpay 需要配合支付渠道代码库一起使用
 演示
 ----------------------
 
-演示地址: http://demo.asbamboo.com/openpay-example
+演示地址: http://demo.asbamboo.com/openpay-example/public
 
 .. _composer: https://getcomposer.org
 .. _asbamboo/openpay-alipay: https://github.com/asbamboo/openpay-alipay
