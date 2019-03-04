@@ -51,7 +51,7 @@ asbamboo/openpay 需要配合支付渠道代码库一起使用
 
 .. _asbamboo/openpay-wxpay: https://github.com/asbamboo/openpay-wxpay
 
-.. _如何配置: how_to_use_composer
+.. _如何配置: how_to_use_composer.rst
 
 .. _数据库设置: 数据库设置
 
