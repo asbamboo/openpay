@@ -8,11 +8,7 @@ asbamboo/openpay
 
 #. `演示示例`_
 
-#. `将asbamboo/openpay引入你的项目`_
-
-#. `如何配置`_
-
-#. `数据库设置`_
+#. `在你的项目中使用asbamboo/openpay`_
 
 #. `接口说明`_
 
@@ -21,7 +17,7 @@ asbamboo/openpay
 #. `如何开发新的渠道`_
 
 .. _简介: introduction.rst
-.. _将asbamboo/openpay引入你的项目: how_to_use_composer.rst
+.. _在你的项目中使用asbamboo/openpay: how_to_use.rst
 .. _演示示例: example.rst
 .. _如何配置: config.rst
 .. _数据库设置: data_setting.rst

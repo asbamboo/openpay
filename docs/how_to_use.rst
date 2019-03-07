@@ -64,12 +64,46 @@ composer.json 文件修改后需要执行 composer update 使之生效
     require dirname(__DIR__) . '/vendor/asbamboo/openpay/bootstrap.php';
     /***************************************************************************************************/
 
-配置
--------------------------------------------------------
+安装数据库
+--------------------------------------------------------
 
-cli-config.php
+asbamboo/openpay的bootstrap.php默认使用sqlite数据库，并将数据存储在 vendor/openpay/var/data/db.sqlite
 
-open-config
+vendor/asbamboo/openpay/bootstrap.php 中, 关于默认数据库的代码如下：
+
+::
+
+    ...
+
+    /***************************************************************************************************
+     * 数据库配置
+     ***************************************************************************************************/
+    if(!$Container->has('db')){
+        $DbFactory          = new Factory();
+        $Container->set('db', $DbFactory);
+    
+        $sqpath             = __DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite';
+        $sqmetadata         = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity';
+        $sqmetadata_type    = Connection::MATADATA_YAML;
+        $sqdir              = dirname($sqpath);
+    
+        if(!is_file($sqpath)){
+            @mkdir($sqdir, 0644, true);
+            @file_put_contents($sqpath, '');
+        }
+        $Container->get('db')->addConnection(Connection::create([
+            'driver'    => 'pdo_sqlite',
+            'path'      => $sqpath
+        ], $sqmetadata, $sqmetadata_type));
+    }
+    /***************************************************************************************************/
+    ...
+
+
+参数配置
+--------------------------------------------------------
+
+#. 支付工具环境配置 open-config.php
 
 .. _composer: https://getcomposer.org
 
