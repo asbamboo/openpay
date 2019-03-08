@@ -31,6 +31,8 @@ final class Code
     const TRADE_PAY_TRADE_STATUS = '2008'; // TradePayTradeStatusInvalidException
     const TRADE_PAY_NOTIFY_URL = '2009'; // TradePayNotifyUrlInvalidException
     const TRADE_PAY_RETURN_URL = '2010'; // TradePayReturnUrlInvalidException
+    const TRADE_PAY_APP_PAY_JSON_INVALID = '20011'; // TradePayAppPayJsonInvalidException
+    const TRADE_PAY_QR_CODE_INVALID = '20012'; // TradePayQrCodeInvalidException
     /*********************************************************************************************/
 
     /*********************************************************************************************

@@ -7,7 +7,7 @@ use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
 use asbamboo\database\Factory;
 use asbamboo\openpay\model\tradePay\TradePayRepository;
 use asbamboo\openpay\model\tradePay\TradePayManager;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
+use asbamboo\openpay\model\tradePayClob\TradePayClobRepository;
 use asbamboo\database\Connection;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\cancel\CancelRequest;
 use asbamboo\http\ServerRequest;
@@ -15,7 +15,7 @@ use asbamboo\openpay\apiStore\exception\TradeCancelNotFoundInvalidException;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\apiStore\exception\TradeCancelNotAllowedException;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
+use asbamboo\openpay\model\tradePayClob\TradePayClobEntity;
 
 /**
  * - 参数没有时抛出异常。
@@ -114,12 +114,12 @@ class CancelTest extends TestCase
                 $TradePayEntity->setInTradeNo($in_trade_no);
                 $TradePayEntity->setTotalFee($total_fee);
 
-                $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-                $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-                $TradePayThirdPartEntity->setSendData('');
+                $TradePayClobEntity     = new TradePayClobEntity();
+                $TradePayClobEntity->setInTradeNo($in_trade_no);
+                $TradePayClobEntity->setThirdPart('');
 
                 $this->Db->getManager()->persist($TradePayEntity);
-                $this->Db->getManager()->persist($TradePayThirdPartEntity);
+                $this->Db->getManager()->persist($TradePayClobEntity);
                 $this->Db->getManager()->flush();
 
                 $Request            = $this->getRequest([
@@ -162,12 +162,12 @@ class CancelTest extends TestCase
                 $TradePayEntity->setInTradeNo($in_trade_no);
                 $TradePayEntity->setTotalFee($total_fee);
 
-                $TradePayThirdPartEntity     = new TradePayThirdPartEntity();
-                $TradePayThirdPartEntity->setInTradeNo($in_trade_no);
-                $TradePayThirdPartEntity->setSendData('');
+                $TradePayClobEntity     = new TradePayClobEntity();
+                $TradePayClobEntity->setInTradeNo($in_trade_no);
+                $TradePayClobEntity->setThirdPart('');
 
                 $this->Db->getManager()->persist($TradePayEntity);
-                $this->Db->getManager()->persist($TradePayThirdPartEntity);
+                $this->Db->getManager()->persist($TradePayClobEntity);
                 $this->Db->getManager()->flush();
 
                 $Request            = $this->getRequest([
@@ -203,15 +203,15 @@ class CancelTest extends TestCase
         $Db                             = new Factory();
         $Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
-            'path'      => dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
+            'path'      => dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
         ], dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         $this->Db                       = $Db;
 
-        $ChannelManager                 = new ChannelManager();
-        $TradePayRepository             = new TradePayRepository($Db);
-        $TradePayManager                = new TradePayManager($Db, $TradePayRepository);
-        $TradePayThirdPartRepository    = new TradePayThirdPartRepository($Db);
-        $Cancel                         = new Cancel($ChannelManager, $Db, $TradePayRepository, $TradePayManager, $TradePayThirdPartRepository);
+        $ChannelManager            = new ChannelManager();
+        $TradePayRepository        = new TradePayRepository($Db);
+        $TradePayManager           = new TradePayManager($Db, $TradePayRepository);
+        $TradePayClobRepository    = new TradePayClobRepository($Db);
+        $Cancel                    = new Cancel($ChannelManager, $Db, $TradePayRepository, $TradePayManager, $TradePayClobRepository);
         return $Cancel;
     }
 }

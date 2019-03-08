@@ -1,21 +1,26 @@
-asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity:
+asbamboo\openpay\model\tradePayClob\TradePayClobEntity:
   type: mappedSuperclass
-  table: t_api_trade_refund_third_part
+  table: t_api_trade_pay_clob
   id:
     seq:
       type: integer
       generator:
         strategy: AUTO
   fields:
-    in_refund_no:
+    in_trade_no:
       unique: true
       type: string
       length: 32
       nullable: false
       options:
         default: ''
-    send_data:
+    app_pay_json: 
       type: text
       nullable: false
       options:
-        default: '[]'
+        default: '{}'
+    third_part:
+      type: text
+      nullable: false
+      options:
+        default: '{}'

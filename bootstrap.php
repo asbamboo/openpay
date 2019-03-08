@@ -14,22 +14,11 @@ use asbamboo\helper\env\Env AS EnvHelper;
 use asbamboo\di\ServiceMappingCollection;
 use asbamboo\api\apiStore\ApiRequestUris;
 use asbamboo\api\apiStore\ApiRequestUri;
-use asbamboo\http\Stream;
-use asbamboo\http\Response;
-use asbamboo\http\Constant AS HttpConstant;
 use asbamboo\openpay\Env;
 use asbamboo\database\Factory;
 use asbamboo\database\Connection;
 use asbamboo\openpay\notify\v1_0\trade\PayNotify;
 use asbamboo\openpay\notify\v1_0\trade\PayReturn;
-
-/***************************************************************************************************
- * 系统文件加载
- ***************************************************************************************************/
-if(!class_exists('QRcode')){
-    require __DIR__ . '/phpqrcode/phpqrcode.php';
-}
-/***************************************************************************************************/
 
 /***************************************************************************************************
  * 系统服务容器
@@ -56,10 +45,6 @@ if(file_exists($custom_config_path)){
 /***************************************************************************************************
  * 环境参数配置
  ***************************************************************************************************/
-// 二维码生成的url
-if(!EnvHelper::has(Env::QRCODE_URL)){
-    EnvHelper::set(Env::QRCODE_URL, '/code_url');
-}
 // 支付接口，接收第三方平台通知的URL
 if(!EnvHelper::has(Env::TRADE_PAY_NOTIFY_URL)){
     EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, '/{channel}/notify');
@@ -129,22 +114,13 @@ $RouteCollection
 ->add(new Route('notify', EnvHelper::get(Env::TRADE_PAY_NOTIFY_URL), [$Container->get(PayNotify::class), 'exec']))
 // return 这个 id在 trade.pay接口中生成url时需要使用到
 ->add(new Route('return', EnvHelper::get(Env::TRADE_PAY_RETURN_URL), [$Container->get(PayReturn::class), 'exec']))
-// 二维码生成
-->add(new Route('qrcode', EnvHelper::get(Env::QRCODE_URL), function($qr_code){
-    $Stream = new Stream('php://temp', 'w+b');
-    ob_start();
-    QRcode::png($qr_code);
-    $png    = ob_get_contents();
-    ob_clean();
-    $Stream->write($png);
-    return new Response($Stream, HttpConstant::STATUS_OK, ['content-type' => 'image/png']);
-}))
 ;
 /***************************************************************************************************/
 
 /***************************************************************************************************
  * 响应客户端请求
  ***************************************************************************************************/
-$Response   = $Router->matchRequest($Request);
+$Route      = $Router->match($Request);
+$Response   = $Router->call($Route, $Request);
 $Response->send();
 /***************************************************************************************************/

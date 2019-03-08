@@ -96,4 +96,11 @@ class QueryResponse extends ApiResponseParams
      * @var string(200)
      */
     protected $qr_code;
+
+    /**
+     * @desc 手机APP调起支付渠道的参数，只有手机APP支付时才应该返回这个参数
+     * @example {"key1":"value1","key2":"value2"}
+     * @var json
+     */
+    protected $app_pay_json;
 }

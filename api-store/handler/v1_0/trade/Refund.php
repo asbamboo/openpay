@@ -15,10 +15,8 @@ use asbamboo\openpay\model\tradeRefund\TradeRefundRepository;
 use asbamboo\openpay\model\tradeRefund\TradeRefundManager;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Request AS RequestByChannel;
-use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartRepository;
-use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartManager;
-use asbamboo\openpay\model\tradeRefund\TradeRefundEntity;
-use asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity;
+use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobRepository;
+use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobManager;
 use asbamboo\openpay\apiStore\exception\TradeRefundOutRefundNoInvalidException;
 
 /**
@@ -64,15 +62,15 @@ class Refund implements ApiClassInterface
 
     /**
      *
-     * @var TradeRefundThirdPartRepository
+     * @var TradeRefundClobRepository
      */
-    private $TradeRefundThirdPartRepository;
+    private $TradeRefundClobRepository;
 
     /**
      *
-     * @var TradeRefundThirdPartManager
+     * @var TradeRefundClobManager
      */
-    private $TradeRefundThirdPartManager;
+    private $TradeRefundClobManager;
 
     /**
      *
@@ -81,8 +79,8 @@ class Refund implements ApiClassInterface
      * @param TradePayRepository $TradePayRepository
      * @param TradeRefundRepository $TradeRefundRepository
      * @param TradeRefundManager $TradeRefundManager
-     * @param TradeRefundThirdPartRepository $TradeRefundThirdPartRepository
-     * @param TradeRefundThirdPartManager $TradeRefundThirdPartManager
+     * @param TradeRefundClobRepository $TradeRefundClobRepository
+     * @param TradeRefundClobManager $TradeRefundClobManager
      */
     public function __construct(
         ChannelManagerInterface $ChannelManager,
@@ -90,16 +88,16 @@ class Refund implements ApiClassInterface
         TradePayRepository $TradePayRepository,
         TradeRefundRepository $TradeRefundRepository,
         TradeRefundManager $TradeRefundManager,
-        TradeRefundThirdPartRepository $TradeRefundThirdPartRepository,
-        TradeRefundThirdPartManager $TradeRefundThirdPartManager
+        TradeRefundClobRepository $TradeRefundClobRepository,
+        TradeRefundClobManager $TradeRefundClobManager
     ){
-        $this->ChannelManager                       = $ChannelManager;
-        $this->Db                                   = $Db;
-        $this->TradePayRepository                  = $TradePayRepository;
-        $this->TradeRefundRepository               = $TradeRefundRepository;
-        $this->TradeRefundManager                   = $TradeRefundManager;
-        $this->TradeRefundThirdPartRepository      = $TradeRefundThirdPartRepository;
-        $this->TradeRefundThirdPartManager          = $TradeRefundThirdPartManager;
+        $this->ChannelManager               = $ChannelManager;
+        $this->Db                           = $Db;
+        $this->TradePayRepository           = $TradePayRepository;
+        $this->TradeRefundRepository        = $TradeRefundRepository;
+        $this->TradeRefundManager           = $TradeRefundManager;
+        $this->TradeRefundClobRepository    = $TradeRefundClobRepository;
+        $this->TradeRefundClobManager       = $TradeRefundClobManager;
     }
 
     /**
@@ -141,10 +139,10 @@ class Refund implements ApiClassInterface
          * @var \asbamboo\openpay\channel\v1_0\trade\RefundParameter\Response $ChannelResponse
          */
        if($TradeRefundEntity->getStatus() != Constant::TRADE_REFUND_STATUS_SUCCESS){
-            $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartRepository->findOneByInRefundNo($TradeRefundEntity->getInRefundNo());
-            if(empty($TradeRefundThirdPartEntity)){
-                $TradeRefundThirdPartEntity = $this->TradeRefundThirdPartManager->load($TradeRefundEntity->getInRefundNo());
-                $this->TradeRefundThirdPartManager->insert($TradeRefundEntity, $Params->getThirdPart());
+           $TradeRefundClobEntity = $this->TradeRefundClobRepository->findOneByInRefundNo($TradeRefundEntity->getInRefundNo());
+           if(empty($TradeRefundClobEntity)){
+               $TradeRefundClobEntity = $this->TradeRefundClobManager->load($TradeRefundEntity->getInRefundNo());
+               $this->TradeRefundClobManager->insert($TradeRefundEntity, $Params->getThirdPart());
             }
             $this->TradeRefundManager->updateRequest();
             $this->Db->getManager()->flush();
@@ -157,7 +155,7 @@ class Refund implements ApiClassInterface
                 'in_refund_no'  => $TradeRefundEntity->getInRefundNo(),
                 'refund_fee'    => $TradeRefundEntity->getRefundFee(),
                 'trade_pay_fee' => $TradePayEntity->getTotalFee(),
-                'third_part'    => $TradeRefundThirdPartEntity->getSendData(),
+                'third_part'    => $TradeRefundClobEntity->getThirdPart(),
             ]));
             if($ChannelResponse->getIsSuccess() == true){
                 $this->TradeRefundManager->updateRefundSuccess(strtotime($ChannelResponse->getPayYmdhis()));

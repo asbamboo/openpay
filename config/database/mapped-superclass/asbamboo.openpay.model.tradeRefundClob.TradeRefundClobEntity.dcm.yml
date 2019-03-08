@@ -1,6 +1,6 @@
-asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity:
-  type: entity
-  table: t_api_trade_refund_third_part
+asbamboo\openpay\model\tradeRefundClob\TradeRefundClobEntity:
+  type: mappedSuperclass
+  table: t_api_trade_refund_clob
   id:
     seq:
       type: integer
@@ -14,8 +14,8 @@ asbamboo\openpay\model\tradeRefundThirdPart\TradeRefundThirdPartEntity:
       nullable: false
       options:
         default: ''
-    send_data:
+    third_part:
       type: text
       nullable: false
       options:
-        default: '[]'
+        default: '{}'

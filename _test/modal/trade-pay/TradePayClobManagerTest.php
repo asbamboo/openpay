@@ -5,12 +5,11 @@ use PHPUnit\Framework\TestCase;
 use asbamboo\database\Factory;
 use asbamboo\database\Connection;
 use asbamboo\database\FactoryInterface;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartManager;
+use asbamboo\openpay\model\tradePayClob\TradePayClobManager;
 use asbamboo\openpay\model\tradePay\TradePayManager;
-use asbamboo\openpay\model\tradePay\TradePayEntity;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartEntity;
 use asbamboo\openpay\model\tradePay\TradePayRepository;
-use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
+use asbamboo\openpay\model\tradePayClob\TradePayClobRepository;
+use asbamboo\openpay\model\tradePayClob\TradePayClobEntity;
 
 /**
  * - 测试insert
@@ -18,7 +17,7 @@ use asbamboo\openpay\model\tradePayThirdPart\TradePayThirdPartRepository;
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年11月14日
  */
-class TradePayThirdPartManagerTest extends TestCase
+class TradePayClobManagerTest extends TestCase
 {
     /**
      *
@@ -36,7 +35,7 @@ class TradePayThirdPartManagerTest extends TestCase
         static::$Db     = new Factory();
         static::$Db->addConnection(Connection::create([
             'driver'    => 'pdo_sqlite',
-            'path'      => dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
+            'path'      => dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'db.sqlite'
         ], dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'entity', Connection::MATADATA_YAML));
         static::$Db->getManager()->beginTransaction();
     }
@@ -70,13 +69,30 @@ class TradePayThirdPartManagerTest extends TestCase
         $TradePayManager->insert($channel, $title, $total_fee, $out_trade_no, $client_ip, $notify_url, $return_url);
         static::$Db->getManager()->flush();
 
-        $send_data                      = json_encode('send_data' . mt_rand(0, 999));
-        $TradePayThirdPartRepository    = new TradePayThirdPartRepository(static::$Db);
-        $TradePayThirdPartManager       = new TradePayThirdPartManager(static::$Db, $TradePayThirdPartRepository);
-        $TradePayThirdPartEntity        = $TradePayThirdPartManager->load($TradePayEntity->getInTradeNo());
-        $TradePayThirdPartManager->insert($TradePayEntity, $send_data);
+        $third_part                = json_encode('third_part' . mt_rand(0, 999));
+        $TradePayClobRepository    = new TradePayClobRepository(static::$Db);
+        $TradePayClobManager       = new TradePayClobManager(static::$Db, $TradePayClobRepository);
+        $TradePayClobEntity        = $TradePayClobManager->load($TradePayEntity->getInTradeNo());
+        $TradePayClobManager->insert($TradePayEntity, $third_part);
 
-        $this->assertEquals($TradePayEntity->getInTradeNo(), $TradePayThirdPartEntity->getInTradeNo());
-        $this->assertEquals($send_data, $TradePayThirdPartEntity->getSendData());
+        $this->assertEquals($TradePayEntity->getInTradeNo(), $TradePayClobEntity->getInTradeNo());
+        $this->assertEquals($third_part, $TradePayClobEntity->getThirdPart());
+
+        return $TradePayClobEntity;
+    }
+
+    /**
+     * @depends testInsert
+     */
+    public function testUpdateAppPayJson(TradePayClobEntity $TradePayClobEntity)
+    {
+        $app_pay_json       = '{"k":"v"}';
+
+        $TradePayClobRepository = new TradePayClobRepository(static::$Db);
+        $TradePayClobManager    = new TradePayClobManager(static::$Db, $TradePayClobRepository);
+        $TradePayClobEntity     = $TradePayClobManager->load($TradePayClobEntity->getInTradeNo());
+        $TradePayClobManager->updateAppPayJson($app_pay_json);
+
+        $this->assertEquals($app_pay_json, $TradePayClobEntity->getAppPayJson());
     }
 }
