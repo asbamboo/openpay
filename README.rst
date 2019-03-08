@@ -7,9 +7,9 @@ asbamboo/openpay
 
 #. 如何使用_
 
-#. `开发新的支付渠道`_
-
 #. 演示_
+
+#. `索引文档`_
 
 简介
 -------------------------
@@ -73,7 +73,7 @@ asbamboo/openpay 需要配合支付渠道代码库一起使用
 
     ::
 
-        php composer install
+        php composer update
 
 #. `安装数据库`_
 
@@ -96,6 +96,6 @@ asbamboo/openpay 需要配合支付渠道代码库一起使用
 .. _asbamboo/openpay-alipay: https://github.com/asbamboo/openpay-alipay
 .. _asbamboo/openpay-wxpay: https://github.com/asbamboo/openpay-wxpay
 .. _asbamboo/openpay-example: https://github.com/asbamboo/openpay-example
-.. _开发新的支付渠道: 准备添加doc
-.. _安装数据库: 安装数据库
-.. _创建web入口: 创建web入口 
+.. _安装数据库: docs/install.rst
+.. _创建web入口: docs/install.rst
+.. _`索引文档`: docs/index.rst
