@@ -1,7 +1,6 @@
 <?php
 namespace asbamboo\openpay\channel\v1_0\trade\RefundParameter;
 
-use asbamboo\openpay\Constant;
 use asbamboo\openpay\exception\OpenpayException;
 
 /**
