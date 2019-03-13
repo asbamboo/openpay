@@ -17,6 +17,10 @@
 #. QueryInterface 接入 `trade.query`_ 接口，查询交易_
 #. RefundInterface 接入 `trade.refund`_ 接口，创建退款_
 
+*开发规范*
+
+    * 程序运行需要的环境变量， 请通过 asbamboo\\helper\\env\\Env 类来处理。
+
 创建交易支付
 ---------------------------
 
