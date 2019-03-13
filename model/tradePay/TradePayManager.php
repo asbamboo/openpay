@@ -210,7 +210,7 @@ class TradePayManager
     protected function validateUpdateTradeStatusToPayok() : void
     {
         $this->validateThirdTradeNo($this->TradePayEntity->getThirdTradeNo());
-        if(!in_array($this->TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
+        if(!in_array($this->TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_CANCEL, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
             throw new TradePayTradeStatusInvalidException('当前交易状态不允许被修改成支付成功[可退款].');
         }
     }
@@ -222,7 +222,7 @@ class TradePayManager
     protected function validateUpdateTradeStatusToPayed() : void
     {
         $this->validateThirdTradeNo($this->TradePayEntity->getThirdTradeNo());
-        if(!in_array($this->TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
+        if(!in_array($this->TradePayEntity->getTradeStatus(), [Constant::TRADE_PAY_TRADE_STATUS_NOPAY, Constant::TRADE_PAY_TRADE_STATUS_CANCEL, Constant::TRADE_PAY_TRADE_STATUS_PAYFAILED, Constant::TRADE_PAY_TRADE_STATUS_PAYING ])){
             throw new TradePayTradeStatusInvalidException('当前交易状态不允许被修改成支付成功[不可退款].');
         }
     }
