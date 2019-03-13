@@ -135,8 +135,8 @@ class Pay implements ApiClassInterface
             'in_trade_no'   => $TradePayEntity->getInTradeNo(),
             'total_fee'     => $TradePayEntity->getTotalFee(),
             'client_ip'     => $TradePayEntity->getClientIp(),
-            'notify_url'    => $this->Router->generateUrl('notify', ['channel' => $channel_name]),
-            'return_url'    => $this->Router->generateUrl('return', ['channel' => $channel_name]),
+            'notify_url'    => ($_SERVER['HTTP_HOST'] ?? "") . $this->Router->generateUrl('notify', ['channel' => $channel_name]),
+            'return_url'    => ($_SERVER['HTTP_HOST'] ?? "") . $this->Router->generateUrl('return', ['channel' => $channel_name]),
             'third_part'    => $TradePayClobEntity->getThirdPart(),
         ]));
 
