@@ -36,10 +36,10 @@ final class Constant
     const TRADE_PAY_TRADE_STATUS_PAYING     = '3';  // 正在支付
     const TRADE_PAY_TRADE_STATUS_CANCEL     = '4';  // 交易取消（状态不可再变更）
     const TRADE_PAY_TRADE_STATUS_PAYFAILED  = '9';  // 支付失败
-    
+
     /*
      * 交易支付状态api接口传递的名称
-     * 
+     *
      * @return array
      */
     public static function getTradePayTradeStatusNames() : array
@@ -49,9 +49,9 @@ final class Constant
             static::TRADE_PAY_TRADE_STATUS_PAYOK        => 'PAYOK',
             static::TRADE_PAY_TRADE_STATUS_PAYED        => 'PAYED',
             static::TRADE_PAY_TRADE_STATUS_PAYING       => 'PAYING',
-            static::TRADE_PAY_TRADE_STATUS_CANCEL       => 'CANCLE',
+            static::TRADE_PAY_TRADE_STATUS_CANCEL       => 'CANCEL',
             static::TRADE_PAY_TRADE_STATUS_PAYFAILED    => 'PAYFAILED',
-        ];     
+        ];
     }
     /***********************************************************************************************/
 
@@ -62,7 +62,7 @@ final class Constant
     const TRADE_REFUND_STATUS_REQUEST   = '0'; // 请求退款
     const TRADE_REFUND_STATUS_SUCCESS   = '1'; // 退款成功
     const TRADE_REFUND_STATUS_FAILED    = '9'; // 退款失败
-    
+
     /*
      * 退款状态api接口传递的名称
      *
