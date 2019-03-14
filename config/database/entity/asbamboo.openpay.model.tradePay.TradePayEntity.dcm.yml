@@ -27,6 +27,7 @@ asbamboo\openpay\model\tradePay\TradePayEntity:
       options:
         default: ''    
     out_trade_no:
+      unique: true
       type: string
       length: 45
       nullable: false

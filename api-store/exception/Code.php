@@ -33,6 +33,7 @@ final class Code
     const TRADE_PAY_RETURN_URL = '2010'; // TradePayReturnUrlInvalidException
     const TRADE_PAY_APP_PAY_JSON_INVALID = '20011'; // TradePayAppPayJsonInvalidException
     const TRADE_PAY_QR_CODE_INVALID = '20012'; // TradePayQrCodeInvalidException
+    const TRADE_PAY_OUT_TRADE_NO_DUPLICATE = '2013'; // TradePayOutTradeNoDuplicateException
     /*********************************************************************************************/
 
     /*********************************************************************************************

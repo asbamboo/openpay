@@ -88,7 +88,7 @@ class PayNotifyTest extends TestCase
     {
         $channel            = 'TEST_PAY_PC';
         $title              = 'title' . mt_rand(0,999);
-        $total_fee          = mt_rand(0,999);
+        $total_fee          = mt_rand(1,999);
         $out_trade_no       = 'out_trade_no' . mt_rand(0,999);
         $client_ip          = mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255) . '.' . mt_rand(0,255);
 

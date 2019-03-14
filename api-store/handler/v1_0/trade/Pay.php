@@ -19,6 +19,7 @@ use asbamboo\openpay\channel\v1_0\trade\payParameter\Response;
 use asbamboo\api\apiStore\ApiResponseRedirectParamsInterface;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\PayResponse;
 use asbamboo\openpay\Constant;
+use asbamboo\openpay\apiStore\exception\TradePayOutTradeNoDuplicateException;
 
 /**
  * @name 交易支付
@@ -106,17 +107,25 @@ class Pay implements ApiClassInterface
          * @var \asbamboo\openpay\model\tradePayClob\TradePayClobEntity $TradePayClobEntity;
          */
         $TradePayEntity             = $this->TradePayManager->load();
-        $this->TradePayManager->insert(
-            $Params->getChannel(),
-            $Params->getTitle(),
-            $Params->getTotalFee(),
-            $Params->getOutTradeNo(),
-            $Params->getClientIp(),
-            $Params->getNotifyUrl(),
-            $Params->getReturnUrl()
-        );
-        $TradePayClobEntity    = $this->TradePayClobManager->load($TradePayEntity->getInTradeNo());
-        $this->TradePayClobManager->insert($TradePayEntity, $Params->getThirdPart());
+        try{
+            $this->TradePayManager->insert(
+                $Params->getChannel(),
+                $Params->getTitle(),
+                $Params->getTotalFee(),
+                $Params->getOutTradeNo(),
+                $Params->getClientIp(),
+                $Params->getNotifyUrl(),
+                $Params->getReturnUrl()
+            );
+            $TradePayClobEntity    = $this->TradePayClobManager->load($TradePayEntity->getInTradeNo());
+            $this->TradePayClobManager->insert($TradePayEntity, $Params->getThirdPart());
+        }catch(TradePayOutTradeNoDuplicateException $e){
+            $TradePayEntity         = $this->TradePayManager->loadByOutTradeNo($Params->getOutTradeNo());
+            $TradePayClobEntity     = $this->TradePayClobManager->load($TradePayEntity->getInTradeNo());
+            if( $Params->getChannel() != $TradePayEntity->getChannel() ||  $Params->getTotalFee() != $TradePayEntity->getTotalFee()){
+                throw $e;
+            }
+        }
 
         /**
          * 发起第三方渠道请求

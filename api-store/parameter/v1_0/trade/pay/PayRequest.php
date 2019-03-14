@@ -34,7 +34,7 @@ class PayRequest extends ApiRequestParamsAbstract
     protected $title;
 
     /**
-     * @desc 交易编号只能是数字
+     * @desc 交易编号(一笔支付对应一个out_trade_no)
      * @example eval:date('YmdHis') . mt_rand(0,999)
      * @required 必须
      * @var string(45)
