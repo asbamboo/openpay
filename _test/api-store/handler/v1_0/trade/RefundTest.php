@@ -13,11 +13,11 @@ use asbamboo\openpay\model\tradeRefund\TradeRefundManager;
 use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobRepository;
 use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobManager;
 use asbamboo\openpay\apiStore\exception\TradeRefundNotFoundInvalidException;
-use asbamboo\openpay\apiStore\exception\TradeRefundRefundFeeInvalidException;
 use asbamboo\openpay\model\tradeRefund\TradeRefundEntity;
 use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
+use asbamboo\openpay\apiStore\exception\TradeRefundOutRefundNoInvalidException;
 
 /**
  * - 参数没有时抛出异常。
@@ -79,7 +79,7 @@ class RefundTest extends TestCase
 
     public function testExecRepeatRequest()
     {
-        $this->expectException(TradeRefundRefundFeeInvalidException::class);
+        $this->expectException(TradeRefundOutRefundNoInvalidException::class);
         $Handler    = $this->getHandler();
         $this->Db->getManager()->transactional(function()use($Handler){
 
