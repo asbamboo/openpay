@@ -6,6 +6,7 @@ use Doctrine\DBAL\LockMode;
 use asbamboo\openpay\apiStore\exception\TradePayTradeStatusInvalidException;
 use asbamboo\database\FactoryInterface;
 use asbamboo\openpay\apiStore\exception\NotFoundTradePayException;
+use asbamboo\openpay\apiStore\exception\TradePayOutTradeNoDuplicateException;
 
 /**
  * 管理TradePayEntity的数据变更
@@ -71,6 +72,18 @@ class TradePayManager
             }
         }
         $this->TradePayEntity = $TradePayEntity;
+        return $this->TradePayEntity;
+    }
+
+    /**
+     * 通过外部交易编号load trade pay entity
+     *
+     * @param (string) $out_trade_no
+     * @return TradePayEntity
+     */
+    public function loadByOutTradeNo(string $out_trade_no) : TradePayEntity
+    {
+        $this->TradePayEntity   = $this->TradePayRepository->loadByOutTradeNo($out_trade_no);
         return $this->TradePayEntity;
     }
 
@@ -193,6 +206,13 @@ class TradePayManager
         $this->validateOutTradeNo($this->TradePayEntity->getOutTradeNo());
         $this->validateTotalFee($this->TradePayEntity->getTotalFee());
         $this->validateClientIp($this->TradePayEntity->getClientIp());
+        /**
+         * unique check
+         */
+        $existed    = $this->TradePayRepository->loadByOutTradeNo($this->TradePayEntity->getOutTradeNo());
+        if($existed){
+            throw new TradePayOutTradeNoDuplicateException('该交易编号重复请求。');
+        }
     }
 
     /**

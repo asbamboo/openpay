@@ -81,8 +81,8 @@ trait TradePayValidator
             throw new TradePayTotalFeeInvalidException('total_fee 只能是数字。');
         }
 
-        if($total_fee > 10000000000 || $total_fee < 1){
-            throw new TradePayTotalFeeInvalidException('total_fee 超出范围，1 < total_fee < 10000000000。');
+        if($total_fee > 4294967295 || $total_fee < 1){
+            throw new TradePayTotalFeeInvalidException('total_fee 超出范围，1 < total_fee < 4294967295。');
         }
     }
 
