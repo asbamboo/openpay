@@ -21,16 +21,16 @@ final class Code
     /*********************************************************************************************
      * 交易支付家口trade.pay接口的异常
      *********************************************************************************************/
-    const TRADE_PAY_PAYMENT_INVALID = '2001'; // TradePayPaymentInvalidException
+    const TRADE_PAY_CHANNEL_INVALID = '2001'; // TradePayPaymentInvalidException
     const TRADE_PAY_TITLE_INVALID = '2002'; // TradePayTitleInvalidException
     const TRADE_PAY_OUT_TRADE_NO_INVALID = '2003'; // TradePayOutTradeNoInvalidException
     const TRADE_PAY_TOTAL_FEE_INVALID = '2004'; // TradePayTotalFeeInvalidException
     const TRADE_PAY_CLIENT_IP_INVALID = '2005'; // TradePayClientIpInvalidException
     const TRADE_PAY_THIRD_PART_INVALID = '2006'; // TradePayThirdPartInvalidException
     const TRADE_PAY_THIRD_TRADE_NO_INVALID = '2007'; // TradePayThirdTradeNoInvalidException
-    const TRADE_PAY_TRADE_STATUS = '2008'; // TradePayTradeStatusInvalidException
-    const TRADE_PAY_NOTIFY_URL = '2009'; // TradePayNotifyUrlInvalidException
-    const TRADE_PAY_RETURN_URL = '2010'; // TradePayReturnUrlInvalidException
+    const TRADE_PAY_TRADE_STATUS_INVALID = '2008'; // TradePayTradeStatusInvalidException
+    const TRADE_PAY_NOTIFY_URL_INVALID = '2009'; // TradePayNotifyUrlInvalidException
+    const TRADE_PAY_RETURN_URL_INVALID = '2010'; // TradePayReturnUrlInvalidException
     const TRADE_PAY_APP_PAY_JSON_INVALID = '20011'; // TradePayAppPayJsonInvalidException
     const TRADE_PAY_QR_CODE_INVALID = '20012'; // TradePayQrCodeInvalidException
     const TRADE_PAY_OUT_TRADE_NO_DUPLICATE = '2013'; // TradePayOutTradeNoDuplicateException
@@ -48,7 +48,7 @@ final class Code
     const TRADE_REFUND_NOT_FOUND_INVALID = '4001'; // TradeRefundNotFoundInvalidException
     const TRADE_REFUND_OUT_REFUND_NO_INVALID = '4002'; // TradeRefundOutRefundNoInvalidException
     const TRADE_REFUND_REFUND_FEE_INVALID = '4003'; // TradeRefundRefundFeeInvalidException
-    const TRADE_REFUND_STATUS = '4004'; // TradeRefundStatusInvalidException
+    const TRADE_REFUND_STATUS_INVALID = '4004'; // TradeRefundStatusInvalidException
     const TRADE_REFUND_THIRD_PART_INVALID = '4005'; // TradeRefundThirdPartInvalidException
     const TRADE_REFUND_TRADE_STATUS_INVALID = '4006'; // TradeRefundTradeStatusInvalidException
     /*********************************************************************************************/

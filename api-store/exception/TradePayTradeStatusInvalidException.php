@@ -13,6 +13,6 @@ class TradePayTradeStatusInvalidException extends InvalidArgumentException
 {
     public function __construct(string $message="参数 trade status 无效.", \Exception $previous = null)
     {
-        parent::__construct($message, Code::TRADE_PAY_TRADE_STATUS, $previous);
+        parent::__construct($message, Code::TRADE_PAY_TRADE_STATUS_INVALID, $previous);
     }
 }

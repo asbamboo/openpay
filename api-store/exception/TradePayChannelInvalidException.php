@@ -13,6 +13,6 @@ class TradePayChannelInvalidException extends InvalidArgumentException
 {
     public function __construct(string $message="参数 payment 无效.", \Exception $previous = null)
     {
-        parent::__construct($message, Code::TRADE_PAY_PAYMENT_INVALID, $previous);
+        parent::__construct($message, Code::TRADE_PAY_CHANNEL_INVALID, $previous);
     }
 }
