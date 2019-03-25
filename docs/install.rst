@@ -30,13 +30,23 @@
                 "@openpay-scripts"
             ]
         },
-        
+        "extra": {
+        	"asbamboo-openpay-channel"	: ["asbamboo/openpay-alipay", "asbamboo/openpay-wxpay"]
+        },
         ...
     }
     
 * require：添加是依赖的 `支付渠道库`_
 
-* scripts：添加生成openpay渠道映射文件
+* scripts：添加生成openpay渠道映射文件的脚本 openpay-scripts
+
+* extra: 添加asbamboo-openpay-channel配置（可以省略），配置后可以加快 openpay-scripts 的完成。
+
+    * asbamboo-openpay-channel 配置一个支付渠道代码库的目录的相对路径
+
+    * openpay-scripts 会根据 asbamboo-openpay-channel提供的相对路径， 首先在项目的根目录中找对应的文件路径，如果不存在的，那么在composer vendor路径下查找对应的路径，如果没有找到对应的路径，那么会抛出异常。
+
+    * 如果没有配置 asbamboo-openpay-channel 那么 openpay-scripts 将扫描整个项目的根目录下所有文件，判断文件是否是支付渠道处理的逻辑类。
 
 composer.json 文件修改后需要执行 composer update 使之生效
 

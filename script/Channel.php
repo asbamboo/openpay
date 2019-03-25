@@ -25,14 +25,64 @@ class Channel implements ScriptChannelInterface
         $vendor_dir = $Event->getComposer()->getConfig()->get('vendor-dir');
         include $vendor_dir . DIRECTORY_SEPARATOR . 'asbamboo' . DIRECTORY_SEPARATOR . 'autoload' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-        $root_dir       = getcwd();
-        $Event->getIO()->write('当前项目跟目录:' . $root_dir);
-        $channels       = static::findChannel($root_dir, $Event);
+        $channels       = [];
+        $channel_dirs   = static::getChannelDirs($Event);
+        foreach($channel_dirs AS $channel_dir){
+            $Event->getIO()->write('当前查找渠道处理类的文件目录:' . $channel_dir);
+            $channels       = static::findChannel($channel_dir, $Event);
+        }
         $Event->getIO()->write('找出的渠道信息:' . var_export($channels, true));
         $ChannelMapping = new ChannelMapping();
         $ChannelMapping->resetMappingContent();
         $ChannelMapping->addMappingChannels($channels);
         $Event->getIO()->write('接口与渠道映射关系:' . var_export($ChannelMapping->getMappingContent(), true));
+    }
+
+    /**
+     * 支付渠道代码库所在的文件目录
+     *  - 通过composer 的 extra["asbamboo-openpay-channel"] 配置信息查找。
+     *  - extra["asbamboo-openpay-channel"]是支付渠道代码库目录的相对路径，如果在当前项目根目录找不到该路径的话，尝试在项目的vendor目录中查找。
+     *  - 如果 extra["asbamboo-openpay-channel"] 的目录没有找到将会抛出异常。
+     *  - 如果composer.json没有配置extra["asbamboo-openpay-channel"]，那返回项目根目录。
+     *
+     * @param Event $Event
+     * @return array
+     */
+    private static function getChannelDirs(Event $Event) : array
+    {
+        /**
+         * init result
+         * @var array $channel_dirs
+         */
+        $channel_dirs   = [];
+
+        /**
+         * logic
+         *
+         * @var string $vendor_dir
+         */
+        $vendor_dir     = $Event->getComposer()->getConfig()->get('vendor-dir');
+        $root_dir       = getcwd();
+        $extra          = $Event->getComposer()->getPackage()->getExtra();
+        if(isset($extra['asbamboo-openpay-channel'])){
+            foreach((array)$extra['asbamboo-openpay-channel'] AS $test_dir){
+                $test_dir   = trim($test_dir, DIRECTORY_SEPARATOR);
+                if(is_dir( $root_dir . DIRECTORY_SEPARATOR . $test_dir )){
+                    $channel_dirs[] = $root_dir . DIRECTORY_SEPARATOR . $test_dir;
+                }elseif(is_dir( $vendor_dir . DIRECTORY_SEPARATOR . $test_dir )){
+                    $channel_dirs[] = $vendor_dir . DIRECTORY_SEPARATOR . $test_dir;
+                }else{
+                    throw new \InvalidArgumentException("无效的 asbamboo-openpay-channel 参数。");
+                }
+            }
+        }else{
+            $channel_dirs[] = $root_dir;
+        }
+
+        /**
+         * return
+         */
+        return $channel_dirs;
     }
 
     /**
