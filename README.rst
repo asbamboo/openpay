@@ -40,6 +40,7 @@ asbamboo/openpay 需要配合支付渠道代码库一起使用
 
     * composer require 中添加依赖的支付渠道库
     * composer scripts 中添加 asbamboo\\openpay\\script\\Channel::generateMappingInfo
+    * composer extra 中添加 asbamboo-openpay-channel 可以使openpay-scripts很快完成。
     
     ::
     
@@ -65,7 +66,9 @@ asbamboo/openpay 需要配合支付渠道代码库一起使用
                     "@openpay-scripts"
                 ]
             },
-            
+            "extra": {
+            	"asbamboo-openpay-channel"	: ["asbamboo/openpay-alipay", "asbamboo/openpay-wxpay"]
+            },
             ...
         }
     

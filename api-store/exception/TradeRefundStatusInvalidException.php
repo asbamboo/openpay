@@ -13,6 +13,6 @@ class TradeRefundStatusInvalidException extends InvalidArgumentException
 {
     public function __construct(string $message="参数 refund status 无效.", \Exception $previous = null)
     {
-        parent::__construct($message, Code::TRADE_REFUND_STATUS, $previous);
+        parent::__construct($message, Code::TRADE_REFUND_STATUS_INVALID, $previous);
     }
 }

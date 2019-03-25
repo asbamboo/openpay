@@ -13,6 +13,6 @@ class TradePayReturnUrlInvalidException extends InvalidArgumentException
 {
     public function __construct(string $message="参数 return_url 无效.", \Exception $previous = null)
     {
-        parent::__construct($message, Code::TRADE_PAY_RETURN_URL, $previous);
+        parent::__construct($message, Code::TRADE_PAY_RETURN_URL_INVALID, $previous);
     }
 }
