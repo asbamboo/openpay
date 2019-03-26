@@ -29,7 +29,7 @@ class Channel implements ScriptChannelInterface
         $channel_dirs   = static::getChannelDirs($Event);
         foreach($channel_dirs AS $channel_dir){
             $Event->getIO()->write('当前查找渠道处理类的文件目录:' . $channel_dir);
-            $channels       = static::findChannel($channel_dir, $Event);
+            $channels       = array_merge($channels, static::findChannel($channel_dir, $Event));
         }
         $Event->getIO()->write('找出的渠道信息:' . var_export($channels, true));
         $ChannelMapping = new ChannelMapping();
