@@ -57,7 +57,7 @@ final class Response
 
     /**
      *
-     * @return number
+     * @return string|int
      */
     public function getTradeStatus()
     {

@@ -79,7 +79,7 @@ final class NotifyResult
 
     /**
      *
-     * @return number
+     * @return string|int
      */
     public function getTradeStatus()
     {

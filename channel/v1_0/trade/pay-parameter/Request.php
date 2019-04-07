@@ -18,7 +18,7 @@ final class Request
     /**
      * @desc 支付渠道
      * @required 必须
-     * @var string(45)
+     * @var string length(45)
      */
     protected $channel;
 
@@ -26,15 +26,15 @@ final class Request
      * @desc 交易标题
      * @example 支付测试
      * @required 必须
-     * @var string(45)
+     * @var string length(45)
      */
     protected $title;
 
     /**
      * 聚合平台生成的交易编号, 全局唯一
-     * @desc 交易编号只能是数字
+     * @desc 交易编号
      * @example 2018101310270023
-     * @var number(32)
+     * @var string length(32)
      */
     protected $in_trade_no;
 
@@ -42,7 +42,7 @@ final class Request
      * @desc 交易金额 单位为分
      * @example 100
      * @required 必须
-     * @var price(10)
+     * @var int
      */
     protected $total_fee;
 
@@ -50,7 +50,7 @@ final class Request
      * @desc 客户ip
      * @example 123.123.123.123
      * @required 必须
-     * @var string(20)
+     * @var string
      */
     protected $client_ip;
 
@@ -58,27 +58,27 @@ final class Request
      * @desc 第三方支付平台的参数，请自行查阅相关支付平台相关文档中的参数列表
      * @example {"limit_pay":"no_credit"}
      * @required 可选
-     * @var json()
+     * @var string json
      */
     protected $third_part;
 
     /**
      * @desc 这个notify url时聚合支付平台接收第三方平台推送信息的url并不是对接应用发送的notify url
      * @example http://api.test.asbamboo.com/notify/trade/pay
-     * @var string(200)
+     * @var string length(200)
      */
     protected $notify_url;
 
     /**
      * @desc 这个return url时聚合支付平台接收第三方平台推送信息的url并不是对接应用发送的return url
      * @example http://api.test.asbamboo.com/return/trade/pay
-     * @var string(200)
+     * @var string length(200)
      */
     protected $return_url;
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(45)
+     * @return string
      */
     public function getChannel()
     {
@@ -87,7 +87,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(45)
+     * @return string
      */
     public function getTitle()
     {
@@ -96,7 +96,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(45)
+     * @return string
      */
     public function getInTradeNo()
     {
@@ -105,7 +105,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\price(10)
+     * @return int
      */
     public function getTotalFee()
     {
@@ -114,7 +114,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(20)
+     * @return string
      */
     public function getClientIp()
     {
@@ -123,7 +123,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\json()
+     * @return string json
      */
     public function getThirdPart()
     {
@@ -132,7 +132,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(200)
+     * @return string
      */
     public function getNotifyUrl()
     {
@@ -144,7 +144,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\string(200)
+     * @return string
      */
     public function getReturnUrl()
     {

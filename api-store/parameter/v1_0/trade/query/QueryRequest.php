@@ -20,7 +20,7 @@ class QueryRequest extends ApiRequestParamsAbstract
      * @desc 交易编号(商户端的)
      * @required 当in_trade_no为空时必填
      * @example 2018101310270023
-     * @var string(45)
+     * @var string length(45)
      */
     protected $out_trade_no;
 
@@ -28,7 +28,7 @@ class QueryRequest extends ApiRequestParamsAbstract
      *
      * @desc 交易编号(聚合系统内的)
      * @required 当out_trade_no为空时必填
-     * @var number(32)
+     * @var string length(32)
      */
     protected $in_trade_no;
 }
