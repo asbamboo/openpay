@@ -14,14 +14,14 @@ final class Response
     /**
      * 聚合平台生成的退款编号, 全局唯一
      *
-     * @var number(32)
+     * @var string length(32)
      */
     protected $in_refund_no;
 
     /**
      * 退款金额
      *
-     * @var price()
+     * @var int
      */
     protected $refund_fee;
 
@@ -35,7 +35,7 @@ final class Response
     /**
      * 退款支付时间
      *
-     * @var date('YYYY-mm-dd HH:ii:ss')
+     * @var string date('YYYY-mm-dd HH:ii:ss')
      */
     protected $pay_ymdhis;
 
@@ -58,7 +58,7 @@ final class Response
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\RefundParameter\number(32)
+     * @return string
      */
     public function getInRefundNo()
     {
@@ -67,7 +67,7 @@ final class Response
 
     /**
      *
-     * @param price() $refund_fee
+     * @param int $refund_fee
      * @return self
      */
     public function setRefundFee($refund_fee) : self
@@ -81,7 +81,7 @@ final class Response
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\RefundParameter\price()
+     * @return int
      */
     public function getRefundFee()
     {
@@ -110,7 +110,7 @@ final class Response
 
     /**
      *
-     * @param date() $pay_ymdhis
+     * @param string date $pay_ymdhis
      * @return self
      */
     public function setPayYmdhis($pay_ymdhis) : self
@@ -124,7 +124,7 @@ final class Response
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\RefundParameter\date('YYYY-mm-dd HH:ii:ss')
+     * @return string date('YYYY-mm-dd HH:ii:ss')
      */
     public function getPayYmdhis()
     {

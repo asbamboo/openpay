@@ -16,37 +16,37 @@ final class Request
     /**
      * @desc 支付渠道
      * @required 必须
-     * @var string(45)
+     * @var string length(45)
      */
     protected $channel;
 
     /**
      * 聚合平台生成的交易编号, 全局唯一
      *
-     * @desc 交易编号只能是数字
+     * @desc 交易编号
      * @example 2018101310270023
-     * @var number(32)
+     * @var string length(32)
      */
     protected $in_trade_no;
 
     /**
      * 订单支付总金额 单位是分
      *
-     * @var price()
+     * @var int
      */
     protected $trade_pay_fee;
 
     /**
      * 聚合平台生成的退款编号, 全局唯一
      *
-     * @var number(32)
+     * @var string length(32)
      */
     protected $in_refund_no;
 
     /**
      * 退款金额 单位是分
      *
-     * @var price()
+     * @var int
      */
     protected $refund_fee;
 
@@ -60,7 +60,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\queryParameter\string(45)
+     * @return string
      */
     public function getChannel()
     {
@@ -69,7 +69,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\queryParameter\number(32)
+     * @return string
      */
     public function getInTradeNo()
     {
@@ -78,7 +78,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\RefundParameter\price()
+     * @return int
      */
     public function getTradePayFee()
     {
@@ -87,7 +87,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\RefundParameter\number(32)
+     * @return string
      */
     public function getInRefundNo()
     {
@@ -96,7 +96,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\RefundParameter\price()
+     * @return int
      */
     public function getRefundFee()
     {
@@ -105,7 +105,7 @@ final class Request
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\payParameter\json()
+     * @return string json
      */
     public function getThirdPart()
     {

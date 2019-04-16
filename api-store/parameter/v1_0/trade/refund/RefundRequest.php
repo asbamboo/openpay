@@ -20,7 +20,7 @@ class RefundRequest extends ApiRequestParamsAbstract
      * @desc 交易编号(对接应用的)
      * @required 当in_trade_no为空时必填
      * @example 2018101310270023
-     * @var string(45)
+     * @var string length(45)
      */
     protected $out_trade_no;
 
@@ -28,7 +28,7 @@ class RefundRequest extends ApiRequestParamsAbstract
      *
      * @desc 交易编号(聚合系统内的)
      * @required 当out_trade_no为空时必填
-     * @var number(32)
+     * @var string length(32)
      */
     protected $in_trade_no;
 
@@ -37,7 +37,7 @@ class RefundRequest extends ApiRequestParamsAbstract
      * @desc 退款编号(对接应用的)
      * @required 必须
      * @example eval:date('YmdHis') . mt_rand(0,999)
-     * @var string(45)
+     * @var string length(45)
      */
     protected $out_refund_no;
 
@@ -45,7 +45,7 @@ class RefundRequest extends ApiRequestParamsAbstract
      * @desc 退款金额 1.不能大于交易金额 - 已经退款金额
      * @required 必填
      * @example 1
-     * @var price()
+     * @var int
      */
     protected $refund_fee;
 }

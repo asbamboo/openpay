@@ -21,7 +21,7 @@ class PayRequest extends ApiRequestParamsAbstract
      * @example eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\Doc::channelExample();
      * @range eval:asbamboo\openpay\apiStore\parameter\v1_0\trade\pay\Doc::channelRange()
      * @required 必须
-     * @var string(45)
+     * @var string length(45)
      */
     protected $channel;
 
@@ -29,7 +29,7 @@ class PayRequest extends ApiRequestParamsAbstract
      * @desc 交易标题
      * @example 支付测试
      * @required 必须
-     * @var string(45)
+     * @var string length(45)
      */
     protected $title;
 
@@ -37,7 +37,7 @@ class PayRequest extends ApiRequestParamsAbstract
      * @desc 交易编号(一笔支付对应一个out_trade_no)
      * @example eval:date('YmdHis') . mt_rand(0,999)
      * @required 必须
-     * @var string(45)
+     * @var string length(45)
      */
     protected $out_trade_no;
 
@@ -45,7 +45,7 @@ class PayRequest extends ApiRequestParamsAbstract
      * @desc 交易金额 单位为分
      * @example 100
      * @required 必须
-     * @var price(10)
+     * @var int
      */
     protected $total_fee;
 
@@ -53,21 +53,21 @@ class PayRequest extends ApiRequestParamsAbstract
      * @desc 客户ip
      * @example 123.123.123.123
      * @required 必须
-     * @var string(20)
+     * @var string
      */
     protected $client_ip;
 
     /**
      * @desc 聚合平台服务器主动通知接入应用指定的http url
      * @example http://api.test.asbamboo.com/notify/trade/pay
-     * @var string(200)
+     * @var string length(200)
      */
     protected $notify_url = '';
 
     /**
      * @desc 聚合平台跳转到接入应用的指定url，返回参数通过get传递
      * @example http://api.test.asbamboo.com/return/trade/pay
-     * @var string(200)
+     * @var string length(200)
      */
     protected $return_url = '';
 }

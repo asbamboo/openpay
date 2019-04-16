@@ -15,9 +15,9 @@ final class Response
      * 聚合平台生成的交易编号, 全局唯一
      *  - in_trade_no 应该与Request中一致
      *
-     * @desc 交易编号只能是数字
+     * @desc 交易编号
      * @example 2018101310270023
-     * @var number(32)
+     * @var string length(32)
      */
     protected $in_trade_no = '';
 
@@ -47,7 +47,7 @@ final class Response
 
     /**
      *
-     * @return \asbamboo\openpay\channel\v1_0\trade\cancelParameter\number(32)
+     * @return string
      */
     public function getInTradeNo()
     {
