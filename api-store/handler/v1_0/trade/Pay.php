@@ -149,13 +149,15 @@ class Pay implements ApiClassInterface
             'third_part'    => $TradePayClobEntity->getThirdPart(),
         ]));
 
-        /**
-         * 扫二维码支付时应该有的响应结果
-         */
         if($ChannelResponse->getType() == Response::TYPE_QRCD && $ChannelResponse->getQrCode()){
+            //扫二维码支付时应该有的响应结果
             $this->TradePayManager->updateQrCode($ChannelResponse->getQrCode());
         }else if($ChannelResponse->getType() == Response::TYPE_APP && $ChannelResponse->getAppPayJson()){
+            //app 支付
             $this->TradePayClobManager->updateAppPayJson($ChannelResponse->getAppPayJson());
+        }else if($ChannelResponse->getType() == Response::TYPE_ONECD && $ChannelResponse->getAppPayJson()){
+            //一码支付
+            $this->TradePayClobManager->updateOnecdPayJson($ChannelResponse->getOnecdPayJson());
         }
 
         /**
@@ -179,6 +181,7 @@ class Pay implements ApiClassInterface
                 'cancel_ymdhis' => '',
                 'qr_code'       => $TradePayEntity->getQrCode(),
                 'app_pay_json'  => $TradePayClobEntity->getAppPayJson(),
+                'onecd_pay_json'  => $TradePayClobEntity->getOnecdPayJson(),
             ]);
         }
 

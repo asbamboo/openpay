@@ -28,9 +28,9 @@ trait TradePayClobValidator
     }
 
     /**
-     *
-     * @param string $third_part json
-     * @throws TradePayThirdPartInvalidException
+     * 
+     * @param string $app_pay_json
+     * @throws TradePayAppPayJsonInvalidException
      */
     public function validateAppPayJson($app_pay_json)
     {
@@ -40,6 +40,23 @@ trait TradePayClobValidator
         json_decode($app_pay_json);
         if(json_last_error()){
             throw new TradePayAppPayJsonInvalidException('app_pay_json 的值不是有效的json格式');
+        }
+    }
+
+
+    /**
+     * 
+     * @param string $onecd_pay_json
+     * @throws TradePayAppPayJsonInvalidException
+     */
+    public function validateOnecdPayJson($onecd_pay_json)
+    {
+        if(trim($onecd_pay_json) === ''){
+            return;
+        }
+        json_decode($onecd_pay_json);
+        if(json_last_error()){
+            throw new TradePayAppPayJsonInvalidException('onecd_pay_json 的值不是有效的json格式');
         }
     }
 }
