@@ -68,7 +68,7 @@ class Doc
     {
         return implode(' ', [
             'NOPAY[尚未支付]',
-            'CANCLE[取消支付]',
+            'CANCEL[取消支付]',
             'PAYFAILED[支付失败]',
             'PAYING[正在支付]',
             'PAYOK[支付成功-可退款]',

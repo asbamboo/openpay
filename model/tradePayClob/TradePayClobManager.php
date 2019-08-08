@@ -95,6 +95,20 @@ class TradePayClobManager
     }
 
     /**
+     * 修改app_pay_json字段
+     * 
+     * @param string $onecd_pay_json
+     * @return TradePayClobManager
+     */
+    public function updateOnecdPayJson($onecd_pay_json) : TradePayClobManager
+    {
+        $this->TradePayClobEntity->setOnecdPayJson($onecd_pay_json);
+        $this->validateUpdateOnecdPayJson();
+        
+        return $this;
+    }
+    
+    /**
      * 验证
      */
     protected function validateInsert() : void
@@ -108,5 +122,13 @@ class TradePayClobManager
     protected function validateUpdateAppPayJson() : void
     {
         $this->validateAppPayJson($this->TradePayClobEntity->getAppPayJson());
+    }
+
+    /**
+     * 验证
+     */
+    protected function validateUpdateOnecdPayJson() : void
+    {
+        $this->validateOnecdPayJson($this->TradePayClobEntity->getAppPayJson());
     }
 }

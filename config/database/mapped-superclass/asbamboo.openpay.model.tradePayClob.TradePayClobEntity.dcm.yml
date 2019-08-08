@@ -19,6 +19,11 @@ asbamboo\openpay\model\tradePayClob\TradePayClobEntity:
       nullable: false
       options:
         default: '{}'
+    onecd_pay_json: 
+      type: text
+      nullable: false
+      options:
+        default: '{}'
     third_part:
       type: text
       nullable: false

@@ -349,12 +349,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/router.git",
-                "reference": "a8dc9dfb593f2b535cd55c65a3216054938e4d08"
+                "reference": "69472f6dc77dc3e03298d7a961357dce20f7de89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/router/zipball/a8dc9dfb593f2b535cd55c65a3216054938e4d08",
-                "reference": "a8dc9dfb593f2b535cd55c65a3216054938e4d08",
+                "url": "https://api.github.com/repos/asbamboo/router/zipball/69472f6dc77dc3e03298d7a961357dce20f7de89",
+                "reference": "69472f6dc77dc3e03298d7a961357dce20f7de89",
                 "shasum": ""
             },
             "require": {
@@ -379,7 +379,7 @@
                 "source": "https://github.com/asbamboo/router/tree/1.0.1",
                 "issues": "https://github.com/asbamboo/router/issues"
             },
-            "time": "2019-03-13T08:41:09+00:00"
+            "time": "2019-07-14T12:36:20+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1552,7 +1552,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",

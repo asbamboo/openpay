@@ -103,4 +103,11 @@ class PayResponse extends ApiResponseParams
      * @var string
      */
     protected $app_pay_json;
+
+    /**
+     * @desc 一码付支付时，创建交易订单，并获取JS请求参数, json格式的字符串，相关参数请参考第三分支付渠道相关文档。
+     * @example {“trade_no”: 1111111111}
+     * @var string
+     */
+    protected $onecd_pay_json;
 }

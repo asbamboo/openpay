@@ -25,6 +25,11 @@ class TradePayClobEntity
     /**
      * @var string
      */
+    private $onecd_pay_json = '{}';
+
+    /**
+     * @var string
+     */
     private $third_part = '{}';
 
 
@@ -84,6 +89,30 @@ class TradePayClobEntity
     public function getAppPayJson()
     {
         return $this->app_pay_json;
+    }
+
+    /**
+     * Set onecdPayJson.
+     *
+     * @param string $onecdPayJson
+     *
+     * @return TradePayClobEntity
+     */
+    public function setOnecdPayJson($onecdPayJson)
+    {
+        $this->onecd_pay_json = $onecdPayJson;
+
+        return $this;
+    }
+
+    /**
+     * Get onecdPayJson.
+     *
+     * @return string
+     */
+    public function getOnecdPayJson()
+    {
+        return $this->onecd_pay_json;
     }
 
     /**
