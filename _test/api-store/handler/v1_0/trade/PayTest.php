@@ -302,7 +302,7 @@ class PayTest extends TestCase
         $this->Db                       = $Db;
 
         $RouteCollection        = new RouteCollection();
-        $Router                 = new Router($RouteCollection);
+        $Router                 = new Router($RouteCollection, new ServerRequest());
         $RouteCollection
         // notify 这个 id在 trade.pay接口中生成url时需要使用到
         ->add(new Route('notify', 'test-notify', function(){}))

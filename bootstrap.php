@@ -59,9 +59,9 @@ if(!EnvHelper::has(Env::TRADE_PAY_RETURN_URL)){
  * 系统服务容器配置
  ***************************************************************************************************/
 $RouteCollection    = new RouteCollection();
-$Router             = new Router($RouteCollection);
 $ApiStore           = new ApiStore('asbamboo\\openpay\\apiStore\\handler\\', __DIR__ . DIRECTORY_SEPARATOR . 'api-store' . DIRECTORY_SEPARATOR . 'handler');
 $Request            = new ServerRequest();
+$Router             = new Router($RouteCollection, $Request);
 $ApiController      = new Controller($ApiStore, $Request);
 $Container->set('api-store', $ApiStore);
 $Container->set('router', $Router);
