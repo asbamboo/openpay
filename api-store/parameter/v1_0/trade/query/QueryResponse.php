@@ -46,6 +46,14 @@ class QueryResponse extends ApiResponseParams
     protected $out_trade_no;
 
     /**
+     * @desc 交易编号, 在微信、支付宝等第三方系统内的交易编号（当订单尚未在第三方系统生成时返回空字符串）
+     * @example 201810131027242582
+     * @required 必须
+     * @var string length(45)
+     */
+    protected $third_trade_no;
+    
+    /**
      * @desc 交易金额 单位为分
      * @example 100
      * @required 必须

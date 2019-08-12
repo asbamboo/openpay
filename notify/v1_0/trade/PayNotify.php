@@ -116,16 +116,17 @@ class PayNotify
                 $Uri        = new Uri($TradePayEntity->getNotifyUrl());
                 $Request    = new Request($Uri, $Body, HttpConstant::METHOD_POST);
                 $Body->write(http_build_query([
-                    'channel'       => $TradePayEntity->getChannel(),
-                    'in_trade_no'   => $TradePayEntity->getInTradeNo(),
-                    'title'         => $TradePayEntity->getTitle(),
-                    'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
-                    'total_fee'     => $TradePayEntity->getTotalFee(),
-                    'client_ip'     => $TradePayEntity->getClientIp(),
-                    'trade_status'  => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
-                    'payok_ymdhis'  => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
-                    'payed_ymdhis'  => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
-                    'cancel_ymdhis' => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
+                    'channel'           => $TradePayEntity->getChannel(),
+                    'in_trade_no'       => $TradePayEntity->getInTradeNo(),
+                    'title'             => $TradePayEntity->getTitle(),
+                    'out_trade_no'      => $TradePayEntity->getOutTradeNo(),
+                    'third_trade_no'    => $TradePayEntity->getThirdTradeNo(),
+                    'total_fee'         => $TradePayEntity->getTotalFee(),
+                    'client_ip'         => $TradePayEntity->getClientIp(),
+                    'trade_status'      => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
+                    'payok_ymdhis'      => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
+                    'payed_ymdhis'      => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
+                    'cancel_ymdhis'     => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
                 ]));
                 $Client->send($Request);
             }
