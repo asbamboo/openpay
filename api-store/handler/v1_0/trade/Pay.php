@@ -168,20 +168,21 @@ class Pay implements ApiClassInterface
         }elseif($ChannelResponse->getType() == Response::TYPE_H5 && $ChannelResponse->getRedirectData()){    //H5 支付
             $ApiResponseParams  = $this->makePcOrH5Response($ChannelResponse);
         }else{
-            $ApiResponseParams  = new PayResponse([
-                'channel'       => $TradePayEntity->getChannel(),
-                'in_trade_no'   => $TradePayEntity->getInTradeNo(),
-                'title'         => $TradePayEntity->getTitle(),
-                'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
-                'total_fee'     => $TradePayEntity->getTotalFee(),
-                'client_ip'     => $TradePayEntity->getClientIp(),
-                'trade_status'  => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
-                'payok_ymdhis'  => '',
-                'payed_ymdhis'  => '',
-                'cancel_ymdhis' => '',
-                'qr_code'       => $TradePayEntity->getQrCode(),
-                'app_pay_json'  => $TradePayClobEntity->getAppPayJson(),
-                'onecd_pay_json'  => $TradePayClobEntity->getOnecdPayJson(),
+            $ApiResponseParams      = new PayResponse([
+                'channel'           => $TradePayEntity->getChannel(),
+                'in_trade_no'       => $TradePayEntity->getInTradeNo(),
+                'title'             => $TradePayEntity->getTitle(),
+                'out_trade_no'      => $TradePayEntity->getOutTradeNo(),
+                'third_trade_no'    => $TradePayEntity->getThirdTradeNo(),
+                'total_fee'         => $TradePayEntity->getTotalFee(),
+                'client_ip'         => $TradePayEntity->getClientIp(),
+                'trade_status'      => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
+                'payok_ymdhis'      => '',
+                'payed_ymdhis'      => '',
+                'cancel_ymdhis'     => '',
+                'qr_code'           => $TradePayEntity->getQrCode(),
+                'app_pay_json'      => $TradePayClobEntity->getAppPayJson(),
+                'onecd_pay_json'    => $TradePayClobEntity->getOnecdPayJson(),
             ]);
         }
 

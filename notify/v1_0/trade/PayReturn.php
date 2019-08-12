@@ -39,6 +39,7 @@ class PayReturn extends PayNotify
                 'in_trade_no'       => $TradePayEntity->getInTradeNo(),
                 'title'             => $TradePayEntity->getTitle(),
                 'out_trade_no'      => $TradePayEntity->getOutTradeNo(),
+                'third_trade_no'    => $TradePayEntity->getThirdTradeNo(),
                 'total_fee'         => $TradePayEntity->getTotalFee(),
                 'client_ip'         => $TradePayEntity->getClientIp(),
                 'trade_status'      => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],

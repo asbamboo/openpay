@@ -122,18 +122,19 @@ class Query implements ApiClassInterface
         }
 
         return new QueryResponse([
-            'channel'       => $TradePayEntity->getChannel(),
-            'in_trade_no'   => $TradePayEntity->getInTradeNo(),
-            'title'         => $TradePayEntity->getTitle(),
-            'out_trade_no'  => $TradePayEntity->getOutTradeNo(),
-            'total_fee'     => $TradePayEntity->getTotalFee(),
-            'client_ip'     => $TradePayEntity->getClientIp(),
-            'trade_status'  => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
-            'payok_ymdhis'  => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
-            'payed_ymdhis'  => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
-            'cancel_ymdhis' => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
-            'qr_code'       => $TradePayEntity->getQrCode(),
-            'app_pay_json'  => empty($TradePayClobEntity) ? '{}' : $TradePayClobEntity->getAppPayJson(),
+            'channel'           => $TradePayEntity->getChannel(),
+            'in_trade_no'       => $TradePayEntity->getInTradeNo(),
+            'title'             => $TradePayEntity->getTitle(),
+            'out_trade_no'      => $TradePayEntity->getOutTradeNo(),
+            'third_trade_no'    => $TradePayEntity->getThirdTradeNo(),
+            'total_fee'         => $TradePayEntity->getTotalFee(),
+            'client_ip'         => $TradePayEntity->getClientIp(),
+            'trade_status'      => Constant::getTradePayTradeStatusNames()[$TradePayEntity->getTradeStatus()],
+            'payok_ymdhis'      => $TradePayEntity->getPayokTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayokTime()) : '',
+            'payed_ymdhis'      => $TradePayEntity->getPayedTime() ? date('Y-m-d H:i:s', $TradePayEntity->getPayedTime()) : '',
+            'cancel_ymdhis'     => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
+            'qr_code'           => $TradePayEntity->getQrCode(),
+            'app_pay_json'      => empty($TradePayClobEntity) ? '{}' : $TradePayClobEntity->getAppPayJson(),
         ]);
     }
 }
