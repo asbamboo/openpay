@@ -48,4 +48,12 @@ class RefundRequest extends ApiRequestParamsAbstract
      * @var int
      */
     protected $refund_fee;
+    
+    /**
+     * @desc 退款状态变更通知url
+     * 
+     * @example https://example.com/notify/
+     * @var string
+     */
+    protected $notify_url;
 }

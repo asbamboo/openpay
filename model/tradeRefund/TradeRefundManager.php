@@ -84,13 +84,14 @@ class TradeRefundManager
      * @param int $refund_fee
      * @return TradeRefundManager
      */
-    public function insert(TradePayEntity $TradePayEntity, $out_refund_no, $refund_fee) : TradeRefundManager
+    public function insert(TradePayEntity $TradePayEntity, $out_refund_no, $refund_fee, $notify_url) : TradeRefundManager
     {
         $this->TradeRefundEntity->setOutTradeNo($TradePayEntity->getOutTradeNo());
         $this->TradeRefundEntity->setInTradeNo($TradePayEntity->getInTradeNo());
         $this->TradeRefundEntity->setOutRefundNo($out_refund_no);
         $this->TradeRefundEntity->setRefundFee($refund_fee);
-
+        $this->TradeRefundEntity->setNotifyUrl((string) $notify_url);
+        
         $this->validateInsert($TradePayEntity);
         $this->TradeRefundEntity->setInRefundNo($this->makeInRefundNo());
         $this->Db->getManager()->persist($this->TradeRefundEntity);
@@ -158,6 +159,8 @@ class TradeRefundManager
         if(bccomp($this->TradeRefundEntity->getRefundFee(), bcsub($TradePayEntity->getTotalFee(), $total_refund_fee)) > 0){
             throw new TradeRefundRefundFeeInvalidException('退款金额不能大于交易总金额减去已退款金额.');
         }
+    
+        $this->validateNotifyUrl($this->TradeRefundEntity->getNotifyUrl());
     }
 
     /**

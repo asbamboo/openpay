@@ -3,6 +3,7 @@ namespace asbamboo\openpay\model\tradeRefund;
 
 use asbamboo\openpay\apiStore\exception\TradeRefundOutRefundNoInvalidException;
 use asbamboo\openpay\apiStore\exception\TradeRefundRefundFeeInvalidException;
+use asbamboo\openpay\apiStore\exception\TradeRefundNotifyUrlInvalidException;
 
 /**
  * 数据表 trade pay 各个字段的验证器
@@ -47,5 +48,17 @@ trait TradeRefundValidator
             throw new TradeRefundRefundFeeInvalidException('refund_fee 超出范围，1 < refund_fee < 10000000000。');
         }
 
+    }
+
+    /**
+     * 
+     * @param string $notify_url
+     * @throws TradeRefundNotifyUrlInvalidException
+     */
+    public function validateNotifyUrl($notify_url)
+    {
+        if(strlen($notify_url) > 200){
+            throw new TradeRefundNotifyUrlInvalidException('notify_url 长度不能超过200字。');
+        }
     }
 }

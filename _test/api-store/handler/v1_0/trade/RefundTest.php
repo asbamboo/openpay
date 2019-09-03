@@ -117,6 +117,92 @@ class RefundTest extends TestCase
         });
     }
 
+    public function testExecRefundFailed()
+    {
+        try{
+            $Handler    = $this->getHandler();
+            $this->Db->getManager()->transactional(function()use($Handler){
+                
+                $ip                 = mt_rand(0,255) . '.0.0.1';
+                $in_trade_no        = date('ymdhis') . mt_rand(0, 999);
+                $refund_fee         = mt_rand(0, 99999);
+                $out_refund_no      = 'OF' . date('ymdhis') . mt_rand(0, 999);
+                $TradePayEntity     = new TradePayEntity();
+                $TradePayEntity->setClientIp($ip);
+                $TradePayEntity->setChannel('TEST-FAILED');
+                $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
+                $TradePayEntity->setInTradeNo($in_trade_no);
+                $TradePayEntity->setTotalFee(99999999);
+                $this->Db->getManager()->persist($TradePayEntity);
+                $this->Db->getManager()->flush();
+                
+                $Request            = $this->getRequest([
+                    'in_trade_no'   => $in_trade_no,
+                    'out_refund_no' => $out_refund_no,
+                    'refund_fee'    => $refund_fee,
+                ]);
+                
+                $ChannelResponse    = $Handler->exec($Request);
+                $response_array     = $ChannelResponse->getObjectVars();
+                
+                $this->assertEquals($in_trade_no, $response_array['in_trade_no']);
+                $this->assertEquals($TradePayEntity->getOutTradeNo(), $response_array['out_trade_no']);
+                $this->assertNotEmpty($response_array['in_refund_no']);
+                $this->assertEquals($out_refund_no, $response_array['out_refund_no']);
+                $this->assertEquals($refund_fee, $response_array['refund_fee']);
+                $this->assertEquals(Constant::getTradeRefundStatusNames()[Constant::TRADE_REFUND_STATUS_FAILED], $response_array['refund_status']);
+                $this->assertEmpty($response_array['refund_pay_ymdhis']);
+                
+                throw new RollbackException('Rollback');
+            });
+        }catch(RollbackException $e){
+            //
+        }
+    }
+    
+    public function testExecRefundProcessing()
+    {
+        try{
+            $Handler    = $this->getHandler();
+            $this->Db->getManager()->transactional(function()use($Handler){
+                
+                $ip                 = mt_rand(0,255) . '.0.0.1';
+                $in_trade_no        = date('ymdhis') . mt_rand(0, 999);
+                $refund_fee         = mt_rand(0, 99999);
+                $out_refund_no      = 'OF' . date('ymdhis') . mt_rand(0, 999);
+                $TradePayEntity     = new TradePayEntity();
+                $TradePayEntity->setClientIp($ip);
+                $TradePayEntity->setChannel('TEST-REFUNDING');
+                $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
+                $TradePayEntity->setInTradeNo($in_trade_no);
+                $TradePayEntity->setTotalFee(99999999);
+                $this->Db->getManager()->persist($TradePayEntity);
+                $this->Db->getManager()->flush();
+                
+                $Request            = $this->getRequest([
+                    'in_trade_no'   => $in_trade_no,
+                    'out_refund_no' => $out_refund_no,
+                    'refund_fee'    => $refund_fee,
+                ]);
+                
+                $ChannelResponse    = $Handler->exec($Request);
+                $response_array     = $ChannelResponse->getObjectVars();
+                
+                $this->assertEquals($in_trade_no, $response_array['in_trade_no']);
+                $this->assertEquals($TradePayEntity->getOutTradeNo(), $response_array['out_trade_no']);
+                $this->assertNotEmpty($response_array['in_refund_no']);
+                $this->assertEquals($out_refund_no, $response_array['out_refund_no']);
+                $this->assertEquals($refund_fee, $response_array['refund_fee']);
+                $this->assertEquals(Constant::getTradeRefundStatusNames()[Constant::TRADE_REFUND_STATUS_REQUEST], $response_array['refund_status']);
+                $this->assertEmpty($response_array['refund_pay_ymdhis']);
+                
+                throw new RollbackException('Rollback');
+            });
+        }catch(RollbackException $e){
+            //
+        }
+    }
+    
     public function testExecRefund1()
     {
         try{

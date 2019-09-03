@@ -37,4 +37,20 @@ final class Event
      * @var string
      */
     const PAY_RETURN_AFTER_EXEC = 'openpay.pay.return.after.exec';
+
+
+    /**
+     * 接收退款通知的程序在收到通知，程序处理前先触发这个事件。 RefundNotify对象作为参数。
+     *
+     * @see \asbamboo\openpay\notify\v1_0\trade\RefundNotify
+     * @var string
+     */
+    const REFUND_NOTIFY_PRE_EXEC   = 'openpay.refund.notity.pre.exec';
+    
+    /**
+     * 接收退款通知的程序在收到通知，程序处理完成后触发这个事件。 RefundNotify $NotifyResult 对象作为参数。
+     *
+     * @var string
+     */
+    const REFUND_NOTIFY_AFTER_EXEC = 'openpay.refund.notity.after.exec';
 }

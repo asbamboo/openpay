@@ -7,7 +7,6 @@ use asbamboo\api\apiStore\ApiResponseParamsInterface;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\refund\RefundRequest;
 use asbamboo\openpay\apiStore\parameter\v1_0\trade\refund\RefundResponse;
 use asbamboo\openpay\apiStore\exception\TradeRefundNotFoundInvalidException;
-use asbamboo\openpay\apiStore\exception\TradeRefundRefundFeeInvalidException;
 use asbamboo\openpay\channel\ChannelManagerInterface;
 use asbamboo\database\FactoryInterface;
 use asbamboo\openpay\model\tradePay\TradePayRepository;
@@ -18,6 +17,7 @@ use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Request AS RequestByChan
 use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobRepository;
 use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobManager;
 use asbamboo\openpay\apiStore\exception\TradeRefundOutRefundNoInvalidException;
+use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Response AS RefundParameterResponse;
 
 /**
  * @name 发起退款
@@ -124,7 +124,7 @@ class Refund implements ApiClassInterface
         $TradeRefundEntity  = $this->TradeRefundRepository->loadByOutRefundNo($Params->getOutRefundNo());
         if(is_null($TradeRefundEntity)){
             $TradeRefundEntity  = $this->TradeRefundManager->load();
-            $this->TradeRefundManager->insert($TradePayEntity, $Params->getOutRefundNo(), $Params->getRefundFee());
+            $this->TradeRefundManager->insert($TradePayEntity, $Params->getOutRefundNo(), $Params->getRefundFee(), $Params->getNotifyUrl());
         }else{
             $TradeRefundEntity  = $this->TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
         }
@@ -161,7 +161,11 @@ class Refund implements ApiClassInterface
                 'third_part'    => $TradeRefundClobEntity->getThirdPart(),
             ]));
             if($ChannelResponse->getIsSuccess() == true){
-                $this->TradeRefundManager->updateRefundSuccess(strtotime($ChannelResponse->getPayYmdhis()));
+                if($ChannelResponse->getRefundStatus() == RefundParameterResponse::REFUND_STATUS_SUCCESS){
+                    $this->TradeRefundManager->updateRefundSuccess(strtotime($ChannelResponse->getPayYmdhis()));
+                }elseif($ChannelResponse->getRefundStatus() == RefundParameterResponse::REFUND_STATUS_FAILED){
+                    $this->TradeRefundManager->updateRefundFailed();
+                }
             }else{
                 $this->TradeRefundManager->updateRefundFailed();
             }
