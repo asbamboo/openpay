@@ -49,6 +49,13 @@ final class Request
      * @var int
      */
     protected $refund_fee;
+    
+    /**
+     * 通知url
+     * 
+     * @var string
+     */
+    protected $notify_url;
 
     /**
      * @desc 第三方支付平台的参数，请自行查阅相关支付平台相关文档中的参数列表
@@ -103,6 +110,15 @@ final class Request
         return $this->refund_fee;
     }
 
+    /**
+     *
+     * @return string
+     */
+    public function getNotifyUrl()
+    {
+        return $this->notify_url;
+    }
+    
     /**
      *
      * @return string json

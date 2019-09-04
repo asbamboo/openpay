@@ -18,6 +18,9 @@ use asbamboo\openpay\model\tradePay\TradePayEntity;
 use asbamboo\openpay\Constant;
 use asbamboo\openpay\_test\fixtures\channel\ChannelManager;
 use asbamboo\openpay\apiStore\exception\TradeRefundOutRefundNoInvalidException;
+use asbamboo\router\Router;
+use asbamboo\router\RouteCollection;
+use asbamboo\router\Route;
 
 /**
  * - 参数没有时抛出异常。
@@ -318,6 +321,10 @@ class RefundTest extends TestCase
         $TradeRefundManager            = new TradeRefundManager($Db, $TradeRefundRepository);
         $TradeRefundClobRepository     = new TradeRefundClobRepository($Db);
         $TradeRefundClobManager        = new TradeRefundClobManager($Db, $TradeRefundClobRepository);
+        $ServerRequest                 = new ServerRequest();
+        $RouteCollection               = new RouteCollection(); 
+        $Router                        = new Router($RouteCollection, $ServerRequest);
+        $RouteCollection->add(new Route('refund_notify', 'refund_notify', function(){}));
         $ChannelHandler                = new Refund(
             $ChannelManager,
             $Db,
@@ -325,7 +332,8 @@ class RefundTest extends TestCase
             $TradeRefundRepository,
             $TradeRefundManager,
             $TradeRefundClobRepository,
-            $TradeRefundClobManager
+            $TradeRefundClobManager,
+            $Router
         );
         return $ChannelHandler;
     }

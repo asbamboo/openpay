@@ -19,6 +19,7 @@ use asbamboo\database\Factory;
 use asbamboo\database\Connection;
 use asbamboo\openpay\notify\v1_0\trade\PayNotify;
 use asbamboo\openpay\notify\v1_0\trade\PayReturn;
+use asbamboo\openpay\notify\v1_0\trade\RefundNotify;
 
 /***************************************************************************************************
  * 系统服务容器
@@ -47,11 +48,15 @@ if(file_exists($custom_config_path)){
  ***************************************************************************************************/
 // 支付接口，接收第三方平台通知的URL
 if(!EnvHelper::has(Env::TRADE_PAY_NOTIFY_URL)){
-    EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, '/{channel}/notify');
+    EnvHelper::set(Env::TRADE_PAY_NOTIFY_URL, '/{channel}/notify/');
 }
 // 支付接口，第三方平台页面跳转回聚合平台的URL
 if(!EnvHelper::has(Env::TRADE_PAY_RETURN_URL)){
-    EnvHelper::set(Env::TRADE_PAY_RETURN_URL, '/{channel}/return');
+    EnvHelper::set(Env::TRADE_PAY_RETURN_URL, '/{channel}/return/');
+}
+// 支付接口，第三方平台页面跳转回聚合平台的URL
+if(!EnvHelper::has(Env::TRADE_REFUND_NOTIFY_URL)){
+    EnvHelper::set(Env::TRADE_REFUND_NOTIFY_URL, '/{channel}/refund-notify/');
 }
 /***************************************************************************************************/
 
@@ -114,6 +119,8 @@ $RouteCollection
 ->add(new Route('notify', EnvHelper::get(Env::TRADE_PAY_NOTIFY_URL), [$Container->get(PayNotify::class), 'exec']))
 // return 这个 id在 trade.pay接口中生成url时需要使用到
 ->add(new Route('return', EnvHelper::get(Env::TRADE_PAY_RETURN_URL), [$Container->get(PayReturn::class), 'exec']))
+// refund notify  这个 id在 trade.refund 接口中生成url时需要使用到
+->add(new Route('refund_notify', EnvHelper::get(Env::TRADE_REFUND_NOTIFY_URL), [$Container->get(RefundNotify::class), 'exec']))
 ;
 /***************************************************************************************************/
 

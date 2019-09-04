@@ -18,6 +18,13 @@ use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobRepository;
 use asbamboo\openpay\model\tradeRefundClob\TradeRefundClobManager;
 use asbamboo\openpay\apiStore\exception\TradeRefundOutRefundNoInvalidException;
 use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Response AS RefundParameterResponse;
+use asbamboo\http\Stream;
+use asbamboo\http\Client;
+use asbamboo\http\Uri;
+use asbamboo\http\Request;
+use asbamboo\http\Constant AS HttpConstant;
+use asbamboo\router\RouterInterface;
+
 
 /**
  * @name 发起退款
@@ -71,6 +78,12 @@ class Refund implements ApiClassInterface
      * @var TradeRefundClobManager
      */
     private $TradeRefundClobManager;
+    
+    /**
+     * 
+     * @var RouterInterface
+     */
+    private $Router;
 
     /**
      *
@@ -89,7 +102,8 @@ class Refund implements ApiClassInterface
         TradeRefundRepository $TradeRefundRepository,
         TradeRefundManager $TradeRefundManager,
         TradeRefundClobRepository $TradeRefundClobRepository,
-        TradeRefundClobManager $TradeRefundClobManager
+        TradeRefundClobManager $TradeRefundClobManager,
+        RouterInterface $Router
     ){
         $this->ChannelManager               = $ChannelManager;
         $this->Db                           = $Db;
@@ -98,6 +112,7 @@ class Refund implements ApiClassInterface
         $this->TradeRefundManager           = $TradeRefundManager;
         $this->TradeRefundClobRepository    = $TradeRefundClobRepository;
         $this->TradeRefundClobManager       = $TradeRefundClobManager;
+        $this->Router                       = $Router;
     }
 
     /**
@@ -159,6 +174,7 @@ class Refund implements ApiClassInterface
                 'refund_fee'    => $TradeRefundEntity->getRefundFee(),
                 'trade_pay_fee' => $TradePayEntity->getTotalFee(),
                 'third_part'    => $TradeRefundClobEntity->getThirdPart(),
+                'notify_url'    => $this->Router->generateAbsoluteUrl('refund_notify', ['channel' => $channel_name]),
             ]));
             if($ChannelResponse->getIsSuccess() == true){
                 if($ChannelResponse->getRefundStatus() == RefundParameterResponse::REFUND_STATUS_SUCCESS){
@@ -171,6 +187,23 @@ class Refund implements ApiClassInterface
             }
 
             $this->Db->getManager()->flush();
+        }
+        
+        if($TradeRefundEntity->getStatus() != Constant::TRADE_REFUND_STATUS_REQUEST && !empty($TradeRefundEntity->getNotifyUrl())){
+            $Body       = new Stream('php://temp', 'w+b');
+            $Client     = new Client();
+            $Uri        = new Uri($TradeRefundEntity->getNotifyUrl());
+            $Request    = new Request($Uri, $Body, HttpConstant::METHOD_POST);
+            $Body->write(http_build_query([
+                'in_refund_no'      => $TradeRefundEntity->getInRefundNo(),
+                'in_trade_no'       => $TradeRefundEntity->getInTradeNo(),
+                'out_refund_no'     => $TradeRefundEntity->getOutRefundNo(),
+                'out_trade_no'      => $TradeRefundEntity->getOutTradeNo(),
+                'refund_fee'        => $TradeRefundEntity->getRefundFee(),
+                'refund_pay_ymdhis' => $TradeRefundEntity->getPayTime() > 0 ? date('Y-m-d H:i:s', $TradeRefundEntity->getPayTime()) : '',
+                'refund_status'     => Constant::getTradeRefundStatusNames()[$TradeRefundEntity->getStatus()],
+            ]));
+            $Client->send($Request);            
         }
 
         return new RefundResponse([
