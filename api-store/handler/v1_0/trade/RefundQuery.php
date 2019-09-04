@@ -18,8 +18,8 @@ use asbamboo\openpay\channel\ChannelManagerInterface;
 /**
  * @name 退款查询
  * @desc 退款查询，一笔交易申请退款后，通过这个接口可以查询目前的退款状态（refund_status）。
- * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\refund\RefundRequest
- * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\refund\RefundResponse
+ * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\refundQuery\RefundQueryRequest
+ * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\refundQuery\RefunQuerydResponse
  * @author 李春寅<licy2013@aliyun.com>
  * @since 2018年11月5日
  */
