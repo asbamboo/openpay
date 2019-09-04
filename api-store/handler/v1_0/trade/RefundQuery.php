@@ -79,7 +79,10 @@ class RefundQuery implements ApiClassInterface
              * @var Response $ChannelResponse
              */
             $ChannelResponse    = $Channel->execute(new RequestByChannel([
+                'in_trade_no'   => $TradeRefundEntity->getInTradeNo(),
                 'in_refund_no'  => $TradeRefundEntity->getInRefundNo(),
+                'refund_fee'    => $TradeRefundEntity->getRefundFee(),
+                'trade_pay_fee' => $TradePayEntity->getTotalFee(),
                 'third_part'    => $Params->getThirdPart(),
             ]));
             
