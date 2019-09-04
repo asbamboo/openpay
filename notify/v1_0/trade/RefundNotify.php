@@ -176,7 +176,7 @@ class RefundNotify
         if($TradeRefundEntity->getStatus() != $NotifyResult->getRefundStatus()){
             //退款成功
             if($NotifyResult->getRefundStatus() == Constant::TRADE_REFUND_STATUS_SUCCESS){
-                $this->TradeRefundManager->updateRefundSuccess($NotifyResult->getRefundPayYmdhis());
+                $this->TradeRefundManager->updateRefundSuccess(strtotime($NotifyResult->getRefundPayYmdhis()));
             //退款失败
             }elseif($NotifyResult->getRefundStatus() == Constant::TRADE_REFUND_STATUS_FAILED){
                 $this->TradeRefundManager->updateRefundFailed();

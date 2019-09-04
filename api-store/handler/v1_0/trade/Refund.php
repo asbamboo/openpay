@@ -21,7 +21,7 @@ use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Response AS RefundParame
 
 /**
  * @name 发起退款
- * @desc 发起一笔交易的退款,一个交易可以有多次退款,退款总的金额不能超过交易金额
+ * @desc 发起一笔交易的退款,一个交易可以有多次退款,退款总的金额不能超过交易金额，发起退款成功后，退款的状态需要根据refund_status判断
  * @request asbamboo\openpay\apiStore\parameter\v1_0\trade\refund\RefundRequest
  * @response asbamboo\openpay\apiStore\parameter\v1_0\trade\refund\RefundResponse
  * @author 李春寅<licy2013@aliyun.com>

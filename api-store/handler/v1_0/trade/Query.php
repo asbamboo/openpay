@@ -135,6 +135,7 @@ class Query implements ApiClassInterface
             'cancel_ymdhis'     => $TradePayEntity->getCancelTime() ? date('Y-m-d H:i:s', $TradePayEntity->getCancelTime()) : '',
             'qr_code'           => $TradePayEntity->getQrCode(),
             'app_pay_json'      => empty($TradePayClobEntity) ? '{}' : $TradePayClobEntity->getAppPayJson(),
+            'onecd_pay_json'    => empty($TradePayClobEntity) ? '{}' : $TradePayClobEntity->getOnecdPayJson(),
         ]);
     }
 }

@@ -29,7 +29,7 @@ final class NotifyResult
     private $in_refund_no = '';
 
     /**
-     * 退款支付事件，第三方的响应结果
+     * 退款支付时间，第三方的响应结果
      *
      * @var string
      */
