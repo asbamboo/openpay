@@ -174,7 +174,7 @@ class Refund implements ApiClassInterface
                 'refund_fee'    => $TradeRefundEntity->getRefundFee(),
                 'trade_pay_fee' => $TradePayEntity->getTotalFee(),
                 'third_part'    => $TradeRefundClobEntity->getThirdPart(),
-                'notify_url'    => $this->Router->generateAbsoluteUrl('refund_notify', ['channel' => $channel_name]),
+                'notify_url'    => $this->makeNotifyUrl($channel_name),
             ]));
             if($ChannelResponse->getIsSuccess() == true){
                 if($ChannelResponse->getRefundStatus() == RefundParameterResponse::REFUND_STATUS_SUCCESS){
@@ -215,5 +215,16 @@ class Refund implements ApiClassInterface
             'refund_status'     => Constant::getTradeRefundStatusNames()[$TradeRefundEntity->getStatus()],
             'refund_pay_ymdhis' => $TradeRefundEntity->getPayTime() ? date('Y-m-d H:i:s', $TradeRefundEntity->getPayTime()) : '',
         ]);
+    }
+    
+    /**
+     * 生成参数notify url
+     * 
+     * @param string $channel_name
+     * @return string
+     */
+    protected function makeNotifyUrl(string $channel_name) : string
+    {
+        return $this->Router->generateAbsoluteUrl('refund_notify', ['channel' => $channel_name]);
     }
 }
