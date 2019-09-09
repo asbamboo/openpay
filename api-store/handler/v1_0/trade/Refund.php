@@ -189,22 +189,23 @@ class Refund implements ApiClassInterface
             $this->Db->getManager()->flush();
         }
         
-        if($TradeRefundEntity->getStatus() != Constant::TRADE_REFUND_STATUS_REQUEST && !empty($TradeRefundEntity->getNotifyUrl())){
-            $Body       = new Stream('php://temp', 'w+b');
-            $Client     = new Client();
-            $Uri        = new Uri($TradeRefundEntity->getNotifyUrl());
-            $Request    = new Request($Uri, $Body, HttpConstant::METHOD_POST);
-            $Body->write(http_build_query([
-                'in_refund_no'      => $TradeRefundEntity->getInRefundNo(),
-                'in_trade_no'       => $TradeRefundEntity->getInTradeNo(),
-                'out_refund_no'     => $TradeRefundEntity->getOutRefundNo(),
-                'out_trade_no'      => $TradeRefundEntity->getOutTradeNo(),
-                'refund_fee'        => $TradeRefundEntity->getRefundFee(),
-                'refund_pay_ymdhis' => $TradeRefundEntity->getPayTime() > 0 ? date('Y-m-d H:i:s', $TradeRefundEntity->getPayTime()) : '',
-                'refund_status'     => Constant::getTradeRefundStatusNames()[$TradeRefundEntity->getStatus()],
-            ]));
-            $Client->send($Request);            
-        }
+//        这里不发送notify。如果需要发notify的话通过监听event::api.after.exec 事件去实现。
+//         if($TradeRefundEntity->getStatus() != Constant::TRADE_REFUND_STATUS_REQUEST && !empty($TradeRefundEntity->getNotifyUrl())){
+//             $Body       = new Stream('php://temp', 'w+b');
+//             $Client     = new Client();
+//             $Uri        = new Uri($TradeRefundEntity->getNotifyUrl());
+//             $Request    = new Request($Uri, $Body, HttpConstant::METHOD_POST);
+//             $Body->write(http_build_query([
+//                 'in_refund_no'      => $TradeRefundEntity->getInRefundNo(),
+//                 'in_trade_no'       => $TradeRefundEntity->getInTradeNo(),
+//                 'out_refund_no'     => $TradeRefundEntity->getOutRefundNo(),
+//                 'out_trade_no'      => $TradeRefundEntity->getOutTradeNo(),
+//                 'refund_fee'        => $TradeRefundEntity->getRefundFee(),
+//                 'refund_pay_ymdhis' => $TradeRefundEntity->getPayTime() > 0 ? date('Y-m-d H:i:s', $TradeRefundEntity->getPayTime()) : '',
+//                 'refund_status'     => Constant::getTradeRefundStatusNames()[$TradeRefundEntity->getStatus()],
+//             ]));
+//             $Client->send($Request);            
+//         }
 
         return new RefundResponse([
             'in_trade_no'       => $TradeRefundEntity->getInTradeNo(),
