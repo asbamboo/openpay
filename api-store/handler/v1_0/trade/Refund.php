@@ -24,6 +24,7 @@ use asbamboo\openpay\channel\v1_0\trade\RefundParameter\Response AS RefundParame
 // use asbamboo\http\Request;
 // use asbamboo\http\Constant AS HttpConstant;
 use asbamboo\router\RouterInterface;
+use asbamboo\openpay\apiStore\exception\TradeRefundStatusRequestedException;
 
 
 /**
@@ -142,12 +143,18 @@ class Refund implements ApiClassInterface
             $this->TradeRefundManager->insert($TradePayEntity, $Params->getOutRefundNo(), $Params->getRefundFee(), $Params->getNotifyUrl());
         }else{
             $TradeRefundEntity  = $this->TradeRefundManager->load($TradeRefundEntity->getInRefundNo());
-        }
-        if($TradeRefundEntity->getRefundFee() != $Params->getRefundFee()){
-            throw new TradeRefundOutRefundNoInvalidException('一个out_refund_no只能对应一笔退款,当请求失败需要重新请求时,不应该改变退款的金额。');
-        }
-        if($TradeRefundEntity->getInTradeNo() != $TradePayEntity->getInTradeNo()){
-            throw new TradeRefundOutRefundNoInvalidException('一个out_refund_no只能对应一笔退款。');
+            
+            if($TradeRefundEntity->getRefundFee() != $Params->getRefundFee()){
+                throw new TradeRefundOutRefundNoInvalidException('一个out_refund_no只能对应一笔退款,当请求失败需要重新请求时,不应该改变退款的金额。');
+            }
+            
+            if($TradeRefundEntity->getInTradeNo() != $TradePayEntity->getInTradeNo()){
+                throw new TradeRefundOutRefundNoInvalidException('一个out_refund_no只能对应一笔退款。');
+            }
+            
+            if($TradeRefundEntity->getStatus() == Constant::TRADE_REFUND_STATUS_REQUEST){
+                throw new TradeRefundStatusRequestedException('退款单已经请求，请使用退款查询接口查询退款状态。');
+            }
         }
 
         /**

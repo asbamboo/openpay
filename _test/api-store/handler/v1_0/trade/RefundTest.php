@@ -21,6 +21,7 @@ use asbamboo\openpay\apiStore\exception\TradeRefundOutRefundNoInvalidException;
 use asbamboo\router\Router;
 use asbamboo\router\RouteCollection;
 use asbamboo\router\Route;
+use asbamboo\openpay\apiStore\exception\TradeRefundStatusRequestedException;
 
 /**
  * - 参数没有时抛出异常。
@@ -116,6 +117,48 @@ class RefundTest extends TestCase
 
             $Handler->exec($Request);
 
+            throw new RollbackException('Rollback');
+        });
+    }
+    
+    public function testExecRequestedRequest()
+    {
+        $this->expectException(TradeRefundStatusRequestedException::class);
+        $Handler    = $this->getHandler();
+        $this->Db->getManager()->transactional(function()use($Handler){
+            
+            $ip                 = mt_rand(0,255) . '.0.0.1';
+            $in_trade_no        = date('ymdhis') . mt_rand(0, 999);
+            $TradePayEntity     = new TradePayEntity();
+            $TradePayEntity->setClientIp($ip);
+            $TradePayEntity->setChannel('TEST');
+            $TradePayEntity->setTradeStatus(Constant::TRADE_PAY_TRADE_STATUS_PAYOK);
+            $TradePayEntity->setInTradeNo($in_trade_no);
+            $TradePayEntity->setTotalFee(99999999);
+            $this->Db->getManager()->persist($TradePayEntity);
+            
+            
+            $refund_fee         = mt_rand(0, 99999);
+            $in_refund_no       = date('ymdhis') . mt_rand(0, 999);
+            $out_refund_no      = date('ymdhis') . mt_rand(0, 999);
+            $TradeRefundEntity  = new TradeRefundEntity();
+            $TradeRefundEntity->setInTradeNo($in_trade_no);
+            $TradeRefundEntity->setInRefundNo($in_refund_no);
+            $TradeRefundEntity->setOutRefundNo($out_refund_no);
+            $TradeRefundEntity->setRefundFee($refund_fee);
+            $TradeRefundEntity->setStatus(Constant::TRADE_REFUND_STATUS_REQUEST);
+            $this->Db->getManager()->persist($TradeRefundEntity);
+            
+            $this->Db->getManager()->flush();
+            
+            $Request            = $this->getRequest([
+                'in_trade_no'   => $in_trade_no,
+                'out_refund_no' => $out_refund_no,
+                'refund_fee'    => $refund_fee,
+            ]);
+            
+            $Handler->exec($Request);
+            
             throw new RollbackException('Rollback');
         });
     }
