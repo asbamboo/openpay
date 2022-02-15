@@ -8,12 +8,12 @@ use asbamboo\http\ServerRequestInterface;
 use asbamboo\openpay\channel\v1_0\trade\refundParameter\NotifyResult;
 
 /**
- * 测试退款返回状态:退款处理成功
+ * 测试退款返回状态:退款处理失败
  *
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年11月13日
  */
-class Refund implements RefundInterface
+class RefundFailed implements RefundInterface
 {
     /**
      *
@@ -25,12 +25,11 @@ class Refund implements RefundInterface
         $Response   = new Response();
         $Response->setInRefundNo($Request->getInRefundNo());
         $Response->setIsSuccess(true);
-        $Response->setRefundStatus(Response::REFUND_STATUS_SUCCESS);
-        $Response->setPayYmdhis('2018-11-13 20:07:50');
+        $Response->setRefundStatus(Response::REFUND_STATUS_FAILED);
         $Response->setRefundFee($Request->getRefundFee());
         return $Response;
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -43,11 +42,11 @@ class Refund implements RefundInterface
         $NotifyResult->setRefundPayYmdhis('2018-11-13 20:07:50');
         $NotifyResult->setRefundStatus(Response::REFUND_STATUS_SUCCESS);
         $NotifyResult->setResponseSuccess('SUCCESS');
-        $NotifyResult->setResponseFailed('FAILED');        
+        $NotifyResult->setResponseFailed('FAILED');
         $NotifyResult->setThirdPart('third_part_data');
         return $NotifyResult;
     }
-
+    
     /**
      *
      * {@inheritDoc}
@@ -56,7 +55,7 @@ class Refund implements RefundInterface
     public function supports() : array
     {
         return [
-            'TEST'  => '测试',
+            'TEST-FAILED'  => '测试退款失败',
         ];
     }
 }

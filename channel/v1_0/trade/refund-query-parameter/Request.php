@@ -1,5 +1,5 @@
 <?php
-namespace asbamboo\openpay\channel\v1_0\trade\RefundParameter;
+namespace asbamboo\openpay\channel\v1_0\trade\refundQueryParameter;
 
 use asbamboo\openpay\channel\common\ParameterTrait;
 
@@ -13,13 +13,7 @@ final class Request
 {
     use ParameterTrait;
 
-    /**
-     * @desc 支付渠道
-     * @required 必须
-     * @var string length(45)
-     */
-    protected $channel;
-
+    
     /**
      * 聚合平台生成的交易编号, 全局唯一
      *
@@ -28,21 +22,21 @@ final class Request
      * @var string length(32)
      */
     protected $in_trade_no;
-
+    
     /**
      * 订单支付总金额 单位是分
      *
      * @var int
      */
     protected $trade_pay_fee;
-
+    
     /**
      * 聚合平台生成的退款编号, 全局唯一
      *
      * @var string length(32)
      */
     protected $in_refund_no;
-
+    
     /**
      * 退款金额 单位是分
      *
@@ -51,20 +45,13 @@ final class Request
     protected $refund_fee;
     
     /**
-     * 通知url
-     * 
-     * @var string
-     */
-    protected $notify_url;
-
-    /**
      * @desc 第三方支付平台的参数，请自行查阅相关支付平台相关文档中的参数列表
      * @example {"limit_pay":"no_credit"}
      * @required 可选
      * @var json()
      */
     protected $third_part;
-
+    
     /**
      *
      * @return string
@@ -73,7 +60,7 @@ final class Request
     {
         return $this->channel;
     }
-
+    
     /**
      *
      * @return string
@@ -82,7 +69,7 @@ final class Request
     {
         return $this->in_trade_no;
     }
-
+    
     /**
      *
      * @return int
@@ -91,7 +78,7 @@ final class Request
     {
         return $this->trade_pay_fee;
     }
-
+    
     /**
      *
      * @return string
@@ -100,7 +87,7 @@ final class Request
     {
         return $this->in_refund_no;
     }
-
+    
     /**
      *
      * @return int
@@ -108,15 +95,6 @@ final class Request
     public function getRefundFee()
     {
         return $this->refund_fee;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getNotifyUrl()
-    {
-        return $this->notify_url;
     }
     
     /**

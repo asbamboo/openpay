@@ -51,6 +51,8 @@ final class Code
     const TRADE_REFUND_STATUS_INVALID = '4004'; // TradeRefundStatusInvalidException
     const TRADE_REFUND_THIRD_PART_INVALID = '4005'; // TradeRefundThirdPartInvalidException
     const TRADE_REFUND_TRADE_STATUS_INVALID = '4006'; // TradeRefundTradeStatusInvalidException
+    const TRADE_REFUND_TRADE_NOTIFY_URL_INVALID = '4007'; // TradeRefundNorifyUrlInvalidException
+    const TRADE_REFUND_STATUS_REQUESTED = '4008'; // TradeRefundStatusRequestedException
     /*********************************************************************************************/
 
     /*********************************************************************************************

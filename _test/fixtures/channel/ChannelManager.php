@@ -7,6 +7,7 @@ use asbamboo\openpay\apiStore\handler\v1_0\trade\Cancel;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Pay;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Query;
 use asbamboo\openpay\apiStore\handler\v1_0\trade\Refund;
+use asbamboo\openpay\apiStore\handler\v1_0\trade\RefundQuery;
 
 /**
  *
@@ -39,7 +40,16 @@ class ChannelManager implements ChannelManagerInterface
                 'TEST_QUERY_PAYED'      => ['QUERY_PAYED', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\QueryPayed())],
                 'TEST_QUERY_PAYOK'      => ['QUERY_PAYOK', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\QueryPayok())],
             ],
-            Refund::class               => ['TEST' => ['测试', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\Refund())]],
+            Refund::class               => [
+                'TEST'                  => ['测试', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\Refund())],
+                'TEST-FAILED'           => ['测试退款失败', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\RefundFailed())],
+                'TEST-REFUNDING'        => ['测试退款处理中', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\RefundIng())],
+            ],
+            RefundQuery::class              => [
+                'TEST-REFUND-QUERY-REQUEST' => ['测试退款查询请求中', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\RefundQueryRequest())],
+                'TEST-REFUND-QUERY-SUCCESS' => ['测试退款查询成功', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\RefundQuerySuccess())],
+                'TEST-REFUND-QUERY-FAILED'  => ['测试退款查询失败', serialize(new \asbamboo\openpay\_test\fixtures\channel\v1_0\RefundQueryFailed())],
+            ],
         ][$handler_class];
     }
 

@@ -36,7 +36,12 @@ class TradeRefundEntity
      * @var int
      */
     private $refund_fee = '0';
-
+    
+    /**
+     * @var string
+     */
+    private $notify_url = '';    
+    
     /**
      * @var int
      */
@@ -193,6 +198,31 @@ class TradeRefundEntity
         return $this->refund_fee;
     }
 
+    
+    /**
+     * Set notifyUrl.
+     *
+     * @param string $notifyUrl
+     *
+     * @return TradeRefundEntity
+     */
+    public function setNotifyUrl($notifyUrl)
+    {
+        $this->notify_url = $notifyUrl;
+        
+        return $this;
+    }
+    
+    /**
+     * Get notifyUrl.
+     *
+     * @return string
+     */
+    public function getNotifyUrl()
+    {
+        return $this->notify_url;
+    }
+    
     /**
      * Set status.
      *

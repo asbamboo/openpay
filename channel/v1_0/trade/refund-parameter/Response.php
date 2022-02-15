@@ -12,6 +12,15 @@ use asbamboo\openpay\exception\OpenpayException;
 final class Response
 {
     /**
+     * 退款状态
+     * 
+     * @var string
+     */
+    const REFUND_STATUS_SUCCESS     = 'SUCCESS';
+    const REFUND_STATUS_FAILED      = 'FAILED';
+    const REFUND_STATUS_PROCESSING  = 'PROCESSING';
+    
+    /**
      * 聚合平台生成的退款编号, 全局唯一
      *
      * @var string length(32)
@@ -26,11 +35,21 @@ final class Response
     protected $refund_fee;
 
     /**
-     * 是否成功
+     * 是否成功（接口响应申请退款成功）
      *
      * @var bool
      */
     protected $is_success;
+    
+    /**
+     * 退款状态
+     *  - SUCCESS
+     *  - FAILED
+     *  - PROCESSING
+     * 
+     * @var string
+     */
+    protected $refund_status = self::REFUND_STATUS_PROCESSING;
 
     /**
      * 退款支付时间
@@ -106,6 +125,29 @@ final class Response
     public function getIsSuccess()
     {
         return $this->is_success;
+    }
+    
+    /**
+     * 
+     * @param string $refund_status
+     * @return self
+     */
+    public function setRefundStatus(string $refund_status) : self
+    {
+        if(!in_array($refund_status, [static::REFUND_STATUS_FAILED, static::REFUND_STATUS_PROCESSING, static::REFUND_STATUS_SUCCESS])){
+            throw new OpenpayException('退款处理状态无效。');
+        }
+        $this->refund_status = $refund_status;
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return boolean
+     */
+    public function getRefundStatus()
+    {
+        return $this->refund_status;
     }
 
     /**
