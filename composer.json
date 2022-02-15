@@ -9,20 +9,19 @@
 	},
 	"require" : {
 		"php" : "^7.2",
-		"asbamboo/autoload" : "^1.0",
-		"asbamboo/di" : "^1.0",
-		"asbamboo/http" : "^1.1",
-		"asbamboo/helper" : "^1.1",
-		"asbamboo/api" : "^1.0",
-		"asbamboo/router" : "^1.0",
-		"asbamboo/database" : "^1.0",
-		"asbamboo/event" : "^1.0",
+		"asbamboo/autoload" : "dev-master",
+		"asbamboo/di" : "dev-master",
+		"asbamboo/http" : "dev-master",
+		"asbamboo/helper" : "dev-master",
+		"asbamboo/api" : "dev-master",
+		"asbamboo/router" : "dev-master",
+		"asbamboo/database" : "dev-master",
+		"asbamboo/event" : "dev-master",
 		"symfony/yaml" : "^4.0"		
 	},
 	"require-dev" : {
 		"phpunit/phpunit" : "^7.2"
 	},
-	"license" : "BSD-3-Clause",
 	"authors" : [{
 			"name" : "李春寅",
 			"email" : "licy2013@aliyun.com"
